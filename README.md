@@ -18,8 +18,6 @@ Escreva um ou dois parágrafo resumindo o objetivo do seu projeto.
 * Rommel Vieira Carneiro
 * Cleiton Silva Tavares
 
-
-
 ## Instruções de utilização 
 
 > **IMPORTANTE: APAGUE ESSA SEÇÃO DE INSTRUÇÕES ANTES DE ENTREGAR SEU TRABALHO**
