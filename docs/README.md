@@ -6,9 +6,11 @@ Informações básicas do projeto.
 * **Repositório GitHub:** [LINK PARA O REPOSITÓRIO NO GITHUB]
 * **Membros da equipe:**
 
-  * [Fulano](https://github.com/fulano) ⚠️ EXEMPLO ⚠️
-  * [Beltrano](https://github.com/beltrano) ⚠️ EXEMPLO ⚠️
-  * [Cicrano](https://github.com/cicrano) ⚠️ EXEMPLO ⚠️
+  * [Filipe Melo](https://github.com/fillmello)
+  * [Henrique Silveira](https://github.com/Henrique678) 
+  * [Bárbara Amorim](https://github.com/Barbaraamorimbraz)
+  * [Thalles Pereira](https://github.com/Thales-PL)
+  * [Anderson Rodrigues](https://github.com/AndersonRodrigues8)
 
 A documentação do projeto é estruturada da seguinte forma:
 
@@ -20,15 +22,19 @@ A documentação do projeto é estruturada da seguinte forma:
 6. Solução
 7. Referências Bibliográficas
 
-✅ [Documentação de Design Thinking (MIRO)](files/processo-dt.pdf)
+✅ [Documentação de Todas as Etapas até Abril (MIRO)](files/MiroAbril.pdf)
 
 # Contexto
 
 Detalhes sobre o espaço de problema, os objetivos do projeto, sua justificativa e público-alvo.
 
 ## Problema
+**32% dos adolescentes brasileiros apresentam sintomas de ansiedade**
 
-**✳️✳️✳️ COLOQUE AQUI O SEU TEXTO ✳️✳️✳️**
+**O suicídio é a quarta maior causa de morte entre jovens de 15 a 29 anos no Brasil (dados do Ministério da Saúde).**
+
+**Apenas 20% das pessoas com transtornos mentais recebem tratamento adequado no Brasil**
+
 
 > ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
 >
