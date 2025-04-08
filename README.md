@@ -5,15 +5,18 @@ Escreva um ou dois parágrafo resumindo o objetivo do seu projeto.
 
 ## Alunos integrantes da equipe
 
+* Anderson Jose Rodrigues Leal
+* Bárbara Amorim Braz
+* Filipe Melo
+* Henrique Silveira Luz Rocha
+* Lucas Gabriel Ferreira da Silva
 * Thales Pereira Leite
-* Nome completo do aluno 2
-* Nome completo do aluno 3
-* Nome completo do aluno 4
+* Vitor Tianyang Ji
 
 ## Professores responsáveis
 
 * Rommel Vieira Carneiro
-* Cleiton Silva Taveres
+* Cleiton Silva Tavares
 
 
 
