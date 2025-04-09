@@ -11,6 +11,7 @@ Informações básicas do projeto.
   * [Bárbara Amorim](https://github.com/Barbaraamorimbraz)
   * [Thales Pereira](https://github.com/Thales-PL)
   * [Anderson Rodrigues](https://github.com/AndersonRodrigues8)
+  * [Lucas Gabriel F Silva](https://github.com/lucasgfs1)
   * [Vitor Tianyang Ji](https://github.com/lomhzunhenbaqi)
 
 A documentação do projeto é estruturada da seguinte forma:
