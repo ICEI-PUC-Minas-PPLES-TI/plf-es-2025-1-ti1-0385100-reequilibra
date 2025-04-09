@@ -3,7 +3,7 @@
 Informações básicas do projeto.
 
 * **Projeto:** [reequilibra]
-* **Repositório GitHub:** [LINK PARA O REPOSITÓRIO NO GITHUB]
+* **Repositório GitHub:** [https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2025-1-ti1-0385100-reequilibra.git]
 * **Membros da equipe:**
 
   * [Filipe Melo](https://github.com/fillmello)
@@ -11,6 +11,7 @@ Informações básicas do projeto.
   * [Bárbara Amorim](https://github.com/Barbaraamorimbraz)
   * [Thales Pereira](https://github.com/Thales-PL)
   * [Anderson Rodrigues](https://github.com/AndersonRodrigues8)
+  * [Vitor Tianyang Ji](https://github.com/lomhzunhenbaqi)
 
 A documentação do projeto é estruturada da seguinte forma:
 
@@ -29,16 +30,15 @@ A documentação do projeto é estruturada da seguinte forma:
 Detalhes sobre o espaço de problema, os objetivos do projeto, sua justificativa e público-alvo.
 
 ## Problema
-**32% dos adolescentes brasileiros apresentam sintomas de ansiedade**
 
-**O suicídio é a quarta maior causa de morte entre jovens de 15 a 29 anos no Brasil (dados do Ministério da Saúde).**
+A saúde mental de adolescentes e jovens no Brasil está em estado de alerta. Dados do Ministério da Saúde revelam que 32% dos adolescentes brasileiros apresentam sintomas de ansiedade, e o suicídio é a quarta principal causa de morte entre jovens de 15 a 29 anos. Além disso, apenas 20% das pessoas com transtornos mentais recebem o tratamento adequado. Em uma fase da vida marcada por mudanças intensas e pressão social, muitos jovens enfrentam dificuldades para compreender e expressar suas emoções, além de resistência ou falta de acesso a ajuda profissional.
 
-**Apenas 20% das pessoas com transtornos mentais recebem tratamento adequado no Brasil**
 
 
 ## Objetivos
 
-**Geral: Desenvolver uma plataforma digital que auxilie jovens no gerenciamento da saúde mental, proporcionando ferramentas de autocuidado e acesso a apoio profissional.
+**Geral: 
+Desenvolver uma plataforma digital que auxilie jovens no gerenciamento da saúde mental, proporcionando ferramentas de autocuidado e acesso a apoio profissional.
 Específicos:
 Oferecer um espaço seguro para expressão emocional e troca de experiências.
 Facilitar o acesso a psicólogos via chat ou agendamento.
@@ -47,17 +47,9 @@ Reduzir o estigma em torno da saúde mental por meio de educação e conscientiz
 
 ## Justificativa
 
-**✳️✳️✳️ COLOQUE AQUI O SEU TEXTO ✳️✳️✳️**
+**A saúde mental dos jovens é fundamental para seu desenvolvimento emocional e social. Trabalhar esse tema ajuda a prevenir transtornos, fortalecer a autoestima e formar adultos mais equilibrados e preparados para os desafios da vida.
 
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Descreva a importância ou a motivação para trabalhar com esta aplicação que você escolheu. Indique as razões pelas quais você escolheu seus objetivos específicos ou as razões para aprofundar em certos aspectos do software.
->
-> O grupo de trabalho pode fazer uso de questionários, entrevistas e dados estatísticos, que podem ser apresentados, com o objetivo de esclarecer detalhes do problema que será abordado pelo grupo.
->
-> **Orientações**:
->
-> - [Como montar a justificativa](https://guiadamonografia.com.br/como-montar-justificativa-do-tcc/)
+O grupo trabalhar com a saúde mental dos jovens porque essa é uma fase cheia de pressões e mudanças, que muitas vezes afetam o bem-estar emocional. Muitos jovens não sabem como lidar com sentimentos, têm dificuldade em pedir ajuda e enfrentam o estigma em torno do tema. Por isso, é essencial criar espaços de apoio, escuta e conscientização para promover o equilíbrio emocional e prevenir problemas mais graves.**
 
 ## Público-Alvo
 
@@ -146,7 +138,7 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 
 ## Projeto de Interface
 
-Artefatos relacionados com a interface e a interacão do usuário na proposta de solução.
+Artefatos relacionados com a interface e a interação do usuário na proposta de solução.
 
 ### Wireframes
 
@@ -154,55 +146,24 @@ Estes são os protótipos de telas do sistema.
 
 **![Wireframe1](images/Page.png)**
 **![Wireframe1](images/Login.png)**
-**![Wireframe1](images/UserPage1.png)**
 **![Wireframe1](images/UserPage2.png)**
-
-##### TELA XPTO ⚠️ EXEMPLO ⚠️
-
-Descrição para a tela XPTO
-
-![Exemplo de wireframe](images/exemplo-wireframe.png)
-
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Wireframes são protótipos das telas da aplicação usados em design de interface para sugerir a estrutura de um site web e seu relacionamentos entre suas páginas. Um wireframe web é uma ilustração semelhante ao layout de elementos fundamentais na interface.
->
-> **Orientações**:
->
-> - [Ferramentas de Wireframes](https://rockcontent.com/blog/wireframes/)
-> - [Figma](https://www.figma.com/)
-> - [Adobe XD](https://www.adobe.com/br/products/xd.html#scroll)
-> - [MarvelApp](https://marvelapp.com/developers/documentation/tutorials/)
+**![Wireframe1](images/UserPage1.png)**
 
 ### User Flow
 
-**✳️✳️✳️ COLOQUE AQUI O DIAGRAMA DE FLUXO DE TELAS ✳️✳️✳️**
-
-![Exemplo de fluxo de telas](images/exemplo-userflow.png)
-
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Fluxo de usuário (User Flow) é uma técnica que permite ao desenvolvedor mapear todo fluxo de telas do site ou app. Essa técnica funciona para alinhar os caminhos e as possíveis ações que o usuário pode fazer junto com os membros de sua equipe.
->
-> **Orientações**:
->
-> - [User Flow: O Quê É e Como Fazer?](https://medium.com/7bits/fluxo-de-usu%C3%A1rio-user-flow-o-que-%C3%A9-como-fazer-79d965872534)
-> - [User Flow vs Site Maps](http://designr.com.br/sitemap-e-user-flow-quais-as-diferencas-e-quando-usar-cada-um/)
-> - [Top 25 User Flow Tools &amp; Templates for Smooth](https://www.mockplus.com/blog/post/user-flow-tools)
+**![UserFlow](images/UserFlow.png)**
 
 ### Protótipo Interativo
 
 **✳️✳️✳️ COLOQUE AQUI UM IFRAME COM SEU PROTÓTIPO INTERATIVO ✳️✳️✳️**
 
-✅ [Protótipo Interativo (MarvelApp)](https://marvelapp.com/prototype/4hd6091?emb=1&iosapp=false&frameless=false)  ⚠️ EXEMPLO ⚠️
+✅ [Protótipo Interativo (FIGMA)](https://www.figma.com/proto/G1OFrsEnRmn9mlAFH9B7e7/Website-Wireframes-UI-Kit-%7C-BRIX-Agency--Community-?page-id=1202%3A72522&node-id=1255-825&viewport=-4268%2C234%2C0.47&t=vH7rgPFUWWjopKgk-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=1255%3A825)
 
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Um protótipo interativo apresenta o projeto de interfaces e permite ao usuário navegar pelas funcionalidades como se estivesse lidando com o software pronto. Utilize as mesmas ferramentas de construção de wireframes para montagem do seu protótipo interativo. Inclua o link para o protótipo interativo do projeto.
 
 # Metodologia
 
-Detalhes sobre a organização do grupo e o ferramental empregado.
+**Detalhes sobre a organização do grupo e o ferramental empregado.
+Editor de código principal: Visual Studio Code.**
 
 ## Ferramentas
 
@@ -210,154 +171,46 @@ Relação de ferramentas empregadas pelo grupo durante o projeto.
 
 | Ambiente                    | Plataforma | Link de acesso                                     |
 | --------------------------- | ---------- | -------------------------------------------------- |
-| Processo de Design Thinking | Miro       | https://miro.com/XXXXXXX ⚠️ EXEMPLO ⚠️        |
-| Repositório de código     | GitHub     | https://github.com/XXXXXXX ⚠️ EXEMPLO ⚠️      |
-| Hospedagem do site          | Render     | https://site.render.com/XXXXXXX ⚠️ EXEMPLO ⚠️ |
-| Protótipo Interativo       | MarvelApp  | https://marvelapp.com/XXXXXXX ⚠️ EXEMPLO ⚠️   |
+| Processo de Design Thinking | Miro       | https://miro.com/app/board/uXjVIO1vkVM=/?share_link_id=891421897664 |
+| Repositório de código     | GitHub     | https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2025-1-ti1-0385100-reequilibra.git |
+| Hospedagem do site          | Render     | NÃO TEM AINDA!! |
+| Protótipo Interativo       | FIGMA  | https://www.figma.com/proto/G1OFrsEnRmn9mlAFH9B7e7/Website-Wireframes-UI-Kit-%7C-BRIX-Agency--Community-?page-id=1202%3A72522&node-id=1255-825&viewport=-4268%2C234%2C0.47&t=vH7rgPFUWWjopKgk-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=1255%3A825 |
 |                             |            |                                                    |
 
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Liste as ferramentas empregadas no desenvolvimento do projeto, justificando a escolha delas, sempre que possível. Inclua itens como: (1) Editor de código, (2) )ferramentas de comunicação, (3) )ferramentas de diagramação, (4) )plataformas de hospedagem, entre outras.
 
 ## Gerenciamento do Projeto
 
 Divisão de papéis no grupo e apresentação da estrutura da ferramenta de controle de tarefas (Kanban).
 
-![Exemplo de Kanban](images/exemplo-kanban.png)
+![Divisão de Papéis](images/DivisaoDePapeis.webp)
 
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Nesta parte do documento, você deve apresentar  o processo de trabalho baseado nas metodologias ágeis, a divisão de papéis e tarefas, as ferramentas empregadas e como foi realizada a gestão de configuração do projeto via GitHub.
->
-> Coloque detalhes sobre o processo de Design Thinking e a implementação do Framework Scrum seguido pelo grupo. O grupo poderá fazer uso de ferramentas on-line para acompanhar o andamento do projeto, a execução das tarefas e o status de desenvolvimento da solução.
->
-> **Orientações**:
->
-> - [Sobre Projects - GitHub Docs](https://docs.github.com/pt/issues/planning-and-tracking-with-projects/learning-about-projects/about-projects)
-> - [Gestão de projetos com GitHub | balta.io](https://balta.io/blog/gestao-de-projetos-com-github)
-> - [(460) GitHub Projects - YouTube](https://www.youtube.com/playlist?list=PLiO7XHcmTsldZR93nkTFmmWbCEVF_8F5H)
-> - [11 Passos Essenciais para Implantar Scrum no seu Projeto](https://mindmaster.com.br/scrum-11-passos/)
-> - [Scrum em 9 minutos](https://www.youtube.com/watch?v=XfvQWnRgxG0)
+Os integrantes do grupo participaram ativamente, cada um com base em suas funções designadas. A metodologia abordada pelo grupo partiu do estudo das dores dos futuros consumidores e evoluiu em sessões de Brainstorming para discussão de métodos para atenuar essas questões. O grupo se reuniu antes de cada sprint e delegou tarefas individuais e coletivas para cada etapa do processo, tendo como base a metodologia ágil "Scrum".
+
+
 
 # Solução Implementada
 
-Esta seção apresenta todos os detalhes da solução criada no projeto.
+Atendimento com psicólogos, fórum para suprir um dos principais agravadores de problemas mentais(a falta de liberdade ou orgulho para se comunicar), campanhas de conscientização, atividades diárias para regular os principais hormônios da felicidade (serotonina, dopamina, ocitocina e adrenalina)
 
 ## Vídeo do Projeto
 
 O vídeo a seguir traz uma apresentação do problema que a equipe está tratando e a proposta de solução. ⚠️ EXEMPLO ⚠️
 
-[![Vídeo do projeto](images/video.png)](https://www.youtube.com/embed/70gGoFyGeqQ)
+[![Introdução do Projeto](images/video.png)](https://youtu.be/k_xMXx6a1Q8)
 
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> O video de apresentação é voltado para que o público externo possa conhecer a solução. O formato é livre, sendo importante que seja apresentado o problema e a solução numa linguagem descomplicada e direta.
->
-> Inclua um link para o vídeo do projeto.
+
 
 ## Funcionalidades
 
-Esta seção apresenta as funcionalidades da solução.Info
 
-##### Funcionalidade 1 - Cadastro de Contatos ⚠️ EXEMPLO ⚠️
+##### Funcionalidade 1 - Login
+O usuário deve ser capaz de se cadastrar e ver suas tarefas diárias, consultas, etc.
 
-Permite a inclusão, leitura, alteração e exclusão de contatos para o sistema
 
-* **Estrutura de dados:** [Contatos](#ti_ed_contatos)
-* **Instruções de acesso:**
-  * Abra o site e efetue o login
-  * Acesse o menu principal e escolha a opção Cadastros
-  * Em seguida, escolha a opção Contatos
-* **Tela da funcionalidade**:
+##### Funcionalidade 2 - Agendamento de Consultas
+Deve ser adicionada uma aba para agendamento de consultas comprofissionais da área, incluindo desde o pagaento até a interação com uma plataforma de comunicação em tempo real.
 
-![Tela de Funcionalidade](images/exemplo-funcionalidade.png)
+##### Funcionalidade 3 - Fórum
+Os clientes terão a possibilidade de abrir tópicos sobre questões nas quais sentem dificuldaes e interagir com os psicólogos cadastrados e verificados pela plataforma.
 
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Apresente cada uma das funcionalidades que a aplicação fornece tanto para os usuários quanto aos administradores da solução.
->
-> Inclua, para cada funcionalidade, itens como: (1) titulos e descrição da funcionalidade; (2) Estrutura de dados associada; (3) o detalhe sobre as instruções de acesso e uso.
 
-## Estruturas de Dados
-
-Descrição das estruturas de dados utilizadas na solução com exemplos no formato JSON.Info
-
-##### Estrutura de Dados - Contatos   ⚠️ EXEMPLO ⚠️
-
-Contatos da aplicação
-
-```json
-  {
-    "id": 1,
-    "nome": "Leanne Graham",
-    "cidade": "Belo Horizonte",
-    "categoria": "amigos",
-    "email": "Sincere@april.biz",
-    "telefone": "1-770-736-8031",
-    "website": "hildegard.org"
-  }
-  
-```
-
-##### Estrutura de Dados - Usuários  ⚠️ EXEMPLO ⚠️
-
-Registro dos usuários do sistema utilizados para login e para o perfil do sistema
-
-```json
-  {
-    id: "eed55b91-45be-4f2c-81bc-7686135503f9",
-    email: "admin@abc.com",
-    id: "eed55b91-45be-4f2c-81bc-7686135503f9",
-    login: "admin",
-    nome: "Administrador do Sistema",
-    senha: "123"
-  }
-```
-
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Apresente as estruturas de dados utilizadas na solução tanto para dados utilizados na essência da aplicação quanto outras estruturas que foram criadas para algum tipo de configuração
->
-> Nomeie a estrutura, coloque uma descrição sucinta e apresente um exemplo em formato JSON.
->
-> **Orientações:**
->
-> * [JSON Introduction](https://www.w3schools.com/js/js_json_intro.asp)
-> * [Trabalhando com JSON - Aprendendo desenvolvimento web | MDN](https://developer.mozilla.org/pt-BR/docs/Learn/JavaScript/Objects/JSON)
-
-## Módulos e APIs
-
-Esta seção apresenta os módulos e APIs utilizados na solução
-
-**Images**:
-
-* Unsplash - [https://unsplash.com/](https://unsplash.com/) ⚠️ EXEMPLO ⚠️
-
-**Fonts:**
-
-* Icons Font Face - [https://fontawesome.com/](https://fontawesome.com/) ⚠️ EXEMPLO ⚠️
-
-**Scripts:**
-
-* jQuery - [http://www.jquery.com/](http://www.jquery.com/) ⚠️ EXEMPLO ⚠️
-* Bootstrap 4 - [http://getbootstrap.com/](http://getbootstrap.com/) ⚠️ EXEMPLO ⚠️
-
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Apresente os módulos e APIs utilizados no desenvolvimento da solução. Inclua itens como: (1) Frameworks, bibliotecas, módulos, etc. utilizados no desenvolvimento da solução; (2) APIs utilizadas para acesso a dados, serviços, etc.
-
-# Referências
-
-As referências utilizadas no trabalho foram:
-
-* SOBRENOME, Nome do autor. Título da obra. 8. ed. Cidade: Editora, 2000. 287 p ⚠️ EXEMPLO ⚠️
-
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Inclua todas as referências (livros, artigos, sites, etc) utilizados no desenvolvimento do trabalho.
->
-> **Orientações**:
->
-> - [Formato ABNT](https://www.normastecnicas.com/abnt/trabalhos-academicos/referencias/)
-> - [Referências Bibliográficas da ABNT](https://comunidade.rockcontent.com/referencia-bibliografica-abnt/)
