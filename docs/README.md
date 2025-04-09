@@ -36,27 +36,14 @@ Detalhes sobre o espaço de problema, os objetivos do projeto, sua justificativa
 **Apenas 20% das pessoas com transtornos mentais recebem tratamento adequado no Brasil**
 
 
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Nesse momento você deve apresentar o problema que a sua aplicação deve resolver. No entanto, não é a hora de comentar sobre a aplicação. Descreva também o contexto em que essa aplicação será usada, se houver: empresa, tecnologias, etc. Novamente, descreva apenas o que de fato existir, pois ainda não é a hora de apresentar requisitos detalhados ou projetos.
->
-> **Orientações**:
->
-> - [Objetivos, Problema de pesquisa e Justificativa](https://medium.com/@versioparole/objetivos-problema-de-pesquisa-e-justificativa-c98c8233b9c3)
-> - [Matriz Certezas, Suposições e Dúvidas](https://medium.com/educa%C3%A7%C3%A3o-fora-da-caixa/matriz-certezas-suposi%C3%A7%C3%B5es-e-d%C3%BAvidas-fa2263633655)
-> - [Brainstorming](https://www.euax.com.br/2018/09/brainstorming/)
-
 ## Objetivos
 
-**✳️✳️✳️ COLOQUE AQUI O SEU TEXTO ✳️✳️✳️**
-
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Aqui você deve descrever os objetivos do trabalho indicando que o objetivo geral é desenvolver um software para solucionar o problema apresentado acima. Apresente também alguns (pelo menos 2) objetivos específicos dependendo de onde você vai querer concentrar a sua prática investigativa, ou como você vai aprofundar no seu trabalho.
->
-> **Orientações**:
->
-> - [Objetivo geral e objetivo específico: como fazer e quais verbos utilizar](https://blog.mettzer.com/diferenca-entre-objetivo-geral-e-objetivo-especifico/)
+**Geral: Desenvolver uma plataforma digital que auxilie jovens no gerenciamento da saúde mental, proporcionando ferramentas de autocuidado e acesso a apoio profissional.
+Específicos:
+Oferecer um espaço seguro para expressão emocional e troca de experiências.
+Facilitar o acesso a psicólogos via chat ou agendamento.
+Disponibilizar recursos interativos (como mindfulness, jogos terapêuticos e testes de humor).
+Reduzir o estigma em torno da saúde mental por meio de educação e conscientização.**
 
 ## Justificativa
 
@@ -110,26 +97,11 @@ Com base na análise das personas foram identificadas as seguintes histórias de
 | Sandra (mãe de uma jovem) | Uma forma que me ajude a entender as emoções e desafios | Oferecer o suporte adequado à minha filha sem invadir sua privacidade e respeitando seu espaço |
 | João | Auxílio em momentos difíceis | Lidar melhor com meus problemas |
 
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Apresente aqui as histórias de usuário que são relevantes para o projeto de sua solução. As Histórias de Usuário consistem em uma ferramenta poderosa para a compreensão e elicitação dos requisitos funcionais e não funcionais da sua aplicação. Se possível, agrupe as histórias de usuário por contexto, para facilitar consultas recorrentes à essa parte do documento.
->
-> **Orientações**:
->
-> - [Histórias de usuários com exemplos e template](https://www.atlassian.com/br/agile/project-management/user-stories)
-> - [Como escrever boas histórias de usuário (User Stories)](https://medium.com/vertice/como-escrever-boas-users-stories-hist%C3%B3rias-de-usu%C3%A1rios-b29c75043fac)
 
 ## Proposta de Valor
 
-**✳️✳️✳️ APRESENTE O DIAGRAMA DA PROPOSTA DE VALOR PARA CADA PERSONA ✳️✳️✳️**
+**![Propostas de Valor](images/PropValor.png)**
 
-##### Proposta para Persona XPTO ⚠️ EXEMPLO ⚠️
-
-![Exemplo de proposta de valor](images/exemplo-proposta-valor.png)
-
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> O mapa da proposta de valor é uma ferramenta que nos ajuda a definir qual tipo de produto ou serviço melhor atende às personas definidas anteriormente.
 
 ## Requisitos
 
@@ -139,31 +111,38 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 
 | ID     | Descrição do Requisito                                   | Prioridade |
 | ------ | ---------------------------------------------------------- | ---------- |
-| RF-001 | Permitir que o usuário cadastre tarefas ⚠️ EXEMPLO ⚠️ | ALTA       |
-| RF-002 | Emitir um relatório de tarefas no mês ⚠️ EXEMPLO ⚠️ | MÉDIA     |
+| RF-001 | Um fórum com possibilidade de abertura de tópicos públicos ou privados | ALTA |
+| RF-002 | Identificação de graduados nos fóruns, como um sinal de certificado| BAIXA |
+| RF-003 | Fornecer fontes de informações verdadeiras e acessíveis | ALTA |
+| RF-004 | Exercícios de meditação| MÉDIA |
+| RF-005 | Botões de emergência para indicar quando o usuário está precisando de ajuda imediata | ALTA |
+| RF-006 | Informar ao usuário que o auto diagnóstico não é recomendado | MÉDIA |
+| RF-007 | Recursos para utilização de profissionais na área | ALTA |
+| RF-008 | Agendamento de consultas com psicólogos, com a opção de escolher entre diferentes horários e especializações | ALTA |
+| RF-009 | Sugestões simples e não invasivas para melhores questões sobre saúde mental | MÉDIA |
+| RF-010 | Botão Emergência | ALTA |
+| RF-011 | Uma parte que redireciona para vídeos e podcasts informativos sobre o tema | MÉDIA |
+| RF-012 | Sugestões diárias de atividades para melhorar a saúde mental | MÉDIA |
+
+
 
 ### Requisitos não Funcionais
 
 | ID      | Descrição do Requisito                                                              | Prioridade |
 | ------- | ------------------------------------------------------------------------------------- | ---------- |
-| RNF-001 | O sistema deve ser responsivo para rodar em um dispositivos móvel ⚠️ EXEMPLO ⚠️ | MÉDIA     |
-| RNF-002 | Deve processar requisições do usuário em no máximo 3s ⚠️ EXEMPLO ⚠️          | BAIXA      |
+| RNF-001 | O processo de desenvolvimento deve utilizar HTML e CSS | ALTA |
+| RNF-002 | O site deve ser publicado em um ambiente acessível publicamente na Internet (Repl.it, GitHub Pages, Heroku) | ALTA |
+| RNF-002 | O site deverá ser responsivo, permitindo a visualização em um celular de forma adequada | ALTA |
+| RNF-004 | A aplicação deve ter uma interface para fácil entendimento de todos (desde jovens, a idosos)| ALTA |
+| RNF-005 | A plataforma deve ser capaz de suportar grande quantidade de usuários | MÉDIA |
+| RNF-006 | Funcionamento off-line | BAIXA |
+| RNF-007 | Navegação simples e intuitiva, com menus claros e bem organizados | ALTA |
+| RNF-008 | Política de privacidade clara, informando como os dados dos usuários serão utilizados, além de garantir o anonimato, caso o usuário opte por não se identificar | ALTA |
+| RNF-009 | Desenvolver o sistema de forma clara para facilitar o manutenção | MÉDIA |
+| RNF-010 | compatibilidade com leitores de tela para inclusão de usuários | ALTA |
+| RNF-011 | Elementos interativos com destaque visual ao serem selecionados | MÉDIA |
+| RNF-012 | Evitar conteúdos piscantes ou intermitentes para prevenir crises em pessoas com epilepsia fotosensível | ALTA |
 
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Os requisitos de um projeto são classificados em dois grupos:
->
-> - [Requisitos Funcionais (RF)](https://pt.wikipedia.org/wiki/Requisito_funcional):
->   correspondem a uma funcionalidade que deve estar presente na plataforma (ex: cadastro de usuário).
-> - [Requisitos Não Funcionais (RNF)](https://pt.wikipedia.org/wiki/Requisito_n%C3%A3o_funcional):
->   correspondem a uma característica técnica, seja de usabilidade, desempenho, confiabilidade, segurança ou outro (ex: suporte a dispositivos iOS e Android).
->
-> Lembre-se que cada requisito deve corresponder à uma e somente uma característica alvo da sua solução. Além disso, certifique-se de que todos os aspectos capturados nas Histórias de Usuário foram cobertos.
->
-> **Orientações**:
->
-> - [O que são Requisitos Funcionais e Requisitos Não Funcionais?](https://codificar.com.br/requisitos-funcionais-nao-funcionais/)
-> - [O que são requisitos funcionais e requisitos não funcionais?](https://analisederequisitos.com.br/requisitos-funcionais-e-requisitos-nao-funcionais-o-que-sao/)
 
 ## Projeto de Interface
 
