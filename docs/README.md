@@ -152,7 +152,10 @@ Artefatos relacionados com a interface e a interacão do usuário na proposta de
 
 Estes são os protótipos de telas do sistema.
 
-**✳️✳️✳️ COLOQUE AQUI OS PROTÓTIPOS DE TELAS COM TÍTULO E DESCRIÇÃO ✳️✳️✳️**
+**![Wireframe1](images/Page.png)**
+**![Wireframe1](images/Login.png)**
+**![Wireframe1](images/UserPage1.png)**
+**![Wireframe1](images/UserPage2.png)**
 
 ##### TELA XPTO ⚠️ EXEMPLO ⚠️
 
