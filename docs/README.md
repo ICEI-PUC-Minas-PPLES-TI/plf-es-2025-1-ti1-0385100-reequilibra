@@ -90,18 +90,10 @@ Detalhes sobre o espaço de problema, os objetivos do projeto, sua justificativa
 
 ### Personas
 
-**✳️✳️✳️ APRESENTE OS DIAGRAMAS DE PERSONAS ✳️✳️✳️**
+**![Persona 1](images/persona1.png)**
+**![Persona 2](images/persona2.png)**
+**![Persona 2](images/persona3.png)**
 
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Relacione as personas identificadas no seu projeto e os respectivos mapas de empatia. Lembre-se que você deve ser enumerar e descrever precisamente e de forma personalizada todos os principais envolvidos com a solução almeja.
->
-> **Orientações**:
->
-> - [Persona x Público-alvo](https://flammo.com.br/blog/persona-e-publico-alvo-qual-a-diferenca/)
-> - [O que é persona?](https://resultadosdigitais.com.br/blog/persona-o-que-e/)
-> - [Rock Content](https://rockcontent.com/blog/personas/)
-> - [Criar personas (Hotmart)](https://blog.hotmart.com/pt-br/como-criar-persona-negocio/)
 
 # Product Design
 
@@ -113,8 +105,10 @@ Com base na análise das personas foram identificadas as seguintes histórias de
 
 | EU COMO...`PERSONA` | QUERO/PRECISO ...`FUNCIONALIDADE`        | PARA ...`MOTIVO/VALOR`               |
 | --------------------- | ------------------------------------------ | -------------------------------------- |
-| Usuário do sistema   | Registrar minhas tarefas ⚠️ EXEMPLO ⚠️ | Não esquecer de fazê-las             |
-| Administrador         | Alterar permissões ⚠️ EXEMPLO ⚠️      | Permitir que possam administrar contas |
+| Ana (Psicóloga) | Uma forma de ajudar meus clientes fora do horário das consultas sem gastar tanto tempo | Conseguir ajudar o máximo de pessoas com o mínimo de tempo |
+| Sofia | Um local seguro que me permita entender mais sobre eu mesma |  Entender e conseguir lidar com meus próprios sentimentos |
+| Sandra (mãe de uma jovem) | Uma forma que me ajude a entender as emoções e desafios | Oferecer o suporte adequado à minha filha sem invadir sua privacidade e respeitando seu espaço |
+| João | Auxílio em momentos difíceis | Lidar melhor com meus problemas |
 
 > ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
 >
