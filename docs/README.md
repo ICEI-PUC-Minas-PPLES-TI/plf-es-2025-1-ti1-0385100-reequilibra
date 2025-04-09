@@ -9,7 +9,7 @@ Informações básicas do projeto.
   * [Filipe Melo](https://github.com/fillmello)
   * [Henrique Silveira](https://github.com/Henrique678) 
   * [Bárbara Amorim](https://github.com/Barbaraamorimbraz)
-  * [Thalles Pereira](https://github.com/Thales-PL)
+  * [Thales Pereira](https://github.com/Thales-PL)
   * [Anderson Rodrigues](https://github.com/AndersonRodrigues8)
 
 A documentação do projeto é estruturada da seguinte forma:
