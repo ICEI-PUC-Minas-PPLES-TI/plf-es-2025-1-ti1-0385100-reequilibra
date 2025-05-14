@@ -13,6 +13,11 @@
 // Autor: Rommel Vieira Carneiro
 // Data: 03/10/2023
 
+//URL da nossa estrutura JSONServer
+fetch('https://12d88d11-bf7c-4a60-adc6-de173aa536e8-00-2r4bfxqpkwg9l.kirk.replit.dev/');
+
+
+
 const jsonServer = require('json-server')
 const server = jsonServer.create()
 const router = jsonServer.router('./db/db.json')

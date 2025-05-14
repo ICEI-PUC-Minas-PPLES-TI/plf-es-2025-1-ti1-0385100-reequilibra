@@ -1,25 +1,351 @@
 {
-  "usuarios": [
+  "diario": [
+    {
+      "id": "1",
+      "data": "2025-04-24",
+      "titulo": "Dia difícil na faculdade",
+      "publico": false,
+      "humor": 1, // 1 = triste, 2 = feliz, 3 = ansioso
+      "conteudo": "Hoje foi um dia muito complicado na faculdade. A prova de cálculo foi mais difícil do que eu esperava e acho que não fui bem. Me senti muito ansiosa durante a prova e agora estou com medo do resultado.",
+      "favorito": false,
+      "atualizadoEm": "2025-04-25"
+    },
+    {
+      "id": "2",
+      "data": "2025-04-23",
+      "titulo": "Dia tranquilo",
+      "publico": true,
+      "humor": 2,
+      "conteudo": "Hoje foi um dia tranquilo. Consegui estudar bastante e ainda tive tempo para relaxar assistindo minha série favorita.",
+      "favorito": true,
+      "atualizadoEm": "2025-04-23"
+    },
+    {
+      "id": "3",
+      "data": "2025-04-22",
+      "titulo": "Dia produtivo no trabalho",
+      "publico": true,
+      "humor": 2,
+      "conteudo": "Hoje foi um dia muito produtivo no trabalho. Consegui finalizar um projeto importante e recebi elogios do meu chefe.",
+      "favorito": true,
+      "atualizadoEm": "2025-04-22"
+    },
+    {
+      "id": "4",
+      "data": "2025-04-21",
+      "titulo": "Dia de reflexão",
+      "publico": false,
+      "humor": 3,
+      "conteudo": "Passei o dia refletindo sobre algumas decisões importantes que preciso tomar. Foi um dia introspectivo, mas necessário.",
+      "favorito": false,
+      "atualizadoEm": "2025-04-21"
+    },
+    {
+      "id": "5",
+      "data": "2025-04-20",
+      "titulo": "Dia de diversão com amigos",
+      "publico": true,
+      "humor": 2,
+      "conteudo": "Hoje foi um dia incrível! Passei o dia com meus amigos no parque, fizemos um piquenique e jogamos vôlei. Me senti muito feliz.",
+      "favorito": true,
+      "atualizadoEm": "2025-04-20"
+    },
+    {
+      "id": "6",
+      "data": "2025-04-19",
+      "titulo": "Dia de descanso",
+      "publico": false,
+      "humor": 2,
+      "conteudo": "Hoje foi um dia de descanso total. Fiquei em casa, li um livro e aproveitei para recarregar as energias.",
+      "favorito": false,
+      "atualizadoEm": "2025-04-19"
+    }
+  ]
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"artigos": [
+    {
+        "id": 1,
+        "titulo": "Ansiedade entre jovens",
+        "data": "25/04/2025",
+        "autor": "Maria",
+        "categoria_id": "1",
+        "texto": "Neste artigo, abordamos os sinais mais comuns da ansiedade entre adolescentes e jovens adultos",
+    }
+]
+
+"favoritos": [
+    {
+        "id": 1,
+        "usuario_id": 1,
+        "noticia_id": 1,
+    }
+]
+
+"categorias": [
+    {
+        "id": 1,
+        "nome": "Ansiedade"
+
+    }
+]
+
+"indicacoes": [
+    {
+        "titulo": "Saude mental dos jovens",
+        "autor": "Fernando Mendes",
+    }
+]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Thales - MeditaÃ§Ã£o
+var siteMeditacao = {
+  "busca": {
+    "placeholder": "Buscar meditaÃ§Ãµes...",
+    "filtros": [
+      "Ansiedade",
+      "Estresse",
+      "DepressÃ£o",
+      "Sono",
+      "Todos"
+    ]
+  },
+  "secaoMeditacoesPopulares": [
     {
       "id": 1,
-      "login": "admin",
-      "senha": "123",
-      "nome": "Administrador do Sistema",
-      "email": "admin@abc.com"
+      "titulo": "RespiraÃ§Ã£o para Ansiedade",
+      "descricao": "ExercÃcio de 5 minutos para acalmar a mente em momentos de crise.",
+      "duracao": "5 min",
+      "nivel": "Iniciante"
     },
     {
       "id": 2,
-      "login": "user",
-      "senha": "123",
-      "nome": "Usuario Comum",
-      "email": "user@abc.com"
+      "titulo": "MeditaÃ§Ã£o do Corpo Scan",
+      "descricao": "PercepÃ§Ã£o corporal para liberar tensÃµes fÃ­sicas e mentais.",
+      "duracao": "10 min",
+      "nivel": "IntermediÃ¡rio"
     },
     {
-      "login": "rommel",
-      "senha": "123",
-      "nome": "Rommel",
-      "email": "rommel@gmail.com",
-      "id": 3
+      "id": 3,
+      "titulo": "VisualizaÃ§Ã£o Guiada",
+      "descricao": "Imagine um lugar seguro para reduzir sintomas depressivos.",
+      "duracao": "15 min",
+      "nivel": "Iniciante"
+    },
+    {
+      "id": 4,
+      "titulo": "Mindfulness para Foco",
+      "descricao": "Treine sua atenÃ§Ã£o plena para melhorar a concentraÃ§Ã£o.",
+      "duracao": "8 min",
+      "nivel": "AvanÃ§ado"
+    }
+  ],
+  "playerAudio": {
+    "meditacaoAtual": {
+      "id": 2,
+      "titulo": "MeditaÃ§Ã£o do Corpo Scan",
+      "duracaoTotal": "10 min"
+    },
+    "tempoAtual": "0:00",
+    "tempoTotal": "10:00",
+    "estado": "pausado"
+  }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{
+  "contatos": [
+    {
+      "id": 1,
+      "nome": "Bárbara (Mãe)",
+      "telefone": "(31) 99999-9999"
+    },
+    {
+      "id": 2,
+      "nome": "Thales (Amigo)",
+      "telefone": "(31) 98888-8888"
+    },
+    {
+      "id": 3,
+      "nome": "Filipe (Psicólogo)",
+      "telefone": "(31) 97777-7777"
+    }
+  ],
+  "servicosDeSaude": [
+    {
+      "id": 1,
+      "nome": "CAPS AD Leste - São Lucas",
+      "tipo": "CAPS Álcool e Drogas",
+      "endereco": "R. Itaúna, 315 - São Lucas, Belo Horizonte - MG"
+      "telefone": "(31) 3277-6100",
+      "horario": "Seg-Sex: 7h30-17h30"
+    },
+    {
+      "id": 2,
+      "nome": "CAPS III Norte - Venda Nova",
+      "tipo": "CAPS III (24 horas)",
+      "endereco": "Av. Vilarinho, 390 - Venda Nova, Belo Horizonte - MG"
+      "telefone": "(31) 3277-6333",
+      "horario": "24 horas"
+    }
+  ]
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{
+  "atividades": [
+    {
+      "id": "respirar",
+      "nome": "RespiraÃ§Ã£o Guiada",
+      "tipo": "calma",
+      "tempoPadrao": 3,
+      "instrucaoes": "Inspire por 4s, segure por 7s, expire por 8s"
+    },
+    {
+      "id": "desenhar",
+      "nome": "Desenho Livre",
+      "tipo": "criatividade",
+      "tempoPadrao": 5,
+      "ferramentas": ["pincel", "borracha", "12 cores"]
+    }
+  ],
+  "missoesDiarias": [
+    {
+      "id": "missao1",
+      "descricao": "Complete 1 respiraÃ§Ã£o guiada",
+      "xp": 10,
+      "requisito": "respirar",
+      "concluida": false
+    }
+  ]
+}
+
+
+
+
+
+
+
+
+{
+  "psicologos": [
+    {
+      "id": 1,
+      "nome": "Dra. Maria",
+      "area_atua": "Terapia Comportamental",
+      "descricao": "Especialista em ajudar pessoas a superar desafios emocionais.",
+      "crp": "123456/SP",
+      "email": "maria@psicologia.com",
+      "local_atend": "Online",
+      "horarios": "9h Ã s 18h",
+      "nota": 4.9,
+      "experiencia": "10 anos",
+      "formacao": "PUC-SP",
+      "img": "./img/fotoex"
+    },
+    {
+      "id": 2,
+      "nome": "Dr. JoÃ£o", 
+      "area_atua": "PsicanÃ¡lise",
+      "descricao": "Atendimento voltado para autoconhecimento e saÃºde mental.",
+      "crp": "654321/SP",
+      "email": "joao@psicologia.com",
+      "local_atend": "Presencial",
+      "horarios": "13h Ã s 20h",
+      "nota": 4.7,
+      "experiencia": "8 anos",
+      "formacao": "USP",
+      "img": "./img/fotoex2"
+    },
+    {
+      "id": 3,
+      "nome": "Dra. Larissa", 
+      "area_atua": "Terapia Comportamental",
+      "descricao": "Ajuda na mudanÃ§a de padrÃµes de pensamento disfuncionais.",
+      "crp": "789012/SP",
+      "email": "larissa@psicologia.com",
+      "local_atend": "Online e Presencial",
+      "horarios": "8h Ã s 17h",
+      "nota": 4.8,
+      "experiencia": "6 anos",
+      "formacao": "UFMG",
+      "img": "./img/fotoex3"
     }
   ]
 }

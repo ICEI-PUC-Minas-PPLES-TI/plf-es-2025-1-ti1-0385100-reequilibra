@@ -1,5 +1,8 @@
 [![Open in Codespaces](https://classroom.github.com/assets/launch-codespace-2972f46106e565e64193e422d61a12cf1da4916b45550586e14ef0a7c637dd04.svg)](https://classroom.github.com/open-in-codespaces?assignment_repo_id=19064288)
 # reequilibra
+![LOGO](docs/images/logo1.jpeg)
+
+<img src="docs/images/logo1.jpeg" alt="LOGO" width="300">
 
 
 O projeto Reequilibra tem como objetivo principal desenvolver uma plataforma digital voltada para o gerenciamento da saúde mental de jovens. A iniciativa busca oferecer um espaço seguro para expressão emocional, troca de experiências e acesso a ferramentas de autocuidado, como exercícios de mindfulness, jogos terapêuticos e testes de humor. Além disso, a plataforma visa facilitar o acesso a psicólogos por meio de agendamentos e chats, promovendo a conscientização e a educação sobre saúde mental para reduzir o estigma associado ao tema. A proposta é criar um ambiente acolhedor e interativo que auxilie os jovens a lidar com os desafios emocionais de forma prática e acessível.
@@ -20,5 +23,3 @@ A justificativa para o projeto está na crescente preocupação com a saúde men
 
 * Rommel Vieira Carneiro
 * Cleiton Silva Tavares
-
-![LOGO](docs/images/logo1.jpeg)
