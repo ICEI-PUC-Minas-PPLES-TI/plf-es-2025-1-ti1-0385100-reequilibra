@@ -53,11 +53,11 @@
 
         <h3 class="mt-5 ms-5 text-start">Status</h3>
         <div id="status" class="d-flex justify-content-between p-5 pt-3">
-          <button class ="btn btn-light" >1</button>
-          <button class ="btn btn-light" >2</button>
-          <button class ="btn btn-light" >3</button>
-          <button class ="btn btn-light" >4</button>
-          <button class ="btn btn-light" >5</button>
+          <button id="btnStatus1" class ="btn btn-light" onclick="defStatusDiario(1)">1</button>
+          <button id="btnStatus2" class ="btn btn-light" onclick="defStatusDiario(2)">2</button>
+          <button id="btnStatus3" class ="btn btn-light" onclick="defStatusDiario(3)">3</button>
+          <button id="btnStatus4" class ="btn btn-light" onclick="defStatusDiario(4)">4</button>
+          <button id="btnStatus5" class ="btn btn-light" onclick="defStatusDiario(5)">5</button>
         </div>
 
         <h3 class="m-5 text-start">Escreva sobre o que quiser</h3>
@@ -74,31 +74,27 @@
 
       <!-- COLUNA 2 -->
       <div class="bg-success col-lg-4 text-center p-4">
+        <h3 class="m-3 mb-5 text-start">Meus Diários</h3>
 
         <!--Cartao 1-->
-        <div class="bg-light">
-          <h3 class="m-3 mb-5 text-start">Meus Diários</h3>
-          <h5 class="text-start ps-3">título do diário</h5>
-          <p class="text-muted text-start ps-3">Criado em: 24/04/2007</p>
+        <div class="bg-light card mb-3">
+          <h5 class="card-title text-start ps-3">título do diário</h5>
+          <p class="card-subtitle text-start ps-3">Criado em: 24/04/2007</p>
           <p class="text-muted text-start ps-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis eaque facilis velit molestiae dolorum.</p>
         </div>
 
         <!--Cartao 2-->
-        <div class="bg-light">
-          <h3 class="m-3 mb-5 text-start">Meus Diários</h3>
-          <h5 class="text-start ps-3">título do diário</h5>
-          <p class="text-muted text-start ps-3">Criado em: 24/04/2007</p>
+        <div class="bg-light card mb-3">
+          <h5 class="card-title text-start ps-3">título do diário</h5>
+          <p class="card-subtitle text-start ps-3">Criado em: 24/04/2007</p>
           <p class="text-muted text-start ps-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis eaque facilis velit molestiae dolorum.</p>
         </div>
 
-        <!--Cartao 3-->
-        <div class="bg-light">
-          <h3 class="m-3 mb-5 text-start">Meus Diários</h3>
-          <h5 class="text-start ps-3">título do diário</h5>
-          <p class="text-muted text-start ps-3">Criado em: 24/04/2007</p>
-          <p class="text-muted text-start ps-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis eaque facilis velit molestiae dolorum.</p>
-        </div>
+      <!--Cartao Gerado Dinâmicamente-->
+        <div id="diario1" class= >
 
+
+        </div>
        
       </div> <!--Fecha as 2 COLUNAS-->
 
@@ -106,5 +102,28 @@
   <script src="scripts/app.js"></script>
 
 
+
+  <script>
+
+    let concatenador = '';
+    function listaDiarios(i, tituloDiario,date, statusDiario, textoDiario) {
+
+      let diario = document.getElementById(`diario${i}`);
+      concatenador += `
+
+    <div class="bg-light card mb-3">
+        <h5 class="card-title text-start ps-3">${tituloDiario}</h5>
+        <p class="card-subtitle text-start ps-3">Criado em: ${date} - Status: ${statusDiario}</p>
+        <p class="text-muted text-start ps-3">${textoDiario}</p>
+
+    </div>
+    `
+
+      diario.innerHTML = concatenador;
+    }
+  
+
+
+  </script>
 </body>
 </html>
