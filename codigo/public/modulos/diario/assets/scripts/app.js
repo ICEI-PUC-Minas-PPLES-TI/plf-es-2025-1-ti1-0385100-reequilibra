@@ -1,5 +1,6 @@
 const btnSalvarDiario = document.getElementById('btnSalvarDiario');
 let statusDiario = '';
+const apiUrl = 'https://12d88d11-bf7c-4a60-adc6-de173aa536e8-00-2r4bfxqpkwg9l.kirk.replit.dev/diario';
 
 btnSalvarDiario.addEventListener('click', function(event){
     event.preventDefault();
@@ -7,8 +8,47 @@ btnSalvarDiario.addEventListener('click', function(event){
     const textoDiario = document.getElementById('textoDiario').value;
     const date = new Date();
 
-    listaDiarios(1, tituloDiario, textoDiario, statusDiario, date.toLocaleDateString('pt-BR'), date.toLocaleTimeString('pt-BR'));
+
+        // Cria um objeto com os dados do contato
+        let diarioObject = { 
+            userid: 1,
+            data: date.toLocaleDateString('pt-BR'),
+            titulo: tituloDiario,
+            publico: false,
+            status: statusDiario,
+            conteudo: textoDiario,
+            favorito: false };    
+
+            createDiario(diarioObject, exibeDiarios);
+
 });
+
+
+//refresh
+function exibeDiarios() {
+    const listaDiarios = document.getElementById('listaDiarios');
+}
+
+//CREATE
+function createDiario(diarioObject, refreshFunction) {
+    fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(diarioObject),
+    })
+        .then(response => response.json())
+        .then(data => {
+            alert("Diario inserido com sucesso");
+            if (refreshFunction)
+                refreshFunction();
+        })
+        .catch(error => {
+            console.error('Erro ao inserir diario via API JSONServer:', error);
+            alert("Erro ao inserir diario");
+        });
+}
 
 // ============== BOTÕES STATUS ================
 function defStatusDiario(i){

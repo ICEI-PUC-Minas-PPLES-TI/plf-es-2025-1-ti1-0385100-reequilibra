@@ -76,19 +76,6 @@
       <div class="bg-success col-lg-4 text-center p-4">
         <h3 class="m-3 mb-5 text-start">Meus Diários</h3>
 
-        <!--Cartao 1-->
-        <div class="bg-light card mb-3">
-          <h5 class="card-title text-start ps-3">título do diário</h5>
-          <p class="card-subtitle text-start ps-3">Criado em: 24/04/2007</p>
-          <p class="text-muted text-start ps-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis eaque facilis velit molestiae dolorum.</p>
-        </div>
-
-        <!--Cartao 2-->
-        <div class="bg-light card mb-3">
-          <h5 class="card-title text-start ps-3">título do diário</h5>
-          <p class="card-subtitle text-start ps-3">Criado em: 24/04/2007</p>
-          <p class="text-muted text-start ps-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis eaque facilis velit molestiae dolorum.</p>
-        </div>
 
       <!--Cartao Gerado Dinâmicamente-->
         <div id="diario1" class= >
@@ -104,23 +91,40 @@
 
 
   <script>
-
     let concatenador = '';
-    function listaDiarios(i, tituloDiario,date, statusDiario, textoDiario) {
+    function listaDiarios() {
+    concatenador = ''; // Redefine o conteúdo para evitar duplicação
 
-      let diario = document.getElementById(`diario${i}`);
-      concatenador += `
+    fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+            const diarioContainer = document.getElementById('diario1');
+            if (diarioContainer) {
+                data.forEach((diario) => {
+                    concatenador += `
+                        <div class="bg-light card mb-3">
+                            <h5 class="card-title text-start ps-3">${diario.titulo}</h5>
+                            <p class="card-subtitle text-start ps-3">Criado em: ${diario.data} - Status: ${diario.status}</p>
+                            <p class="text-muted text-start ps-3">${diario.conteudo}</p>
+                        </div>
+                    `;
+                });
+                diarioContainer.innerHTML = concatenador;
+            } else {
+                console.error("Elemento com ID 'diario1' não encontrado.");
+            }
+        })
+        .catch(error => {
+            console.error('Erro ao buscar os diários:', error);
+        });
+}
 
-    <div class="bg-light card mb-3">
-        <h5 class="card-title text-start ps-3">${tituloDiario}</h5>
-        <p class="card-subtitle text-start ps-3">Criado em: ${date} - Status: ${statusDiario}</p>
-        <p class="text-muted text-start ps-3">${textoDiario}</p>
 
-    </div>
-    `
 
-      diario.innerHTML = concatenador;
-    }
+      document.addEventListener('DOMContentLoaded', () => {
+    listaDiarios(1);
+});
+    
   
 
 
