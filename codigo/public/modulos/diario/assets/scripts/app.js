@@ -1,5 +1,7 @@
 const btnSalvarDiario = document.getElementById('btnSalvarDiario');
 let statusDiario = '';
+let selectedDiario = '';
+let diarioID = '';
 const apiUrl = 'https://12d88d11-bf7c-4a60-adc6-de173aa536e8-00-2r4bfxqpkwg9l.kirk.replit.dev/diario';
 
 btnSalvarDiario.addEventListener('click', function(event){
@@ -8,9 +10,12 @@ btnSalvarDiario.addEventListener('click', function(event){
     const textoDiario = document.getElementById('textoDiario').value;
     const date = new Date();
 
+    //gera o ID
+    diarioID = Date.now();
 
         // Cria um objeto com os dados do contato
         let diarioObject = { 
+            id: diarioID,
             userid: 1,
             data: date.toLocaleDateString('pt-BR'),
             titulo: tituloDiario,
@@ -19,15 +24,12 @@ btnSalvarDiario.addEventListener('click', function(event){
             conteudo: textoDiario,
             favorito: false };    
 
-            createDiario(diarioObject, exibeDiarios);
+            createDiario(diarioObject, listaDiarios);
 
 });
 
 
-//refresh
-function exibeDiarios() {
-    const listaDiarios = document.getElementById('listaDiarios');
-}
+
 
 //CREATE
 function createDiario(diarioObject, refreshFunction) {
@@ -41,8 +43,11 @@ function createDiario(diarioObject, refreshFunction) {
         .then(response => response.json())
         .then(data => {
             alert("Diario inserido com sucesso");
-            if (refreshFunction)
+            if (refreshFunction){
                 refreshFunction();
+                selecionaDiario(data.id);
+            }
+                
         })
         .catch(error => {
             console.error('Erro ao inserir diario via API JSONServer:', error);
@@ -61,8 +66,22 @@ function defStatusDiario(i){
     const btnStatus = document.getElementById(`btnStatus${i}`);
 
     btnStatus.classList.replace('btn-light','btn-success');
+
+
+
  
 
 }
 
+
+function selecionaDiario(i){
+    selectedDiario = i;
+
+    allCards = document.querySelectorAll('#diario1 > div');
+    allCards.forEach(cards => cards.classList.replace('bg-primary','bg-light'));
+
+    let card = document.getElementById(`card${i}`);
+    card.classList.replace('bg-light','bg-primary');
+
+}
 
