@@ -40,20 +40,32 @@ function createDiario(diarioObject, refreshFunction) {
         },
         body: JSON.stringify(diarioObject),
     })
-        .then(response => response.json())
-        .then(data => {
-            alert("Diario inserido com sucesso");
-            if (refreshFunction){
-                refreshFunction();
-                selecionaDiario(data.id);
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Erro na requisição: ${response.statusText}`);
             }
-                
+            return response.json(); // Converte a resposta para JSON
+        })
+        .then(data => {
+            alert("Diário inserido com sucesso");
+
+            if (refreshFunction) {
+                // Atualiza a lista de diários e destaca o novo card
+                refreshFunction()
+                    .then(() => {
+                        selecionaDiario(data.id);
+                    });
+            }
         })
         .catch(error => {
-            console.error('Erro ao inserir diario via API JSONServer:', error);
-            alert("Erro ao inserir diario");
+            console.error('Erro ao inserir diário via API REPLIT Server:', error);
+            alert("Erro ao inserir diário");
         });
 }
+            
+
+
+
 
 // ============== BOTÕES STATUS ================
 function defStatusDiario(i){
