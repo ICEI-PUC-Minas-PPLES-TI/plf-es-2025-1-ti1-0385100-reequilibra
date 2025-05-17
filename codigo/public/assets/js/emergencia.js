@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Função para carregar dados do JSON
     async function carregarDados() {
         try {
-            const response = await fetch('db.json');
+          const response = await fetch('../../../db/db.json');
             if (!response.ok) {
                 throw new Error('Erro ao carregar os dados');
             }

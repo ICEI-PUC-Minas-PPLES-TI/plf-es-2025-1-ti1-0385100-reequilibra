@@ -144,6 +144,11 @@
     }
   },
   "contatos": [
+     {
+      "id": 1,
+      "nome": "Bárbara (Mãe)",
+      "telefone": "(31) 99999-9999"
+    },
     {
       "id": 2,
       "nome": "Thales (Amigo)",
@@ -153,15 +158,6 @@
       "id": 3,
       "nome": "Filipe (Psicólogo)",
       "telefone": "(31) 97777-7777"
-    },
-    {
-      "nome": "asdasda",
-      "telefone": "asdasda",
-      "email": "asdasda@gmail.com",
-      "cidade": "asdasdasd",
-      "categoria": "asdadasda",
-      "website": "asdasdasd",
-      "id": 4
     }
   ],
   "servicosDeSaude": [
@@ -255,4 +251,5 @@
       "img": "./img/fotoex3"
     }
   ]
+  
 }
