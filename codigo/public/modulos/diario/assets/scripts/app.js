@@ -2,6 +2,7 @@ const btnSalvarDiario = document.getElementById('btnSalvarDiario');
 let statusDiario = '';
 let selectedDiario = '';
 let diarioID = '';
+let boolSelectedDiario = false;
 const apiUrl = 'https://12d88d11-bf7c-4a60-adc6-de173aa536e8-00-2r4bfxqpkwg9l.kirk.replit.dev/diario';
 
 btnSalvarDiario.addEventListener('click', function(event){
@@ -89,11 +90,54 @@ function defStatusDiario(i){
 function selecionaDiario(i){
     selectedDiario = i;
 
+    console.log("ID do diário selecionado:", selectedDiario);
+
     allCards = document.querySelectorAll('#diario1 > div');
     allCards.forEach(cards => cards.classList.replace('bg-primary','bg-light'));
 
     let card = document.getElementById(`card${i}`);
     card.classList.replace('bg-light','bg-primary');
 
-}
+    }
+
+
+
+    
+
+    function deleteDiario(id, refreshFunction) {
+        if (!id) {
+            alert("Nenhum diário foi selecionado para exclusão.");
+            return;
+        }
+    
+        fetch(`${apiUrl}/${id}`, {
+            method: 'DELETE',
+        })
+           .then(response => {
+            if(!response.ok){
+                console.log('Diário não encontrado');
+                alert("Diário não encontrado");
+                return;
+            }
+           })
+            .then(response => response.json()) // Converte para JSON
+            .then(data => {
+                alert("Diário removido com sucesso");
+    
+                // Atualiza a lista de diários
+                if (refreshFunction) {
+                    refreshFunction();
+                }
+            })
+            .catch(error => {
+                console.error('Erro ao remover diário via API:', error);
+                alert("Erro ao remover diário");
+            });
+    }
+    
+    
+    
+    
+
+
 
