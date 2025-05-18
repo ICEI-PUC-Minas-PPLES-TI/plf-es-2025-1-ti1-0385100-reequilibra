@@ -1,138 +1,129 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>reequilibra</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+  <title>reequilibra - Diário Pessoal</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
   <link rel="stylesheet" href="./CSS/style.css">
 </head>
 <body>
-
   <header id="header" class="shadow d-flex bg-white fixed-top">
-    <nav id="header" class="container bg-white d-flex justify-content-between align-items-center">
+    <nav class="container bg-white d-flex justify-content-between align-items-center py-2">
       <div>
-        <img src="../../../assets/images/box.png" alt="box" class="position-absolute top-0 start-0">
-        <button id="btnsqr" class="btn text-light fs-5 border-0 position-absolute top-0 start-0 d-flex align-items-center justify-content-center"
-          type="button" data-bs-toggle="collapse" data-bs-target="#menuMobile" style="width: 86px; height: 86px;">
+        <button id="btnsqr" class="btn text-light fs-5 border-0" type="button" data-bs-toggle="collapse" data-bs-target="#menuMobile" style="width: 60px; height: 60px; background-color: #01AE7D;">
           ☰
         </button>
       </div>
-      <img src="../../../assets/images/logo.jpeg" alt="logo" class="w-1" style="height: 86px; width: auto;">
-      <div class="d-flex gap-3">
+      <img src="../../../assets/images/logo.jpeg" alt="logo" style="height: 86px; width: auto;">
+      <div class="d-flex gap-2">
         <button type="button" class="btn btn-outline-secondary">Login</button>
-        <button id="signup" type="button" class="btn btn-success">Sign Up</button>
+        <button id="signup" type="button" class="btn text-white" style="background-color: #01AE7D;">Sign Up</button>
       </div>
     </nav>
 
-    <!-- Menu Mobile -->
-    <div class="collapse position-absolute w-100" id="menuMobile" style="z-index: -1;">
-      <div class="p-3 justify-content-center align-items-center">
-        <a href="#" class="d-block text-secondary fs-5 py-1">Pesquisar</a>
-        <a href="#" class="d-block text-secondary fs-5 py-1">Sobre Saúde Mental</a>
-        <a href="#" class="d-block text-secondary fs-5 py-1">Ferramentas de Autocuidado</a>
-        <a href="#" class="d-block text-secondary fs-5 py-1">Recursos</a>
-        <a href="#" class="d-block text-secondary fs-5 py-1">Comunidade</a>
+    <div class="collapse position-absolute w-100 bg-white shadow-sm" id="menuMobile" style="z-index: 1000; top: 60px;">
+      <div class="p-3">
+        <a href="#" class="d-block text-secondary fs-5 py-2 px-3">Pesquisar</a>
+        <a href="#" class="d-block text-secondary fs-5 py-2 px-3">Sobre Saúde Mental</a>
+        <a href="#" class="d-block text-secondary fs-5 py-2 px-3">Ferramentas de Autocuidado</a>
+        <a href="#" class="d-block text-secondary fs-5 py-2 px-3">Recursos</a>
+        <a href="#" class="d-block text-secondary fs-5 py-2 px-3">Comunidade</a>
       </div>
     </div>
   </header>
 
-
-  <!-- CRIAR DIÁRIOS -->
-
-
-  <div id="menuCriarDiario" class="container">
-    <div class="row row-2">
-
+  <main class="container" style="margin-top: 100px;">
+    <div id="menuCriarDiario" class="row">
       <!-- COLUNA 1 -->
-      <div class="bg-secondary col-lg-8 text-center p-4">
-        <h3 class="m-5 text-start">Título</h3>
-        <div class="p-5 pt-0">
-          <input id="tituloDiario" type="text" class="form-control" placeholder="Título do diário">
+      <div class="col-lg-8 bg-white p-4">
+        <h3 class="mb-4">Título</h3>
+        <div class="mb-4">
+          <input id="tituloDiario" type="text" class="form-control fs-3" placeholder="Título do diário">
         </div>
 
-        <h3 class="mt-5 ms-5 text-start">Status</h3>
-        <div id="status" class="d-flex justify-content-between p-5 pt-3">
-          <button id="btnStatus1" class ="btn btn-light" onclick="defStatusDiario(1)">1</button>
-          <button id="btnStatus2" class ="btn btn-light" onclick="defStatusDiario(2)">2</button>
-          <button id="btnStatus3" class ="btn btn-light" onclick="defStatusDiario(3)">3</button>
-          <button id="btnStatus4" class ="btn btn-light" onclick="defStatusDiario(4)">4</button>
-          <button id="btnStatus5" class ="btn btn-light" onclick="defStatusDiario(5)">5</button>
+        <div class="d-flex justify-content-between mb-4">
+          <div id="status" class="d-flex justify-content-center gap-5 mb-4">
+            <h3 class="mb-3">Como está se sentindo hoje?</h3>
+              <button id="btnStatus1" class="btn btn-light border border-secondary" onclick="defStatusDiario(1)">1</button>
+              <button id="btnStatus2" class="btn btn-light border border-secondary" onclick="defStatusDiario(2)">2</button>
+              <button id="btnStatus3" class="btn btn-light border border-secondary" onclick="defStatusDiario(3)">3</button>
+              <button id="btnStatus4" class="btn btn-light border border-secondary" onclick="defStatusDiario(4)">4</button>
+              <button id="btnStatus5" class="btn btn-light border border-secondary" onclick="defStatusDiario(5)">5</button>
+          </div>
         </div>
 
-        <h3 class="m-5 text-start">Escreva sobre o que quiser</h3>
-        <div class="p-5 pt-0">
-          <input id="textoDiario" type="text" class="form-control p-5" placeholder="...">
+        <h3 class="mb-3">Escreva sobre o que quiser</h3>
+        <div class="mb-4">
+          <textarea id="textoDiario" class="form-control fs-4" placeholder="..." rows="6"></textarea>
         </div>
 
-        <button type="submit" id="btnSalvarDiario" class="btn btn-success"> Salvar Diário</button>
-
+        <button type="submit" id="btnSalvarDiario" class="btn w-100">Salvar Diário</button>
       </div>
 
-
-
-
       <!-- COLUNA 2 -->
-      <div class="bg-success col-lg-4 text-center p-4">
-        <h3 class="m-3 mb-5 text-start">Meus Diários</h3>
-
-
-      <!--Cartao Gerado Dinâmicamente-->
-        <div id="diario1" >
-
-
+      <div class="col-lg-4 bg-light p-4">
+        <div class="d-flex justify-content-between mb-3">
+          <h3>Meus Diários</h3>
+          <div>
+            <button onclick="limpaCampos(); noDiarySelected();" class="btn btn-custom">
+              <i class="bi bi-plus"></i>
+            </button>
+            <button onclick="deleteDiario(selectedDiario, listaDiarios)" class="btn btn-danger">
+              <i class="bi bi-trash"></i>
+            </button>
+          </div>
         </div>
-       
-      </div> <!--Fecha as 2 COLUNAS-->
+        
+        <div id="diario1"></div>
+      </div>
+    </div>
+  </main>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
-  <script src="scripts/app.js"></script>
-
-
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+  
 
   <script>
+    document.getElementById('diario1').innerHTML = '';
+
     let concatenador = '';
     
     function listaDiarios() {
-    return new Promise((resolve, reject) => {
-        fetch(apiUrl) 
-            .then(response => response.json()) 
-            .then(data => {
-                const diarioContainer = document.getElementById('diario1'); // Seleciona o contêiner onde os diários serão exibidos
-                let concatenador = ''; 
+      let concatenador = ''; 
+      return new Promise((resolve, reject) => {
+          fetch(apiUrl) 
+              .then(response => response.json()) 
+              .then(data => {
+                  let diarioContainer = document.getElementById('diario1'); 
+                  diarioContainer.innerHTML = '';
+                 
+                  data.forEach(diario => {
+                      concatenador += `
+                          <div id="card${diario.id}" onclick="selecionaDiario(${diario.id}); noDiarySelected()" class="bg-light card mb-3 shadow-lg">
+                              <h5 class="card-title text-start ps-3">${diario.titulo}</h5>
+                              <p class="card-subtitle text-start ps-3">Criado em: ${diario.data} - Status: ${diario.status}</p>
+                              <p class=" text-start ps-3">${diario.conteudo}</p>
+                          </div>
+                      `;
+                  });
+                
+                  diarioContainer.innerHTML = concatenador;
+                  resolve();
+              })
+              .catch(error => {
+                  console.error('Erro ao carregar diários:', error); 
+              });
+      });
+    }
 
-                //Card Dinâmico
-                data.forEach(diario => {
-                    concatenador += `
-                        <div id="card${diario.id}" onclick="selecionaDiario(${diario.id})" class="bg-light card mb-3">
-                            <h5 class="card-title text-start ps-3">${diario.titulo}</h5>
-                            <p class="card-subtitle text-start ps-3">Criado em: ${diario.data} - Status: ${diario.status}</p>
-                            <p class="text-muted text-start ps-3">${diario.conteudo}</p>
-                        </div>
-                    `;
-                });
-
-              
-                diarioContainer.innerHTML = concatenador;
-
-                resolve(); // Resolve a Promise após atualizar o DOM
-            })
-            .catch(error => {
-                console.error('Erro ao carregar diários:', error); 
-            });
+    document.addEventListener('DOMContentLoaded', () => {
+        noDiarySelected();
+        listaDiarios();
     });
-}
-
-
-
-
-      document.addEventListener('DOMContentLoaded', () => {
-    listaDiarios(1);
-});
-    
+  </script>
   
 
-
-  </script>
+  <script src="scripts/app.js"></script>
 </body>
 </html>
