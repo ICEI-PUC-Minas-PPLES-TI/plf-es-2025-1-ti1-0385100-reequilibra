@@ -5,35 +5,40 @@ let diarioID = '';
 let boolSelectedDiario = false;
 const apiUrl = 'https://12d88d11-bf7c-4a60-adc6-de173aa536e8-00-2r4bfxqpkwg9l.kirk.replit.dev/diario';
 
-btnSalvarDiario.addEventListener('click', function(event){
+btnSalvarDiario.addEventListener('click', function (event) {
     event.preventDefault();
     const tituloDiario = document.getElementById('tituloDiario').value;
     const textoDiario = document.getElementById('textoDiario').value;
     const date = new Date();
 
-    //gera o ID
+    // gera o ID
     diarioID = Date.now();
 
-        // Cria um objeto com os dados do contato
-        let diarioObject = { 
-            id: diarioID,
-            userid: 1,
-            data: date.toLocaleDateString('pt-BR'),
-            titulo: tituloDiario,
-            publico: false,
-            status: statusDiario,
-            conteudo: textoDiario,
-            favorito: false };    
+    // Cria um objeto com os dados do contato
+    let diarioObject = {
+        id: diarioID,
+        userid: 1,
+        data: date.toLocaleDateString('pt-BR'),
+        titulo: tituloDiario,
+        publico: false,
+        status: statusDiario,
+        conteudo: textoDiario,
+        favorito: false
+    };
 
-            createDiario(diarioObject, listaDiarios);
-
+    createDiario(diarioObject, listaDiarios);
 });
 
-
-
-
-//CREATE
+// CREATE
 function createDiario(diarioObject, refreshFunction) {
+
+    //reseta os campos
+    document.getElementById('tituloDiario').value = null;
+    document.getElementById('textoDiario').value = null;
+    const resetBtn = document.querySelectorAll('#btnStatus1, #btnStatus2, #btnStatus3, #btnStatus4, #btnStatus5');
+    resetBtn.forEach(btn => btn.classList.replace('btn-success', 'btn-light'));
+
+    
     fetch(apiUrl, {
         method: 'POST',
         headers: {
@@ -43,7 +48,9 @@ function createDiario(diarioObject, refreshFunction) {
     })
         .then(response => {
             if (!response.ok) {
-                throw new Error(`Erro na requisição: ${response.statusText}`);
+                console.log('Erro ao inserir diário');
+                alert("Erro ao inserir diário");
+                return;
             }
             return response.json(); // Converte a resposta para JSON
         })
@@ -63,81 +70,114 @@ function createDiario(diarioObject, refreshFunction) {
             alert("Erro ao inserir diário");
         });
 }
-            
-
-
-
 
 // ============== BOTÕES STATUS ================
-function defStatusDiario(i){
-    //resetar os botões
+function defStatusDiario(i) {
+    // resetar os botões
     const resetBtn = document.querySelectorAll('#btnStatus1, #btnStatus2, #btnStatus3, #btnStatus4, #btnStatus5');
-    resetBtn.forEach(btn => btn.classList.replace('btn-success','btn-light')); 
-
+    resetBtn.forEach(btn => btn.classList.replace('btn-success', 'btn-light'));
 
     statusDiario = i;
     const btnStatus = document.getElementById(`btnStatus${i}`);
 
-    btnStatus.classList.replace('btn-light','btn-success');
-
-
-
- 
-
+    btnStatus.classList.replace('btn-light', 'btn-success');
 }
 
+function selecionaDiario(i) {
+    
+    
+    
+    
+    //preenche os campos com o diário selecionado
+    fetch(`${apiUrl}?id=${i}`)
+    .then(response => response.json())
+    .then(data => {
+        let selectedTitulo = document.getElementById('tituloDiario') 
+        let selectedTexto = document.getElementById('textoDiario')
+        
 
-function selecionaDiario(i){
-    selectedDiario = i;
+    // Remove o destaque de todos os cards
+        selectedTitulo.value = data[0].titulo;
+        selectedTexto.value = data[0].conteudo;
+
+        console.log("Título do diário selecionado:", selectedTitulo.value);
+        
+        selectedDiario = i;
+        boolSelectedDiario = true;
+})
 
     console.log("ID do diário selecionado:", selectedDiario);
 
-    allCards = document.querySelectorAll('#diario1 > div');
-    allCards.forEach(cards => cards.classList.replace('bg-primary','bg-light'));
+    let allCards = document.querySelectorAll('#diario1 > div');
+    allCards.forEach(cards => cards.classList.replace('bg-primary', 'bg-light'));
 
     let card = document.getElementById(`card${i}`);
-    card.classList.replace('bg-light','bg-primary');
+    card.classList.replace('bg-light', 'bg-primary');
+}
 
+
+
+
+function deleteDiario(id, refreshFunction) {
+
+    if (!id) {
+        alert("Nenhum diário foi selecionado para exclusão.");
+        return;
     }
 
-
-
-    
-
-    function deleteDiario(id, refreshFunction) {
-        if (!id) {
-            alert("Nenhum diário foi selecionado para exclusão.");
-            return;
-        }
-    
-        fetch(`${apiUrl}/${id}`, {
-            method: 'DELETE',
-        })
-           .then(response => {
-            if(!response.ok){
+    fetch(`${apiUrl}/${id}`, {
+        method: 'DELETE',
+    })
+        .then(response => {
+            if (!response.ok) {
                 console.log('Diário não encontrado');
                 alert("Diário não encontrado");
                 return;
             }
-           })
-            .then(response => response.json()) // Converte para JSON
-            .then(data => {
-                alert("Diário removido com sucesso");
-    
-                // Atualiza a lista de diários
-                if (refreshFunction) {
-                    refreshFunction();
-                }
-            })
-            .catch(error => {
-                console.error('Erro ao remover diário via API:', error);
-                alert("Erro ao remover diário");
-            });
-    }
-    
-    
-    
-    
+        })
+        .then(() => {
+            alert("Diário removido com sucesso");
+
+            // Atualiza a lista de diários
+            if (refreshFunction) {
+                refreshFunction();
+                selecionaDiario(id);
+            }
+    })
+        .catch(error => {
+            console.error('Erro ao remover diário via API:', error);
+            alert("Erro ao remover diário");
+        });
+}
+
+function updateDiario(id, diario, refreshFunction) {
+ 
+    fetch(`${apiUrl}/${id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(diario),
+    })
+        .then(response => response.json())
+        .then(data => {
+            displayMessage("Contato alterado com sucesso");
+            if (refreshFunction)
+                refreshFunction();
+        })
+        .then(() => {
+            alert("Diário atualizado com sucesso");
+            // Atualiza a lista de diários
+            if (refreshFunction) {
+                refreshFunction();
+                boolSelectedDiario = false;
+            }
+        })
+        .catch(error => {
+            console.error('Erro ao atualizar contato via API JSONServer:', error);
+            displayMessage("Erro ao atualizar contato");
+        })
+}
 
 
-
+ 

@@ -76,10 +76,16 @@
       <!-- COLUNA 2 -->
       <div class="bg-success col-lg-4 text-center d-flex flex-column p-4">
         <div class="d-flex align-items-center justify-content-between w-100">
-          <h3 class="m-3 text-start">Meus Diários</h3>
+          <h3 class="m-3 me-0 text-start">Meus Diários</h3>
+          
+          <button onclick="deleteDiario(selectedDiario, listaDiarios)" class="btn btn-danger m-4">
+            <i class="bi bi-pencil"></i>
+          </button>
+
           <button onclick="deleteDiario(selectedDiario, listaDiarios)" class="btn btn-danger m-4">
             <i class="bi bi-trash"></i>
           </button>
+
         </div>  
         
 
@@ -118,8 +124,8 @@
                     concatenador += `
                         <div id="card${diario.id}" onclick="selecionaDiario(${diario.id})" class="bg-light card mb-3">
                             <h5 class="card-title text-start ps-3">${diario.titulo}</h5>
-                            <p class="card-subtitle text-start ps-3">Criado em: ${diario.diario} - Status: ${data.status}</p>
-                            <p class="text-muted text-start ps-3">${data.conteudo}</p>
+                            <p class="card-subtitle text-start ps-3">Criado em: ${diario.data} - Status: ${diario.status}</p>
+                            <p class="text-muted text-start ps-3">${diario.conteudo}</p>
                         </div>
                     `;
                 });
@@ -139,7 +145,7 @@
 
 
       document.addEventListener('DOMContentLoaded', () => {
-    listaDiarios(1);
+    listaDiarios();
 });
     
   
