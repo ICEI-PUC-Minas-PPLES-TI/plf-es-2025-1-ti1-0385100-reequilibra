@@ -1116,7 +1116,11 @@ body {
 
 } 
 
- 
+#googleMap {
+  min-height: 300px;
+  background: #eaeaea; 
+}
+
 
 /* Responsividade */ 
 
