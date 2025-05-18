@@ -10,7 +10,7 @@ function limpaCampos() {
     document.getElementById('tituloDiario').value = null;
     document.getElementById('textoDiario').value = null;
     const resetBtn = document.querySelectorAll('#btnStatus1, #btnStatus2, #btnStatus3, #btnStatus4, #btnStatus5');
-    resetBtn.forEach(btn => btn.classList.replace('btn-success', 'btn-light'));
+    resetBtn.forEach(btn => btn.classList.replace('btn-custom', 'btn-light'));
 
     boolSelectedDiario = false;
 }
@@ -60,7 +60,7 @@ function createDiario(diarioObject, refreshFunction) {
     document.getElementById('tituloDiario').value = null;
     document.getElementById('textoDiario').value = null;
     const resetBtn = document.querySelectorAll('#btnStatus1, #btnStatus2, #btnStatus3, #btnStatus4, #btnStatus5');
-    resetBtn.forEach(btn => btn.classList.replace('btn-success', 'btn-light'));
+    resetBtn.forEach(btn => btn.classList.replace('btn-custom', 'btn-light'));
 
     fetch(apiUrl, {
         method: 'POST',
@@ -98,11 +98,11 @@ function createDiario(diarioObject, refreshFunction) {
 function defStatusDiario(i) {
     // Reseta os botões
     const resetBtn = document.querySelectorAll('#btnStatus1, #btnStatus2, #btnStatus3, #btnStatus4, #btnStatus5');
-    resetBtn.forEach(btn => btn.classList.replace('btn-success', 'btn-light'));
+    resetBtn.forEach(btn => btn.classList.replace('btn-custom', 'btn-light'));
 
     statusDiario = i;
     const btnStatus = document.getElementById(`btnStatus${i}`);
-    btnStatus.classList.replace('btn-light', 'btn-success');
+    btnStatus.classList.replace('btn-light', 'btn-custom');
 }
 
 function selecionaDiario(i) {
@@ -131,10 +131,10 @@ function selecionaDiario(i) {
     console.log("ID do diário selecionado:", selectedDiario);
 
     let allCards = document.querySelectorAll('#diario1 > div');
-    allCards.forEach(cards => cards.classList.replace('bg-primary', 'bg-light'));
+    allCards.forEach(cards => cards.classList.replace('bg-purple', 'bg-light'));
 
     let card = document.getElementById(`card${i}`);
-    card.classList.replace('bg-light', 'bg-primary');
+    card.classList.replace('bg-light', 'bg-purple');
 }
 
 function deleteDiario(id, refreshFunction) {
@@ -173,7 +173,7 @@ function updateDiario(id, diario, refreshFunction) {
     })
         .then(response => response.json())
         .then(data => {
-            alert("Contato alterado com sucesso");
+            alert("Diário alterado com sucesso");
             if (refreshFunction) {
                 boolSelectedDiario = true;
                 refreshFunction()
@@ -185,7 +185,7 @@ function updateDiario(id, diario, refreshFunction) {
             }
         })
         .catch(error => {
-            console.error('Erro ao atualizar contato via API JSONServer:', error);
-            displayMessage("Erro ao atualizar contato");
+            console.error('Erro ao atualizar diário via API JSONServer:', error);
+            displayMessage("Erro ao atualizar diário");
         });
 }
