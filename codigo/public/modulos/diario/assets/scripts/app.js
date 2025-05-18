@@ -5,16 +5,37 @@ let diarioID = '';
 let boolSelectedDiario = false;
 const apiUrl = 'https://12d88d11-bf7c-4a60-adc6-de173aa536e8-00-2r4bfxqpkwg9l.kirk.replit.dev/diario';
 
+function limpaCampos() {
+    // Reseta os campos
+    document.getElementById('tituloDiario').value = null;
+    document.getElementById('textoDiario').value = null;
+    const resetBtn = document.querySelectorAll('#btnStatus1, #btnStatus2, #btnStatus3, #btnStatus4, #btnStatus5');
+    resetBtn.forEach(btn => btn.classList.replace('btn-success', 'btn-light'));
+
+    boolSelectedDiario = false;
+}
+
+function noDiarySelected() {
+    if (!boolSelectedDiario) {
+        document.getElementById('btnSalvarDiario').innerHTML = "Criar Diário";
+
+        let allCards = document.querySelectorAll('#diario1 > div');
+        allCards.forEach(cards => cards.classList.replace('bg-primary', 'bg-light'));
+    } else {
+        document.getElementById('btnSalvarDiario').innerHTML = "Atualizar Diário";
+    }
+}
+
 btnSalvarDiario.addEventListener('click', function (event) {
     event.preventDefault();
     const tituloDiario = document.getElementById('tituloDiario').value;
     const textoDiario = document.getElementById('textoDiario').value;
     const date = new Date();
 
-    // gera o ID
+    // Gera o ID
     diarioID = Date.now();
 
-    // Cria um objeto com os dados do contato
+    // Cria um objeto com os dados do diário
     let diarioObject = {
         id: diarioID,
         userid: 1,
@@ -26,19 +47,21 @@ btnSalvarDiario.addEventListener('click', function (event) {
         favorito: false
     };
 
-    createDiario(diarioObject, listaDiarios);
+    if (!boolSelectedDiario) {
+        createDiario(diarioObject, listaDiarios);
+    } else {
+        updateDiario(selectedDiario, diarioObject, listaDiarios);
+    }
 });
 
 // CREATE
 function createDiario(diarioObject, refreshFunction) {
-
-    //reseta os campos
+    // Reseta os campos
     document.getElementById('tituloDiario').value = null;
     document.getElementById('textoDiario').value = null;
     const resetBtn = document.querySelectorAll('#btnStatus1, #btnStatus2, #btnStatus3, #btnStatus4, #btnStatus5');
     resetBtn.forEach(btn => btn.classList.replace('btn-success', 'btn-light'));
 
-    
     fetch(apiUrl, {
         method: 'POST',
         headers: {
@@ -73,38 +96,37 @@ function createDiario(diarioObject, refreshFunction) {
 
 // ============== BOTÕES STATUS ================
 function defStatusDiario(i) {
-    // resetar os botões
+    // Reseta os botões
     const resetBtn = document.querySelectorAll('#btnStatus1, #btnStatus2, #btnStatus3, #btnStatus4, #btnStatus5');
     resetBtn.forEach(btn => btn.classList.replace('btn-success', 'btn-light'));
 
     statusDiario = i;
     const btnStatus = document.getElementById(`btnStatus${i}`);
-
     btnStatus.classList.replace('btn-light', 'btn-success');
 }
 
 function selecionaDiario(i) {
-    
-    
-    
-    
-    //preenche os campos com o diário selecionado
+    boolSelectedDiario = true;
+    noDiarySelected();
+
+    // Preenche os campos com o diário selecionado
     fetch(`${apiUrl}?id=${i}`)
-    .then(response => response.json())
-    .then(data => {
-        let selectedTitulo = document.getElementById('tituloDiario') 
-        let selectedTexto = document.getElementById('textoDiario')
-        
+        .then(response => response.json())
+        .then(data => {
+            let selectedTitulo = document.getElementById('tituloDiario');
+            let selectedTexto = document.getElementById('textoDiario');
 
-    // Remove o destaque de todos os cards
-        selectedTitulo.value = data[0].titulo;
-        selectedTexto.value = data[0].conteudo;
+            // Remove o destaque de todos os cards
+            selectedTitulo.value = data[0].titulo;
+            selectedTexto.value = data[0].conteudo;
 
-        console.log("Título do diário selecionado:", selectedTitulo.value);
-        
-        selectedDiario = i;
-        boolSelectedDiario = true;
-})
+            statusDiario = data[0].status;
+            defStatusDiario(statusDiario); // Atualiza o botão de status
+
+            console.log("Título do diário selecionado:", selectedTitulo.value);
+
+            selectedDiario = i;
+        });
 
     console.log("ID do diário selecionado:", selectedDiario);
 
@@ -115,11 +137,7 @@ function selecionaDiario(i) {
     card.classList.replace('bg-light', 'bg-primary');
 }
 
-
-
-
 function deleteDiario(id, refreshFunction) {
-
     if (!id) {
         alert("Nenhum diário foi selecionado para exclusão.");
         return;
@@ -133,25 +151,19 @@ function deleteDiario(id, refreshFunction) {
                 console.log('Diário não encontrado');
                 alert("Diário não encontrado");
                 return;
+            } else {
+                alert("Diário removido com sucesso");
             }
-        })
-        .then(() => {
-            alert("Diário removido com sucesso");
-
-            // Atualiza a lista de diários
-            if (refreshFunction) {
-                refreshFunction();
-                selecionaDiario(id);
-            }
-    })
-        .catch(error => {
-            console.error('Erro ao remover diário via API:', error);
-            alert("Erro ao remover diário");
         });
+
+    // Atualiza a lista de diários
+    if (refreshFunction) {
+        refreshFunction();
+        selecionaDiario(id);
+    }
 }
 
 function updateDiario(id, diario, refreshFunction) {
- 
     fetch(`${apiUrl}/${id}`, {
         method: 'PUT',
         headers: {
@@ -161,23 +173,19 @@ function updateDiario(id, diario, refreshFunction) {
     })
         .then(response => response.json())
         .then(data => {
-            displayMessage("Contato alterado com sucesso");
-            if (refreshFunction)
-                refreshFunction();
-        })
-        .then(() => {
-            alert("Diário atualizado com sucesso");
-            // Atualiza a lista de diários
+            alert("Contato alterado com sucesso");
             if (refreshFunction) {
-                refreshFunction();
-                boolSelectedDiario = false;
+                boolSelectedDiario = true;
+                refreshFunction()
+                    .then(() => {
+                        selecionaDiario(id);
+                        noDiarySelected();
+                        statusDiario = data.status;
+                    });
             }
         })
         .catch(error => {
             console.error('Erro ao atualizar contato via API JSONServer:', error);
             displayMessage("Erro ao atualizar contato");
-        })
+        });
 }
-
-
- 

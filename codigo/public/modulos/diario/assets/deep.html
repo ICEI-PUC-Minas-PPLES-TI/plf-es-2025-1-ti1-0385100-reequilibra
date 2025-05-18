@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reequilibra - Diário de Saúde Mental</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    /* ========== RESET & VARIÁVEIS ========== */
+    :root {
+      --cor-primaria: #01AE7D;
+      --cor-secundaria: #0d6efd;
+      --cor-fundo: #C5E0ED;
+      --cor-texto: #2C3E50;
+      --cor-clara: #ffffff;
+      --cor-texto-claro: #f1f1f1;
+      --cor-acentuada: #999;
+      --espacamento-base: 1rem;
+    }
+
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    /* ========== ESTILO GLOBAL ========== */
+    body {
+      background-color: var(--cor-fundo);
+      font-family: "Segoe UI", system-ui, sans-serif;
+      color: var(--cor-texto);
+      line-height: 1.6;
+    }
+
+    /* ========== HEADER ========== */
+    #header {
+      height: 60px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    #signup {
+      background-color: var(--cor-primaria);
+      transition: all 0.3s;
+      border: none;
+    }
+
+    #signup:hover {
+      background-color: #018f68;
+    }
+
+    /* ========== FORMULÁRIO ========== */
+    #menuCriarDiario {
+      min-height: calc(100vh - 120px);
+    }
+
+    .titulo-secao {
+      color: var(--cor-acentuada);
+      font-weight: 600;
+    }
+
+    .btn-status {
+      background-color: #e9ecef;
+      border: none;
+      padding: 0.5rem;
+      font-size: 1rem;
+      transition: all 0.3s;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn-status:hover {
+      background-color: #dee2e6;
+    }
+
+    .btn-status.btn-success {
+      background-color: var(--cor-primaria);
+      color: white;
+    }
+
+    /* ========== LISTA DE DIÁRIOS ========== */
+    #diario1 {
+      scrollbar-width: thin;
+      scrollbar-color: var(--cor-primaria) #f1f1f1;
+      max-height: 60vh;
+      overflow-y: auto;
+    }
+
+    #diario1::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    #diario1::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+
+    #diario1::-webkit-scrollbar-thumb {
+      background-color: var(--cor-primaria);
+      border-radius: 6px;
+    }
+
+    .card {
+      border: none;
+      border-radius: 0.5rem;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .card:hover {
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .card.bg-primary {
+      background-color: var(--cor-primaria)!important;
+      color: white;
+    }
+
+    /* ========== BOTÕES ========== */
+    .btn-primary {
+      background-color: var(--cor-primaria);
+      border: none;
+    }
+
+    .btn-primary:hover {
+      background-color: #018f68;
+    }
+
+    /* ========== RESPONSIVO ========== */
+    @media (max-width: 992px) {
+      #menuCriarDiario > .row {
+        flex-direction: column;
+      }
+      
+      #menuMobile div {
+        width: 100%!important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header id="header" class="shadow-sm d-flex bg-white fixed-top">
+    <nav class="container bg-white d-flex justify-content-between align-items-center py-2">
+      <div class="d-flex align-items-center">
+        <button id="btnsqr" class="btn text-light fs-5 border-0 d-flex align-items-center justify-content-center"
+          type="button" data-bs-toggle="collapse" data-bs-target="#menuMobile" style="width: 60px; height: 60px; background-color: var(--cor-primaria);">
+          <i class="bi bi-list"></i>
+        </button>
+      </div>
+      <img src="../../../assets/images/logo.jpeg" alt="logo" class="logo-img" style="height: 50px; width: auto;">
+      <div class="d-flex gap-2">
+        <button type="button" class="btn btn-outline-secondary">Login</button>
+        <button id="signup" type="button" class="btn text-white">Sign Up</button>
+      </div>
+    </nav>
+
+    <!-- Menu Mobile -->
+    <div class="collapse position-absolute w-100 bg-white shadow-sm" id="menuMobile" style="z-index: 1000; top: 60px;">
+      <div class="p-3">
+        <a href="#" class="d-block text-secondary fs-5 py-2 px-3 rounded">Pesquisar</a>
+        <a href="#" class="d-block text-secondary fs-5 py-2 px-3 rounded">Sobre Saúde Mental</a>
+        <a href="#" class="d-block text-secondary fs-5 py-2 px-3 rounded">Ferramentas de Autocuidado</a>
+        <a href="#" class="d-block text-secondary fs-5 py-2 px-3 rounded">Recursos</a>
+        <a href="#" class="d-block text-secondary fs-5 py-2 px-3 rounded">Comunidade</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container mt-5 pt-5">
+    <div id="menuCriarDiario" class="row g-0 rounded-3 overflow-hidden shadow-sm">
+      <!-- COLUNA 1 -->
+      <div class="col-lg-8 bg-white p-4">
+        <h3 class="mb-4 titulo-secao">Título</h3>
+        <div class="mb-4">
+          <input id="tituloDiario" type="text" class="form-control form-control-lg" placeholder="Título do diário">
+        </div>
+
+        <h3 class="mb-3 titulo-secao">Como você está se sentindo?</h3>
+        <div id="status" class="d-flex justify-content-between mb-4 gap-2">
+          <button id="btnStatus1" class="btn btn-status" onclick="defStatusDiario(1)">1</button>
+          <button id="btnStatus2" class="btn btn-status" onclick="defStatusDiario(2)">2</button>
+          <button id="btnStatus3" class="btn btn-status" onclick="defStatusDiario(3)">3</button>
+          <button id="btnStatus4" class="btn btn-status" onclick="defStatusDiario(4)">4</button>
+          <button id="btnStatus5" class="btn btn-status" onclick="defStatusDiario(5)">5</button>
+        </div>
+
+        <h3 class="mb-3 titulo-secao">Escreva sobre o que quiser</h3>
+        <div class="mb-4">
+          <textarea id="textoDiario" class="form-control" placeholder="..." rows="6"></textarea>
+        </div>
+
+        <button type="submit" id="btnSalvarDiario" class="btn btn-primary w-100 py-2">Salvar Diário</button>
+      </div>
+
+      <!-- COLUNA 2 -->
+      <div class="col-lg-4 bg-light p-4 d-flex flex-column">
+        <div class="d-flex align-items-center justify-content-between mb-3">
+          <h3 class="m-0 titulo-secao">Meus Diários</h3>
+          <div class="d-flex gap-2">
+            <button onclick="limpaCampos(); noDiarySelected();" class="btn btn-outline-primary">
+              <i class="bi bi-plus"></i>
+            </button>
+            <button onclick="deleteDiario(selectedDiario, listaDiarios)" class="btn btn-outline-danger">
+              <i class="bi bi-trash"></i>
+            </button>
+          </div>
+        </div>  
+        
+        <!--Cartao Gerado Dinâmicamente-->
+        <div id="diario1" class="overflow-auto flex-grow-1"></div>
+      </div>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const btnSalvarDiario = document.getElementById('btnSalvarDiario');
+    let statusDiario = '';
+    let selectedDiario = '';
+    let diarioID = '';
+    let boolSelectedDiario = false;
+    const apiUrl = 'https://12d88d11-bf7c-4a60-adc6-de173aa536e8-00-2r4bfxqpkwg9l.kirk.replit.dev/diario';
+
+    function limpaCampos() {
+        document.getElementById('tituloDiario').value = null;
+        document.getElementById('textoDiario').value = null;
+        const resetBtn = document.querySelectorAll('#btnStatus1, #btnStatus2, #btnStatus3, #btnStatus4, #btnStatus5');
+        resetBtn.forEach(btn => btn.classList.replace('btn-success', 'btn-light'));
+        boolSelectedDiario = false;
+    }
+
+    function noDiarySelected() {
+        if (!boolSelectedDiario) {
+            document.getElementById('btnSalvarDiario').innerHTML = "Criar Diário";
+            let allCards = document.querySelectorAll('#diario1 > div');
+            allCards.forEach(cards => cards.classList.replace('bg-primary', 'bg-light'));
+        } else {
+            document.getElementById('btnSalvarDiario').innerHTML = "Atualizar Diário";
+        }
+    }
+
+    window.defStatusDiario = function(i) {
+        // Reseta todos os botões
+        const resetBtn = document.querySelectorAll('#btnStatus1, #btnStatus2, #btnStatus3, #btnStatus4, #btnStatus5');
+        resetBtn.forEach(btn => {
+            btn.classList.remove('btn-success');
+            btn.classList.add('btn-light');
+        });
+
+        // Ativa o botão selecionado
+        statusDiario = i;
+        const btnStatus = document.getElementById(`btnStatus${i}`);
+        if(btnStatus) {
+            btnStatus.classList.remove('btn-light');
+            btnStatus.classList.add('btn-success');
+        }
+    };
+
+    btnSalvarDiario.addEventListener('click', function (event) {
+        event.preventDefault();
+        const tituloDiario = document.getElementById('tituloDiario').value;
+        const textoDiario = document.getElementById('textoDiario').value;
+        const date = new Date();
+
+        diarioID = Date.now();
+
+        let diarioObject = {
+            id: diarioID,
+            userid: 1,
+            data: date.toLocaleDateString('pt-BR'),
+            titulo: tituloDiario,
+            publico: false,
+            status: statusDiario,
+            conteudo: textoDiario,
+            favorito: false
+        };
+
+        if (!boolSelectedDiario) {
+            createDiario(diarioObject, listaDiarios);
+        } else {
+            updateDiario(selectedDiario, diarioObject, listaDiarios);
+        }
+    });
+
+    function createDiario(diarioObject, refreshFunction) {
+        document.getElementById('tituloDiario').value = null;
+        document.getElementById('textoDiario').value = null;
+        const resetBtn = document.querySelectorAll('#btnStatus1, #btnStatus2, #btnStatus3, #btnStatus4, #btnStatus5');
+        resetBtn.forEach(btn => btn.classList.replace('btn-success', 'btn-light'));
+
+        fetch(apiUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(diarioObject),
+        })
+            .then(response => {
+                if (!response.ok) {
+                    console.log('Erro ao inserir diário');
+                    alert("Erro ao inserir diário");
+                    return;
+                }
+                return response.json();
+            })
+            .then(data => {
+                alert("Diário inserido com sucesso");
+                if (refreshFunction) {
+                    refreshFunction()
+                        .then(() => {
+                            selecionaDiario(data.id);
+                        });
+                }
+            })
+            .catch(error => {
+                console.error('Erro ao inserir diário via API REPLIT Server:', error);
+                alert("Erro ao inserir diário");
+            });
+    }
+
+    function selecionaDiario(i) {
+        boolSelectedDiario = true;
+        noDiarySelected();
+
+        fetch(`${apiUrl}?id=${i}`)
+            .then(response => response.json())
+            .then(data => {
+                let selectedTitulo = document.getElementById('tituloDiario');
+                let selectedTexto = document.getElementById('textoDiario');
+                selectedTitulo.value = data[0].titulo;
+                selectedTexto.value = data[0].conteudo;
+                statusDiario = data[0].status;
+                defStatusDiario(statusDiario);
+                selectedDiario = i;
+            });
+
+        let allCards = document.querySelectorAll('#diario1 > div');
+        allCards.forEach(cards => cards.classList.replace('bg-primary', 'bg-light'));
+
+        let card = document.getElementById(`card${i}`);
+        if (card) card.classList.replace('bg-light', 'bg-primary');
+    }
+
+    function deleteDiario(id, refreshFunction) {
+        if (!id) {
+            alert("Nenhum diário foi selecionado para exclusão.");
+            return;
+        }
+
+        fetch(`${apiUrl}/${id}`, {
+            method: 'DELETE',
+        })
+            .then(response => {
+                if (!response.ok) {
+                    console.log('Diário não encontrado');
+                    alert("Diário não encontrado");
+                    return;
+                } else {
+                    alert("Diário removido com sucesso");
+                }
+            });
+
+        if (refreshFunction) {
+            refreshFunction();
+            selecionaDiario(id);
+        }
+    }
+
+    function updateDiario(id, diario, refreshFunction) {
+        fetch(`${apiUrl}/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(diario),
+        })
+            .then(response => response.json())
+            .then(data => {
+                alert("Contato alterado com sucesso");
+                if (refreshFunction) {
+                    boolSelectedDiario = true;
+                    refreshFunction()
+                        .then(() => {
+                            selecionaDiario(id);
+                            noDiarySelected();
+                            statusDiario = data.status;
+                        });
+                }
+            })
+            .catch(error => {
+                console.error('Erro ao atualizar contato via API JSONServer:', error);
+                displayMessage("Erro ao atualizar contato");
+            });
+    }
+
+    document.getElementById('diario1').innerHTML = '';
+    let concatenador = '';
+    
+    function listaDiarios() {
+        let concatenador = ''; 
+        return new Promise((resolve, reject) => {
+            fetch(apiUrl) 
+                .then(response => response.json()) 
+                .then(data => {
+                    let diarioContainer = document.getElementById('diario1'); 
+                    diarioContainer.innerHTML = '';
+                   
+                    data.forEach(diario => {
+                        concatenador += `
+                            <div id="card${diario.id}" onclick="selecionaDiario(${diario.id}); noDiarySelected()" class="bg-light card mb-3">
+                                <h5 class="card-title text-start ps-3">${diario.titulo}</h5>
+                                <p class="card-subtitle text-start ps-3">Criado em: ${diario.data} - Status: ${diario.status}</p>
+                                <p class="text-muted text-start ps-3">${diario.conteudo.substring(0, 100)}${diario.conteudo.length > 100 ? '...' : ''}</p>
+                            </div>
+                        `;
+                    });
+                  
+                    diarioContainer.innerHTML = concatenador;
+                    resolve();
+                })
+                .catch(error => {
+                    console.error('Erro ao carregar diários:', error); 
+                });
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        noDiarySelected();
+        listaDiarios();
+    });
+  </script>
+</body>
+</html>
