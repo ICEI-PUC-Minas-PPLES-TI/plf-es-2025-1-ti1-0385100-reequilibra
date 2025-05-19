@@ -1,0 +1,201 @@
+/* Estilos CSS para o Fórum Reequilibra */
+
+/* --- Geral --- */
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; /* Fonte mais moderna */
+  margin: 0;
+  padding: 0;
+  background-color: #f0f2f5; /* Tom de fundo mais suave */
+  color: #333; /* Cor do texto principal */
+  line-height: 1.6; /* Espaçamento entre linhas para melhor leitura */
+}
+
+.container {
+  display: flex;
+  min-height: 100vh; /* Garante que o container ocupa a altura total da tela */
+}
+
+/* --- Barra de Navegação Lateral --- */
+nav {
+  width: 250px; /* Largura um pouco maior */
+  background-color: #343a40; /* Tom de cinza escuro (Bootstrap-ish) */
+  color: #fff;
+  padding: 20px 0;
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav ul li {
+  padding: 12px 20px; /* Espaçamento interno maior */
+  border-bottom: 1px solid #495057; /* Cor da borda mais clara */
+  transition: background-color 0.2s ease-in-out; /* Transição suave */
+}
+
+nav ul li:last-child {
+  border-bottom: none; /* Remove a borda do último item */
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  display: block; /* Faz o link ocupar toda a área do li */
+}
+
+nav ul li:hover {
+  background-color: #495057; /* Escurece no hover */
+}
+
+nav ul li#criar-comunidade-btn {
+  background-color: #007bff; /* Cor de destaque */
+  cursor: pointer; /* Indica que é clicável */
+}
+
+nav ul li#criar-comunidade-btn:hover {
+  background-color: #0069d9; /* Escurece no hover */
+}
+
+/* --- Conteúdo Principal --- */
+main {
+  flex: 1;
+  padding: 20px;
+}
+
+.search-bar {
+  margin-bottom: 20px;
+}
+
+.search-bar input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.post {
+  background-color: #fff;
+  margin-bottom: 20px;
+  padding: 20px; /* Espaçamento maior */
+  border-radius: 8px; /* Bordas mais arredondadas */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
+
+.post-title {
+  font-size: 1.5rem; /* Título maior */
+  margin-bottom: 10px;
+  color: #212529;
+}
+
+.post-author {
+  font-size: 0.875rem;
+  color: #6c757d;
+  margin-bottom: 15px;
+}
+
+.post p {
+  margin-bottom: 1rem;
+}
+
+#criar-post-btn {
+  background-color: #28a745; /* Verde para criar */
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+#criar-post-btn:hover {
+  background-color: #218838; /* Escurece no hover */
+}
+
+/* --- Botão de Login/Cadastro --- */
+.login-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.login-button:hover {
+  background-color: #0069d9;
+}
+
+/* --- Modais --- */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 10% auto; /* Posiciona mais acima */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 60%; /* Largura menor para telas maiores */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra mais pronunciada */
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+}
+
+/* --- Formulários nos Modais --- */
+.modal-content h2 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  color: #212529;
+}
+
+.modal-content input[type="text"],
+.modal-content textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 1.5rem;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 1rem;
+  resize: vertical; /* Permite redimensionar verticalmente */
+}
+
+.modal-content button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.modal-content button;

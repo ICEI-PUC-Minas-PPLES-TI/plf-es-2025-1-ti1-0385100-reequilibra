@@ -70,7 +70,6 @@
       "categoria_id": "1",
       "texto": "Neste artigo, abordamos os sinais mais comuns da ansiedade entre adolescentes e jovens adultos."
     }
-
   ],
   "favoritos": [
     {
@@ -94,13 +93,7 @@
   "siteMeditacao": {
     "busca": {
       "placeholder": "Buscar meditações...",
-      "filtros": [
-        "Ansiedade",
-        "Estresse",
-        "Depressão",
-        "Sono",
-        "Todos"
-      ]
+      "filtros": ["Ansiedade", "Estresse", "Depressão", "Sono", "Todos"]
     },
     "secaoMeditacoesPopulares": [
       {
@@ -144,7 +137,7 @@
     }
   },
   "contatos": [
-     {
+    {
       "id": 1,
       "nome": "Bárbara (Mãe)",
       "telefone": "(31) 99999-9999"
@@ -191,11 +184,7 @@
       "nome": "Desenho Livre",
       "tipo": "criatividade",
       "tempoPadrao": 5,
-      "ferramentas": [
-        "pincel",
-        "borracha",
-        "12 cores"
-      ]
+      "ferramentas": ["pincel", "borracha", "12 cores"]
     }
   ],
   "missoesDiarias": [
@@ -250,6 +239,91 @@
       "formacao": "UFMG",
       "img": "./img/fotoex3"
     }
+  ],
+  "comunidades": [
+    {
+      "id": 1,
+      "nome": "Ansiedade",
+      "descricao": "Espaço para compartilhar experiências e dicas sobre ansiedade.",
+      "posts": [
+        {
+          "id": 101,
+          "autor": "Anônimo",
+          "dataHora": "2024-04-25T23:39:00",
+          "conteudo": "Estou passando por uma crise de ansiedade, alguém já passou por isso?",
+          "likes": 5,
+          "respostas": [
+            {
+              "id": 1001,
+              "autor": "Fábio",
+              "dataHora": "2024-04-26T07:43:00",
+              "conteudo": "Já passei por isso. Procure técnicas de respiração profunda, ajudam bastante!",
+              "likes": 2
+            }
+          ]
+        },
+        {
+          "id": 102,
+          "autor": "Maria",
+          "dataHora": "2024-04-26T10:00:00",
+          "conteudo": "Quais são os melhores exercícios para aliviar a ansiedade?",
+          "likes": 10,
+          "respostas": []
+        },
+        {
+          "id": 103,
+          "autor": "Carlos",
+          "dataHora": "2024-04-27T15:30:00",
+          "conteudo": "Compartilhem dicas de livros ou filmes que ajudam com a ansiedade.",
+          "likes": 3,
+          "respostas": []
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "nome": "Depressão",
+      "descricao": "Discussões e apoio sobre depressão.",
+      "posts": [
+        {
+          "id": 201,
+          "autor": "Ana",
+          "dataHora": "2024-04-28T09:00:00",
+          "conteudo": "Sinto que estou perdendo a esperança, alguém se sente assim?",
+          "likes": 7,
+          "respostas": []
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "nome": "Burnout",
+      "descricao": "Espaço para falar sobre estresse e esgotamento profissional.",
+      "posts": []
+    },
+    {
+      "id": 4,
+      "nome": "Desabafo",
+      "descricao": "Conte livremente o que está sentindo.",
+      "posts": []
+    },
+    {
+      "id": 5,
+      "nome": "Acadêmico",
+      "descricao": "Discussão sobre saúde mental no ambiente acadêmico.",
+      "posts": []
+    }
+  ],
+  "usuarios": [
+    {
+      "id": 1,
+      "nome": "Fabio",
+      "anonimo": false
+    },
+    {
+      "id": 2,
+      "nome": "Anônimo",
+      "anonimo": true
+    }
   ]
-  
 }
