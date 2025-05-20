@@ -93,7 +93,13 @@
   "siteMeditacao": {
     "busca": {
       "placeholder": "Buscar meditações...",
-      "filtros": ["Ansiedade", "Estresse", "Depressão", "Sono", "Todos"]
+      "filtros": [
+        "Ansiedade",
+        "Estresse",
+        "Depressão",
+        "Sono",
+        "Todos"
+      ]
     },
     "secaoMeditacoesPopulares": [
       {
@@ -184,7 +190,11 @@
       "nome": "Desenho Livre",
       "tipo": "criatividade",
       "tempoPadrao": 5,
-      "ferramentas": ["pincel", "borracha", "12 cores"]
+      "ferramentas": [
+        "pincel",
+        "borracha",
+        "12 cores"
+      ]
     }
   ],
   "missoesDiarias": [
@@ -205,39 +215,39 @@
       "crp": "123456/SP",
       "email": "maria@psicologia.com",
       "local_atend": "Online",
+      "endereco": "Rua das Flores, 100 - São Paulo/SP",
       "horarios": "9h às 18h",
       "nota": 4.9,
-      "experiencia": "10 anos",
-      "formacao": "PUC-SP",
-      "img": "./img/fotoex"
+      "whatsapp": "(11) 91234-5678",
+      "img": "https://randomuser.me/api/portraits/women/1.jpg"
     },
     {
       "id": 2,
-      "nome": "Dr. João",
+      "nome": "Dr. João Pedro",
       "area_atua": "Psicanálise",
       "descricao": "Atendimento voltado para autoconhecimento e saúde mental.",
       "crp": "654321/SP",
       "email": "joao@psicologia.com",
       "local_atend": "Presencial",
+      "endereco": "Av. Paulista, 1500 - São Paulo/SP",
       "horarios": "13h às 20h",
       "nota": 4.7,
-      "experiencia": "8 anos",
-      "formacao": "USP",
-      "img": "./img/fotoex2"
+      "whatsapp": "(11) 92345-6789",
+      "img": "https://randomuser.me/api/portraits/men/2.jpg"
     },
     {
       "id": 3,
-      "nome": "Dra. Larissa",
-      "area_atua": "Terapia Comportamental",
+      "nome": "Dra. Larissa Lima",
+      "area_atua": "Terapia Cognitivo-Comportamental",
       "descricao": "Ajuda na mudança de padrões de pensamento disfuncionais.",
       "crp": "789012/SP",
       "email": "larissa@psicologia.com",
       "local_atend": "Online e Presencial",
+      "endereco": "Rua da Paz, 200 - Belo Horizonte/MG",
       "horarios": "8h às 17h",
       "nota": 4.8,
-      "experiencia": "6 anos",
-      "formacao": "UFMG",
-      "img": "./img/fotoex3"
+      "whatsapp": "(31) 93456-7890",
+      "img": "https://randomuser.me/api/portraits/women/3.jpg"
     }
   ],
   "comunidades": [
