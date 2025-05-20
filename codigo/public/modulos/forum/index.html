@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reequilibra - Seu Fórum de Apoio</title>
+    <link rel="stylesheet" href="style.css">  </head>
+    <style>
+      /* Estilos CSS - Mantenha os estilos anteriores e adicione estes para os modais */
+      /* Modal (fundo escuro) */
+      .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0, 0, 0); /* Fallback color */
+        background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+      }
+
+      /* Modal Content */
+      .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto; /* 15% from the top and centered */
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%; /* Could be more or less, depending on screen size */
+      }
+
+      /* The Close Button */
+      .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+      }
+
+      .close:hover,
+      .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+          <li><a href="#">Início</a></li>
+          <li><a href="#">Comunidades Populares</a></li>
+          <li>
+            <a href="#" id="criar-comunidade-btn">Criar Nova Comunidade</a>
+          </li>
+        </ul>
+      </nav>
+      <main>
+        <div class="search-bar">
+          <input type="text" placeholder="Buscar comunidades..." />
+        </div>
+        <div class="post">
+          <h2 class="post-title">Como lidar com crises de ansiedade?</h2>
+          <p class="post-author">Autor: u/JoaoSilva</p>
+          <p>Compartilhe suas estratégias...</p>
+          <button id="criar-post-btn">Criar Novo Post</button>
+        </div>
+      </main>
+    </div>
+    <button class="login-button">Login/Cadastro</button>
+
+    <div id="modal-criar-comunidade" class="modal">
+      <div class="modal-content">
+        <span class="close" id="close-criar-comunidade">&times;</span>
+        <h2>Criar Nova Comunidade</h2>
+        <input
+          type="text"
+          id="nome-comunidade"
+          placeholder="Nome da Comunidade"
+        />
+        <textarea
+          id="descricao-comunidade"
+          placeholder="Descrição da Comunidade"
+        ></textarea>
+        <button id="salvar-comunidade-btn">Salvar Comunidade</button>
+      </div>
+    </div>
+
+    <div id="modal-criar-post" class="modal">
+      <div class="modal-content">
+        <span class="close" id="close-criar-post">&times;</span>
+        <h2>Criar Novo Post</h2>
+        <textarea id="conteudo-post" placeholder="Conteúdo do Post"></textarea>
+        <button id="salvar-post-btn">Salvar Post</button>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

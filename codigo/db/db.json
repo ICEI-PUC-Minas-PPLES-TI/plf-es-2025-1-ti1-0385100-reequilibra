@@ -1,25 +1,339 @@
 {
-  "usuarios": [
+  "diario": [
+    {
+      "id": "",
+      "userid": "1",
+      "data": "2025-04-24",
+      "titulo": "Dia difícil na faculdade",
+      "publico": false,
+      "status": 1,
+      "conteudo": "Hoje foi um dia muito complicado na faculdade. A prova de cálculo foi mais difícil do que eu esperava e acho que não fui bem. Me senti muito ansiosa durante a prova e agora estou com medo do resultado.",
+      "favorito": false
+    },
+    {
+      "id": "",
+      "userid": "1",
+      "data": "2025-04-23",
+      "titulo": "Dia tranquilo",
+      "publico": true,
+      "status": 2,
+      "conteudo": "Hoje foi um dia tranquilo. Consegui estudar bastante e ainda tive tempo para relaxar assistindo minha série favorita.",
+      "favorito": true
+    },
+    {
+      "id": "",
+      "userid": "2",
+      "data": "2025-04-22",
+      "titulo": "Dia produtivo no trabalho",
+      "publico": true,
+      "status": 2,
+      "conteudo": "Hoje foi um dia muito produtivo no trabalho. Consegui finalizar um projeto importante e recebi elogios do meu chefe.",
+      "favorito": true
+    },
+    {
+      "id": "",
+      "userid": "3",
+      "data": "2025-04-21",
+      "titulo": "Dia de reflexão",
+      "publico": false,
+      "status": 3,
+      "conteudo": "Passei o dia refletindo sobre algumas decisões importantes que preciso tomar. Foi um dia introspectivo, mas necessário.",
+      "favorito": false
+    },
+    {
+      "id": "",
+      "userid": "3",
+      "data": "2025-04-20",
+      "titulo": "Dia de diversão com amigos",
+      "publico": true,
+      "status": 2,
+      "conteudo": "Hoje foi um dia incrível! Passei o dia com meus amigos no parque, fizemos um piquenique e jogamos vôlei. Me senti muito feliz.",
+      "favorito": true
+    },
+    {
+      "id": "",
+      "userid": "3",
+      "data": "2025-04-19",
+      "titulo": "Dia de descanso",
+      "publico": false,
+      "status": 2,
+      "conteudo": "Hoje foi um dia de descanso total. Fiquei em casa, li um livro e aproveitei para recarregar as energias.",
+      "favorito": false
+    }
+  ],
+  "artigos": [
     {
       "id": 1,
-      "login": "admin",
-      "senha": "123",
-      "nome": "Administrador do Sistema",
-      "email": "admin@abc.com"
+      "titulo": "Ansiedade entre jovens",
+      "data": "2025-04-25",
+      "autor": "Maria",
+      "categoria_id": "1",
+      "texto": "Neste artigo, abordamos os sinais mais comuns da ansiedade entre adolescentes e jovens adultos."
+    }
+  ],
+  "favoritos": [
+    {
+      "id": 1,
+      "usuario_id": 1,
+      "noticia_id": 1
+    }
+  ],
+  "categorias": [
+    {
+      "id": 1,
+      "nome": "Ansiedade"
+    }
+  ],
+  "indicacoes": [
+    {
+      "titulo": "Saúde mental dos jovens",
+      "autor": "Fernando Mendes"
+    }
+  ],
+  "siteMeditacao": {
+    "busca": {
+      "placeholder": "Buscar meditações...",
+      "filtros": [
+        "Ansiedade",
+        "Estresse",
+        "Depressão",
+        "Sono",
+        "Todos"
+      ]
+    },
+    "secaoMeditacoesPopulares": [
+      {
+        "id": 1,
+        "titulo": "Respiração para Ansiedade",
+        "descricao": "Exercício de 5 minutos para acalmar a mente em momentos de crise.",
+        "duracao": "5 min",
+        "nivel": "Iniciante"
+      },
+      {
+        "id": 2,
+        "titulo": "Meditação do Corpo Scan",
+        "descricao": "Percepção corporal para liberar tensões físicas e mentais.",
+        "duracao": "10 min",
+        "nivel": "Intermediário"
+      },
+      {
+        "id": 3,
+        "titulo": "Visualização Guiada",
+        "descricao": "Imagine um lugar seguro para reduzir sintomas depressivos.",
+        "duracao": "15 min",
+        "nivel": "Iniciante"
+      },
+      {
+        "id": 4,
+        "titulo": "Mindfulness para Foco",
+        "descricao": "Treine sua atenção plena para melhorar a concentração.",
+        "duracao": "8 min",
+        "nivel": "Avançado"
+      }
+    ],
+    "playerAudio": {
+      "meditacaoAtual": {
+        "id": 2,
+        "titulo": "Meditação do Corpo Scan",
+        "duracaoTotal": "10 min"
+      },
+      "tempoAtual": "0:00",
+      "tempoTotal": "10:00",
+      "estado": "pausado"
+    }
+  },
+  "contatos": [
+    {
+      "id": 1,
+      "nome": "Bárbara (Mãe)",
+      "telefone": "(31) 99999-9999"
     },
     {
       "id": 2,
-      "login": "user",
-      "senha": "123",
-      "nome": "Usuario Comum",
-      "email": "user@abc.com"
+      "nome": "Thales (Amigo)",
+      "telefone": "(31) 98888-8888"
     },
     {
-      "login": "rommel",
-      "senha": "123",
-      "nome": "Rommel",
-      "email": "rommel@gmail.com",
-      "id": 3
+      "id": 3,
+      "nome": "Filipe (Psicólogo)",
+      "telefone": "(31) 97777-7777"
+    }
+  ],
+  "servicosDeSaude": [
+    {
+      "id": 1,
+      "nome": "CAPS AD Leste - São Lucas",
+      "tipo": "CAPS Álcool e Drogas",
+      "endereco": "R. Itaúna, 315 - São Lucas, Belo Horizonte - MG",
+      "telefone": "(31) 3277-6100",
+      "horario": "Seg-Sex: 7h30-17h30"
+    },
+    {
+      "id": 2,
+      "nome": "CAPS III Norte - Venda Nova",
+      "tipo": "CAPS III (24 horas)",
+      "endereco": "Av. Vilarinho, 390 - Venda Nova, Belo Horizonte - MG",
+      "telefone": "(31) 3277-6333",
+      "horario": "24 horas"
+    }
+  ],
+  "atividades": [
+    {
+      "id": "respirar",
+      "nome": "Respiração Guiada",
+      "tipo": "calma",
+      "tempoPadrao": 3,
+      "instrucaoes": "Inspire por 4s, segure por 7s, expire por 8s"
+    },
+    {
+      "id": "desenhar",
+      "nome": "Desenho Livre",
+      "tipo": "criatividade",
+      "tempoPadrao": 5,
+      "ferramentas": [
+        "pincel",
+        "borracha",
+        "12 cores"
+      ]
+    }
+  ],
+  "missoesDiarias": [
+    {
+      "id": "missao1",
+      "descricao": "Complete 1 respiração guiada",
+      "xp": 10,
+      "requisito": "respirar",
+      "concluida": false
+    }
+  ],
+  "psicologos": [
+    {
+      "id": 1,
+      "nome": "Dra. Maria",
+      "area_atua": "Terapia Comportamental",
+      "descricao": "Especialista em ajudar pessoas a superar desafios emocionais.",
+      "crp": "123456/SP",
+      "email": "maria@psicologia.com",
+      "local_atend": "Online",
+      "endereco": "Rua das Flores, 100 - São Paulo/SP",
+      "horarios": "9h às 18h",
+      "nota": 4.9,
+      "whatsapp": "(11) 91234-5678",
+      "img": "https://randomuser.me/api/portraits/women/1.jpg"
+    },
+    {
+      "id": 2,
+      "nome": "Dr. João Pedro",
+      "area_atua": "Psicanálise",
+      "descricao": "Atendimento voltado para autoconhecimento e saúde mental.",
+      "crp": "654321/SP",
+      "email": "joao@psicologia.com",
+      "local_atend": "Presencial",
+      "endereco": "Av. Paulista, 1500 - São Paulo/SP",
+      "horarios": "13h às 20h",
+      "nota": 4.7,
+      "whatsapp": "(11) 92345-6789",
+      "img": "https://randomuser.me/api/portraits/men/2.jpg"
+    },
+    {
+      "id": 3,
+      "nome": "Dra. Larissa Lima",
+      "area_atua": "Terapia Cognitivo-Comportamental",
+      "descricao": "Ajuda na mudança de padrões de pensamento disfuncionais.",
+      "crp": "789012/SP",
+      "email": "larissa@psicologia.com",
+      "local_atend": "Online e Presencial",
+      "endereco": "Rua da Paz, 200 - Belo Horizonte/MG",
+      "horarios": "8h às 17h",
+      "nota": 4.8,
+      "whatsapp": "(31) 93456-7890",
+      "img": "https://randomuser.me/api/portraits/women/3.jpg"
+    }
+  ],
+  "comunidades": [
+    {
+      "id": 1,
+      "nome": "Ansiedade",
+      "descricao": "Espaço para compartilhar experiências e dicas sobre ansiedade.",
+      "posts": [
+        {
+          "id": 101,
+          "autor": "Anônimo",
+          "dataHora": "2024-04-25T23:39:00",
+          "conteudo": "Estou passando por uma crise de ansiedade, alguém já passou por isso?",
+          "likes": 5,
+          "respostas": [
+            {
+              "id": 1001,
+              "autor": "Fábio",
+              "dataHora": "2024-04-26T07:43:00",
+              "conteudo": "Já passei por isso. Procure técnicas de respiração profunda, ajudam bastante!",
+              "likes": 2
+            }
+          ]
+        },
+        {
+          "id": 102,
+          "autor": "Maria",
+          "dataHora": "2024-04-26T10:00:00",
+          "conteudo": "Quais são os melhores exercícios para aliviar a ansiedade?",
+          "likes": 10,
+          "respostas": []
+        },
+        {
+          "id": 103,
+          "autor": "Carlos",
+          "dataHora": "2024-04-27T15:30:00",
+          "conteudo": "Compartilhem dicas de livros ou filmes que ajudam com a ansiedade.",
+          "likes": 3,
+          "respostas": []
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "nome": "Depressão",
+      "descricao": "Discussões e apoio sobre depressão.",
+      "posts": [
+        {
+          "id": 201,
+          "autor": "Ana",
+          "dataHora": "2024-04-28T09:00:00",
+          "conteudo": "Sinto que estou perdendo a esperança, alguém se sente assim?",
+          "likes": 7,
+          "respostas": []
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "nome": "Burnout",
+      "descricao": "Espaço para falar sobre estresse e esgotamento profissional.",
+      "posts": []
+    },
+    {
+      "id": 4,
+      "nome": "Desabafo",
+      "descricao": "Conte livremente o que está sentindo.",
+      "posts": []
+    },
+    {
+      "id": 5,
+      "nome": "Acadêmico",
+      "descricao": "Discussão sobre saúde mental no ambiente acadêmico.",
+      "posts": []
+    }
+  ],
+  "usuarios": [
+    {
+      "id": 1,
+      "nome": "Fabio",
+      "anonimo": false
+    },
+    {
+      "id": 2,
+      "nome": "Anônimo",
+      "anonimo": true
     }
   ]
 }
