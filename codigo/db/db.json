@@ -64,11 +64,30 @@
   "artigos": [
     {
       "id": 1,
-      "titulo": "Ansiedade entre jovens",
-      "data": "2025-04-25",
-      "autor": "Maria",
+      "titulo": "Considerações gerais sobre transtornos de ansiedade",
+      "data": "08/2023",
+      "autor": "John W. Barnhill",
       "categoria_id": "1",
-      "texto": "Neste artigo, abordamos os sinais mais comuns da ansiedade entre adolescentes e jovens adultos."
+      "texto": "A ansiedade é uma reação normal a uma ameaça ou a um estresse psicológico. A ansiedade normal tem sua raiz no medo e desempenha um importante papel na sobrevivência. Quando uma pessoa se vê perante uma situação perigosa, a ansiedade desencadeia uma resposta de luta ou fuga. Com essa resposta, entra em curso uma variedade de alterações físicas, como uma maior irrigação sanguínea para o coração e para os músculos para proporcionar ao corpo a energia e a força necessárias para enfrentar situações de risco à vida, como fugir de um animal agressivo ou enfrentar um agressor. A ansiedade pode ajudar a pessoa a se adaptar a fatores estressantes mais comuns, motivando-a a se preparar, praticar e ensaiar. Ela pode até mesmo levar uma pessoa a abordar situações possivelmente perigosas com a devida cautela.",
+      "link" :"https://www.msdmanuals.com/pt/casa/dist%C3%BArbios-de-sa%C3%BAde-mental/transtornos-de-ansiedade-e-relacionados-a-fatores-estressantes/considera%C3%A7%C3%B5es-gerais-sobre-transtornos-de-ansiedade"
+    },
+    {
+      "id": 2,
+      "titulo": "Depressão:Desafios e tratamento",
+      "data": "21/08/2024",
+      "autor": "Pedro Romero Carvalho",
+      "categoria_id": "4",
+      "texto": "O transtorno depressivo maior, frequentemente conhecido como depressão, é a forma mais reconhecida entre os transtornos depressivos. Os sintomas característicos dessa condição incluem um humor persistente de tristeza, diminuição do interesse nas atividades,  distúrbios  no  sono,  agitação  ou  lentidão  psicomotora,  cansaço  extremo,  e sentimentos de inutilidade ou culpa desproporcional, entre outros.(LOCH et al.,2024).A   depressão   é   um transtorno   de   humor   que   impacta   profundamente   a capacidade de uma pessoa de desempenhar suas atividades diárias e interagir com os outros. Os sintomas da depressão estão frequentemente ligados a uma diminuição nas funções cognitivas. Essa condição pode afetar áreas cognitivas como a aprendizagem e a memória, a atenção e a concentração, as funções executivas, bem como a velocidade de processamento mental.(OLIVEIRAet al., 2024).",
+      "link": "https://bjihs.emnuvens.com.br/bjihs/article/view/3107"
+    },
+    {
+      "id": 3,
+      "titulo": "Autocuidado e qualidade de vida",
+      "data": "15/04/2025",
+      "autor": "Yassana MarvilaGirondoli/Mirian Cardoso de Rezende Soares",
+      "categoria_id": "3",
+      "texto": "Autocuidado, como o próprio nome esclarece, é cuidar de si mesmo. É dedicar um tempo para si, mesmo em meio a rotinas e obrigações diárias. A atenção que cada um despende para si é muito importante para ter uma qualidade de vida satisfatória, visto que os principais aspectos do autocuidado é reconhecer as necessidades físicas, mentais e emocionais e, a partir daí, dedicar-se ao atendimento de tais necessidades.<br>Quando os indivíduos mantêm uma rotina de autocuidado, observa-se a busca por hábitos saudáveis,melhora no estilo de vida, adoção de medidas de promoção da saúde e prevenção de doenças. <br>Essa prática traz benefícios para a saúde física, mental e emocional e, consequentemente, melhora a produtividade, os relacionamentos interpessoais e a autoestima. O autocuidado está intimamente ligado à autoestima e ao autoconhecimento, visto que estes elementos fortalecem a confiança do indivíduo em si mesmo, impacta suas decisões diárias e proporciona o conhecimento dos limites do corpo e da mente. Com isso, é possível estabelecer um cuidado diário conforme suas demandas e características pessoais.",
+      "link": "https://prodi.ifes.edu.br/images/stories/Autocuidado_e_Qualidade_de_Vida.pdf"
     }
   ],
   "favoritos": [
@@ -82,12 +101,34 @@
     {
       "id": 1,
       "nome": "Ansiedade"
+    },
+    {
+      "id": 2,
+      "nome": "Estresse"
+    },
+    {
+      "id": 3,
+      "nome": "Autocuidado"
+    },
+    {
+      "id": 4,
+      "nome": "Depressão"
+    },
+    {
+      "id": 5,
+      "nome": "Relacionamentos"
     }
   ],
   "indicacoes": [
     {
-      "titulo": "Saúde mental dos jovens",
-      "autor": "Fernando Mendes"
+      "titulo": "Não aguento não aguentar mais",
+      "autor": "Anne Helen Petersen",
+      "link":"https://g.co/kgs/yQe2o9g"
+    },
+    {
+      "titulo": "A voz na sua cabeça",
+      "autor": "Ethan Kross",
+      "link": "https://g.co/kgs/mCH2jiW"
     }
   ],
   "siteMeditacao": {
@@ -338,75 +379,3 @@
   ]
 }
 
-{
-  "artigos": [
-    {
-      "id": 1,
-      "titulo": "Considerações gerais sobre transtornos de ansiedade",
-      "data": "08/2023",
-      "autor": "John W. Barnhill",
-      "categoria_id": "1",
-      "texto": "A ansiedade é uma reação normal a uma ameaça ou a um estresse psicológico. A ansiedade normal tem sua raiz no medo e desempenha um importante papel na sobrevivência. Quando uma pessoa se vê perante uma situação perigosa, a ansiedade desencadeia uma resposta de luta ou fuga. Com essa resposta, entra em curso uma variedade de alterações físicas, como uma maior irrigação sanguínea para o coração e para os músculos para proporcionar ao corpo a energia e a força necessárias para enfrentar situações de risco à vida, como fugir de um animal agressivo ou enfrentar um agressor. A ansiedade pode ajudar a pessoa a se adaptar a fatores estressantes mais comuns, motivando-a a se preparar, praticar e ensaiar. Ela pode até mesmo levar uma pessoa a abordar situações possivelmente perigosas com a devida cautela.",
-      "link": "https://www.msdmanuals.com/pt/casa/dist%C3%BArbios-de-sa%C3%BAde-mental/transtornos-de-ansiedade-e-relacionados-a-fatores-estressantes/considera%C3%A7%C3%B5es-gerais-sobre-transtornos-de-ansiedade"
-    },
-    {
-      "id": 2,
-      "titulo": "Depressão:Desafios e tratamento",
-      "data": "21/08/2024",
-      "autor": "Pedro Romero Carvalho",
-      "categoria_id": "4",
-      "texto": "O transtorno depressivo maior, frequentemente conhecido como depressão, é a forma mais reconhecida entre os transtornos depressivos. Os sintomas característicos dessa condição incluem um humor persistente de tristeza, diminuição do interesse nas atividades,  distúrbios  no  sono,  agitação  ou  lentidão  psicomotora,  cansaço  extremo,  e sentimentos de inutilidade ou culpa desproporcional, entre outros.(LOCH et al.,2024).A   depressão   é   um transtorno   de   humor   que   impacta   profundamente   a capacidade de uma pessoa de desempenhar suas atividades diárias e interagir com os outros. Os sintomas da depressão estão frequentemente ligados a uma diminuição nas funções cognitivas. Essa condição pode afetar áreas cognitivas como a aprendizagem e a memória, a atenção e a concentração, as funções executivas, bem como a velocidade de processamento mental.(OLIVEIRAet al., 2024).",
-      "link": "https://bjihs.emnuvens.com.br/bjihs/article/view/3107"
-    },
-    {
-      "id": 3,
-      "titulo": "Autocuidado e qualidade de vida",
-      "data": "15/04/2025",
-      "autor": "Yassana MarvilaGirondoli/Mirian Cardoso de Rezende Soares",
-      "categoria_id": "3",
-      "texto": "Autocuidado, como o próprio nome esclarece, é cuidar de si mesmo. É dedicar um tempo para si, mesmo em meio a rotinas e obrigações diárias. A atenção que cada um despende para si é muito importante para ter uma qualidade de vida satisfatória, visto que os principais aspectos do autocuidado é reconhecer as necessidades físicas, mentais e emocionais e, a partir daí, dedicar-se ao atendimento de tais necessidades.<br>Quando os indivíduos mantêm uma rotina de autocuidado, observa-se a busca por hábitos saudáveis,melhora no estilo de vida, adoção de medidas de promoção da saúde e prevenção de doenças. <br>Essa prática traz benefícios para a saúde física, mental e emocional e, consequentemente, melhora a produtividade, os relacionamentos interpessoais e a autoestima. O autocuidado está intimamente ligado à autoestima e ao autoconhecimento, visto que estes elementos fortalecem a confiança do indivíduo em si mesmo, impacta suas decisões diárias e proporciona o conhecimento dos limites do corpo e da mente. Com isso, é possível estabelecer um cuidado diário conforme suas demandas e características pessoais.",
-      "link": "https://prodi.ifes.edu.br/images/stories/Autocuidado_e_Qualidade_de_Vida.pdf"
-    }
-  ],
-  "favoritos": [
-    {
-      "id": 1,
-      "usuario_id": 1,
-      "noticia_id": 1
-    }
-  ],
-  "categorias": [
-    {
-      "id": 1,
-      "nome": "Ansiedade"
-    },
-    {
-      "id": 2,
-      "nome": "Estresse"
-    },
-    {
-      "id": 3,
-      "nome": "Autocuidado"
-    },
-    {
-      "id": 4,
-      "nome": "Depressão"
-    },
-    {
-      "id": 5,
-      "nome": "Relacionamentos"
-    }
-  ],
-  "indicacoes": [
-    {
-      "titulo": "Não aguento não aguentar mais",
-      "autor": "Anne Helen Petersen",
-      "link": "https://g.co/kgs/yQe2o9g"
-    },
-    {
-      "titulo": "A voz na sua cabeça",
-      "autor": "Ethan Kross",
-      "link": "https://g.co/kgs/mCH2jiW"
-    }
-  ]
-}

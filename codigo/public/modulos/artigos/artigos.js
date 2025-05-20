@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentCategory = '';
     const currentUserId = 1;
 
-    fetch('db/artigos.json')
+    fetch('../"../../db/db.json')
         .then(response => response.json())
         .then(data => {
             articlesData = data.artigos;
