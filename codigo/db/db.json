@@ -69,7 +69,7 @@
       "autor": "John W. Barnhill",
       "categoria_id": "1",
       "texto": "A ansiedade é uma reação normal a uma ameaça ou a um estresse psicológico. A ansiedade normal tem sua raiz no medo e desempenha um importante papel na sobrevivência. Quando uma pessoa se vê perante uma situação perigosa, a ansiedade desencadeia uma resposta de luta ou fuga. Com essa resposta, entra em curso uma variedade de alterações físicas, como uma maior irrigação sanguínea para o coração e para os músculos para proporcionar ao corpo a energia e a força necessárias para enfrentar situações de risco à vida, como fugir de um animal agressivo ou enfrentar um agressor. A ansiedade pode ajudar a pessoa a se adaptar a fatores estressantes mais comuns, motivando-a a se preparar, praticar e ensaiar. Ela pode até mesmo levar uma pessoa a abordar situações possivelmente perigosas com a devida cautela.",
-      "link" :"https://www.msdmanuals.com/pt/casa/dist%C3%BArbios-de-sa%C3%BAde-mental/transtornos-de-ansiedade-e-relacionados-a-fatores-estressantes/considera%C3%A7%C3%B5es-gerais-sobre-transtornos-de-ansiedade"
+      "link": "https://www.msdmanuals.com/pt/casa/dist%C3%BArbios-de-sa%C3%BAde-mental/transtornos-de-ansiedade-e-relacionados-a-fatores-estressantes/considera%C3%A7%C3%B5es-gerais-sobre-transtornos-de-ansiedade"
     },
     {
       "id": 2,
@@ -123,7 +123,7 @@
     {
       "titulo": "Não aguento não aguentar mais",
       "autor": "Anne Helen Petersen",
-      "link":"https://g.co/kgs/yQe2o9g"
+      "link": "https://g.co/kgs/yQe2o9g"
     },
     {
       "titulo": "A voz na sua cabeça",
@@ -255,39 +255,39 @@
       "descricao": "Especialista em ajudar pessoas a superar desafios emocionais.",
       "crp": "123456/SP",
       "email": "maria@psicologia.com",
-      "local_atend": "Online",
-      "endereco": "Rua das Flores, 100 - São Paulo/SP",
-      "horarios": "9h às 18h",
+      "local_atend": "Online / Presencial",
+      "cep": "21223200",
+      "horarios": "A Combinar (Whatsapp)",
       "nota": 4.9,
       "whatsapp": "(11) 91234-5678",
       "img": "https://randomuser.me/api/portraits/women/1.jpg"
     },
     {
       "id": 2,
-      "nome": "Dr. João Pedro",
+      "nome": "Dr. Pedro Henrique",
       "area_atua": "Psicanálise",
-      "descricao": "Atendimento voltado para autoconhecimento e saúde mental.",
+      "descricao": "Foco em conflitos inconscientes e questões emocionais profundas.",
       "crp": "654321/SP",
-      "email": "joao@psicologia.com",
+      "email": "pedro@psicologia.com",
       "local_atend": "Presencial",
-      "endereco": "Av. Paulista, 1500 - São Paulo/SP",
-      "horarios": "13h às 20h",
+      "cep": "04567890",
+      "horarios": "9h às 18h",
       "nota": 4.7,
-      "whatsapp": "(11) 92345-6789",
+      "whatsapp": "(11) 98765-4321",
       "img": "https://randomuser.me/api/portraits/men/2.jpg"
     },
     {
       "id": 3,
-      "nome": "Dra. Larissa Lima",
+      "nome": "Dra. Ana Paula",
       "area_atua": "Terapia Cognitivo-Comportamental",
-      "descricao": "Ajuda na mudança de padrões de pensamento disfuncionais.",
+      "descricao": "Ajuda na mudança de pensamentos e comportamentos disfuncionais.",
       "crp": "789012/SP",
-      "email": "larissa@psicologia.com",
-      "local_atend": "Online e Presencial",
-      "endereco": "Rua da Paz, 200 - Belo Horizonte/MG",
-      "horarios": "8h às 17h",
+      "email": "ana@psicologia.com",
+      "local_atend": "Online",
+      "cep": "13050000",
+      "horarios": "13h às 20h",
       "nota": 4.8,
-      "whatsapp": "(31) 93456-7890",
+      "whatsapp": "(19) 92345-6789",
       "img": "https://randomuser.me/api/portraits/women/3.jpg"
     }
   ],
@@ -377,23 +377,21 @@
       "anonimo": true
     }
   ],
-  
   "mensagens": [
     {
-        "id": 1,
-        "mensagem": "Sou grato pela minha família",
-        "data": "22/05/2025"
+      "id": 1,
+      "mensagem": "Sou grato pela minha família",
+      "data": "22/05/2025"
     },
     {
-        "id": 2,
-        "mensagem": "Agradeço pelos meus amigos",
-        "data": "15/05/2025"
-     },
-     {
-        "id": 1,
-        "mensagem": "Hoje fiz algo que me deixou feliz",
-        "data": "20/05/2025"
+      "id": 2,
+      "mensagem": "Agradeço pelos meus amigos",
+      "data": "15/05/2025"
+    },
+    {
+      "id": 1,
+      "mensagem": "Hoje fiz algo que me deixou feliz",
+      "data": "20/05/2025"
     }
-]
+  ]
 }
-
