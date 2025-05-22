@@ -69,7 +69,7 @@
       "autor": "John W. Barnhill",
       "categoria_id": "1",
       "texto": "A ansiedade é uma reação normal a uma ameaça ou a um estresse psicológico. A ansiedade normal tem sua raiz no medo e desempenha um importante papel na sobrevivência. Quando uma pessoa se vê perante uma situação perigosa, a ansiedade desencadeia uma resposta de luta ou fuga. Com essa resposta, entra em curso uma variedade de alterações físicas, como uma maior irrigação sanguínea para o coração e para os músculos para proporcionar ao corpo a energia e a força necessárias para enfrentar situações de risco à vida, como fugir de um animal agressivo ou enfrentar um agressor. A ansiedade pode ajudar a pessoa a se adaptar a fatores estressantes mais comuns, motivando-a a se preparar, praticar e ensaiar. Ela pode até mesmo levar uma pessoa a abordar situações possivelmente perigosas com a devida cautela.",
-      "link" :"https://www.msdmanuals.com/pt/casa/dist%C3%BArbios-de-sa%C3%BAde-mental/transtornos-de-ansiedade-e-relacionados-a-fatores-estressantes/considera%C3%A7%C3%B5es-gerais-sobre-transtornos-de-ansiedade"
+      "link": "https://www.msdmanuals.com/pt/casa/dist%C3%BArbios-de-sa%C3%BAde-mental/transtornos-de-ansiedade-e-relacionados-a-fatores-estressantes/considera%C3%A7%C3%B5es-gerais-sobre-transtornos-de-ansiedade"
     },
     {
       "id": 2,
@@ -123,7 +123,7 @@
     {
       "titulo": "Não aguento não aguentar mais",
       "autor": "Anne Helen Petersen",
-      "link":"https://g.co/kgs/yQe2o9g"
+      "link": "https://g.co/kgs/yQe2o9g"
     },
     {
       "titulo": "A voz na sua cabeça",
@@ -134,13 +134,7 @@
   "siteMeditacao": {
     "busca": {
       "placeholder": "Buscar meditações...",
-      "filtros": [
-        "Ansiedade",
-        "Estresse",
-        "Depressão",
-        "Sono",
-        "Todos"
-      ]
+      "filtros": ["Ansiedade", "Estresse", "Depressão", "Sono", "Todos"]
     },
     "secaoMeditacoesPopulares": [
       {
@@ -231,11 +225,7 @@
       "nome": "Desenho Livre",
       "tipo": "criatividade",
       "tempoPadrao": 5,
-      "ferramentas": [
-        "pincel",
-        "borracha",
-        "12 cores"
-      ]
+      "ferramentas": ["pincel", "borracha", "12 cores"]
     }
   ],
   "missoesDiarias": [
@@ -377,23 +367,41 @@
       "anonimo": true
     }
   ],
-  
+
   "mensagens": [
     {
-        "id": 1,
-        "mensagem": "Sou grato pela minha família",
-        "data": "22/05/2025"
+      "id": 1,
+      "mensagem": "Sou grato pela minha família",
+      "data": "22/05/2025"
     },
     {
-        "id": 2,
-        "mensagem": "Agradeço pelos meus amigos",
-        "data": "15/05/2025"
-     },
-     {
-        "id": 1,
-        "mensagem": "Hoje fiz algo que me deixou feliz",
-        "data": "20/05/2025"
+      "id": 2,
+      "mensagem": "Agradeço pelos meus amigos",
+      "data": "15/05/2025"
+    },
+    {
+      "id": 1,
+      "mensagem": "Hoje fiz algo que me deixou feliz",
+      "data": "20/05/2025"
     }
-]
-}
+  ],
 
+  "lista_atividades": [
+    {
+      "id": 1,
+      "usuarioId": 2,
+      "nome": "Caminhar no parque",
+      "descricao": "Respirar ar puro e ouvir os pássaros",
+      "duracao": "20 minutos",
+      "tag": "Alívio da ansiedade"
+    },
+    {
+      "id": 2,
+      "usuarioId": 3,
+      "nome": "Ouvir música relaxante",
+      "descricao": "Colocar uma playlist lo-fi para relaxar",
+      "duracao": "10 minutos",
+      "tag": "Relaxar"
+    }
+  ]
+}
