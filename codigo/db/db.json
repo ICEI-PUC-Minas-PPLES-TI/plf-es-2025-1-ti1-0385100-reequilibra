@@ -542,5 +542,23 @@
             "autor": "Sistema",
             "categoria": "produtividade"
         }
+    ],
+
+
+    "forums": [
+          {
+            "id": 4827,
+            "title": "Como lidar com crises no trabalho?",
+            "content": "Dicas para controlar ansiedade no ambiente profissional.",
+            "author": "user123",
+            "comments": [
+                {
+                    "id": 5912,
+                    "content": "Recomendo técnicas de respiração.",
+                    "timeSincePost": "5 minutos atrás",
+                    "author": "user456"
+                }
+            ]
+        }
     ]
 }
