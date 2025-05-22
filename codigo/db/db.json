@@ -405,3 +405,24 @@
     }
   ]
 }
+
+{
+    "frases de apoio emocional": [
+        {
+            "id": 1,
+            "texto": "Acredite em você primeiro. ✨",
+            "autor": "Sistema",
+            "categoria": "motivacional"
+        },
+        {   "id": 2,
+            "texto": "Erros são degraus para o aprendizado. 📚",
+            "autor": "Desconhecido",
+            "categoria": "reflexão"
+        },
+        {   "id": 3,
+            "texto": "Pequenos progressos ainda são progressos. 🐢",
+            "autor": "Sistema",
+            "categoria": "produtividade"
+        }
+    ]
+}
