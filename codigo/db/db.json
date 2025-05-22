@@ -376,6 +376,24 @@
       "nome": "Anônimo",
       "anonimo": true
     }
-  ]
+  ],
+  
+  "mensagens": [
+    {
+        "id": 1,
+        "mensagem": "Sou grato pela minha família",
+        "data": "22/05/2025"
+    },
+    {
+        "id": 2,
+        "mensagem": "Agradeço pelos meus amigos",
+        "data": "15/05/2025"
+     },
+     {
+        "id": 1,
+        "mensagem": "Hoje fiz algo que me deixou feliz",
+        "data": "20/05/2025"
+    }
+]
 }
 
