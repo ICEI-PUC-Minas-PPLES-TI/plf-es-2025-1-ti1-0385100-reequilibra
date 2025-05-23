@@ -1,13 +1,57 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Saúde Mental para Jovens</title>
-    <link rel="stylesheet" href="assets/css/styles.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Caixa de Desabafo</title>
+
+    <link rel="stylesheet" href="./styles.css" />
+
+    <!-- CryptoJS para criptografia -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 </head>
 <body>
-    <button id="botaoEmergencia">Preciso de Ajuda</button>
-    <script src="assets/js/script.js"></script>
+
+<header>
+    <h1>📦 Caixa de Desabafo Anônimo</h1>
+    <p>Um espaço seguro para compartilhar seus sentimentos.</p>
+</header>
+
+<main class="container">
+    <p class="subtitulo">Escreva o que quiser aqui - é 100% anônimo e seguro. Você não será julgado(a).</p>
+
+    <label for="desabafo" class="visually-hidden">Seu desabafo</label>
+    <textarea id="desabafo" maxlength="500" placeholder="Digite seus pensamentos, frustrações ou alegrias..."></textarea>
+
+    <label for="categoria">Categoria:</label>
+    <select id="categoria">
+        <option value="">Selecione uma emoção...</option>
+        <option value="😠 Raiva">😠 Raiva</option>
+        <option value="😢 Tristeza">😢 Tristeza</option>
+        <option value="😊 Alegria">😊 Alegria</option>
+    </select>
+
+    <div class="contador">0/500</div>
+
+    <button id="enviar">Enviar Desabafo</button>
+
+    <section class="leitura">
+        <h3>Quer ler um desabafo aleatório?</h3>
+        <button id="ler">Clique aqui</button>
+        <div id="desabafoExibido" class="desabafo-card"></div>
+    </section>
+
+    <div class="ilustracao">
+        <img src="assets/images/undraw_developer-activity_4zqd.svg" alt="Pessoa com foco e concentração"
+         width="400" 
+         height="300"/>
+    </div>
+</main>
+
+<footer>
+    <p>© 2025 Caixa de Desabafo Anônimo. Todos os direitos reservados.</p>
+</footer>
+
+<script src="./script.js"></script>
 </body>
 </html>
