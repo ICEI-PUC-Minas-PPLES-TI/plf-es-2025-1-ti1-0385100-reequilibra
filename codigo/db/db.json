@@ -368,7 +368,183 @@
     }
   ],
 
+  "mensagens": [
+    {
+      "id": 1,
+      "mensagem": "Sou grato pela minha família",
+      "data": "22/05/2025"
+    },
+    {
+      "id": 2,
+      "mensagem": "Agradeço pelos meus amigos",
+      "data": "15/05/2025"
+    },
+    {
+      "id": 1,
+      "mensagem": "Hoje fiz algo que me deixou feliz",
+      "data": "20/05/2025"
+    }
+  ],
+
+  "lista_atividades": [
+    {
+      "id": 1,
+      "usuarioId": 2,
+      "nome": "Caminhar no parque",
+      "descricao": "Respirar ar puro e ouvir os pássaros",
+      "duracao": "20 minutos",
+      "tag": "Alívio da ansiedade"
+    },
+    {
+      "id": 2,
+      "usuarioId": 3,
+      "nome": "Ouvir música relaxante",
+      "descricao": "Colocar uma playlist lo-fi para relaxar",
+      "duracao": "10 minutos",
+      "tag": "Relaxar"
+    }
+  ],
+  "recompensas": [
+    {
+      "id": 1,
+      "titulo": "Sessão de Terapia",
+      "descricao": "Complete sua sessão de terapia semanal",
+      "icone": "fas fa-comments",
+      "pontos": 100,
+      "tipo": "terapia",
+      "completa": false
+    },
+    {
+      "id": 2,
+      "titulo": "Diário de Humor",
+      "descricao": "Registre seu humor e pensamentos no diário",
+      "icone": "fas fa-book",
+      "pontos": 50,
+      "tipo": "diario",
+      "completa": false
+    },
+    {
+      "id": 3,
+      "titulo": "Meditação Guiada",
+      "descricao": "Complete uma sessão de meditação de 10 minutos",
+      "icone": "fas fa-spa",
+      "pontos": 70,
+      "tipo": "meditacao",
+      "completa": false
+    },
+    {
+      "id": 4,
+      "titulo": "Exercício Físico",
+      "descricao": "Pratique pelo menos 30 minutos de exercício",
+      "icone": "fas fa-running",
+      "pontos": 80,
+      "tipo": "exercicio",
+      "completa": false
+    },
+    {
+      "id": 5,
+      "titulo": "Gratidão",
+      "descricao": "Anote 3 coisas pelas quais você é grato hoje",
+      "icone": "fas fa-heart",
+      "pontos": 40,
+      "tipo": "diario",
+      "completa": false
+    }
+  ],
   
+  "medalhas": [
+    { 
+      "id": 1, 
+      "nome": "Iniciante", 
+      "icone": "fas fa-seedling", 
+      "descricao": "Complete sua primeira atividade",
+      "conquistada": true
+    },
+    { 
+      "id": 2, 
+      "nome": "Terapeuta", 
+      "icone": "fas fa-comments", 
+      "descricao": "Complete 5 sessões de terapia",
+      "objetivo": 5,
+      "progresso": 0,
+      "conquistada": false
+    },
+    { 
+      "id": 3, 
+      "nome": "Meditador", 
+      "icone": "fas fa-spa", 
+      "descricao": "Complete 10 meditações",
+      "objetivo": 10,
+      "progresso": 0,
+      "conquistada": false
+    },
+    { 
+      "id": 4, 
+      "nome": "Escritor", 
+      "icone": "fas fa-book", 
+      "descricao": "Complete 7 entradas no diário",
+      "objetivo": 7,
+      "progresso": 0,
+      "conquistada": false
+    },
+    { 
+      "id": 5, 
+      "nome": "Atleta", 
+      "icone": "fas fa-running", 
+      "descricao": "Complete 15 sessões de exercício",
+      "objetivo": 15,
+      "progresso": 0,
+      "conquistada": false
+    },
+    { 
+      "id": 6, 
+      "nome": "Grato", 
+      "icone": "fas fa-heart", 
+      "descricao": "Complete 30 dias de gratidão",
+      "objetivo": 30,
+      "progresso": 0,
+      "conquistada": false
+    },
+    { 
+      "id": 7, 
+      "nome": "Mestre", 
+      "icone": "fas fa-crown", 
+      "descricao": "Alcance o nível 10",
+      "objetivo": 10,
+      "progresso": 1,
+      "conquistada": false
+    },
+    { 
+      "id": 8, 
+      "nome": "Série de 7 dias", 
+      "icone": "fas fa-calendar-check", 
+      "descricao": "Complete atividades por 7 dias consecutivos",
+      "conquistada": true
+    }
+  ],
+
+
+    "frases de apoio emocional": [
+        {
+            "id": 1,
+            "texto": "Acredite em você primeiro. ✨",
+            "autor": "Sistema",
+            "categoria": "motivacional"
+        },
+
+        {   "id": 2,
+            "texto": "Erros são degraus para o aprendizado. 📚",
+            "autor": "Desconhecido",
+            "categoria": "reflexão"
+        },
+        {   "id": 3,
+            "texto": "Pequenos progressos ainda são progressos. 🐢",
+            "autor": "Sistema",
+            "categoria": "produtividade"
+        }
+    ],
+
+
     "forums": [
           {
             "id": 4827,
