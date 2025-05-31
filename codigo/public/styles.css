@@ -242,3 +242,71 @@ body {
   font-size: 2rem;
   color: white;
 }
+.services {
+  padding: 6rem 0;
+  background: var(--background);
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.service-card {
+  background: var(--surface-elevated);
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  transition: all 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px var(--shadow-elevated);
+}
+
+.service-image {
+  height: 100px;
+  background: var(--primary-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  color: white;
+}
+
+.service-content {
+  padding: 2rem;
+}
+
+.service-content h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+.service-content p {
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.service-content ul {
+  list-style: none;
+}
+
+.service-content li {
+  padding: 0.5rem 0;
+  color: var(--text-secondary);
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.service-content li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--primary-green);
+  font-weight: bold;
+}
