@@ -57,3 +57,20 @@ function initSaibaMais() {
     aboutSection.scrollIntoView({ behavior: "smooth", block: "start" });
   });
 }
+function initHeaderScroll() {
+  const header = document.querySelector(".header");
+  const body = document.body;
+
+  window.addEventListener("scroll", () => {
+    const theme = body.getAttribute("data-theme");
+    const bg =
+      theme === "dark"
+        ? window.scrollY > 100
+          ? "rgba(15,15,15,0.98)"
+          : "rgba(15,15,15,0.95)"
+        : window.scrollY > 100
+        ? "rgba(255,255,255,0.98)"
+        : "rgba(255,255,255,0.95)";
+    header.style.background = bg;
+  });
+}
