@@ -37,3 +37,16 @@ function initMobileMenu() {
     mobileToggle.classList.toggle("active");
   });
 }
+function initSmoothScroll() {
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute("href"));
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+        document.getElementById("navMenu").classList.remove("active");
+        document.getElementById("mobileToggle").classList.remove("active");
+      }
+    });
+  });
+}
