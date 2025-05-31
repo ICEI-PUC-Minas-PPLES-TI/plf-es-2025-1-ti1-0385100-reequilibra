@@ -16,8 +16,41 @@
   </head>
   <body>
     <header class="header">
-      <nav class="nav"></nav>
+      <nav class="nav">
+        <div class="nav-brand">
+          <a href="#home">
+            <img
+              src="./assets/images/logo.png"
+              alt="Reequilibra"
+              class="logo"
+            />
+          </a>
+        </div>
+        <div class="nav-menu" id="navMenu">
+          <a href="#home" class="nav-link">Início</a>
+          <a href="#about" class="nav-link">Sobre</a>
+          <a href="#services" class="nav-link">Serviços</a>
+          <a href="#testimonials" class="nav-link">Depoimentos</a>
+        </div>
+        <div class="nav-actions">
+          <a href="#" class="nav-link">Login</a>
+          <a href="#" class="btn btn-outline">Cadastro</a>
+          <button
+            class="theme-toggle"
+            id="themeToggle"
+            aria-label="Alternar tema"
+          >
+            <i class="fas fa-moon"></i>
+          </button>
+          <button class="mobile-toggle" id="mobileToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </nav>
     </header>
+
     <section id="home" class="hero"></section>
 
     <section id="about" class="about"></section>
