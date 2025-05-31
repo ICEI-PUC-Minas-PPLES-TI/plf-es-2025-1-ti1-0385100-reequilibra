@@ -50,3 +50,10 @@ function initSmoothScroll() {
     });
   });
 }
+function initSaibaMais() {
+  const saibaMaisBtn = document.getElementById("saibaMais");
+  const aboutSection = document.getElementById("about");
+  saibaMaisBtn.addEventListener("click", () => {
+    aboutSection.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+}
