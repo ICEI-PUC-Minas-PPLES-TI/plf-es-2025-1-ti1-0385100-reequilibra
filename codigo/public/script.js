@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initSmoothScroll();
   initSaibaMais();
   initHeaderScroll();
-  initIntersectionAnimations();
   initHeroStatsCounter();
 });
 function initThemeToggle() {
