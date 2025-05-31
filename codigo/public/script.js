@@ -28,3 +28,12 @@ function initThemeToggle() {
 function updateThemeIcon(icon, theme) {
   icon.className = theme === "dark" ? "fas fa-sun" : "fas fa-moon";
 }
+function initMobileMenu() {
+  const mobileToggle = document.getElementById("mobileToggle");
+  const navMenu = document.getElementById("navMenu");
+
+  mobileToggle.addEventListener("click", () => {
+    navMenu.classList.toggle("active");
+    mobileToggle.classList.toggle("active");
+  });
+}
