@@ -74,3 +74,44 @@ function initHeaderScroll() {
     header.style.background = bg;
   });
 }
+function initHeroStatsCounter() {
+  const heroStats = document.querySelector(".hero-stats");
+  if (!heroStats) return;
+
+  const statsObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target
+            .querySelectorAll(".stat-number")
+            .forEach((stat, index) => {
+              const targets = [1000, 95, 24];
+              animateCounter(stat, targets[index]);
+            });
+          statsObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.5 }
+  );
+
+  statsObserver.observe(heroStats);
+}
+
+function animateCounter(element, target) {
+  let current = 0;
+  const increment = target / 100;
+  const timer = setInterval(() => {
+    current += increment;
+    if (current >= target) {
+      current = target;
+      clearInterval(timer);
+    }
+    element.textContent =
+      target === 95
+        ? `${Math.floor(current)}%`
+        : target === 1000
+        ? `${Math.floor(current)}+`
+        : current;
+  }, 20);
+}
