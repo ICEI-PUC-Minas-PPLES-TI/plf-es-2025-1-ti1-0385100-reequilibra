@@ -12,13 +12,13 @@ function carregarLtsPsig() {
     const btnBusca = document.getElementById('btn-busca');
     const container = document.querySelector('.container-psicologos');
 
-    fetch('/db/db.json')
+    fetch('http://localhost:3000/psicologos')
         .then(response => {
             return response.json();
         })
         .then(data => {
-            todosPsicologos = data.psicologos;
-            exibirPsig(data.psicologos);
+            todosPsicologos = data;
+            exibirPsig(data);
             configCardsPsig();
         })
         .catch(error => {
@@ -43,9 +43,10 @@ function carregarLtsPsig() {
 
     function exibirPsig(psicologos) {
         container.innerHTML = psicologos.map(p => `
-            <div class="card-psicologo" data-id="${p.id}">
-                <div class="detalhe-card"></div>
-                <img src="${p.img}" alt="${p.nome}" class="foto-psicologo">
+        <div class="card-psicologo" data-id="${p.id}">
+            <div class="detalhe-card"></div>
+            <img src="${p.img}" alt="${p.nome}" class="foto-psicologo">
+            <div class="card-psicologo-content">
                 <h2 class="nome-psicologo">${p.nome}</h2>
                 <p class="especialidade-psicologo">${p.area_atua}</p>
                 <div class="avaliacao-container">
@@ -53,7 +54,8 @@ function carregarLtsPsig() {
                     <span class="avaliacao">${p.nota}</span>
                 </div>
             </div>
-        `).join('');
+        </div>
+    `).join('');
     }
 
     function configCardsPsig() {
@@ -75,12 +77,12 @@ function carregarDtlPsig() {
         return;
     }
 
-    fetch('/db/db.json')
+    fetch('http://localhost:3000/psicologos')
         .then(response => {
             return response.json();
         })
         .then(data => {
-            const psicologo = data.psicologos.find(p => p.id == psicologoId);
+            const psicologo = data.find(p => p.id == psicologoId);
             if (psicologo) {
                 exibirDtlPsig(psicologo);
             }
