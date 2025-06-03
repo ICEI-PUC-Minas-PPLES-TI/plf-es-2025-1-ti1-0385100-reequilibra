@@ -102,6 +102,8 @@ body {
 }
 
 #menuCriarDiario{
+  justify-content: center;
+  width: 90vw;
   margin-top: 10rem;
 }
 
