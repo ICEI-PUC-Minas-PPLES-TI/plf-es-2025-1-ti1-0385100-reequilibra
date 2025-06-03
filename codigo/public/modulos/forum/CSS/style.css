@@ -25,110 +25,128 @@ body {
   font-family: "Segoe UI", system-ui, sans-serif;
   color: var(--cor-texto);
   line-height: 1.6;
+  padding-top: 86px;
 }
 
 /* ========== HEADER ========== */
 #header {
   height: 86px;
   box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: white;
 }
 
 #signup {
   background-color: var(--cor-primaria);
   transition: all 0.3s;
   border: none;
+  color: white;
 }
 
 #signup:hover {
   background-color: #018f68;
 }
 
-/* ========== FORMULÁRIO ========== */
-
-
-.btn-status {
-  background-color: var(--cor-primaria);
-  border: none;
-  padding: 0.5rem;
-  font-size: 1rem;
-  transition: all 0.3s;
-  width: 50px;
-  height: 50px;
+/* ========== MEMORIES ========== */
+#memoriesContainer {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
 }
 
+.memory-item {
+  width: 100%;
+}
 
+.memory-card {
+  transition: all 0.3s ease;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: white;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
 
+.memory-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
 
+.memory-img {
+  height: 300px;
+  object-fit: cover;
+  width: 100%;
+}
 
+#memoryForm {
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 2rem;
+  width: 100%;
+}
 
-/* ========== LISTA DE DIÁRIOS ========== */
-
-
-.card {
-  border: none;
-  border-radius: 0.5rem;
-  padding: 1rem;
-  margin-bottom: 1rem;
+/* ========== FÓRUNS ========== */
+.forum-card {
+  transition: all 0.3s ease;
   cursor: pointer;
-  transition: all 0.3s;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
-.card:hover {
-  box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+.forum-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
-.card.bg-primary {
-  background-color: var(--cor-primaria)!important;
-  color: white;
+.active-forum {
+  border-left: 4px solid var(--cor-primaria);
+  background-color: #f0f8f5;
 }
 
-/* ========== BOTÕES ========== */
-.btn-primary {
+.post-author {
+  font-weight: 600;
+  color: var(--cor-primaria);
+}
+
+.post-time {
+  font-size: 0.9rem;
+  color: #6c757d;
+}
+
+/* ========== BOTÕES & FORMULÁRIOS ========== */
+.btn-custom {
   background-color: var(--cor-primaria);
+  color: white;
   border: none;
 }
 
-.btn-primary:hover {
-  background-color: #018f68;
-}
-
-#btnSalvarDiario{
-  background-color: var(--cor-primaria);
-  color: var(--cor-clara);
-}
-
-#menuCriarDiario{
-  justify-content: center;
-  width: 90vw;
-  margin-top: 10rem;
-}
-
-
-#btnStatus1, #btnStatus2, #btnStatus3, #btnStatus4, #btnStatus5{
-  width: 6%;
-  height: 60%;
-}
-.btn-custom{
-  background-color: var(--cor-primaria);
+.btn-custom:hover {
+  background-color: #018d63;
   color: white;
-
 }
 
-.bg-purple {
-  background-color: var(--cor-pastel);
-  color: var(--cor-clara);
+/* ========== MODAL ========== */
+.modal-content {
+  border-radius: 10px;
 }
-/* ========== RESPONSIVO ========== */
+
+/* ========== RESPONSIVIDADE ========== */
 @media (max-width: 992px) {
-  #menuCriarDiario > .row {
-    flex-direction: column;
+  .memory-img {
+    height: 250px;
+  }
+}
+
+@media (max-width: 768px) {
+  .memory-img {
+    height: 200px;
   }
   
-  #menuMobile div {
-    width: 100%!important;
+  #memoryForm {
+    padding: 15px;
   }
 }

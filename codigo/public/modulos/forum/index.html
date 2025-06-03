@@ -3,43 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>reequilibra - Comunidade</title>
+  <title>reequilibra - Memories & Comunidade</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-  <style>
-    body {
-      padding-top: 86px;
-      background-color: #f8f9fa;
-    }
-    .forum-card {
-      transition: all 0.3s ease;
-      cursor: pointer;
-    }
-    .forum-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    }
-    .active-forum {
-      border-left: 4px solid #01AE7D;
-      background-color: #f0f8f5;
-    }
-    .btn-custom {
-      background-color: #01AE7D;
-      color: white;
-    }
-    .btn-custom:hover {
-      background-color: #018d63;
-      color: white;
-    }
-    .post-author {
-      font-weight: 600;
-      color: #01AE7D;
-    }
-    .post-time {
-      font-size: 0.9rem;
-      color: #6c757d;
-    }
-  </style>
+  <link rel="stylesheet" href="./CSS/style.css">
 </head>
 <body>
   <header id="header" class="shadow d-flex bg-white fixed-top">
@@ -49,7 +16,7 @@
           ☰
         </button>
       </div>
-      <img src="./../../assets/images/logo.jpeg" alt="logo" style="height: 86px; width: auto;">
+      <img src="../../../assets/images/logo.jpeg" alt="logo" style="height: 86px; width: auto;">
       <div class="d-flex gap-2">
         <button type="button" class="btn btn-outline-secondary">Login</button>
         <button id="signup" type="button" class="btn text-white" style="background-color: #01AE7D;">Sign Up</button>
@@ -69,48 +36,58 @@
 
   <main class="container mt-4">
     <div class="row">
-      <!-- ÁREA PRINCIPAL DO FÓRUM -->
-      <div class="col-lg-8 pe-lg-4">
-        <div class="bg-white p-4 rounded shadow-sm mb-4">
-          <h3 class="mb-4">My Memories</h3>
-          <div class="d-flex justify-content-between align-items-center mb-3">
-            <div>
-              <span class="post-author">JoanaP</span>
-              <span class="post-time">- há 2 dias</span>
+      <!-- COLUNA ESQUERDA - MEMORIES PRIVADOS -->
+      <div class="col-lg-8">
+        <div id="memoryForm" class="mb-4">
+          <h3 class="mb-3">Meus Memories</h3>
+          <div class="mb-3">
+            <label for="memoryImage" class="form-label">Adicionar foto</label>
+            <input class="form-control" type="file" id="memoryImage" accept="image/*">
+          </div>
+          <div class="mb-3">
+            <label for="memoryCaption" class="form-label">Legenda</label>
+            <textarea class="form-control" id="memoryCaption" rows="2" placeholder="Adicione uma legenda..."></textarea>
+          </div>
+          <button id="btnAddMemory" class="btn btn-custom">Adicionar Memory</button>
+        </div>
+
+        <div id="memoriesContainer">
+          <!-- Memory 1 -->
+          <div class="memory-item">
+            <div class="memory-card bg-white shadow-sm">
+              <img src="https://via.placeholder.com/1200x400?text=Memory+1" class="memory-img" alt="Memory">
+              <div class="p-3">
+                <p class="mb-2">Dia incrível na praia! ☀️🌊</p>
+                <small class="text-muted">Postado em: 15/06/2023</small>
+              </div>
             </div>
-            <div class="d-flex align-items-center">
-              <button class="btn btn-sm btn-outline-secondary me-2">
-                <i class="bi bi-heart"></i> 3
-              </button>
-              <button class="btn btn-sm btn-outline-secondary">
-                <i class="bi bi-share"></i> SHARE
-              </button>
+          </div>
+          
+          <!-- Memory 2 -->
+          <div class="memory-item">
+            <div class="memory-card bg-white shadow-sm">
+              <img src="https://via.placeholder.com/1200x400?text=Memory+2" class="memory-img" alt="Memory">
+              <div class="p-3">
+                <p class="mb-2">Meu novo hobby: jardinagem 🌱</p>
+                <small class="text-muted">Postado em: 10/06/2023</small>
+              </div>
             </div>
           </div>
           
-          <div class="mb-4">
-            <p>Postado por JoanaP - há 2 dias</p>
-            <h4>Como lidar com crises de ansiedade no trabalho?</h4>
-            <p>Recentemente tenho tido muitas crises de ansiedade durante o horário de trabalho. Alguém tem dicas de técnicas que posso usar discretamente no escritório para acalmar esses episódios?</p>
-          </div>
-          
-          <hr>
-          
-          <div class="mb-4">
-            <p>Postado por Leitinho - há 6 dias</p>
-            <h4>Como lidar com crises de ansiedade no trabalho?</h4>
-            <p>Recentemente tenho tido muitas crises de ansiedade durante o horário de trabalho. Alguém tem dicas de técnicas que posso usar discretamente no escritório para acalmar esses episódios?</p>
-          </div>
-          
-          <div class="mt-4">
-            <h5>Responder ao tópico</h5>
-            <textarea class="form-control mb-3" rows="4" placeholder="Escreva sua resposta..."></textarea>
-            <button class="btn btn-custom">Enviar Resposta</button>
+          <!-- Memory 3 -->
+          <div class="memory-item">
+            <div class="memory-card bg-white shadow-sm">
+              <img src="https://via.placeholder.com/1200x400?text=Memory+3" class="memory-img" alt="Memory">
+              <div class="p-3">
+                <p class="mb-2">Passeio no parque com amigos</p>
+                <small class="text-muted">Postado em: 05/06/2023</small>
+              </div>
+            </div>
           </div>
         </div>
       </div>
       
-      <!-- BARRA LATERAL COM LISTA DE FÓRUNS -->
+      <!-- COLUNA DIREITA - FÓRUNS PÚBLICOS -->
       <div class="col-lg-4">
         <div class="bg-light p-4 rounded shadow-sm">
           <div class="d-flex justify-content-between align-items-center mb-4">
@@ -144,14 +121,6 @@
               </div>
               <small class="text-muted">Postado por MariaL</small>
             </a>
-            
-            <a href="#" class="list-group-item list-group-item-action forum-card">
-              <div class="d-flex justify-content-between">
-                <h6 class="mb-1">Exercícios de mindfulness para iniciantes</h6>
-                <small class="text-muted">há 2 semanas</small>
-              </div>
-              <small class="text-muted">Postado por PedroG</small>
-            </a>
           </div>
         </div>
       </div>
@@ -174,7 +143,7 @@
             </div>
             <div class="mb-3">
               <label for="forumContent" class="form-label">Conteúdo</label>
-              <textarea class="form-control" id="forumContent" rows="4" placeholder="Descreva sua pergunta ou tópico de discussão"></textarea>
+              <textarea class="form-control" id="forumContent" rows="4" placeholder="Descreva sua pergunta ou tópico de discussion"></textarea>
             </div>
           </form>
         </div>
@@ -187,19 +156,6 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-    
-    document.addEventListener('DOMContentLoaded', function() {
-      //Selecionar um fórum da lista
-      const forumCards = document.querySelectorAll('.forum-card');
-      forumCards.forEach(card => {
-        card.addEventListener('click', function() {
-          forumCards.forEach(c => c.classList.remove('active-forum'));
-          this.classList.add('active-forum');
-          // Aqui você carregaria o conteúdo do fórum selecionado
-        });
-      });
-    });
-  </script>
+  <script src="./scripts/app.js"></script>
 </body>
 </html>

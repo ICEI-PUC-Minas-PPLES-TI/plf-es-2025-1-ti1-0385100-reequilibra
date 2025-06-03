@@ -1,191 +1,57 @@
-const btnSalvarDiario = document.getElementById('btnSalvarDiario');
-let statusDiario = '';
-let selectedDiario = '';
-let diarioID = '';
-let boolSelectedDiario = false;
-const apiUrl = 'https://12d88d11-bf7c-4a60-adc6-de173aa536e8-00-2r4bfxqpkwg9l.kirk.replit.dev/diario';
-
-function limpaCampos() {
-    // Reseta os campos
-    document.getElementById('tituloDiario').value = null;
-    document.getElementById('textoDiario').value = null;
-    const resetBtn = document.querySelectorAll('#btnStatus1, #btnStatus2, #btnStatus3, #btnStatus4, #btnStatus5');
-    resetBtn.forEach(btn => btn.classList.replace('btn-custom', 'btn-light'));
-
-    boolSelectedDiario = false;
-}
-
-function noDiarySelected() {
-    if (!boolSelectedDiario) {
-        document.getElementById('btnSalvarDiario').innerHTML = "Criar Diário";
-
-        let allCards = document.querySelectorAll('#diario1 > div');
-        allCards.forEach(cards => cards.classList.replace('bg-primary', 'bg-light'));
-    } else {
-        document.getElementById('btnSalvarDiario').innerHTML = "Atualizar Diário";
+document.addEventListener('DOMContentLoaded', function() {
+    // ========== FUNCIONALIDADE DE FÓRUNS ==========
+    const forumCards = document.querySelectorAll('.forum-card');
+    
+    // Seleção de fóruns
+    forumCards.forEach(card => {
+      card.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        // Remove a seleção de todos os cards
+        forumCards.forEach(c => c.classList.remove('active-forum'));
+        
+        // Adiciona seleção ao card clicado
+        this.classList.add('active-forum');
+      });
+    });
+  
+    // ========== FUNCIONALIDADE DE MEMORIES ==========
+    const btnAddMemory = document.getElementById('btnAddMemory');
+    
+    if (btnAddMemory) {
+      btnAddMemory.addEventListener('click', function() {
+        const caption = document.getElementById('memoryCaption').value;
+        const fileInput = document.getElementById('memoryImage');
+        
+        // Validação simples
+        if (!fileInput.files[0] && !caption) {
+          alert('Adicione uma foto ou legenda');
+          return;
+        }
+  
+        // Simula o upload da imagem
+        const imageUrl = fileInput.files[0] ? URL.createObjectURL(fileInput.files[0]) : 'https://via.placeholder.com/1200x400?text=New+Memory';
+        
+        // Cria o novo elemento de memory
+        const memoryContainer = document.getElementById('memoriesContainer');
+        const newMemory = document.createElement('div');
+        newMemory.className = 'memory-item';
+        newMemory.innerHTML = `
+          <div class="memory-card bg-white shadow-sm">
+            <img src="${imageUrl}" class="memory-img" alt="Memory">
+            <div class="p-3">
+              <p class="mb-2">${caption || 'Sem legenda'}</p>
+              <small class="text-muted">Postado em: ${new Date().toLocaleDateString('pt-BR')}</small>
+            </div>
+          </div>
+        `;
+        
+        // Adiciona no início do container
+        memoryContainer.prepend(newMemory);
+        
+        // Limpa o formulário
+        document.getElementById('memoryCaption').value = '';
+        fileInput.value = '';
+      });
     }
-}
-
-btnSalvarDiario.addEventListener('click', function (event) {
-    event.preventDefault();
-    const tituloDiario = document.getElementById('tituloDiario').value;
-    const textoDiario = document.getElementById('textoDiario').value;
-    const date = new Date();
-
-    // Gera o ID
-    diarioID = Date.now();
-
-    // Cria um objeto com os dados do diário
-    let diarioObject = {
-        id: diarioID,
-        userid: 1,
-        data: date.toLocaleDateString('pt-BR'),
-        titulo: tituloDiario,
-        publico: false,
-        status: statusDiario,
-        conteudo: textoDiario,
-        favorito: false
-    };
-
-    if (!boolSelectedDiario) {
-        createDiario(diarioObject, listaDiarios);
-    } else {
-        updateDiario(selectedDiario, diarioObject, listaDiarios);
-    }
-});
-
-// CREATE
-function createDiario(diarioObject, refreshFunction) {
-    // Reseta os campos
-    document.getElementById('tituloDiario').value = null;
-    document.getElementById('textoDiario').value = null;
-    const resetBtn = document.querySelectorAll('#btnStatus1, #btnStatus2, #btnStatus3, #btnStatus4, #btnStatus5');
-    resetBtn.forEach(btn => btn.classList.replace('btn-custom', 'btn-light'));
-
-    fetch(apiUrl, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(diarioObject),
-    })
-        .then(response => {
-            if (!response.ok) {
-                console.log('Erro ao inserir diário');
-                alert("Erro ao inserir diário");
-                return;
-            }
-            return response.json(); // Converte a resposta para JSON
-        })
-        .then(data => {
-            alert("Diário inserido com sucesso");
-
-            if (refreshFunction) {
-                // Atualiza a lista de diários e destaca o novo card
-                refreshFunction()
-                    .then(() => {
-                        selecionaDiario(data.id);
-                    });
-            }
-        })
-        .catch(error => {
-            console.error('Erro ao inserir diário via API REPLIT Server:', error);
-            alert("Erro ao inserir diário");
-        });
-}
-
-// ============== BOTÕES STATUS ================
-function defStatusDiario(i) {
-    // Reseta os botões
-    const resetBtn = document.querySelectorAll('#btnStatus1, #btnStatus2, #btnStatus3, #btnStatus4, #btnStatus5');
-    resetBtn.forEach(btn => btn.classList.replace('btn-custom', 'btn-light'));
-
-    statusDiario = i;
-    const btnStatus = document.getElementById(`btnStatus${i}`);
-    btnStatus.classList.replace('btn-light', 'btn-custom');
-}
-
-function selecionaDiario(i) {
-    boolSelectedDiario = true;
-    noDiarySelected();
-
-    // Preenche os campos com o diário selecionado
-    fetch(`${apiUrl}?id=${i}`)
-        .then(response => response.json())
-        .then(data => {
-            let selectedTitulo = document.getElementById('tituloDiario');
-            let selectedTexto = document.getElementById('textoDiario');
-
-            // Remove o destaque de todos os cards
-            selectedTitulo.value = data[0].titulo;
-            selectedTexto.value = data[0].conteudo;
-
-            statusDiario = data[0].status;
-            defStatusDiario(statusDiario); // Atualiza o botão de status
-
-            console.log("Título do diário selecionado:", selectedTitulo.value);
-
-            selectedDiario = i;
-        });
-
-    console.log("ID do diário selecionado:", selectedDiario);
-
-    let allCards = document.querySelectorAll('#diario1 > div');
-    allCards.forEach(cards => cards.classList.replace('bg-purple', 'bg-light'));
-
-    let card = document.getElementById(`card${i}`);
-    card.classList.replace('bg-light', 'bg-purple');
-}
-
-function deleteDiario(id, refreshFunction) {
-    if (!id) {
-        alert("Nenhum diário foi selecionado para exclusão.");
-        return;
-    }
-
-    fetch(`${apiUrl}/${id}`, {
-        method: 'DELETE',
-    })
-        .then(response => {
-            if (!response.ok) {
-                console.log('Diário não encontrado');
-                alert("Diário não encontrado");
-                return;
-            } else {
-                alert("Diário removido com sucesso");
-            }
-        });
-
-    // Atualiza a lista de diários
-    if (refreshFunction) {
-        refreshFunction();
-        selecionaDiario(id);
-    }
-}
-
-function updateDiario(id, diario, refreshFunction) {
-    fetch(`${apiUrl}/${id}`, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(diario),
-    })
-        .then(response => response.json())
-        .then(data => {
-            alert("Diário alterado com sucesso");
-            if (refreshFunction) {
-                boolSelectedDiario = true;
-                refreshFunction()
-                    .then(() => {
-                        selecionaDiario(id);
-                        noDiarySelected();
-                        statusDiario = data.status;
-                    });
-            }
-        })
-        .catch(error => {
-            console.error('Erro ao atualizar diário via API JSONServer:', error);
-            displayMessage("Erro ao atualizar diário");
-        });
-}
+  });
