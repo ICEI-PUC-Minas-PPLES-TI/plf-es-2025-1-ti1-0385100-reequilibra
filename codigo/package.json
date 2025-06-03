@@ -1,15 +1,18 @@
 {
-  "name": "codigo",
+  "name": "reequilibra-forum",
   "version": "1.0.0",
-  "description": "Essa é a pasta para a manter o programa que vocês vão construir no contexto dessa disciplina.",
-  "main": "index.js",
+  "description": "Forum de saúde mental com memories privados",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "json-server --watch ./db/db.json --port 3000 --static public/modulos/forum/index.html",
+    "dev": "concurrently \"json-server --watch db.json --port 3001\" \"live-server --port=3000\"",
+    "json-server": "json-server --watch db.json --port 3001"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "json-server": "^1.0.0-beta.3"
+    "json-server": "^0.17.4",
+    "concurrently": "^8.2.2"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.2"
   }
 }

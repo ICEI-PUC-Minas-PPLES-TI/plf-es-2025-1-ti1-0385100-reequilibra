@@ -150,3 +150,20 @@ body {
     padding: 15px;
   }
 }
+
+
+/* ========== SELEÇÃO DE MEMORIES ========== */
+.selected-memory {
+  border: 3px solid var(--cor-primaria) !important;
+  transform: scale(1.02);
+}
+
+.memory-card {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.memory-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
