@@ -64,18 +64,18 @@ function deleteArtigo(id, refreshFunction) {
 
 function exibeArtigos() {
     const tableArtigos = document.getElementById("table-artigos");
-    tableContatos.innerHTML = "";
+    tableArtigos.innerHTML = "";
 
-    readContato(dados => {
+    readArtigo(dados => {
         for (let i = 0; i < dados.length; i++) {
             const artigo = dados[i];    
-            tableContatos.innerHTML += `<tr>
+            tableArtigos.innerHTML += `<tr>
                 <td scope="row">${artigo.id}</td>
                 <td>${artigo.titulo}</td>
                 <td>${artigo.data}</td>
-                <td>${contato.autor}</td>
-                <td>${contato.categoria}</td>
-                <td>${contato.link}</td>
+                <td>${artigo.autor}</td>
+                <td>${artigo.categoria}</td>
+                <td>${artigo.link}</td>
             </tr>`;
         }
     });
@@ -104,7 +104,7 @@ function init() {
             link: document.getElementById('inputLink').value,
         };
 
-        createContato(artigo, exibeArtigos);
+        createArtigo(artigo, exibeArtigos);
         formArtigo.reset();
     });
 
@@ -134,8 +134,8 @@ function init() {
             return;
         }
 
-        deleteContato(campoId, exibeArtigos);
-        formContato.reset();
+        deleteArtigo(campoId, exibeArtigos);
+        formArtigo.reset();
     });
 
     btnClear.addEventListener('click', function () {
@@ -153,7 +153,7 @@ function init() {
     gridArtigos.addEventListener('click', function (e) {
         if (e.target.tagName === "TD") {
             const linhaArtigo = e.target.parentNode;
-            const colunas = linhaContato.querySelectorAll("td");
+            const colunas = linhaArtigo.querySelectorAll("td");
 
             document.getElementById('inputId').value = colunas[0].innerText;
             document.getElementById('inputTitulo').value = colunas[1].innerText;

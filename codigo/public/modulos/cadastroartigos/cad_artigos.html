@@ -9,10 +9,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="cad_artigo.css">
 </head>
 
-<body onload="init()">
+<body>
     <h1>Cadastro de Artigos</h1>
 
     <div class="container">
@@ -36,11 +36,11 @@
             <div class="form-group row">
                 <div class="col-sm-5">
                     <label for="inputData">Data de portagem</label>
-                    <input type="text" class="form-control" id="inputData" required placeholder="Data de postagem do artigo">
+                    <input type="date" class="form-control" id="inputData" required placeholder="Data de postagem do artigo">
                 </div>
                 <div class="col-sm-7">
                     <label for="inputAutor">Autor(a)</label>
-                    <input type="email" class="form-control" id="inputAutor" required placeholder="Informe o autor(a)">
+                    <input type="text" class="form-control" id="inputAutor" required placeholder="Informe o autor(a)">
                 </div>
             </div>
             <div class="form-group row">
@@ -64,14 +64,14 @@
                     <input type="button" class="btn btn-warning" id="btnUpdate" value="Alterar">
                     <input type="button" class="btn btn-danger" id="btnDelete" value="Excluir">
                     <input type="button" class="btn btn-secondary" id="btnClear" value="Limpar Form">
-                    <a href="search.html"><input type="button" class="btn btn-warning" id="btnClear" value="Pesquisar Contatos"></a>
+                    <a href="search.html"><input type="button" class="btn btn-warning" id="btnClear" value="Pesquisar Artigos"></a>
                 </div>
             </div>
         </form>
 
         <div class="row">
             <div class="col-sm-12">
-                <table id="grid-contatos" class="table table-striped">
+                <table id="grid-artigos" class="table table-striped">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
@@ -90,7 +90,6 @@
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td></td>
                         </tr>
                     </tbody>
                 </table>
@@ -98,7 +97,7 @@
         </div>
     </div>
 
-    <script src="assets/scripts/app.js"></script>
+    <script src="cad_artigo.js"></script>
 </body>
 
 </html>
