@@ -4,7 +4,7 @@
   "description": "Forum de saúde mental com memories privados",
   "main": "server.js",
   "scripts": {
-    "start": "json-server --watch ./db/db.json --port 3000 --static public/modulos/forum/index.html",
+    "start": "json-server --watch db/db.json --port 3001 --static public/forum",
     "dev": "concurrently \"json-server --watch db.json --port 3001\" \"live-server --port=3000\"",
     "json-server": "json-server --watch db.json --port 3001"
   },

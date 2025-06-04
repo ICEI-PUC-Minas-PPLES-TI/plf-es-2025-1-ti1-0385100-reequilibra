@@ -7,6 +7,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
   <link rel="stylesheet" href="./CSS/style.css">
+  <script src="../../assets/js/login.js"></script>
 </head>
 <body>
   <header id="header" class="shadow d-flex bg-white fixed-top">
@@ -18,8 +19,7 @@
       </div>
       <img src="../../../assets/images/logo.jpeg" alt="logo" style="height: 86px; width: auto;">
       <div class="d-flex gap-2">
-        <button type="button" class="btn btn-outline-secondary">Login</button>
-        <button id="signup" type="button" class="btn text-white" style="background-color: #01AE7D;">Sign Up</button>
+        <span id="userInfo"></span>
       </div>
     </nav>
 
@@ -52,38 +52,7 @@
         </div>
 
         <div id="memoriesContainer">
-          <!-- Memory 1 -->
-          <div class="memory-item">
-            <div class="memory-card bg-white shadow-sm">
-              <img src="https://via.placeholder.com/1200x400?text=Memory+1" class="memory-img" alt="Memory">
-              <div class="p-3">
-                <p class="mb-2">Dia incrível na praia! ☀️🌊</p>
-                <small class="text-muted">Postado em: 15/06/2023</small>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Memory 2 -->
-          <div class="memory-item">
-            <div class="memory-card bg-white shadow-sm">
-              <img src="https://via.placeholder.com/1200x400?text=Memory+2" class="memory-img" alt="Memory">
-              <div class="p-3">
-                <p class="mb-2">Meu novo hobby: jardinagem 🌱</p>
-                <small class="text-muted">Postado em: 10/06/2023</small>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Memory 3 -->
-          <div class="memory-item">
-            <div class="memory-card bg-white shadow-sm">
-              <img src="https://via.placeholder.com/1200x400?text=Memory+3" class="memory-img" alt="Memory">
-              <div class="p-3">
-                <p class="mb-2">Passeio no parque com amigos</p>
-                <small class="text-muted">Postado em: 05/06/2023</small>
-              </div>
-            </div>
-          </div>
+          <!-- Memories serão carregados dinamicamente via JavaScript -->
         </div>
       </div>
       
@@ -98,29 +67,7 @@
           </div>
           
           <div class="list-group">
-            <a href="#" class="list-group-item list-group-item-action forum-card active-forum">
-              <div class="d-flex justify-content-between">
-                <h6 class="mb-1">Como lidar com crises de ansiedade no trabalho?</h6>
-                <small class="text-muted">há 2 dias</small>
-              </div>
-              <small class="text-muted">Postado por JoanaP</small>
-            </a>
-            
-            <a href="#" class="list-group-item list-group-item-action forum-card">
-              <div class="d-flex justify-content-between">
-                <h6 class="mb-1">Dicas para melhorar a qualidade do sono</h6>
-                <small class="text-muted">há 5 dias</small>
-              </div>
-              <small class="text-muted">Postado por CarlosS</small>
-            </a>
-            
-            <a href="#" class="list-group-item list-group-item-action forum-card">
-              <div class="d-flex justify-content-between">
-                <h6 class="mb-1">Como ajudar um amigo com depressão?</h6>
-                <small class="text-muted">há 1 semana</small>
-              </div>
-              <small class="text-muted">Postado por MariaL</small>
-            </a>
+            <!-- Fóruns serão carregados dinamicamente via JavaScript -->
           </div>
         </div>
       </div>
@@ -143,13 +90,32 @@
             </div>
             <div class="mb-3">
               <label for="forumContent" class="form-label">Conteúdo</label>
-              <textarea class="form-control" id="forumContent" rows="4" placeholder="Descreva sua pergunta ou tópico de discussion"></textarea>
+              <textarea class="form-control" id="forumContent" rows="4" placeholder="Descreva sua pergunta ou tópico de discussão"></textarea>
             </div>
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
           <button type="button" class="btn btn-custom">Criar Fórum</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal para Visualizar Fórum -->
+  <div class="modal fade" id="visualizarForumModal" tabindex="-1" aria-labelledby="visualizarForumModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="visualizarForumModalLabel">Detalhes do Fórum</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="forumDetailsContent">
+          <!-- Conteúdo do fórum será carregado dinamicamente -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+          <button type="button" class="btn btn-custom" id="btnAddComment">Adicionar Comentário</button>
         </div>
       </div>
     </div>

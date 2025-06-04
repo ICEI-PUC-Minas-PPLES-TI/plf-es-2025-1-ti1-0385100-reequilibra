@@ -1,5 +1,5 @@
 // ========== CONFIGURAÇÃO DA API ==========
-const apiUrl = "http://localhost:3001"
+const apiUrl = "/forums" // Endpoint para acessar os fóruns no JSON Server
 const CURRENT_USER_ID = 1
 
 // ========== VARIÁVEIS GLOBAIS MEMORIES ==========
@@ -241,7 +241,7 @@ function editMemory(id) {
 function createForum(forumObject, refreshFunction) {
   limpaCamposForum()
 
-  fetch(`${apiUrl}/forums`, {
+  fetch(apiUrl, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -273,7 +273,7 @@ function createForum(forumObject, refreshFunction) {
 
 // READ FORUMS
 function listaForums() {
-  return fetch(`${apiUrl}/forums?_sort=createdAt&_order=desc`)
+  return fetch(apiUrl)
     .then((response) => response.json())
     .then((forums) => {
       renderForums(forums)
@@ -290,39 +290,43 @@ function renderForums(forums) {
   forumsContainer.innerHTML = ""
 
   forums.forEach((forum, index) => {
-    const forumDiv = document.createElement("div")
+    const forumDiv = document.createElement("a")
+    forumDiv.href = "#"
     forumDiv.className = `list-group-item list-group-item-action forum-card ${index === 0 ? "active-forum" : ""}`
     forumDiv.id = `cardForum${forum.id}`
-    forumDiv.onclick = () => selecionaForum(forum.id)
+    forumDiv.onclick = (e) => {
+      e.preventDefault()
+      selecionaForum(forum.id)
+    }
+
+    // Formatar a data para exibição
+    const timeAgo = forum.timeSincePost || "há alguns dias"
 
     forumDiv.innerHTML = `
-            <div class="d-flex justify-content-between">
-                <h6 class="mb-1">${forum.title}</h6>
-                <small class="text-muted">${getTimeAgo(forum.createdAt)}</small>
-            </div>
-            <p class="mb-1 small">${forum.content.substring(0, 100)}${forum.content.length > 100 ? "..." : ""}</p>
-            <div class="d-flex justify-content-between align-items-center">
-                <small class="text-muted">
-                    Postado por ${forum.author} 
-                    ${forum.isHealthProfessional ? '<span class="badge bg-success ms-1">Profissional</span>' : ""}
-                </small>
-                <div>
-                    <button class="btn btn-sm btn-outline-primary me-1" onclick="event.stopPropagation(); editForum(${forum.id})">
-                        <i class="bi bi-pencil"></i>
-                    </button>
-                    <button class="btn btn-sm btn-outline-danger" onclick="event.stopPropagation(); deleteForum(${forum.id}, listaForums)">
-                        <i class="bi bi-trash"></i>
-                    </button>
-                </div>
-            </div>
-        `
+      <div class="d-flex justify-content-between">
+        <h6 class="mb-1">${forum.title}</h6>
+        <small class="text-muted">${timeAgo}</small>
+      </div>
+      <p class="mb-1 small">${forum.content.substring(0, 100)}${forum.content.length > 100 ? "..." : ""}</p>
+      <div class="d-flex justify-content-between align-items-center">
+        <small class="text-muted">Postado por ${forum.author}</small>
+        <div>
+          <button class="btn btn-sm btn-outline-primary me-1" onclick="event.stopPropagation(); editForum('${forum.id}')">
+            <i class="bi bi-pencil"></i>
+          </button>
+          <button class="btn btn-sm btn-outline-danger" onclick="event.stopPropagation(); deleteForum('${forum.id}', listaForums)">
+            <i class="bi bi-trash"></i>
+          </button>
+        </div>
+      </div>
+    `
     forumsContainer.appendChild(forumDiv)
   })
 }
 
 // UPDATE FORUM
 function updateForum(id, forum, refreshFunction) {
-  fetch(`${apiUrl}/forums/${id}`, {
+  fetch(`${apiUrl}/${id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -356,7 +360,7 @@ function deleteForum(id, refreshFunction) {
     return
   }
 
-  fetch(`${apiUrl}/forums/${id}`, {
+  fetch(`${apiUrl}/${id}`, {
     method: "DELETE",
   })
     .then((response) => {
@@ -382,11 +386,14 @@ function deleteForum(id, refreshFunction) {
 function selecionaForum(id) {
   boolSelectedForum = true
 
-  fetch(`${apiUrl}/forums/${id}`)
+  fetch(`${apiUrl}/${id}`)
     .then((response) => response.json())
     .then((data) => {
       console.log("Fórum selecionado:", data.title)
       selectedForum = id
+    })
+    .catch((error) => {
+      console.error("Erro ao buscar fórum:", error)
     })
 
   console.log("ID do fórum selecionado:", selectedForum)
@@ -401,13 +408,13 @@ function selecionaForum(id) {
 }
 
 function editForum(id) {
-  fetch(`${apiUrl}/forums/${id}`)
+  fetch(`${apiUrl}/${id}`)
     .then((response) => response.json())
     .then((forum) => {
       const newTitle = prompt("Editar título:", forum.title)
-      if (newTitle !== null && newTitle.trim() !== forum.title) {
+      if (newTitle !== null && newTitle.trim() !== "") {
         const newContent = prompt("Editar conteúdo:", forum.content)
-        if (newContent !== null) {
+        if (newContent !== null && newContent.trim() !== "") {
           const updatedForum = {
             ...forum,
             title: newTitle.trim(),
@@ -440,7 +447,6 @@ function getTimeAgo(dateString) {
 // ========== EVENT LISTENERS ==========
 document.addEventListener("DOMContentLoaded", () => {
   // Carrega dados iniciais
-  listaMemories()
   listaForums()
 
   // Event listener para adicionar memory
@@ -457,7 +463,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       // Gera o ID
-      memoryID = Date.now()
+      memoryID = Date.now().toString()
 
       let imageUrl = "https://via.placeholder.com/1200x400?text=New+Memory"
       if (fileInput.files[0]) {
@@ -495,16 +501,15 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       // Gera o ID
-      forumID = Date.now()
+      forumID = Date.now().toString()
 
       const forumObject = {
         id: forumID,
         title: title.trim(),
         content: content.trim(),
         author: "Usuario Atual",
-        createdAt: date.toISOString(),
-        isHealthProfessional: false,
-        replies: 0,
+        timeSincePost: "agora mesmo",
+        comments: [],
       }
 
       createForum(forumObject, listaForums)
