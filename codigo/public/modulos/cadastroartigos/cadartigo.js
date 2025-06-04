@@ -1,148 +1,145 @@
-const apiUrl = '/contatos';
+const apiUrl = '/cad_artigos';
 
 function displayMessage(mensagem) {
     const msg = document.getElementById('msg');
     msg.innerHTML = '<div class="alert alert-warning">' + mensagem + '</div>';
 }
 
-function readContato(processaDados) {
+function readArtigo(processaDados) {
     fetch(apiUrl)
         .then(response => response.json())
         .then(data => processaDados(data))
         .catch(error => {
-            console.error('Erro ao ler contatos:', error);
-            displayMessage("Erro ao ler contatos");
+            console.error('Erro ao ler artigos:', error);
+            displayMessage("Erro ao ler artigos");
         });
 }
 
-function createContato(contato, refreshFunction) {
+function createArtigo(artigo, refreshFunction) {
     fetch(apiUrl, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(contato),
+        body: JSON.stringify(artigo),
     })
     .then(response => response.json())
     .then(() => {
-        displayMessage("Contato inserido com sucesso");
+        displayMessage("Artigo inserido com sucesso");
         if (refreshFunction) refreshFunction();
     })
     .catch(error => {
-        console.error('Erro ao inserir contato:', error);
-        displayMessage("Erro ao inserir contato");
+        console.error('Erro ao inserir artigo:', error);
+        displayMessage("Erro ao inserir artigo");
     });
 }
 
-function updateContato(id, contato, refreshFunction) {
+function updateArtigo(id, artigo, refreshFunction) {
     fetch(`${apiUrl}/${id}`, {
         method: 'PUT',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(contato),
+        body: JSON.stringify(artigo),
     })
     .then(response => response.json())
     .then(() => {
-        displayMessage("Contato alterado com sucesso");
+        displayMessage("Artigo alterado com sucesso");
         if (refreshFunction) refreshFunction();
     })
     .catch(error => {
-        console.error('Erro ao atualizar contato:', error);
-        displayMessage("Erro ao atualizar contato");
+        console.error('Erro ao atualizar artigo:', error);
+        displayMessage("Erro ao atualizar artigo");
     });
 }
 
-function deleteContato(id, refreshFunction) {
+function deleteArtigo(id, refreshFunction) {
     fetch(`${apiUrl}/${id}`, { method: 'DELETE' })
     .then(response => response.json())
     .then(() => {
-        displayMessage("Contato removido com sucesso");
+        displayMessage("Artigo removido com sucesso");
         if (refreshFunction) refreshFunction();
     })
     .catch(error => {
-        console.error('Erro ao remover contato:', error);
-        displayMessage("Erro ao remover contato");
+        console.error('Erro ao remover artigo:', error);
+        displayMessage("Erro ao remover artigo");
     });
 }
 
-function exibeContatos() {
-    const tableContatos = document.getElementById("table-contatos");
+function exibeArtigos() {
+    const tableArtigos = document.getElementById("table-artigos");
     tableContatos.innerHTML = "";
 
     readContato(dados => {
         for (let i = 0; i < dados.length; i++) {
-            const contato = dados[i];    
+            const artigo = dados[i];    
             tableContatos.innerHTML += `<tr>
-                <td scope="row">${contato.id}</td>
-                <td>${contato.nome}</td>
-                <td>${contato.telefone}</td>
-                <td>${contato.email}</td>
-                <td>${contato.cidade}</td>
+                <td scope="row">${artigo.id}</td>
+                <td>${artigo.titulo}</td>
+                <td>${artigo.data}</td>
+                <td>${contato.autor}</td>
                 <td>${contato.categoria}</td>
-                <td>${contato.website}</td>
+                <td>${contato.link}</td>
             </tr>`;
         }
     });
 }
 
 function init() {
-    const formContato = document.getElementById("form-contato");
+    const formArtigo = document.getElementById("form-artigo");
     const btnInsert = document.getElementById("btnInsert");
     const btnUpdate = document.getElementById("btnUpdate");
     const btnDelete = document.getElementById("btnDelete");
     const btnClear = document.getElementById("btnClear");
     const msg = document.getElementById("msg");
-    const gridContatos = document.getElementById("grid-contatos");
+    const gridArtigos = document.getElementById("grid-artigos");
 
     btnInsert.addEventListener('click', function () {
-        if (!formContato.checkValidity()) {
+        if (!formArtigo.checkValidity()) {
             displayMessage("Preencha o formulário corretamente.");
             return;
         }
 
-        const contato = {
-            nome: document.getElementById('inputNome').value,
-            telefone: document.getElementById('inputTelefone').value,
-            email: document.getElementById('inputEmail').value,
-            cidade: document.getElementById('inputCidade').value,
+        const artigo = {
+            titulo: document.getElementById('inputTitulo').value,
+            data: document.getElementById('inputData').value,
+            autor: document.getElementById('inputAutor').value,
             categoria: document.getElementById('inputCategoria').value,
-            website: document.getElementById('inputSite').value
+            link: document.getElementById('inputLink').value,
         };
 
-        createContato(contato, exibeContatos);
-        formContato.reset();
+        createContato(artigo, exibeArtigos);
+        formArtigo.reset();
     });
 
     btnUpdate.addEventListener('click', function () {
         const campoId = document.getElementById("inputId").value;
         if (campoId === "") {
-            displayMessage("Selecione antes um contato para ser alterado.");
+            displayMessage("Selecione antes um artigo para ser alterado.");
             return;
         }
 
-        const contato = {
-            nome: document.getElementById('inputNome').value,
-            telefone: document.getElementById('inputTelefone').value,
-            email: document.getElementById('inputEmail').value,
-            cidade: document.getElementById('inputCidade').value,
+        const artigo = {
+            titulo: document.getElementById('inputTitulo').value,
+            data: document.getElementById('inputData').value,
+            autor: document.getElementById('inputAutor').value,
             categoria: document.getElementById('inputCategoria').value,
-            website: document.getElementById('inputSite').value
+            link: document.getElementById('inputLink').value
         };
 
-        updateContato(parseInt(campoId), contato, exibeContatos);
-        formContato.reset();
+        updateArtigo(parseInt(campoId), artigo, exibeArtigos);
+        formArtigo.reset();
     });
 
     btnDelete.addEventListener('click', function () {
         const campoId = document.getElementById('inputId').value;
         if (campoId === "") {
-            displayMessage("Selecione um contato a ser excluído.");
+            displayMessage("Selecione um artigo a ser excluído.");
             return;
         }
 
-        deleteContato(campoId, exibeContatos);
+        deleteContato(campoId, exibeArtigos);
         formContato.reset();
     });
 
     btnClear.addEventListener('click', function () {
-        formContato.reset();
+        formArtigo.reset();
     });
 
     msg.addEventListener("DOMSubtreeModified", function (e) {
@@ -153,22 +150,22 @@ function init() {
         }, 5000);
     });
 
-    gridContatos.addEventListener('click', function (e) {
+    gridArtigos.addEventListener('click', function (e) {
         if (e.target.tagName === "TD") {
-            const linhaContato = e.target.parentNode;
+            const linhaArtigo = e.target.parentNode;
             const colunas = linhaContato.querySelectorAll("td");
 
             document.getElementById('inputId').value = colunas[0].innerText;
-            document.getElementById('inputNome').value = colunas[1].innerText;
-            document.getElementById('inputTelefone').value = colunas[2].innerText;
-            document.getElementById('inputEmail').value = colunas[3].innerText;
-            document.getElementById('inputCidade').value = colunas[4].innerText;
-            document.getElementById('inputCategoria').value = colunas[5].innerText;
-            document.getElementById('inputSite').value = colunas[6].innerText;
+            document.getElementById('inputTitulo').value = colunas[1].innerText;
+            document.getElementById('inputData').value = colunas[2].innerText;
+            document.getElementById('inputAutor').value = colunas[3].innerText;
+            document.getElementById('inputCategoria').value = colunas[4].innerText;
+            document.getElementById('inputLink').value = colunas[5].innerText;
+           
         }
     });
 
-    exibeContatos();
+    exibeArtigos();
 }
 
 window.addEventListener('DOMContentLoaded', init);

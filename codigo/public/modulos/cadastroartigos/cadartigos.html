@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Desenvolvimento de Interfaces Web | Cadastro de Contatos</title>
+    <title>Cadastro de Artigos</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
@@ -22,35 +22,35 @@
             </div>
         </div>
 
-        <form id="form-contato">
+        <form id="form-artigo">
             <div class="form-group row">
                 <div class="col-sm-4">
                     <label for="inputId">Id</label>
                     <input type="text" class="form-control" id="inputId" placeholder="ID" disabled>
                 </div>
                 <div class="col-sm-8">
-                    <label for="inputNome">Titulo do artigo</label>
-                    <input type="text" class="form-control" id="inputNome" required placeholder="Informe o titulo do artigo">
+                    <label for="inputTitulo">Titulo do artigo</label>
+                    <input type="text" class="form-control" id="inputTitulo" required placeholder="Informe o titulo do artigo">
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-sm-5">
-                    <label for="inputTelefone">Data de portagem</label>
-                    <input type="text" class="form-control" id="inputTelefone" required placeholder="Data de postagem do artigo">
+                    <label for="inputData">Data de portagem</label>
+                    <input type="text" class="form-control" id="inputData" required placeholder="Data de postagem do artigo">
                 </div>
                 <div class="col-sm-7">
-                    <label for="inputEmail">Autor(a)</label>
-                    <input type="email" class="form-control" id="inputEmail" required placeholder="Informe o autor(a)">
+                    <label for="inputAutor">Autor(a)</label>
+                    <input type="email" class="form-control" id="inputAutor" required placeholder="Informe o autor(a)">
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-sm-6">
-                    <label for="inputCidade">Categoria</label>
-                    <input type="text" class="form-control" id="inputCidade" placeholder="Informe a categoria do artigo" >
+                    <label for="inputCategoria">Categoria</label>
+                    <input type="text" class="form-control" id="inputCategoria" placeholder="Informe a categoria do artigo" >
                 </div>
                 <div class="col-sm-6">
-                    <label for="inputCategoria">Link do artigo</label>
-                    <input type="text" class="form-control" id="inputCategoria" required placeholder="Informe o link do artigo completo">
+                    <label for="inputLink">Link do artigo</label>
+                    <input type="text" class="form-control" id="inputLink" required placeholder="Informe o link do artigo completo">
                 </div>
             </div>
             <div class="form-group row">
@@ -82,7 +82,7 @@
                             <th scope="col">Link</th>
                         </tr>
                     </thead>
-                    <tbody id="table-contatos">
+                    <tbody id="table-artigos">
                         <tr>
                             <td scope="row">1</td>
                             <td></td>
