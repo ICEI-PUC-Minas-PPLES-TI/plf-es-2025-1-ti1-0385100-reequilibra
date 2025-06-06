@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apresentação do Fórum Reequilibra</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="presentation-container">
+        <header class="presentation-header">
+            <h1>Apresentação do Fórum de Saúde Mental</h1>
+            <p>Projeto Reequilibra - PUC Minas</p>
+        </header>
+
+        <main class="slides">
+            <!-- Slide 1 - Introdução -->
+            <section class="slide active" id="slide1">
+                <div class="slide-content">
+                    <h2>Introdução</h2>
+                    <div class="content-box">
+                        <p>O <strong>Fórum Reequilibra</strong> é uma plataforma de apoio emocional com:</p>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Diário emocional</li>
+                            <li><i class="fas fa-check-circle"></i> Comunidades de apoio</li>
+                            <li><i class="fas fa-check-circle"></i> Recursos científicos</li>
+                            <li><i class="fas fa-check-circle"></i> Ferramentas interativas</li>
+                        </ul>
+                        <div class="mockup">
+                            <img src="https://via.placeholder.com/600x300?text=Mockup+do+Fórum" alt="Mockup do Fórum">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 2 - Recursos -->
+            <section class="slide" id="slide2">
+                <div class="slide-content">
+                    <h2>Recursos Principais</h2>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <i class="fas fa-book"></i>
+                            <h3>Diário Emocional</h3>
+                            <p>Registro diário de sentimentos e experiências</p>
+                            <pre>{
+  "titulo": "Dia difícil",
+  "status": 1,
+  "conteudo": "A prova foi complicada..."
+}</pre>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-users"></i>
+                            <h3>Comunidades</h3>
+                            <p>Fóruns temáticos de apoio</p>
+                            <pre>{
+  "nome": "Ansiedade",
+  "posts": ["Como lidar com crises?"]
+}</pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 3 - Demonstração -->
+            <section class="slide" id="slide3">
+                <div class="slide-content">
+                    <h2>Demonstração Interativa</h2>
+                    <div class="demo-container">
+                        <div class="forum-mock">
+                            <h3>Tópicos Recentes</h3>
+                            <div class="topic" id="demoTopic">
+                                <!-- Carregado via JavaScript -->
+                            </div>
+                        </div>
+                        <button id="loadDemoBtn" class="demo-btn">
+                            <i class="fas fa-sync-alt"></i> Carregar Tópico de Exemplo
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 4 - Conclusão -->
+            <section class="slide" id="slide4">
+                <div class="slide-content">
+                    <h2>Conclusão</h2>
+                    <div class="conclusion-box">
+                        <div class="benefits">
+                            <h3><i class="fas fa-star"></i> Benefícios</h3>
+                            <ul>
+                                <li>Acesso a informações confiáveis</li>
+                                <li>Suporte comunitário</li>
+                                <li>Ferramentas de autocuidado</li>
+                            </ul>
+                        </div>
+                        <div class="next-steps">
+                            <h3><i class="fas fa-road"></i> Próximos Passos</h3>
+                            <ol>
+                                <li>Integração com APIs de saúde</li>
+                                <li>Sistema de notificações</li>
+                                <li>Versão mobile</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="thank-you">
+                        <p>Obrigado pela atenção!</p>
+                        <p>Perguntas?</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="slide-controls">
+            <button id="prevBtn" class="control-btn">
+                <i class="fas fa-arrow-left"></i> Anterior
+            </button>
+            <div class="slide-indicators">
+                <span class="indicator active" data-slide="1"></span>
+                <span class="indicator" data-slide="2"></span>
+                <span class="indicator" data-slide="3"></span>
+                <span class="indicator" data-slide="4"></span>
+            </div>
+            <button id="nextBtn" class="control-btn">
+                Próximo <i class="fas fa-arrow-right"></i>
+            </button>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
