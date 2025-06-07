@@ -165,16 +165,16 @@ function renderMemories(memories) {
     const memoryDiv = document.createElement("div")
     memoryDiv.className = "memory-item"
     memoryDiv.innerHTML = `
-      <div class="memory-card bg-white shadow-sm" id="cardMemory${memory.id}" onclick="selecionaMemory(${memory.id})">
+      <div class="memory-card bg-white shadow-sm" id="cardMemory${memory.id}" onclick="selecionaMemory('${memory.id}')">
           <img src="${memory.imageUrl}" class="memory-img" alt="Memory" onerror="this.src='https://via.placeholder.com/1200x400?text=Imagem+não+encontrada'">
           <div class="p-3">
               <p class="mb-2">${memory.caption}</p>
               <small class="text-muted">Postado em: ${new Date(memory.createdAt).toLocaleDateString("pt-BR")}</small>
               <div class="mt-2">
-                  <button class="btn btn-sm btn-outline-primary me-2" onclick="event.stopPropagation(); editMemory(${memory.id})">
+                  <button class="btn btn-sm btn-outline-primary me-2" onclick="event.stopPropagation(); editMemory('${memory.id}')">
                       <i class="bi bi-pencil"></i> Editar
                   </button>
-                  <button class="btn btn-sm btn-outline-danger" onclick="event.stopPropagation(); deleteMemory(${memory.id}, listaMemories)">
+                  <button class="btn btn-sm btn-outline-danger" onclick="event.stopPropagation(); deleteMemory('${memory.id}', listaMemories)">
                       <i class="bi bi-trash"></i> Excluir
                   </button>
               </div>
@@ -405,10 +405,10 @@ function renderForums(forums) {
                     ${forum.isHealthProfessional ? '<span class="badge bg-success ms-1">Profissional</span>' : ""}
                 </small>
                 <div>
-                    <button class="btn btn-sm btn-outline-primary me-1" onclick="event.stopPropagation(); editForum(${forum.id})">
+                    <button class="btn btn-sm btn-outline-primary me-1" onclick="event.stopPropagation(); editForum('${forum.id}')">
                         <i class="bi bi-pencil"></i>
                     </button>
-                    <button class="btn btn-sm btn-outline-danger" onclick="event.stopPropagation(); deleteForum(${forum.id}, listaForums)">
+                    <button class="btn btn-sm btn-outline-danger" onclick="event.stopPropagation(); deleteForum('${forum.id}', listaForums)">
                         <i class="bi bi-trash"></i>
                     </button>
                 </div>
@@ -544,8 +544,8 @@ document.addEventListener("DOMContentLoaded", () => {
         return
       }
 
-      // Gera o ID
-      memoryID = Date.now()
+      // Gera o ID como STRING
+      memoryID = Date.now().toString()
 
       // Para demonstração, vamos usar imagens placeholder ou converter para base64
       const imageUrl = "https://via.placeholder.com/1200x400?text=New+Memory"
@@ -555,7 +555,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const reader = new FileReader()
         reader.onload = (e) => {
           const memoryObject = {
-            id: memoryID,
+            id: memoryID, // STRING
             userId: CURRENT_USER_ID,
             imageUrl: e.target.result, // Base64 da imagem
             caption: caption.trim() || "Sem legenda",
@@ -572,7 +572,7 @@ document.addEventListener("DOMContentLoaded", () => {
       } else {
         // Sem imagem, apenas legenda
         const memoryObject = {
-          id: memoryID,
+          id: memoryID, // STRING
           userId: CURRENT_USER_ID,
           imageUrl: imageUrl,
           caption: caption.trim() || "Sem legenda",
@@ -603,11 +603,11 @@ document.addEventListener("DOMContentLoaded", () => {
         return
       }
 
-      // Gera o ID
-      forumID = Date.now()
+      // Gera o ID como STRING
+      forumID = Date.now().toString()
 
       const forumObject = {
-        id: forumID,
+        id: forumID, // STRING
         title: title.trim(),
         content: content.trim(),
         author: author.trim(),

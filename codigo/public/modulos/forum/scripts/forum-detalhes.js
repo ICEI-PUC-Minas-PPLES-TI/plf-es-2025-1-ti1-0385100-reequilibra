@@ -162,7 +162,7 @@ function renderComments(comments) {
         </div>
         <p class="card-text">${comment.content}</p>
         <div class="d-flex justify-content-end">
-          <button class="btn btn-sm btn-outline-danger" onclick="deleteComment(${comment.id})">
+          <button class="btn btn-sm btn-outline-danger" onclick="deleteComment('${comment.id}')">
             <i class="bi bi-trash"></i>
           </button>
         </div>
@@ -292,7 +292,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Comentário DEVE ter forumId para associar ao fórum correto
       const commentData = {
-        forumId: Number.parseInt(currentForumId),
+        id: Date.now().toString(), // ID como STRING
+        forumId: currentForumId, // Mantém como string também
         author: author.trim(),
         content: content.trim(),
         isHealthProfessional: isHealthProfessional,
