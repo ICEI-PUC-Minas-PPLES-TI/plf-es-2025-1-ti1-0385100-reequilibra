@@ -8,9 +8,7 @@ let memoryID = ""
 let boolSelectedMemory = false
 
 // ========== VARIÁVEIS GLOBAIS FORUMS ==========
-let selectedForum = ""
 let forumID = ""
-let boolSelectedForum = false
 
 // ========== VERIFICAÇÃO DE CONEXÃO ==========
 function checkServerConnection() {
@@ -47,7 +45,6 @@ function limpaCamposForum() {
   document.getElementById("forumContent").value = ""
   document.getElementById("forumAuthor").value = ""
   document.getElementById("forumIsHealthProfessional").checked = false
-  boolSelectedForum = false
 }
 
 function noMemorySelected() {
@@ -76,6 +73,18 @@ function displayMessage(message, type = "info") {
   setTimeout(() => {
     notification.remove()
   }, 3000)
+}
+
+function getTimeAgo(dateString) {
+  const date = new Date(dateString)
+  const now = new Date()
+  const diffTime = Math.abs(now - date)
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
+
+  if (diffDays === 1) return "há 1 dia"
+  if (diffDays < 7) return `há ${diffDays} dias`
+  if (diffDays < 14) return "há 1 semana"
+  return `há ${Math.floor(diffDays / 7)} semanas`
 }
 
 // ========== MEMORIES CRUD ==========
@@ -246,6 +255,7 @@ function deleteMemory(id, refreshFunction) {
     })
 }
 
+// SELECIONAR MEMORY
 function selecionaMemory(id) {
   boolSelectedMemory = true
   noMemorySelected()
@@ -276,6 +286,7 @@ function selecionaMemory(id) {
   }
 }
 
+// EDITAR MEMORY
 function editMemory(id) {
   fetch(`/memories/${id}`)
     .then((response) => response.json())
@@ -322,9 +333,7 @@ function createForum(forumObject, refreshFunction) {
         displayMessage("Fórum inserido com sucesso", "success")
 
         if (refreshFunction) {
-          refreshFunction().then(() => {
-            selecionaForum(data.id)
-          })
+          refreshFunction()
         }
       }
     })
@@ -363,6 +372,7 @@ function listaForums() {
     })
 }
 
+// RENDER FORUMS - APENAS VISUALIZAÇÃO E ACESSO
 function renderForums(forums) {
   const forumsContainer = document.querySelector(".list-group")
   if (!forumsContainer) return
@@ -379,17 +389,13 @@ function renderForums(forums) {
     return
   }
 
-  forums.forEach((forum, index) => {
+  forums.forEach((forum) => {
     const forumDiv = document.createElement("div")
-    forumDiv.className = `list-group-item list-group-item-action forum-card ${index === 0 ? "active-forum" : ""}`
+    forumDiv.className = "list-group-item list-group-item-action forum-card"
     forumDiv.id = `cardForum${forum.id}`
 
-    // Modificado para redirecionar ao clicar no fórum
-    forumDiv.onclick = (event) => {
-      // Não redireciona se clicou em botão
-      if (event.target.closest("button")) return
-
-      // Redireciona para a página de detalhes
+    // Redireciona para a página de detalhes ao clicar no fórum
+    forumDiv.onclick = () => {
       window.location.href = `forum-detalhes.html?id=${forum.id}`
     }
 
@@ -404,120 +410,13 @@ function renderForums(forums) {
                     Postado por ${forum.author} 
                     ${forum.isHealthProfessional ? '<span class="badge bg-success ms-1">Profissional</span>' : ""}
                 </small>
-                <div>
-                    <button class="btn btn-sm btn-outline-primary me-1" onclick="event.stopPropagation(); editForum('${forum.id}')">
-                        <i class="bi bi-pencil"></i>
-                    </button>
-                    <button class="btn btn-sm btn-outline-danger" onclick="event.stopPropagation(); deleteForum('${forum.id}', listaForums)">
-                        <i class="bi bi-trash"></i>
-                    </button>
-                </div>
+                <small class="text-muted">
+                    <i class="bi bi-chat-left-text"></i> ${forum.commentsCount || 0} comentário${(forum.commentsCount || 0) !== 1 ? "s" : ""}
+                </small>
             </div>
         `
     forumsContainer.appendChild(forumDiv)
   })
-}
-
-// UPDATE FORUM
-function updateForum(id, forum, refreshFunction) {
-  fetch(`/forums/${id}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(forum),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      displayMessage("Fórum alterado com sucesso", "success")
-      if (refreshFunction) {
-        boolSelectedForum = true
-        refreshFunction().then(() => {
-          selecionaForum(id)
-        })
-      }
-    })
-    .catch((error) => {
-      console.error("Erro ao atualizar fórum:", error)
-      displayMessage("Erro ao atualizar fórum", "error")
-    })
-}
-
-// DELETE FORUM
-function deleteForum(id, refreshFunction) {
-  if (!id) {
-    displayMessage("Nenhum fórum foi selecionado para exclusão", "error")
-    return
-  }
-
-  if (!confirm("Tem certeza que deseja excluir este fórum?")) {
-    return
-  }
-
-  fetch(`/forums/${id}`, {
-    method: "DELETE",
-  })
-    .then((response) => {
-      if (!response.ok) {
-        console.log("Fórum não encontrado")
-        displayMessage("Fórum não encontrado", "error")
-        return
-      } else {
-        displayMessage("Fórum removido com sucesso", "success")
-      }
-
-      if (refreshFunction) {
-        refreshFunction()
-        limpaCamposForum()
-      }
-    })
-    .catch((error) => {
-      console.error("Erro ao deletar fórum:", error)
-      displayMessage("Erro ao deletar fórum", "error")
-    })
-}
-
-function editForum(id) {
-  fetch(`/forums/${id}`)
-    .then((response) => response.json())
-    .then((forum) => {
-      const newTitle = prompt("Editar título:", forum.title)
-      if (newTitle !== null && newTitle.trim() !== forum.title) {
-        const newContent = prompt("Editar conteúdo:", forum.content)
-        if (newContent !== null) {
-          const updatedForum = {
-            ...forum,
-            title: newTitle.trim(),
-            content: newContent.trim(),
-          }
-
-          updateForum(id, updatedForum, listaForums)
-        }
-      }
-    })
-    .catch((error) => {
-      console.error("Erro ao buscar fórum:", error)
-      displayMessage("Erro ao buscar fórum", "error")
-    })
-}
-
-function selecionaForum(id) {
-  boolSelectedForum = true
-  console.log("ID do fórum selecionado:", id)
-  selectedForum = id
-}
-
-// ========== FUNÇÕES AUXILIARES ==========
-function getTimeAgo(dateString) {
-  const date = new Date(dateString)
-  const now = new Date()
-  const diffTime = Math.abs(now - date)
-  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
-
-  if (diffDays === 1) return "há 1 dia"
-  if (diffDays < 7) return `há ${diffDays} dias`
-  if (diffDays < 14) return "há 1 semana"
-  return `há ${Math.floor(diffDays / 7)} semanas`
 }
 
 // ========== EVENT LISTENERS ==========
@@ -592,10 +491,20 @@ document.addEventListener("DOMContentLoaded", () => {
   const createForumBtn = document.getElementById("btnCreateForum")
   if (createForumBtn) {
     createForumBtn.addEventListener("click", () => {
-      const title = document.getElementById("forumTitle").value
-      const content = document.getElementById("forumContent").value
-      const author = document.getElementById("forumAuthor").value
-      const isHealthProfessional = document.getElementById("forumIsHealthProfessional").checked
+      const forumTitle = document.getElementById("forumTitle")
+      const forumContent = document.getElementById("forumContent")
+      const forumAuthor = document.getElementById("forumAuthor")
+      const forumIsHealthProfessional = document.getElementById("forumIsHealthProfessional")
+
+      if (!forumTitle || !forumContent || !forumAuthor || !forumIsHealthProfessional) {
+        displayMessage("Erro: Elementos do formulário não encontrados", "error")
+        return
+      }
+
+      const title = forumTitle.value
+      const content = forumContent.value
+      const author = forumAuthor.value
+      const isHealthProfessional = forumIsHealthProfessional.checked
       const date = new Date()
 
       if (!title.trim() || !content.trim() || !author.trim()) {
@@ -619,9 +528,12 @@ document.addEventListener("DOMContentLoaded", () => {
       createForum(forumObject, listaForums)
 
       // Fecha o modal
-      const modal = document.getElementById("novoForumModal")
-      if (modal) {
-        modal.style.display = "none"
+      const novoForumModal = document.getElementById("novoForumModal")
+      if (novoForumModal) {
+        const modal = window.bootstrap.Modal.getInstance(novoForumModal)
+        if (modal) {
+          modal.hide()
+        }
       }
     })
   }

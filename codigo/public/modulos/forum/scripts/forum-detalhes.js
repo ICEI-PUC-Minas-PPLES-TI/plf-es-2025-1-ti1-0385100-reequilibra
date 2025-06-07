@@ -79,9 +79,19 @@ function renderForumDetails(forum) {
   forumDetailsElement.innerHTML = `
     <div class="d-flex justify-content-between align-items-start mb-3">
       <h2 class="mb-0">${forum.title}</h2>
-      <span class="badge ${forum.isHealthProfessional ? "bg-success" : "bg-secondary"} fs-6">
-        ${forum.isHealthProfessional ? "Profissional de Saúde" : "Membro da Comunidade"}
-      </span>
+      <div class="d-flex align-items-center gap-2">
+        <span class="badge ${forum.isHealthProfessional ? "bg-success" : "bg-secondary"} fs-6">
+          ${forum.isHealthProfessional ? "Profissional de Saúde" : "Membro da Comunidade"}
+        </span>
+        <div class="btn-group">
+          <button class="btn btn-outline-primary btn-sm" onclick="editForum()">
+            <i class="bi bi-pencil"></i> Editar
+          </button>
+          <button class="btn btn-outline-danger btn-sm" onclick="deleteForum()">
+            <i class="bi bi-trash"></i> Excluir
+          </button>
+        </div>
+      </div>
     </div>
     <div class="d-flex justify-content-between text-muted mb-4">
       <span>Por: ${forum.author}</span>
@@ -270,6 +280,109 @@ function updateForumCommentsCount() {
     })
 }
 
+// ========== GERENCIAMENTO DO FÓRUM ==========
+
+// EDITAR FÓRUM
+function editForum() {
+  if (!currentForum) {
+    displayMessage("Erro: Dados do fórum não encontrados", "error")
+    return
+  }
+
+  // Verifica se os elementos existem
+  const editForumId = document.getElementById("editForumId")
+  const editForumTitle = document.getElementById("editForumTitle")
+  const editForumContent = document.getElementById("editForumContent")
+  const editForumAuthor = document.getElementById("editForumAuthor")
+  const editForumIsHealthProfessional = document.getElementById("editForumIsHealthProfessional")
+  const editForumModal = document.getElementById("editForumModal")
+
+  if (
+    !editForumId ||
+    !editForumTitle ||
+    !editForumContent ||
+    !editForumAuthor ||
+    !editForumIsHealthProfessional ||
+    !editForumModal
+  ) {
+    displayMessage("Erro: Modal de edição não encontrado", "error")
+    return
+  }
+
+  // Preenche os campos do modal
+  editForumId.value = currentForum.id
+  editForumTitle.value = currentForum.title
+  editForumContent.value = currentForum.content
+  editForumAuthor.value = currentForum.author
+  editForumIsHealthProfessional.checked = currentForum.isHealthProfessional
+
+  // Abre o modal
+  const modal = new window.bootstrap.Modal(editForumModal)
+  modal.show()
+}
+
+// ATUALIZAR FÓRUM
+function updateForum(forumData) {
+  fetch(`/forums/${currentForumId}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(forumData),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Erro ao atualizar fórum")
+      }
+      return response.json()
+    })
+    .then((updatedForum) => {
+      displayMessage("Fórum atualizado com sucesso", "success")
+      currentForum = updatedForum
+      renderForumDetails(updatedForum)
+
+      // Fecha o modal
+      const editForumModal = document.getElementById("editForumModal")
+      if (editForumModal) {
+        const modal = window.bootstrap.Modal.getInstance(editForumModal)
+        if (modal) {
+          modal.hide()
+        }
+      }
+    })
+    .catch((error) => {
+      console.error("Erro ao atualizar fórum:", error)
+      displayMessage("Erro ao atualizar fórum", "error")
+    })
+}
+
+// EXCLUIR FÓRUM
+function deleteForum() {
+  if (!confirm("Tem certeza que deseja excluir este fórum? Esta ação não pode ser desfeita.")) {
+    return
+  }
+
+  fetch(`/forums/${currentForumId}`, {
+    method: "DELETE",
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Erro ao excluir fórum")
+      }
+
+      displayMessage("Fórum excluído com sucesso", "success")
+
+      // Redireciona para a página inicial após 2 segundos
+      setTimeout(() => {
+        window.location.href = "index.html"
+      }, 2000)
+    })
+    .catch((error) => {
+      console.error("Erro ao excluir fórum:", error)
+      displayMessage("Erro ao excluir fórum", "error")
+    })
+}
+
 // ========== EVENT LISTENERS ==========
 document.addEventListener("DOMContentLoaded", () => {
   // Carrega os detalhes do fórum
@@ -301,6 +414,43 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       createComment(commentData)
+    })
+  }
+
+  // Event listener para salvar edição do fórum
+  const saveEditForumBtn = document.getElementById("btnSaveEditForum")
+  if (saveEditForumBtn) {
+    saveEditForumBtn.addEventListener("click", () => {
+      const editForumTitle = document.getElementById("editForumTitle")
+      const editForumContent = document.getElementById("editForumContent")
+      const editForumAuthor = document.getElementById("editForumAuthor")
+      const editForumIsHealthProfessional = document.getElementById("editForumIsHealthProfessional")
+
+      if (!editForumTitle || !editForumContent || !editForumAuthor || !editForumIsHealthProfessional) {
+        displayMessage("Erro: Elementos do formulário não encontrados", "error")
+        return
+      }
+
+      const title = editForumTitle.value
+      const content = editForumContent.value
+      const author = editForumAuthor.value
+      const isHealthProfessional = editForumIsHealthProfessional.checked
+
+      if (!title.trim() || !content.trim() || !author.trim()) {
+        displayMessage("Preencha todos os campos", "error")
+        return
+      }
+
+      // Mantém os dados originais e atualiza apenas os campos editados
+      const updatedForum = {
+        ...currentForum,
+        title: title.trim(),
+        content: content.trim(),
+        author: author.trim(),
+        isHealthProfessional: isHealthProfessional,
+      }
+
+      updateForum(updatedForum)
     })
   }
 })
