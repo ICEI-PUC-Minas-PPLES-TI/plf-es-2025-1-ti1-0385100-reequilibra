@@ -8,7 +8,7 @@
 }
 
 .presentation-container {
-  max-width: 800px;  /* largura máxima do conteúdo */
+  max-width: 870px;  /* largura máxima do conteúdo */
   margin: 0 auto;     /* centraliza horizontalmente */
   padding: 0 1rem;    /* espaçamento interno nas laterais para telas menores */
   box-sizing: border-box; /* garante que o padding não aumente o tamanho total */
@@ -49,6 +49,7 @@
 
 body {
   background-color: var(--cor-fundo);
+  font-size: 20px; 
 }
 
 .slide {
@@ -78,15 +79,25 @@ body {
   border-left: 3px solid var(--cor-primaria);
   margin-top: 1rem;
 }
-.mockup img {
+.mockup {
+  text-align: center; 
+  margin-top: 2rem;
+}
+.mockup img {  
   width: 250px;
   height: auto;
+  display: inline-block;
 }
 .mockup1 img {
   width: 500px;
   height: auto;
 }
+.mockup2 {
+  text-align: center;   
+  margin-top: 2rem;
+}
 .mockup2 img {
   width: 450px;
   height: 300px;
+  display: inline-block;
 }
