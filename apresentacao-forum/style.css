@@ -7,6 +7,13 @@
   --cor-sombra: rgba(0, 0, 0, 0.1);
 }
 
+.presentation-container {
+  max-width: 800px;  /* largura máxima do conteúdo */
+  margin: 0 auto;     /* centraliza horizontalmente */
+  padding: 0 1rem;    /* espaçamento interno nas laterais para telas menores */
+  box-sizing: border-box; /* garante que o padding não aumente o tamanho total */
+}
+
 .presentation-header {
   background: linear-gradient(135deg, var(--cor-primaria) 0%, var(--cor-forte) 100%);
 }
