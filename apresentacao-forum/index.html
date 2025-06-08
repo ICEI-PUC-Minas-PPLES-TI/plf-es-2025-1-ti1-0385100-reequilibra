@@ -28,7 +28,7 @@
                             <li><i class="fas fa-check-circle"></i> Ferramentas interativas</li>
                         </ul>
                         <div class="mockup">
-                            <img src="https://via.placeholder.com/600x300?text=Mockup+do+Fórum" alt="Mockup do Fórum">
+                            <img src="https://via.placeholder.com/600x300.png/01AE7D/FFFFFF?text=Exemplo+de+Di%C3%A1rio+e+Comunidade" alt="Mockup realista">
                         </div>
                     </div>
                 </div>
@@ -44,9 +44,13 @@
                             <h3>Diário Emocional</h3>
                             <p>Registro diário de sentimentos e experiências</p>
                             <pre>{
-  "titulo": "Dia difícil",
+  "id": "",
+  "userid": "1",
+  "data": "2025-04-24",
+  "titulo": "Dia difícil na faculdade",
   "status": 1,
-  "conteudo": "A prova foi complicada..."
+  "conteudo": "Hoje foi um dia muito complicado na faculdade...",
+  "favorito": false
 }</pre>
                         </div>
                         <div class="feature-card">
@@ -54,8 +58,17 @@
                             <h3>Comunidades</h3>
                             <p>Fóruns temáticos de apoio</p>
                             <pre>{
+  "id": "1",
   "nome": "Ansiedade",
-  "posts": ["Como lidar com crises?"]
+  "descricao": "Espaço para compartilhar experiências",
+  "posts": [
+    {
+      "id": 101,
+      "autor": "Anônimo",
+      "conteudo": "Estou passando por uma crise de ansiedade...",
+      "likes": 5
+    }
+  ]
 }</pre>
                         </div>
                     </div>
