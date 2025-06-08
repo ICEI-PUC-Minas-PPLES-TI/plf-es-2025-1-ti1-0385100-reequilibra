@@ -71,3 +71,15 @@ body {
   border-left: 3px solid var(--cor-primaria);
   margin-top: 1rem;
 }
+.mockup img {
+  width: 250px;
+  height: auto;
+}
+.mockup1 img {
+  width: 500px;
+  height: auto;
+}
+.mockup2 img {
+  width: 450px;
+  height: 300px;
+}

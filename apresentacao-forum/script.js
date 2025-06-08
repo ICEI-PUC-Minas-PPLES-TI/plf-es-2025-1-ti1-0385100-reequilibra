@@ -46,7 +46,7 @@ const demoData = {
 
 // Controle da apresentação
 let currentSlide = 1;
-const totalSlides = 4;
+const totalSlides = 5;
 
 // Elementos DOM
 const prevBtn = document.getElementById('prevBtn');

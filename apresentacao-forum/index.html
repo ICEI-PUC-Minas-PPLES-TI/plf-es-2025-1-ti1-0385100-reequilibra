@@ -10,7 +10,7 @@
 <body>
     <div class="presentation-container">
         <header class="presentation-header">
-            <h1>Apresentação do Fórum de Saúde Mental</h1>
+            <h1>Apresentação do Fórum do projeto Reequilibra</h1>
             <p>Projeto Reequilibra - PUC Minas</p>
         </header>
 
@@ -27,14 +27,14 @@
                             <li><i class="fas fa-check-circle"></i> Recursos científicos</li>
                             <li><i class="fas fa-check-circle"></i> Ferramentas interativas</li>
                         </ul>
-                        <div class="mockup">
-                            <img src="https://via.placeholder.com/600x300.png/01AE7D/FFFFFF?text=Exemplo+de+Di%C3%A1rio+e+Comunidade" alt="Mockup realista">
+                        <div class="mockup2">
+                            <img src="assets/mockups/diario-flow.png" alt="Fluxo do diário">
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Slide 2 - Recursos -->
+            <!-- Slide 2 - Recursos -->            
             <section class="slide" id="slide2">
                 <div class="slide-content">
                     <h2>Recursos Principais</h2>
@@ -44,36 +44,41 @@
                             <h3>Diário Emocional</h3>
                             <p>Registro diário de sentimentos e experiências</p>
                             <pre>{
-  "id": "",
-  "userid": "1",
-  "data": "2025-04-24",
-  "titulo": "Dia difícil na faculdade",
-  "status": 1,
-  "conteudo": "Hoje foi um dia muito complicado na faculdade...",
-  "favorito": false
-}</pre>
+            "id": "",
+            "userid": "1",
+            "data": "2025-04-24",
+            "titulo": "Dia difícil na faculdade",
+            "status": 1,
+            "conteudo": "Hoje foi um dia muito complicado na faculdade...",
+            "favorito": false
+            }</pre>
                         </div>
                         <div class="feature-card">
                             <i class="fas fa-users"></i>
                             <h3>Comunidades</h3>
                             <p>Fóruns temáticos de apoio</p>
                             <pre>{
-  "id": "1",
-  "nome": "Ansiedade",
-  "descricao": "Espaço para compartilhar experiências",
-  "posts": [
-    {
-      "id": 101,
-      "autor": "Anônimo",
-      "conteudo": "Estou passando por uma crise de ansiedade...",
-      "likes": 5
-    }
-  ]
-}</pre>
-                        </div>
-                    </div>
+            "id": "1",
+            "nome": "Ansiedade",
+            "descricao": "Espaço para compartilhar experiências",
+            "posts": [
+                {
+                "id": 101,
+                "autor": "Anônimo",
+                "conteudo": "Estou passando por uma crise de ansiedade...",
+                "likes": 5
+                }
+            ]
+            }</pre>
                 </div>
-            </section>
+            </div>
+       
+        <div class="mockup">
+            <img src="assets/mockups/comunidade-screen.png" alt="Tela de comunidade">
+        </div>
+    </div>
+</section>
+
 
             <!-- Slide 3 - Demonstração -->
             <section class="slide" id="slide3">
@@ -121,24 +126,35 @@
                     </div>
                 </div>
             </section>
-        </main>
 
-        <footer class="slide-controls">
-            <button id="prevBtn" class="control-btn">
-                <i class="fas fa-arrow-left"></i> Anterior
-            </button>
-            <div class="slide-indicators">
-                <span class="indicator active" data-slide="1"></span>
-                <span class="indicator" data-slide="2"></span>
-                <span class="indicator" data-slide="3"></span>
-                <span class="indicator" data-slide="4"></span>
+            <!-- Slide 5 - Arquitetura dos Dados -->
+            <section class="slide" id="slide5">
+                <div class="slide-content">
+                    <h2>Arquitetura dos Dados</h2>
+                    <p>Relacionamento entre usuários, diário emocional e comunidades.</p>
+                    <div class="mockup1">
+                        <img src="assets/mockups/data-diagram.png" alt="Diagrama de dados">
+                    </div>
+                </div>
+            </section>
+            </main>
+
+            <footer class="slide-controls">
+                <button id="prevBtn" class="control-btn">
+                    <i class="fas fa-arrow-left"></i> Anterior
+                </button>
+                <div class="slide-indicators">
+                    <span class="indicator active" data-slide="1"></span>
+                    <span class="indicator" data-slide="2"></span>
+                    <span class="indicator" data-slide="3"></span>
+                    <span class="indicator" data-slide="4"></span>
+                    <span class="indicator" data-slide="5"></span> <!-- Novo indicador -->
+                </div>
+                <button id="nextBtn" class="control-btn">
+                    Próximo <i class="fas fa-arrow-right"></i>
+                </button>
+            </footer>
             </div>
-            <button id="nextBtn" class="control-btn">
-                Próximo <i class="fas fa-arrow-right"></i>
-            </button>
-        </footer>
-    </div>
-
     <script src="script.js"></script>
 </body>
 </html>
