@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:3000/psicologos';
+const API_URL = '/psicologos';
 
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('psicologoForm');
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     carregarPsicologos();
     
-    async function handleSubmit(e) {
+    function handleSubmit(e) {
         e.preventDefault();
         
         const formData = new FormData(form);
@@ -28,18 +28,26 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (!dados) return;
         
-        try {
-            if (psicologoEmEdicao) {
-                await atualizarPsicologo(psicologoEmEdicao.id, dados);
-            } else {
-                await criarPsicologo(dados);
-            }
-            
-            resetForm();
-            await carregarPsicologos();
-        } catch (error) {
-            console.error('Erro ao salvar psicólogo(a):', error);
-            alert('Ocorreu um erro ao salvar os dados.');
+        if (psicologoEmEdicao) {
+            atualizarPsicologo(psicologoEmEdicao.id, dados)
+                .then(function() {
+                    resetForm();
+                    carregarPsicologos();
+                })
+                .catch(function(error) {
+                    console.error('Erro ao atualizar psicólogo(a):', error);
+                    alert('Ocorreu um erro ao salvar os dados.');
+                });
+        } else {
+            criarPsicologo(dados)
+                .then(function() {
+                    resetForm();
+                    carregarPsicologos();
+                })
+                .catch(function(error) {
+                    console.error('Erro ao criar psicólogo(a):', error);
+                    alert('Ocorreu um erro ao salvar os dados.');
+                });
         }
     }
     
@@ -76,66 +84,74 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    async function carregarPsicologos() {
-        try {
-            const response = await fetch(API_URL);
-            const psicologos = await response.json();
-            
-            tabelaBody.innerHTML = '';
-            
-            psicologos.forEach(psicologo => {
-                const row = document.createElement('tr');
+    function carregarPsicologos() {
+        fetch(API_URL)
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(psicologos) {
+                tabelaBody.innerHTML = '';
                 
-                row.innerHTML = `
-                    <td><img src="${psicologo.img}" alt="${psicologo.nome}" class="psicologo-avatar"></td>
-                    <td>${psicologo.nome}</td>
-                    <td>${psicologo.crp}</td>
-                    <td>${psicologo.area_atuacao}</td>
-                    <td>${psicologo.local_atendimento}</td>
-                    <td class="action-buttons">
-                        <button data-id="${psicologo.id}" class="btn btn-edit btn-sm">Editar</button>
-                        <button data-id="${psicologo.id}" class="btn btn-delete btn-sm">Excluir</button>
-                    </td>
-                `;
-                
-                row.querySelector('.btn-edit').addEventListener('click', () => editarPsicologo(psicologo.id));
-                row.querySelector('.btn-delete').addEventListener('click', () => confirmarExclusao(psicologo.id));
-                
-                tabelaBody.appendChild(row);
+                psicologos.forEach(function(psicologo) {
+                    const row = document.createElement('tr');
+                    
+                    row.innerHTML = `
+                        <td><img src="${psicologo.img}" alt="${psicologo.nome}" class="psicologo-avatar"></td>
+                        <td>${psicologo.nome}</td>
+                        <td>${psicologo.crp}</td>
+                        <td>${psicologo.area_atuacao}</td>
+                        <td>${psicologo.local_atendimento}</td>
+                        <td class="action-buttons">
+                            <button data-id="${psicologo.id}" class="btn btn-edit btn-sm">Editar</button>
+                            <button data-id="${psicologo.id}" class="btn btn-delete btn-sm">Excluir</button>
+                        </td>
+                    `;
+                    
+                    row.querySelector('.btn-edit').addEventListener('click', function() {
+                        editarPsicologo(psicologo.id);
+                    });
+                    row.querySelector('.btn-delete').addEventListener('click', function() {
+                        confirmarExclusao(psicologo.id);
+                    });
+                    
+                    tabelaBody.appendChild(row);
+                });
+            })
+            .catch(function(error) {
+                console.error('Erro ao carregar psicólogos:', error);
+                alert('Ocorreu um erro ao carregar os dados.');
             });
-        } catch (error) {
-            console.error('Erro ao carregar psicólogos:', error);
-            alert('Ocorreu um erro ao carregar os dados.');
-        }
     }
     
-    async function editarPsicologo(id) {
-        try {
-            const response = await fetch(`${API_URL}/${id}`);
-            const psicologo = await response.json();
-            
-            psicologoEmEdicao = psicologo;
-            
-            document.getElementById('psicologoId').value = psicologo.id;
-            document.getElementById('nome').value = psicologo.nome;
-            document.getElementById('crp').value = psicologo.crp;
-            document.getElementById('email').value = psicologo.email;
-            document.getElementById('whatsapp').value = psicologo.whatsapp;
-            document.getElementById('area_atuacao').value = psicologo.area_atuacao;
-            document.getElementById('descricao').value = psicologo.descricao;
-            document.getElementById('local_atendimento').value = psicologo.local_atendimento;
-            document.getElementById('cep').value = psicologo.cep || '';
-            document.getElementById('horarios').value = psicologo.horarios;
-            
-            fotoPreview.innerHTML = `<img src="${psicologo.img}" alt="Foto atual">`;
-            
-            submitBtn.textContent = 'Atualizar';
-            
-            document.querySelector('.form-section').scrollIntoView({ behavior: 'smooth' });
-        } catch (error) {
-            console.error('Erro ao editar psicólogo(a):', error);
-            alert('Ocorreu um erro ao carregar os dados para edição.');
-        }
+    function editarPsicologo(id) {
+        fetch(`${API_URL}/${id}`)
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(psicologo) {
+                psicologoEmEdicao = psicologo;
+                
+                document.getElementById('psicologoId').value = psicologo.id;
+                document.getElementById('nome').value = psicologo.nome;
+                document.getElementById('crp').value = psicologo.crp;
+                document.getElementById('email').value = psicologo.email;
+                document.getElementById('whatsapp').value = psicologo.whatsapp;
+                document.getElementById('area_atuacao').value = psicologo.area_atuacao;
+                document.getElementById('descricao').value = psicologo.descricao;
+                document.getElementById('local_atendimento').value = psicologo.local_atendimento;
+                document.getElementById('cep').value = psicologo.cep || '';
+                document.getElementById('horarios').value = psicologo.horarios;
+                
+                fotoPreview.innerHTML = `<img src="${psicologo.img}" alt="Foto atual">`;
+                
+                submitBtn.textContent = 'Atualizar';
+                
+                document.querySelector('.form-section').scrollIntoView({ behavior: 'smooth' });
+            })
+            .catch(function(error) {
+                console.error('Erro ao editar psicólogo(a):', error);
+                alert('Ocorreu um erro ao carregar os dados para edição.');
+            });
     }
     
     function confirmarExclusao(id) {
@@ -145,52 +161,59 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('confirmModalTitle').textContent = `Excluir ${nome}`;
         document.getElementById('confirmModalMessage').textContent = `Tem certeza que deseja excluir o psicólogo(a) ${nome} (CRP: ${crp})?`;
         
-        confirmDeleteBtn.onclick = async () => {
-            try {
-                await deletarPsicologo(id);
-                closeModal();
-                await carregarPsicologos();
-            } catch (error) {
-                console.error('Erro ao excluir psicólogo(a):', error);
-                alert('Ocorreu um erro ao excluir o psicólogo(a).');
-            }
+        confirmDeleteBtn.onclick = function() {
+            deletarPsicologo(id)
+                .then(function() {
+                    closeModal();
+                    carregarPsicologos();
+                })
+                .catch(function(error) {
+                    console.error('Erro ao excluir psicólogo(a):', error);
+                    alert('Ocorreu um erro ao excluir o psicólogo(a).');
+                });
         };
         
         openModal();
     }
     
-    async function criarPsicologo(dados) {
-        const response = await fetch(API_URL, {
+    function criarPsicologo(dados) {
+        return fetch(API_URL, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(dados)
+        })
+        .then(function(response) {
+            if (!response.ok) {
+                throw new Error('Erro ao criar psicólogo(a)');
+            }
+            return response.json();
         });
-        
-        if (!response.ok) {
-            throw new Error('Erro ao criar psicólogo(a)');
-        }
     }
     
-    async function atualizarPsicologo(id, dados) {
-        const response = await fetch(`${API_URL}/${id}`, {
+    function atualizarPsicologo(id, dados) {
+        return fetch(`${API_URL}/${id}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(dados)
+        })
+        .then(function(response) {
+            if (!response.ok) {
+                throw new Error('Erro ao atualizar psicólogo(a)');
+            }
+            return response.json();
         });
-        
-        if (!response.ok) {
-            throw new Error('Erro ao atualizar psicólogo(a)');
-        }
     }
     
-    async function deletarPsicologo(id) {
-        const response = await fetch(`${API_URL}/${id}`, {
+    function deletarPsicologo(id) {
+        return fetch(`${API_URL}/${id}`, {
             method: 'DELETE'
+        })
+        .then(function(response) {
+            if (!response.ok) {
+                throw new Error('Erro ao excluir psicólogo(a)');
+            }
+            return response.json();
         });
-        
-        if (!response.ok) {
-            throw new Error('Erro ao excluir psicólogo(a)');
-        }
     }
     
     function openModal() {
