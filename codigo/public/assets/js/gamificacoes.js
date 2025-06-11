@@ -1,67 +1,5 @@
-let gameData = {
-  user: {
-    name: "Anderson Rodrigues",
-    level: 5,
-    xp: 1250,
-    currentLevelXP: 250,
-    nextLevelXP: 500,
-  },
-  activities: [],
-  achievements: [
-    {
-      id: 1,
-      name: "Primeiro Passo",
-      description: "Complete sua primeira atividade",
-      icon: "fas fa-baby",
-      unlocked: true,
-    },
-    {
-      id: 2,
-      name: "Consistência",
-      description: "Complete atividades por 7 dias consecutivos",
-      icon: "fas fa-fire",
-      unlocked: true,
-    },
-    {
-      id: 3,
-      name: "Meditador",
-      description: "Complete 10 sessões de meditação",
-      icon: "fas fa-om",
-      unlocked: false,
-    },
-    {
-      id: 4,
-      name: "Atleta",
-      description: "Complete 20 exercícios físicos",
-      icon: "fas fa-dumbbell",
-      unlocked: false,
-    },
-    {
-      id: 5,
-      name: "Grato",
-      description: "Pratique gratidão por 30 dias",
-      icon: "fas fa-heart",
-      unlocked: false,
-    },
-    {
-      id: 6,
-      name: "Mente Sã",
-      description: "Complete 5 sessões de terapia",
-      icon: "fas fa-brain",
-      unlocked: true,
-    },
-  ],
-  consecutiveDays: 7,
-};
-
-const activityTypes = {
-  exercicio: { name: "Exercício Físico", xp: 50, icon: "fas fa-dumbbell" },
-  meditacao: { name: "Meditação", xp: 30, icon: "fas fa-om" },
-  gratidao: { name: "Gratidão", xp: 20, icon: "fas fa-heart" },
-  terapia: { name: "Sessão de Terapia", xp: 40, icon: "fas fa-brain" },
-  leitura: { name: "Leitura", xp: 25, icon: "fas fa-book" },
-  agua: { name: "Beber Água", xp: 10, icon: "fas fa-tint" },
-};
+let gameData = null;
+let activityTypes = {};
 
 const darkModeToggle = document.getElementById("darkModeToggle");
 const navLinks = document.querySelectorAll(".nav-link");
@@ -72,12 +10,53 @@ const closeModal = document.getElementById("closeModal");
 const activityForm = document.getElementById("activityForm");
 const activityTypes_elements = document.querySelectorAll(".activity-type");
 
-document.addEventListener("DOMContentLoaded", function () {
-  loadGameData();
-  updateUI();
-  setupEventListeners();
-  setupCalendar();
+async function fetchGameData() {
+  try {
+    const response = await fetch("../../../db/db.json");
+    const json = await response.json();
 
+    gameData = {
+      user: {
+        name: json.usuarios[0].nome,
+        level: 5,
+        xp: 1250,
+        currentLevelXP: 250,
+        nextLevelXP: 500,
+      },
+      activities: json.lista_atividades || [],
+      achievements: json.medalhas.map((m) => ({
+        id: m.id,
+        name: m.nome,
+        description: m.descricao,
+        icon: m.icone,
+        unlocked: m.conquistada,
+      })),
+      consecutiveDays: json.missoesDiarias.filter((m) => m.concluida).length,
+    };
+
+    activityTypes = {};
+    const activitySelect = document.getElementById("activityType");
+    activitySelect.innerHTML =
+      '<option value="">Selecione uma atividade</option>';
+    json.tiposDeAtividade.forEach((item) => {
+      activityTypes[item.id] = {
+        name: item.nome,
+        xp: item.xp,
+        icon: item.icone,
+      };
+      activitySelect.innerHTML += `<option value="${item.id}">${item.nome} (${item.xp} XP)</option>`;
+    });
+
+    updateUI();
+    setupEventListeners();
+    setupCalendar();
+  } catch (error) {
+    console.error("Erro ao carregar db.json", error);
+  }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  fetchGameData();
   document.getElementById("activityDate").value = new Date()
     .toISOString()
     .split("T")[0];
@@ -271,26 +250,22 @@ function calculateConsecutiveDays() {
   gameData.consecutiveDays = consecutiveDays;
 }
 
-// Get yesterday's date
 function getYesterday() {
   const yesterday = new Date();
   yesterday.setDate(yesterday.getDate() - 1);
   return yesterday.toISOString().split("T")[0];
 }
 
-// Check achievements
 function checkAchievements() {
   // First activity
   if (gameData.activities.length >= 1) {
     unlockAchievement(1);
   }
 
-  // 7 consecutive days
   if (gameData.consecutiveDays >= 7) {
     unlockAchievement(2);
   }
 
-  // 10 meditation sessions
   const meditationCount = gameData.activities.filter(
     (a) => a.type === "meditacao"
   ).length;
@@ -298,7 +273,6 @@ function checkAchievements() {
     unlockAchievement(3);
   }
 
-  // 20 exercises
   const exerciseCount = gameData.activities.filter(
     (a) => a.type === "exercicio"
   ).length;
@@ -306,7 +280,6 @@ function checkAchievements() {
     unlockAchievement(4);
   }
 
-  // 30 days of gratitude
   const gratitudeCount = gameData.activities.filter(
     (a) => a.type === "gratidao"
   ).length;
@@ -314,7 +287,6 @@ function checkAchievements() {
     unlockAchievement(5);
   }
 
-  // 5 therapy sessions
   const therapyCount = gameData.activities.filter(
     (a) => a.type === "terapia"
   ).length;
@@ -323,7 +295,6 @@ function checkAchievements() {
   }
 }
 
-// Unlock achievement
 function unlockAchievement(achievementId) {
   const achievement = gameData.achievements.find((a) => a.id === achievementId);
   if (achievement && !achievement.unlocked) {
@@ -332,9 +303,7 @@ function unlockAchievement(achievementId) {
   }
 }
 
-// Update UI
 function updateUI() {
-  // Update stats
   document.getElementById("consecutiveDays").textContent =
     gameData.consecutiveDays;
   document.getElementById("totalXP").textContent =
@@ -343,7 +312,6 @@ function updateUI() {
     gameData.achievements.filter((a) => a.unlocked).length;
   document.getElementById("currentLevel").textContent = gameData.user.level;
 
-  // Update progress bar
   const progressPercentage =
     (gameData.user.currentLevelXP / gameData.user.nextLevelXP) * 100;
   document.getElementById(
@@ -354,23 +322,18 @@ function updateUI() {
   document.getElementById("nextLevelXP").textContent =
     gameData.user.nextLevelXP;
 
-  // Update user info in header
   document.querySelector(".user-name").textContent = gameData.user.name;
   document.querySelector(
     ".user-level"
   ).textContent = `Nível ${gameData.user.level}`;
 
-  // Update today's activities
   updateTodayActivities();
 
-  // Update achievements
   updateAchievements();
 
-  // Update calendar
   updateCalendar();
 }
 
-// Update today's activities
 function updateTodayActivities() {
   const today = new Date().toISOString().split("T")[0];
   const todayActivities = gameData.activities.filter(
@@ -410,7 +373,6 @@ function updateTodayActivities() {
     .join("");
 }
 
-// Update achievements
 function updateAchievements() {
   const container = document.getElementById("achievementsList");
 
@@ -433,7 +395,6 @@ function updateAchievements() {
     .join("");
 }
 
-// Calendar functionality
 let currentDate = new Date();
 
 function setupCalendar() {
@@ -466,12 +427,10 @@ function updateCalendar() {
 
   const dayNames = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"];
 
-  // Update month header
   document.getElementById("currentMonth").textContent = `${
     monthNames[currentDate.getMonth()]
   } ${currentDate.getFullYear()}`;
 
-  // Get first day of month and number of days
   const firstDay = new Date(
     currentDate.getFullYear(),
     currentDate.getMonth(),
@@ -485,7 +444,6 @@ function updateCalendar() {
   const daysInMonth = lastDay.getDate();
   const startingDayOfWeek = firstDay.getDay();
 
-  // Get activities for this month
   const monthActivities = gameData.activities.filter((activity) => {
     const activityDate = new Date(activity.date);
     return (
@@ -494,22 +452,19 @@ function updateCalendar() {
     );
   });
 
-  // Create calendar grid
+
   let calendarHTML = "";
 
-  // Add day headers
   dayNames.forEach((day) => {
     calendarHTML += `<div class="calendar-day" style="font-weight: 600; background: var(--primary-green); color: white;">${day}</div>`;
   });
 
-  // Add empty cells for days before month starts
   for (let i = 0; i < startingDayOfWeek; i++) {
     const prevMonthDay = new Date(firstDay);
     prevMonthDay.setDate(prevMonthDay.getDate() - (startingDayOfWeek - i));
     calendarHTML += `<div class="calendar-day other-month">${prevMonthDay.getDate()}</div>`;
   }
 
-  // Add days of the month
   for (let day = 1; day <= daysInMonth; day++) {
     const dateString = `${currentDate.getFullYear()}-${String(
       currentDate.getMonth() + 1
@@ -532,7 +487,7 @@ function updateCalendar() {
         `;
   }
 
-  // Add remaining cells to complete the grid
+ 
   const totalCells = Math.ceil((daysInMonth + startingDayOfWeek) / 7) * 7;
   const remainingCells = totalCells - (daysInMonth + startingDayOfWeek);
 
@@ -542,7 +497,7 @@ function updateCalendar() {
 
   document.getElementById("calendarGrid").innerHTML = calendarHTML;
 
-  // Add click events to calendar days
+
   document
     .querySelectorAll(".calendar-day[data-date]")
     .forEach((dayElement) => {
