@@ -14,3 +14,9 @@ apresentacao-forum/
 └── assets/
     ├── mockups/    # Imagens ilustrativas
     └── data/       # JSON do colega (apenas para consulta)
+    
+    Melhorias que precisam ser feita:
+    
+    -migrar para o db.json(usando JSON SERVER);
+    -poder pesquisar 
+    -poder ordenar
