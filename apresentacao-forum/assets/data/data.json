@@ -59,16 +59,6 @@
       "status": 2,
       "conteudo": "Hoje foi um dia de descanso total. Fiquei em casa, li um livro e aproveitei para recarregar as energias.",
       "favorito": false
-    },
-    {
-      "id": "060b",
-      "userid": "1",
-      "data": "2025-04-24",
-      "titulo": "sei que laDia difícil na faculdade",
-      "publico": false,
-      "status": 1,
-      "conteudo": "Teste",
-      "favorito": false
     }
   ],
   "artigos": [
@@ -134,13 +124,13 @@
       "titulo": "Não aguento não aguentar mais",
       "autor": "Anne Helen Petersen",
       "link": "https://g.co/kgs/yQe2o9g",
-      "id": "f20a"
+      "id": "1432"
     },
     {
       "titulo": "A voz na sua cabeça",
       "autor": "Ethan Kross",
       "link": "https://g.co/kgs/mCH2jiW",
-      "id": "39fa"
+      "id": "3d72"
     }
   ],
   "siteMeditacao": {
@@ -387,16 +377,30 @@
       "id": "2",
       "nome": "Anônimo",
       "anonimo": true
+    },
+    {
+      "id": "a9d3",
+      "login": "fillmello",
+      "senha": "123",
+      "nome": "Filipe",
+      "email": "fliusjkgfjk@gmail.com"
     }
   ],
-  "cad_artigos": [
+  "mensagens": [
     {
       "id": "1",
-      "titulo": "Como lidar com a depressão",
-      "data": "22/05/2025",
-      "autor": "João da silva",
-      "categoria": "Depressão",
-      "link": "https://exemplo.com/artigo"
+      "mensagem": "Sou grato pela minha família",
+      "data": "22/05/2025"
+    },
+    {
+      "id": "2",
+      "mensagem": "Agradeço pelos meus amigos",
+      "data": "15/05/2025"
+    },
+    {
+      "id": "1",
+      "mensagem": "Hoje fiz algo que me deixou feliz",
+      "data": "20/05/2025"
     }
   ],
   "lista_atividades": [
@@ -568,23 +572,6 @@
           "author": "user456"
         }
       ]
-    }
-  ],
-  "toDo": [
-    {
-      "id": "894a",
-      "titulo": "Lavar Louca",
-      "status": "1"
-    },
-    {
-      "id": "af0b",
-      "titulo": "Estudar pra prova",
-      "status": "2"
-    },
-    {
-      "id": "4d29",
-      "titulo": "Meditar",
-      "status": "3"
     }
   ]
 }
