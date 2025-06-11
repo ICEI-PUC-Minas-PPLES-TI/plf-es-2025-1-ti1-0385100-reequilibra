@@ -1,5 +1,6 @@
 const apiUrl = '/cad_artigos';
 
+
 function displayMessage(mensagem) {
     const msg = document.getElementById('msg');
     msg.innerHTML = '<div class="alert alert-warning">' + mensagem + '</div>';
@@ -21,14 +22,17 @@ function createArtigo(artigo, refreshFunction) {
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(artigo),
     })
-    .then(response => response.json())
+    .then(response => {
+        if(!response.ok) throw new Error("Erro ao inserir artigo");
+        return response.json();
+    })
     .then(() => {
-        displayMessage("Artigo inserido com sucesso");
+        displayMessage("Artigo inserido com sucesso", "sucess");
         if (refreshFunction) refreshFunction();
     })
     .catch(error => {
-        console.error('Erro ao inserir artigo:', error);
-        displayMessage("Erro ao inserir artigo");
+        console.error(error);
+        displayMessage(error.message, "danger");
     });
 }
 

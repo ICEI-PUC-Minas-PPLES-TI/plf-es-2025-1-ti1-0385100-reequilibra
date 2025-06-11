@@ -1,0 +1,47 @@
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background:  #C5E0ED;
+  margin: 20px;
+  color: #333;
+}
+
+h1 {
+  text-align: center;
+  color: #967ba4;
+  margin-bottom: 30px;
+}
+.container {
+  background: rgba(255, 255, 255, 0.832);
+  
+}
+
+.form-group label {
+  font-weight: 600;
+  color: #555;
+}
+
+small {
+  color: #999;
+}
+
+.btn {
+  background-color: #967ba4;
+  color: white;
+  margin-left: 20px;
+  margin-top: 15px;
+  min-width: 110px;
+  font-weight: 600;
+}
+.btn:hover{
+    background-color: #b69ec3;
+    cursor: pointer;
+    color: #967ba4;
+}
+
+
+#msg {
+  margin-bottom: 20px;
+  min-height: 40px;
+}
+
