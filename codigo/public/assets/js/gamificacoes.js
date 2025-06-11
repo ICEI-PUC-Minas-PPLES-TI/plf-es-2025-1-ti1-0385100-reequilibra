@@ -1,67 +1,5 @@
-let gameData = {
-  user: {
-    name: "Anderson Rodrigues",
-    level: 5,
-    xp: 1250,
-    currentLevelXP: 250,
-    nextLevelXP: 500,
-  },
-  activities: [],
-  achievements: [
-    {
-      id: 1,
-      name: "Primeiro Passo",
-      description: "Complete sua primeira atividade",
-      icon: "fas fa-baby",
-      unlocked: true,
-    },
-    {
-      id: 2,
-      name: "Consistência",
-      description: "Complete atividades por 7 dias consecutivos",
-      icon: "fas fa-fire",
-      unlocked: true,
-    },
-    {
-      id: 3,
-      name: "Meditador",
-      description: "Complete 10 sessões de meditação",
-      icon: "fas fa-om",
-      unlocked: false,
-    },
-    {
-      id: 4,
-      name: "Atleta",
-      description: "Complete 20 exercícios físicos",
-      icon: "fas fa-dumbbell",
-      unlocked: false,
-    },
-    {
-      id: 5,
-      name: "Grato",
-      description: "Pratique gratidão por 30 dias",
-      icon: "fas fa-heart",
-      unlocked: false,
-    },
-    {
-      id: 6,
-      name: "Mente Sã",
-      description: "Complete 5 sessões de terapia",
-      icon: "fas fa-brain",
-      unlocked: true,
-    },
-  ],
-  consecutiveDays: 7,
-};
-
-const activityTypes = {
-  exercicio: { name: "Exercício Físico", xp: 50, icon: "fas fa-dumbbell" },
-  meditacao: { name: "Meditação", xp: 30, icon: "fas fa-om" },
-  gratidao: { name: "Gratidão", xp: 20, icon: "fas fa-heart" },
-  terapia: { name: "Sessão de Terapia", xp: 40, icon: "fas fa-brain" },
-  leitura: { name: "Leitura", xp: 25, icon: "fas fa-book" },
-  agua: { name: "Beber Água", xp: 10, icon: "fas fa-tint" },
-};
+let gameData = null;
+let activityTypes = {};
 
 const darkModeToggle = document.getElementById("darkModeToggle");
 const navLinks = document.querySelectorAll(".nav-link");
@@ -72,12 +10,53 @@ const closeModal = document.getElementById("closeModal");
 const activityForm = document.getElementById("activityForm");
 const activityTypes_elements = document.querySelectorAll(".activity-type");
 
-document.addEventListener("DOMContentLoaded", function () {
-  loadGameData();
-  updateUI();
-  setupEventListeners();
-  setupCalendar();
+async function fetchGameData() {
+  try {
+    const response = await fetch("../../../db/db.json");
+    const json = await response.json();
 
+    gameData = {
+      user: {
+        name: json.usuarios[0].nome,
+        level: 5,
+        xp: 1250,
+        currentLevelXP: 250,
+        nextLevelXP: 500,
+      },
+      activities: json.lista_atividades || [],
+      achievements: json.medalhas.map((m) => ({
+        id: m.id,
+        name: m.nome,
+        description: m.descricao,
+        icon: m.icone,
+        unlocked: m.conquistada,
+      })),
+      consecutiveDays: json.missoesDiarias.filter((m) => m.concluida).length,
+    };
+
+    activityTypes = {};
+    const activitySelect = document.getElementById("activityType");
+    activitySelect.innerHTML =
+      '<option value="">Selecione uma atividade</option>';
+    json.tiposDeAtividade.forEach((item) => {
+      activityTypes[item.id] = {
+        name: item.nome,
+        xp: item.xp,
+        icon: item.icone,
+      };
+      activitySelect.innerHTML += `<option value="${item.id}">${item.nome} (${item.xp} XP)</option>`;
+    });
+
+    updateUI();
+    setupEventListeners();
+    setupCalendar();
+  } catch (error) {
+    console.error("Erro ao carregar db.json", error);
+  }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  fetchGameData();
   document.getElementById("activityDate").value = new Date()
     .toISOString()
     .split("T")[0];

@@ -61,6 +61,72 @@
       "favorito": false
     }
   ],
+    "medalhas": [
+    {
+      "id": 1,
+      "nome": "Iniciante",
+      "icone": "fas fa-seedling",
+      "descricao": "Complete sua primeira atividade",
+      "conquistada": true
+    }
+  ],
+  "missoesDiarias": [
+    {
+      "id": "missao1",
+      "descricao": "Complete 1 respiração guiada",
+      "xp": 10,
+      "requisito": "respirar",
+      "concluida": false
+    }
+  ],
+  "lista_atividades": [
+    {
+      "id": 1,
+      "usuarioId": 2,
+      "nome": "Caminhar no parque",
+      "descricao": "Respirar ar puro e ouvir os pássaros",
+      "duracao": "20 minutos",
+      "tag": "Alívio da ansiedade"
+    }
+  ],
+  "tiposDeAtividade": [
+    {
+      "id": "exercicio",
+      "nome": "Exercício Físico",
+      "xp": 50,
+      "icone": "fas fa-dumbbell"
+    },
+    {
+      "id": "meditacao",
+      "nome": "Meditação",
+      "xp": 30,
+      "icone": "fas fa-om"
+    },
+    {
+      "id": "gratidao",
+      "nome": "Gratidão",
+      "xp": 20,
+      "icone": "fas fa-heart"
+    },
+    {
+      "id": "terapia",
+      "nome": "Sessão de Terapia",
+      "xp": 40,
+      "icone": "fas fa-brain"
+    },
+    {
+      "id": "leitura",
+      "nome": "Leitura",
+      "xp": 25,
+      "icone": "fas fa-book"
+    },
+    {
+      "id": "agua",
+      "nome": "Beber Água",
+      "xp": 10,
+      "icone": "fas fa-tint"
+    }
+  ],
   "artigos": [
     {
       "id": 1,
