@@ -61,12 +61,73 @@
       "favorito": false
     }
   ],
-    "medalhas": [
+  "medalhas": [
     {
-      "id": 1,
+      "id": "1",
       "nome": "Iniciante",
       "icone": "fas fa-seedling",
       "descricao": "Complete sua primeira atividade",
+      "conquistada": true
+    },
+    {
+      "id": "2",
+      "nome": "Terapeuta",
+      "icone": "fas fa-comments",
+      "descricao": "Complete 5 sessões de terapia",
+      "objetivo": 5,
+      "progresso": 0,
+      "conquistada": false
+    },
+    {
+      "id": "3",
+      "nome": "Meditador",
+      "icone": "fas fa-spa",
+      "descricao": "Complete 10 meditações",
+      "objetivo": 10,
+      "progresso": 0,
+      "conquistada": false
+    },
+    {
+      "id": "4",
+      "nome": "Escritor",
+      "icone": "fas fa-book",
+      "descricao": "Complete 7 entradas no diário",
+      "objetivo": 7,
+      "progresso": 0,
+      "conquistada": false
+    },
+    {
+      "id": "5",
+      "nome": "Atleta",
+      "icone": "fas fa-running",
+      "descricao": "Complete 15 sessões de exercício",
+      "objetivo": 15,
+      "progresso": 0,
+      "conquistada": false
+    },
+    {
+      "id": "6",
+      "nome": "Grato",
+      "icone": "fas fa-heart",
+      "descricao": "Complete 30 dias de gratidão",
+      "objetivo": 30,
+      "progresso": 0,
+      "conquistada": false
+    },
+    {
+      "id": "7",
+      "nome": "Mestre",
+      "icone": "fas fa-crown",
+      "descricao": "Alcance o nível 10",
+      "objetivo": 10,
+      "progresso": 1,
+      "conquistada": false
+    },
+    {
+      "id": "8",
+      "nome": "Série de 7 dias",
+      "icone": "fas fa-calendar-check",
+      "descricao": "Complete atividades por 7 dias consecutivos",
       "conquistada": true
     }
   ],
@@ -81,12 +142,20 @@
   ],
   "lista_atividades": [
     {
-      "id": 1,
+      "id": "1",
       "usuarioId": 2,
       "nome": "Caminhar no parque",
       "descricao": "Respirar ar puro e ouvir os pássaros",
       "duracao": "20 minutos",
       "tag": "Alívio da ansiedade"
+    },
+    {
+      "id": "2",
+      "usuarioId": 3,
+      "nome": "Ouvir música relaxante",
+      "descricao": "Colocar uma playlist lo-fi para relaxar",
+      "duracao": "10 minutos",
+      "tag": "Relaxar"
     }
   ],
   "tiposDeAtividade": [
@@ -129,7 +198,7 @@
   ],
   "artigos": [
     {
-      "id": 1,
+      "id": "1",
       "titulo": "Considerações gerais sobre transtornos de ansiedade",
       "data": "08/2023",
       "autor": "John W. Barnhill",
@@ -138,7 +207,7 @@
       "link": "https://www.msdmanuals.com/pt/casa/dist%C3%BArbios-de-sa%C3%BAde-mental/transtornos-de-ansiedade-e-relacionados-a-fatores-estressantes/considera%C3%A7%C3%B5es-gerais-sobre-transtornos-de-ansiedade"
     },
     {
-      "id": 2,
+      "id": "2",
       "titulo": "Depressão:Desafios e tratamento",
       "data": "21/08/2024",
       "autor": "Pedro Romero Carvalho",
@@ -147,7 +216,7 @@
       "link": "https://bjihs.emnuvens.com.br/bjihs/article/view/3107"
     },
     {
-      "id": 3,
+      "id": "3",
       "titulo": "Autocuidado e qualidade de vida",
       "data": "15/04/2025",
       "autor": "Yassana MarvilaGirondoli/Mirian Cardoso de Rezende Soares",
@@ -158,30 +227,30 @@
   ],
   "favoritos": [
     {
-      "id": 1,
+      "id": "1",
       "usuario_id": 1,
       "noticia_id": 1
     }
   ],
   "categorias": [
     {
-      "id": 1,
+      "id": "1",
       "nome": "Ansiedade"
     },
     {
-      "id": 2,
+      "id": "2",
       "nome": "Estresse"
     },
     {
-      "id": 3,
+      "id": "3",
       "nome": "Autocuidado"
     },
     {
-      "id": 4,
+      "id": "4",
       "nome": "Depressão"
     },
     {
-      "id": 5,
+      "id": "5",
       "nome": "Relacionamentos"
     }
   ],
@@ -189,18 +258,26 @@
     {
       "titulo": "Não aguento não aguentar mais",
       "autor": "Anne Helen Petersen",
-      "link": "https://g.co/kgs/yQe2o9g"
+      "link": "https://g.co/kgs/yQe2o9g",
+      "id": "5492"
     },
     {
       "titulo": "A voz na sua cabeça",
       "autor": "Ethan Kross",
-      "link": "https://g.co/kgs/mCH2jiW"
+      "link": "https://g.co/kgs/mCH2jiW",
+      "id": "24d5"
     }
   ],
   "siteMeditacao": {
     "busca": {
       "placeholder": "Buscar meditações...",
-      "filtros": ["Ansiedade", "Estresse", "Depressão", "Sono", "Todos"]
+      "filtros": [
+        "Ansiedade",
+        "Estresse",
+        "Depressão",
+        "Sono",
+        "Todos"
+      ]
     },
     "secaoMeditacoesPopulares": [
       {
@@ -245,24 +322,24 @@
   },
   "contatos": [
     {
-      "id": 1,
+      "id": "1",
       "nome": "Bárbara (Mãe)",
       "telefone": "(31) 99999-9999"
     },
     {
-      "id": 2,
+      "id": "2",
       "nome": "Thales (Amigo)",
       "telefone": "(31) 98888-8888"
     },
     {
-      "id": 3,
+      "id": "3",
       "nome": "Filipe (Psicólogo)",
       "telefone": "(31) 97777-7777"
     }
   ],
   "servicosDeSaude": [
     {
-      "id": 1,
+      "id": "1",
       "nome": "CAPS AD Leste - São Lucas",
       "tipo": "CAPS Álcool e Drogas",
       "endereco": "R. Itaúna, 315 - São Lucas, Belo Horizonte - MG",
@@ -270,7 +347,7 @@
       "horario": "Seg-Sex: 7h30-17h30"
     },
     {
-      "id": 2,
+      "id": "2",
       "nome": "CAPS III Norte - Venda Nova",
       "tipo": "CAPS III (24 horas)",
       "endereco": "Av. Vilarinho, 390 - Venda Nova, Belo Horizonte - MG",
@@ -291,21 +368,16 @@
       "nome": "Desenho Livre",
       "tipo": "criatividade",
       "tempoPadrao": 5,
-      "ferramentas": ["pincel", "borracha", "12 cores"]
-    }
-  ],
-  "missoesDiarias": [
-    {
-      "id": "missao1",
-      "descricao": "Complete 1 respiração guiada",
-      "xp": 10,
-      "requisito": "respirar",
-      "concluida": false
+      "ferramentas": [
+        "pincel",
+        "borracha",
+        "12 cores"
+      ]
     }
   ],
   "psicologos": [
     {
-      "id": 1,
+      "id": "1",
       "nome": "Dra. Maria",
       "area_atua": "Terapia Comportamental",
       "descricao": "Especialista em ajudar pessoas a superar desafios emocionais.",
@@ -319,7 +391,7 @@
       "img": "https://randomuser.me/api/portraits/women/1.jpg"
     },
     {
-      "id": 2,
+      "id": "2",
       "nome": "Dr. Pedro Henrique",
       "area_atua": "Psicanálise",
       "descricao": "Foco em conflitos inconscientes e questões emocionais profundas.",
@@ -333,7 +405,7 @@
       "img": "https://randomuser.me/api/portraits/men/2.jpg"
     },
     {
-      "id": 3,
+      "id": "3",
       "nome": "Dra. Ana Paula",
       "area_atua": "Terapia Cognitivo-Comportamental",
       "descricao": "Ajuda na mudança de pensamentos e comportamentos disfuncionais.",
@@ -349,7 +421,7 @@
   ],
   "comunidades": [
     {
-      "id": 1,
+      "id": "1",
       "nome": "Ansiedade",
       "descricao": "Espaço para compartilhar experiências e dicas sobre ansiedade.",
       "posts": [
@@ -388,7 +460,7 @@
       ]
     },
     {
-      "id": 2,
+      "id": "2",
       "nome": "Depressão",
       "descricao": "Discussões e apoio sobre depressão.",
       "posts": [
@@ -403,19 +475,19 @@
       ]
     },
     {
-      "id": 3,
+      "id": "3",
       "nome": "Burnout",
       "descricao": "Espaço para falar sobre estresse e esgotamento profissional.",
       "posts": []
     },
     {
-      "id": 4,
+      "id": "4",
       "nome": "Desabafo",
       "descricao": "Conte livremente o que está sentindo.",
       "posts": []
     },
     {
-      "id": 5,
+      "id": "5",
       "nome": "Acadêmico",
       "descricao": "Discussão sobre saúde mental no ambiente acadêmico.",
       "posts": []
@@ -423,56 +495,43 @@
   ],
   "usuarios": [
     {
-      "id": 1,
+      "id": "1",
       "nome": "Fabio",
       "anonimo": false
     },
     {
-      "id": 2,
+      "id": "2",
       "nome": "Anônimo",
       "anonimo": true
+    },
+    {
+      "id": "1749684901409",
+      "nome": "aaaa",
+      "email": "aaaa@gmail.com",
+      "senha": "aa",
+      "tipo": "usuario"
     }
   ],
-
   "mensagens": [
     {
-      "id": 1,
+      "id": "1",
       "mensagem": "Sou grato pela minha família",
       "data": "22/05/2025"
     },
     {
-      "id": 2,
+      "id": "2",
       "mensagem": "Agradeço pelos meus amigos",
       "data": "15/05/2025"
     },
     {
-      "id": 1,
+      "id": "1",
       "mensagem": "Hoje fiz algo que me deixou feliz",
       "data": "20/05/2025"
     }
   ],
-
-  "lista_atividades": [
-    {
-      "id": 1,
-      "usuarioId": 2,
-      "nome": "Caminhar no parque",
-      "descricao": "Respirar ar puro e ouvir os pássaros",
-      "duracao": "20 minutos",
-      "tag": "Alívio da ansiedade"
-    },
-    {
-      "id": 2,
-      "usuarioId": 3,
-      "nome": "Ouvir música relaxante",
-      "descricao": "Colocar uma playlist lo-fi para relaxar",
-      "duracao": "10 minutos",
-      "tag": "Relaxar"
-    }
-  ],
   "recompensas": [
     {
-      "id": 1,
+      "id": "1",
       "titulo": "Sessão de Terapia",
       "descricao": "Complete sua sessão de terapia semanal",
       "icone": "fas fa-comments",
@@ -481,7 +540,7 @@
       "completa": false
     },
     {
-      "id": 2,
+      "id": "2",
       "titulo": "Diário de Humor",
       "descricao": "Registre seu humor e pensamentos no diário",
       "icone": "fas fa-book",
@@ -490,7 +549,7 @@
       "completa": false
     },
     {
-      "id": 3,
+      "id": "3",
       "titulo": "Meditação Guiada",
       "descricao": "Complete uma sessão de meditação de 10 minutos",
       "icone": "fas fa-spa",
@@ -499,7 +558,7 @@
       "completa": false
     },
     {
-      "id": 4,
+      "id": "4",
       "titulo": "Exercício Físico",
       "descricao": "Pratique pelo menos 30 minutos de exercício",
       "icone": "fas fa-running",
@@ -508,7 +567,7 @@
       "completa": false
     },
     {
-      "id": 5,
+      "id": "5",
       "titulo": "Gratidão",
       "descricao": "Anote 3 coisas pelas quais você é grato hoje",
       "icone": "fas fa-heart",
@@ -517,120 +576,40 @@
       "completa": false
     }
   ],
-  
-  "medalhas": [
-    { 
-      "id": 1, 
-      "nome": "Iniciante", 
-      "icone": "fas fa-seedling", 
-      "descricao": "Complete sua primeira atividade",
-      "conquistada": true
+  "frases de apoio emocional": [
+    {
+      "id": "1",
+      "texto": "Acredite em você primeiro. ✨",
+      "autor": "Sistema",
+      "categoria": "motivacional"
     },
-    { 
-      "id": 2, 
-      "nome": "Terapeuta", 
-      "icone": "fas fa-comments", 
-      "descricao": "Complete 5 sessões de terapia",
-      "objetivo": 5,
-      "progresso": 0,
-      "conquistada": false
+    {
+      "id": "2",
+      "texto": "Erros são degraus para o aprendizado. 📚",
+      "autor": "Desconhecido",
+      "categoria": "reflexão"
     },
-    { 
-      "id": 3, 
-      "nome": "Meditador", 
-      "icone": "fas fa-spa", 
-      "descricao": "Complete 10 meditações",
-      "objetivo": 10,
-      "progresso": 0,
-      "conquistada": false
-    },
-    { 
-      "id": 4, 
-      "nome": "Escritor", 
-      "icone": "fas fa-book", 
-      "descricao": "Complete 7 entradas no diário",
-      "objetivo": 7,
-      "progresso": 0,
-      "conquistada": false
-    },
-    { 
-      "id": 5, 
-      "nome": "Atleta", 
-      "icone": "fas fa-running", 
-      "descricao": "Complete 15 sessões de exercício",
-      "objetivo": 15,
-      "progresso": 0,
-      "conquistada": false
-    },
-    { 
-      "id": 6, 
-      "nome": "Grato", 
-      "icone": "fas fa-heart", 
-      "descricao": "Complete 30 dias de gratidão",
-      "objetivo": 30,
-      "progresso": 0,
-      "conquistada": false
-    },
-    { 
-      "id": 7, 
-      "nome": "Mestre", 
-      "icone": "fas fa-crown", 
-      "descricao": "Alcance o nível 10",
-      "objetivo": 10,
-      "progresso": 1,
-      "conquistada": false
-    },
-    { 
-      "id": 8, 
-      "nome": "Série de 7 dias", 
-      "icone": "fas fa-calendar-check", 
-      "descricao": "Complete atividades por 7 dias consecutivos",
-      "conquistada": true
+    {
+      "id": "3",
+      "texto": "Pequenos progressos ainda são progressos. 🐢",
+      "autor": "Sistema",
+      "categoria": "produtividade"
     }
   ],
-
-
-    "frases de apoio emocional": [
+  "forums": [
+    {
+      "id": "4827",
+      "title": "Como lidar com crises no trabalho?",
+      "content": "Dicas para controlar ansiedade no ambiente profissional.",
+      "author": "user123",
+      "comments": [
         {
-            "id": 1,
-            "texto": "Acredite em você primeiro. ✨",
-            "autor": "Sistema",
-            "categoria": "motivacional"
-        },
-
-        {   "id": 2,
-            "texto": "Erros são degraus para o aprendizado. 📚",
-            "autor": "Desconhecido",
-            "categoria": "reflexão"
-        },
-        {   "id": 3,
-            "texto": "Pequenos progressos ainda são progressos. 🐢",
-            "autor": "Sistema",
-            "categoria": "produtividade"
+          "id": 5912,
+          "content": "Recomendo técnicas de respiração.",
+          "timeSincePost": "5 minutos atrás",
+          "author": "user456"
         }
-    ],
-
-
-    "forums": [
-          {
-            "id": 4827,
-            "title": "Como lidar com crises no trabalho?",
-            "content": "Dicas para controlar ansiedade no ambiente profissional.",
-            "author": "user123",
-            "comments": [
-                {
-                    "id": 5912,
-                    "content": "Recomendo técnicas de respiração.",
-                    "timeSincePost": "5 minutos atrás",
-                    "author": "user456"
-                }
-            ]
-        }
-    ]
+      ]
+    }
+  ]
 }
-
-
-
-
-
-
