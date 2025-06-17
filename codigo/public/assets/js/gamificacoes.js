@@ -18,19 +18,18 @@ async function fetchGameData() {
     gameData = {
       user: {
         name: json.usuarios[0].nome,
-        level: 5,
-        xp: 1250,
-        currentLevelXP: 250,
+        level: 1,
+        xp: 0,
+        currentLevelXP: 0,
         nextLevelXP: 500,
       },
       activities: json.lista_atividades || [],
       achievements: json.medalhas.map((m) => ({
-        id: m.id,
-        name: m.nome,
-        description: m.descricao,
-        icon: m.icone,
-        unlocked: m.conquistada,
+        ...m,
+        progresso: m.progresso || 0,
+        conquistada: m.conquistada || false,
       })),
+      rewards: json.recompensas || [],
       consecutiveDays: json.missoesDiarias.filter((m) => m.concluida).length,
     };
 
@@ -47,6 +46,7 @@ async function fetchGameData() {
       activitySelect.innerHTML += `<option value="${item.id}">${item.nome} (${item.xp} XP)</option>`;
     });
 
+    loadGameData();
     updateUI();
     setupEventListeners();
     setupCalendar();
@@ -107,9 +107,8 @@ function toggleDarkMode() {
 function loadGameData() {
   const savedTheme = localStorage.getItem("theme") || "light";
   document.documentElement.setAttribute("data-theme", savedTheme);
-
-  const icon = darkModeToggle.querySelector("i");
-  icon.className = savedTheme === "dark" ? "fas fa-sun" : "fas fa-moon";
+  darkModeToggle.querySelector("i").className =
+    savedTheme === "dark" ? "fas fa-sun" : "fas fa-moon";
 
   const savedActivities = localStorage.getItem("activities");
   if (savedActivities) {
@@ -121,18 +120,28 @@ function loadGameData() {
     gameData.user = { ...gameData.user, ...JSON.parse(savedUserData) };
   }
 
+  const savedAchievements = localStorage.getItem("achievements");
+  if (savedAchievements) {
+    gameData.achievements = JSON.parse(savedAchievements);
+  }
+
+  const savedRewards = localStorage.getItem("rewards");
+  if (savedRewards) {
+    gameData.rewards = JSON.parse(savedRewards);
+  }
+
   calculateConsecutiveDays();
 }
 
 function saveGameData() {
   localStorage.setItem("activities", JSON.stringify(gameData.activities));
   localStorage.setItem("userData", JSON.stringify(gameData.user));
+  localStorage.setItem("achievements", JSON.stringify(gameData.achievements));
+  localStorage.setItem("rewards", JSON.stringify(gameData.rewards));
 }
 
 function showSection(sectionId) {
-  sections.forEach((section) => {
-    section.classList.remove("active");
-  });
+  sections.forEach((section) => section.classList.remove("active"));
   document.getElementById(sectionId).classList.add("active");
 }
 
@@ -151,28 +160,20 @@ function hideModal() {
 function handleActivitySubmit(e) {
   e.preventDefault();
 
-  const formData = new FormData(activityForm);
-  const activityType =
-    formData.get("activityType") ||
-    document.getElementById("activityType").value;
-  const activityDate =
-    formData.get("activityDate") ||
-    document.getElementById("activityDate").value;
-  const activityNotes =
-    formData.get("activityNotes") ||
-    document.getElementById("activityNotes").value;
+  const activityType = document.getElementById("activityType").value;
+  const activityDate = document.getElementById("activityDate").value;
+  const activityNotes = document.getElementById("activityNotes").value;
 
   if (!activityType || !activityDate) {
     alert("Por favor, preencha todos os campos obrigatórios.");
     return;
   }
 
-  const existingActivity = gameData.activities.find(
-    (activity) =>
-      activity.date === activityDate && activity.type === activityType
+  const alreadyExists = gameData.activities.some(
+    (a) => a.date === activityDate && a.type === activityType
   );
 
-  if (existingActivity) {
+  if (alreadyExists) {
     alert("Você já registrou esta atividade para esta data.");
     return;
   }
@@ -186,20 +187,17 @@ function handleActivitySubmit(e) {
   };
 
   gameData.activities.push(activity);
-
   gameData.user.xp += activity.xp;
   gameData.user.currentLevelXP += activity.xp;
 
   checkLevelUp();
-
   calculateConsecutiveDays();
-
   checkAchievements();
+  checkRewardsProgress(activity);
 
   saveGameData();
   updateUI();
   hideModal();
-
   showNotification(`Atividade registrada! +${activity.xp} XP`);
 }
 
@@ -209,193 +207,195 @@ function checkLevelUp() {
     gameData.user.level++;
     gameData.user.nextLevelXP = gameData.user.level * 100;
 
-    showNotification(
-      `Parabéns! Você subiu para o nível ${gameData.user.level}!`
-    );
+    showNotification(`Parabéns! Você subiu para o nível ${gameData.user.level}!`);
   }
-}
-
-function calculateConsecutiveDays() {
-  if (gameData.activities.length === 0) {
-    gameData.consecutiveDays = 0;
-    return;
-  }
-
-  const sortedActivities = gameData.activities
-    .map((activity) => activity.date)
-    .sort((a, b) => new Date(b) - new Date(a));
-
-  const uniqueDates = [...new Set(sortedActivities)];
-
-  let consecutiveDays = 0;
-  const today = new Date().toISOString().split("T")[0];
-
-  if (uniqueDates[0] === today || uniqueDates[0] === getYesterday()) {
-    consecutiveDays = 1;
-
-    for (let i = 1; i < uniqueDates.length; i++) {
-      const currentDate = new Date(uniqueDates[i - 1]);
-      const previousDate = new Date(uniqueDates[i]);
-      const dayDifference =
-        (currentDate - previousDate) / (1000 * 60 * 60 * 24);
-
-      if (dayDifference === 1) {
-        consecutiveDays++;
-      } else {
-        break;
-      }
-    }
-  }
-
-  gameData.consecutiveDays = consecutiveDays;
-}
-
-function getYesterday() {
-  const yesterday = new Date();
-  yesterday.setDate(yesterday.getDate() - 1);
-  return yesterday.toISOString().split("T")[0];
 }
 
 function checkAchievements() {
-  // First activity
-  if (gameData.activities.length >= 1) {
-    unlockAchievement(1);
-  }
+  gameData.achievements.forEach((achievement) => {
+    if (achievement.conquistada || !achievement.objetivo) return;
 
-  if (gameData.consecutiveDays >= 7) {
-    unlockAchievement(2);
-  }
+    let count = 0;
 
-  const meditationCount = gameData.activities.filter(
-    (a) => a.type === "meditacao"
-  ).length;
-  if (meditationCount >= 10) {
-    unlockAchievement(3);
-  }
+    const typeMap = {
+      terapeuta: "terapia",
+      meditador: "meditacao",
+      atleta: "exercicio",
+      grato: "gratidao",
+    };
 
-  const exerciseCount = gameData.activities.filter(
-    (a) => a.type === "exercicio"
-  ).length;
-  if (exerciseCount >= 20) {
-    unlockAchievement(4);
-  }
+const nameKey = achievement.nome.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
-  const gratitudeCount = gameData.activities.filter(
-    (a) => a.type === "gratidao"
-  ).length;
-  if (gratitudeCount >= 30) {
-    unlockAchievement(5);
-  }
 
-  const therapyCount = gameData.activities.filter(
-    (a) => a.type === "terapia"
-  ).length;
-  if (therapyCount >= 5) {
-    unlockAchievement(6);
+    for (const key in typeMap) {
+      if (nameKey.includes(key)) {
+        count = gameData.activities.filter(
+          (a) => a.type === typeMap[key]
+        ).length;
+        break;
+      }
+    }
+
+    if (nameKey.includes("escritor")) {
+      count = (gameData.diario || []).filter((d) => d.userid === "1").length;
+    }
+
+    if (nameKey.includes("mestre")) {
+      count = gameData.user.level;
+    }
+
+    achievement.progresso = count;
+
+    if (count >= achievement.objetivo) {
+      achievement.conquistada = true;
+      showNotification(`Conquista desbloqueada: ${achievement.nome}!`);
+    }
+  });
+}
+
+
+function countDiarioEntries() {
+  const diario = gameData.diario || [];
+  return diario.filter(entry => entry.userid === "1").length;
+}
+
+function unlockAchievement(id) {
+  const ach = gameData.achievements.find((a) => a.id === id);
+  if (ach && !ach.conquistada) {
+    ach.conquistada = true;
+    showNotification(`Conquista desbloqueada: ${ach.nome}!`);
   }
 }
 
-function unlockAchievement(achievementId) {
-  const achievement = gameData.achievements.find((a) => a.id === achievementId);
-  if (achievement && !achievement.unlocked) {
-    achievement.unlocked = true;
-    showNotification(`Conquista desbloqueada: ${achievement.name}!`);
+
+function checkRewardsProgress(activity) {
+  gameData.rewards.forEach((r) => {
+    if (r.completa) return;
+    const match = r.tipo === activity.type || (r.tipo === "diario" && activity.type === "gratidao");
+    if (match) {
+      r.completa = true;
+      showNotification(`Recompensa completa: ${r.titulo}!`);
+    }
+  });
+}
+
+function calculateConsecutiveDays() {
+  const dates = [...new Set(gameData.activities.map((a) => a.date))].sort((a, b) => new Date(b) - new Date(a));
+  let count = 0;
+  const today = new Date().toISOString().split("T")[0];
+
+  if (dates[0] === today || dates[0] === getYesterday()) {
+    count = 1;
+    for (let i = 1; i < dates.length; i++) {
+      const diff =
+        (new Date(dates[i - 1]) - new Date(dates[i])) / (1000 * 60 * 60 * 24);
+      if (diff === 1) count++;
+      else break;
+    }
   }
+
+  gameData.consecutiveDays = count;
+}
+
+function getYesterday() {
+  const y = new Date();
+  y.setDate(y.getDate() - 1);
+  return y.toISOString().split("T")[0];
 }
 
 function updateUI() {
-  document.getElementById("consecutiveDays").textContent =
-    gameData.consecutiveDays;
-  document.getElementById("totalXP").textContent =
-    gameData.user.xp.toLocaleString();
-  document.getElementById("achievements").textContent =
-    gameData.achievements.filter((a) => a.unlocked).length;
+  document.getElementById("consecutiveDays").textContent = gameData.consecutiveDays;
+  document.getElementById("totalXP").textContent = gameData.user.xp.toLocaleString();
+  document.getElementById("achievements").textContent = gameData.achievements.filter(a => a.conquistada).length;
   document.getElementById("currentLevel").textContent = gameData.user.level;
-
-  const progressPercentage =
-    (gameData.user.currentLevelXP / gameData.user.nextLevelXP) * 100;
-  document.getElementById(
-    "progressFill"
-  ).style.width = `${progressPercentage}%`;
-  document.getElementById("currentXP").textContent =
-    gameData.user.currentLevelXP;
-  document.getElementById("nextLevelXP").textContent =
-    gameData.user.nextLevelXP;
-
+  document.getElementById("progressFill").style.width = `${(gameData.user.currentLevelXP / gameData.user.nextLevelXP) * 100}%`;
+  document.getElementById("currentXP").textContent = gameData.user.currentLevelXP;
+  document.getElementById("nextLevelXP").textContent = gameData.user.nextLevelXP;
   document.querySelector(".user-name").textContent = gameData.user.name;
-  document.querySelector(
-    ".user-level"
-  ).textContent = `Nível ${gameData.user.level}`;
-
+  document.querySelector(".user-level").textContent = `Nível ${gameData.user.level}`;
   updateTodayActivities();
-
   updateAchievements();
-
+  updateRewardsUI();
   updateCalendar();
 }
 
 function updateTodayActivities() {
   const today = new Date().toISOString().split("T")[0];
-  const todayActivities = gameData.activities.filter(
-    (activity) => activity.date === today
-  );
-
+  const activities = gameData.activities.filter((a) => a.date === today);
   const container = document.getElementById("todayActivities");
 
-  if (todayActivities.length === 0) {
-    container.innerHTML =
-      '<p style="color: var(--text-secondary); text-align: center; padding: 1rem;">Nenhuma atividade registrada hoje.</p>';
+  if (!activities.length) {
+    container.innerHTML = '<p style="text-align:center;">Nenhuma atividade registrada hoje.</p>';
     return;
   }
 
-  container.innerHTML = todayActivities
-    .map((activity) => {
-      const activityInfo = activityTypes[activity.type];
-      return `
-            <div class="activity-item">
-                <div class="activity-info">
-                    <div class="activity-icon">
-                        <i class="${activityInfo.icon}"></i>
-                    </div>
-                    <div>
-                        <h4>${activityInfo.name}</h4>
-                        ${
-                          activity.notes
-                            ? `<p style="font-size: 0.9rem; color: var(--text-secondary);">${activity.notes}</p>`
-                            : ""
-                        }
-                    </div>
-                </div>
-                <div class="activity-xp">+${activity.xp} XP</div>
-            </div>
-        `;
+  container.innerHTML = activities
+    .map((a) => {
+      const info = activityTypes[a.type];
+      return `<div class="activity-item">
+        <div class="activity-info">
+          <div class="activity-icon"><i class="${info.icon}"></i></div>
+          <div>
+            <h4>${info.name}</h4>
+            ${a.notes ? `<p>${a.notes}</p>` : ""}
+          </div>
+        </div>
+        <div class="activity-xp">+${a.xp} XP</div>
+      </div>`;
     })
     .join("");
 }
-
 function updateAchievements() {
   const container = document.getElementById("achievementsList");
 
   container.innerHTML = gameData.achievements
-    .map(
-      (achievement) => `
-        <div class="achievement-card ${achievement.unlocked ? "unlocked" : ""}">
-            <div class="achievement-icon ${
-              achievement.unlocked ? "unlocked" : "locked"
-            }">
-                <i class="${achievement.icon}"></i>
-            </div>
-            <div class="achievement-info">
-                <h4>${achievement.name}</h4>
-                <p>${achievement.description}</p>
-            </div>
+    .map((achievement) => {
+      const isUnlocked = achievement.conquistada;
+      const progressBar = achievement.objetivo
+        ? `
+          <div class="achievement-progress-bar">
+            <div class="progress-fill" style="width: ${
+              (achievement.progresso / achievement.objetivo) * 100
+            }%"></div>
+          </div>
+          <p class="progress-text">${achievement.progresso || 0} / ${
+            achievement.objetivo
+          }</p>
+        `
+        : "";
+
+      return `
+        <div class="achievement-card ${isUnlocked ? "unlocked" : ""}">
+          <div class="achievement-icon">
+            <i class="${achievement.icone}"></i>
+          </div>
+          <div class="achievement-info">
+            <h4>${achievement.nome}</h4>
+            <p>${achievement.descricao}</p>
+            ${progressBar}
+          </div>
         </div>
-    `
-    )
+      `;
+    })
     .join("");
 }
 
-let currentDate = new Date();
+
+function updateRewardsUI() {
+  const container = document.getElementById("rewardsList");
+  if (!container) return;
+
+  container.innerHTML = gameData.rewards
+    .map((r) => `<div class="reward-card ${r.completa ? "completed" : ""}">
+      <div class="reward-icon"><i class="${r.icone}"></i></div>
+      <div class="reward-info">
+        <h4>${r.titulo}</h4>
+        <p>${r.descricao}</p>
+        <span class="reward-points">${r.pontos} XP</span>
+      </div>
+    </div>`)
+    .join("");
+}
 
 function setupCalendar() {
   document.getElementById("prevMonth").addEventListener("click", () => {
@@ -409,133 +409,78 @@ function setupCalendar() {
   });
 }
 
-function updateCalendar() {
-  const monthNames = [
-    "Janeiro",
-    "Fevereiro",
-    "Março",
-    "Abril",
-    "Maio",
-    "Junho",
-    "Julho",
-    "Agosto",
-    "Setembro",
-    "Outubro",
-    "Novembro",
-    "Dezembro",
-  ];
+let currentDate = new Date();
 
+function updateCalendar() {
+  const monthNames = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho",
+    "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
   const dayNames = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"];
 
-  document.getElementById("currentMonth").textContent = `${
-    monthNames[currentDate.getMonth()]
-  } ${currentDate.getFullYear()}`;
-
-  const firstDay = new Date(
-    currentDate.getFullYear(),
-    currentDate.getMonth(),
-    1
-  );
-  const lastDay = new Date(
-    currentDate.getFullYear(),
-    currentDate.getMonth() + 1,
-    0
-  );
+  const firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+  const lastDay = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
   const daysInMonth = lastDay.getDate();
-  const startingDayOfWeek = firstDay.getDay();
+  const startDay = firstDay.getDay();
 
-  const monthActivities = gameData.activities.filter((activity) => {
-    const activityDate = new Date(activity.date);
-    return (
-      activityDate.getMonth() === currentDate.getMonth() &&
-      activityDate.getFullYear() === currentDate.getFullYear()
-    );
+  document.getElementById("currentMonth").textContent =
+    `${monthNames[currentDate.getMonth()]} ${currentDate.getFullYear()}`;
+
+  const monthActivities = gameData.activities.filter((a) => {
+    const d = new Date(a.date);
+    return d.getMonth() === currentDate.getMonth() && d.getFullYear() === currentDate.getFullYear();
   });
 
-
-  let calendarHTML = "";
-
-  dayNames.forEach((day) => {
-    calendarHTML += `<div class="calendar-day" style="font-weight: 600; background: var(--primary-green); color: white;">${day}</div>`;
+  let html = "";
+  dayNames.forEach((d) => {
+    html += `<div class="calendar-day" style="font-weight:bold;">${d}</div>`;
   });
 
-  for (let i = 0; i < startingDayOfWeek; i++) {
-    const prevMonthDay = new Date(firstDay);
-    prevMonthDay.setDate(prevMonthDay.getDate() - (startingDayOfWeek - i));
-    calendarHTML += `<div class="calendar-day other-month">${prevMonthDay.getDate()}</div>`;
+  for (let i = 0; i < startDay; i++) {
+    html += `<div class="calendar-day other-month"></div>`;
   }
 
   for (let day = 1; day <= daysInMonth; day++) {
-    const dateString = `${currentDate.getFullYear()}-${String(
-      currentDate.getMonth() + 1
-    ).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
-    const hasActivity = monthActivities.some(
-      (activity) => activity.date === dateString
-    );
-
-    calendarHTML += `
-            <div class="calendar-day ${
-              hasActivity ? "has-activity" : ""
-            }" data-date="${dateString}">
-                ${day}
-                ${
-                  hasActivity
-                    ? '<div style="width: 6px; height: 6px; background: white; border-radius: 50%; margin-top: 2px;"></div>'
-                    : ""
-                }
-            </div>
-        `;
+    const date = `${currentDate.getFullYear()}-${String(currentDate.getMonth() + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+    const hasActivity = monthActivities.some((a) => a.date === date);
+    html += `<div class="calendar-day ${hasActivity ? "has-activity" : ""}" data-date="${date}">
+      ${day}${hasActivity ? '<div class="dot"></div>' : ""}
+    </div>`;
   }
 
- 
-  const totalCells = Math.ceil((daysInMonth + startingDayOfWeek) / 7) * 7;
-  const remainingCells = totalCells - (daysInMonth + startingDayOfWeek);
-
-  for (let i = 1; i <= remainingCells; i++) {
-    calendarHTML += `<div class="calendar-day other-month">${i}</div>`;
+  const total = Math.ceil((daysInMonth + startDay) / 7) * 7;
+  const rem = total - (daysInMonth + startDay);
+  for (let i = 0; i < rem; i++) {
+    html += `<div class="calendar-day other-month"></div>`;
   }
 
-  document.getElementById("calendarGrid").innerHTML = calendarHTML;
+  document.getElementById("calendarGrid").innerHTML = html;
 
-
-  document
-    .querySelectorAll(".calendar-day[data-date]")
-    .forEach((dayElement) => {
-      dayElement.addEventListener("click", () => {
-        const date = dayElement.dataset.date;
-        document.getElementById("activityDate").value = date;
-        showModal();
-      });
+  document.querySelectorAll(".calendar-day[data-date]").forEach((el) => {
+    el.addEventListener("click", () => {
+      document.getElementById("activityDate").value = el.dataset.date;
+      showModal();
     });
+  });
 }
 
-function showNotification(message) {
-  const notification = document.createElement("div");
-  notification.style.cssText = `
-        position: fixed;
-        top: 100px;
-        right: 20px;
-        background: var(--primary-green);
-        color: white;
-        padding: 1rem 1.5rem;
-        border-radius: 8px;
-        box-shadow: var(--shadow);
-        z-index: 3000;
-        transform: translateX(100%);
-        transition: transform 0.3s ease;
-    `;
-  notification.textContent = message;
+function countType(type) {
+  return gameData.activities.filter((a) => a.type === type).length;
+}
 
-  document.body.appendChild(notification);
+function showNotification(msg) {
+  const n = document.createElement("div");
+  n.style.cssText = `
+    position: fixed; top: 100px; right: 20px;
+    background: var(--primary-green); color: white;
+    padding: 1rem 1.5rem; border-radius: 8px; box-shadow: var(--shadow);
+    z-index: 3000; transform: translateX(100%);
+    transition: transform 0.3s ease;
+  `;
+  n.textContent = msg;
+  document.body.appendChild(n);
 
+  setTimeout(() => n.style.transform = "translateX(0)", 100);
   setTimeout(() => {
-    notification.style.transform = "translateX(0)";
-  }, 100);
-
-  setTimeout(() => {
-    notification.style.transform = "translateX(100%)";
-    setTimeout(() => {
-      document.body.removeChild(notification);
-    }, 300);
+    n.style.transform = "translateX(100%)";
+    setTimeout(() => document.body.removeChild(n), 300);
   }, 3000);
 }
