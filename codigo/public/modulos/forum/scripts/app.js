@@ -356,7 +356,7 @@ function renderForums(forums) {
 
   forums.forEach((forum) => {
     const forumDiv = document.createElement("div");
-    forumDiv.className = "list-group-item list-group-item-action forum-card";
+    forumDiv.className = "list-group-item list-group-item-action forum-card m-2";
     forumDiv.id = `cardForum${forum.id}`;
     forumDiv.onclick = () => {
       window.location.href = `forum-detalhes.html?id=${forum.id}`;

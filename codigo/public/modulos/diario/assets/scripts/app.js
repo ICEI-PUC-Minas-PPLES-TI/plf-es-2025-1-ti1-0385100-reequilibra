@@ -3,7 +3,7 @@ let statusDiario = '';
 let selectedDiario = '';
 let diarioID = '';
 let boolSelectedDiario = false;
-const apiUrl = '/diario';
+const apiUrl = '/diarios';
 
 function limpaCampos() {
     // Reseta os campos
