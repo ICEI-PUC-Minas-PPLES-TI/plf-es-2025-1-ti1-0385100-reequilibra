@@ -61,44 +61,6 @@
       "favorito": false
     }
   ],
-  "tiposDeAtividade": [
-    {
-      "id": "exercicio",
-      "nome": "Exercício Físico",
-      "xp": 50,
-      "icone": "fas fa-dumbbell"
-    },
-    {
-      "id": "meditacao",
-      "nome": "Meditação",
-      "xp": 30,
-      "icone": "fas fa-om"
-    },
-    {
-      "id": "gratidao",
-      "nome": "Gratidão",
-      "xp": 20,
-      "icone": "fas fa-heart"
-    },
-    {
-      "id": "terapia",
-      "nome": "Sessão de Terapia",
-      "xp": 40,
-      "icone": "fas fa-brain"
-    },
-    {
-      "id": "leitura",
-      "nome": "Leitura",
-      "xp": 25,
-      "icone": "fas fa-book"
-    },
-    {
-      "id": "agua",
-      "nome": "Beber Água",
-      "xp": 10,
-      "icone": "fas fa-tint"
-    }
-  ],
   "artigos": [
     {
       "id": "1",
@@ -162,13 +124,13 @@
       "titulo": "Não aguento não aguentar mais",
       "autor": "Anne Helen Petersen",
       "link": "https://g.co/kgs/yQe2o9g",
-      "id": "f20a"
+      "id": "1432"
     },
     {
       "titulo": "A voz na sua cabeça",
       "autor": "Ethan Kross",
       "link": "https://g.co/kgs/mCH2jiW",
-      "id": "39fa"
+      "id": "3d72"
     }
   ],
   "siteMeditacao": {
@@ -417,11 +379,11 @@
       "anonimo": true
     },
     {
-      "id": "1749684901409",
-      "nome": "aaaa",
-      "email": "aaaa@gmail.com",
-      "senha": "aa",
-      "tipo": "usuario"
+      "id": "a9d3",
+      "login": "fillmello",
+      "senha": "123",
+      "nome": "Filipe",
+      "email": "fliusjkgfjk@gmail.com"
     }
   ],
   "mensagens": [
@@ -439,16 +401,6 @@
       "id": "1",
       "mensagem": "Hoje fiz algo que me deixou feliz",
       "data": "20/05/2025"
-    }
-  ],
-   "cad_artigos": [
-    {
-      "id": "1",
-      "titulo": "Como lidar com a depressão",
-      "data": "22/05/2025",
-      "autor": "João da silva",
-      "categoria": "Depressão",
-      "link": "https://exemplo.com/artigo"
     }
   ],
   "lista_atividades": [
@@ -516,7 +468,7 @@
       "completa": false
     }
   ],
-    "medalhas": [
+  "medalhas": [
     {
       "id": "1",
       "nome": "Iniciante",
@@ -608,35 +560,105 @@
   ],
   "forums": [
     {
-      "id": "4827",
-      "title": "Como lidar com crises no trabalho?",
-      "content": "Dicas para controlar ansiedade no ambiente profissional.",
-      "author": "user123",
-      "comments": [
-        {
-          "id": 5912,
-          "content": "Recomendo técnicas de respiração.",
-          "timeSincePost": "5 minutos atrás",
-          "author": "user456"
-        }
-      ]
+      "id": "1",
+      "title": "Como lidar com crises de ansiedade no trabalho?",
+      "content": "Gostaria de compartilhar e ouvir experiências sobre como vocês lidam com momentos de ansiedade durante o trabalho. Ultimamente tenho sentido muita pressão e isso tem afetado minha produtividade e bem-estar. Quais técnicas vocês utilizam para manter a calma em situações estressantes?",
+      "author": "JoanaP",
+      "createdAt": "2023-12-01T08:30:00.000Z",
+      "isHealthProfessional": false,
+      "commentsCount": 2
+    },
+    {
+      "id": "2",
+      "title": "Dicas para melhorar a qualidade do sono",
+      "content": "Como psicólogo, gostaria de compartilhar algumas técnicas que podem ajudar a melhorar a qualidade do sono. Muitos dos meus pacientes relatam dificuldades para dormir e isso impacta significativamente sua saúde mental. Vamos discutir hábitos saudáveis e estratégias eficazes para uma boa noite de sono.",
+      "author": "Dr. CarlosS",
+      "createdAt": "2023-11-28T19:15:00.000Z",
+      "isHealthProfessional": true,
+      "commentsCount": 2
+    },
+    {
+      "id": "3",
+      "title": "Como ajudar um amigo com depressão???",
+      "content": "Meu amigo está passando por um momento muito difícil e gostaria de saber como posso apoiá-lo da melhor forma. Tenho notado mudanças no comportamento dele e suspeito que possa ser depressão. Como posso abordar o assunto sem ser invasivo e realmente ajudar?",
+      "author": "MariaL",
+      "createdAt": "2023-11-25T11:20:00.000Z",
+      "isHealthProfessional": false,
+      "commentsCount": 2
     }
   ],
-     "toDo": [
+  "memories": [
     {
-      "id": "894a",
-      "titulo": "Lavar Louca",
-      "status": "1"
+      "id": "2",
+      "userId": 1,
+      "imageUrl": "https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=1200&h=400&fit=crop",
+      "caption": "Lendo um bom livro ☕ A leitura sempre foi meu refúgio nos momentos difíceis.",
+      "createdAt": "2024-12-14T15:45:00.000Z"
     },
     {
-      "id": "af0b",
-      "titulo": "Estudar pra prova",
-      "status": "2"
+      "id": "3",
+      "userId": 1,
+      "imageUrl": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1200&h=400&fit=crop",
+      "caption": "Sessão de yoga matinal 🧘‍♀️ Começar o dia cuidando da mente e do corpo faz toda diferença!",
+      "createdAt": "2024-12-13T08:20:00.000Z"
+    }
+  ],
+  "comments": [
+    {
+      "id": "1",
+      "forumId": "1",
+      "content": "Quando sinto ansiedade no trabalho, pratico respiração profunda por 5 minutos. Também ajuda dar uma pequena caminhada, mesmo que seja apenas até o bebedouro.",
+      "author": "PedroM",
+      "isHealthProfessional": false,
+      "createdAt": "2023-12-02T10:15:00.000Z"
     },
     {
-      "id": "4d29",
-      "titulo": "Meditar",
-      "status": "3"
+      "id": "2",
+      "forumId": "1",
+      "content": "Como psicóloga, recomendo a técnica 5-4-3-2-1: identifique 5 coisas que você vê, 4 que pode tocar, 3 que pode ouvir, 2 que pode cheirar e 1 que pode provar. Isso ajuda a ancorar no presente e reduzir a ansiedade.",
+      "author": "Dra. Ana Silva",
+      "isHealthProfessional": true,
+      "createdAt": "2023-12-03T14:30:00.000Z"
+    },
+    {
+      "id": "3",
+      "forumId": "2",
+      "content": "Tenho seguido uma rotina rigorosa de sono e realmente ajudou. Deito e levanto sempre no mesmo horário, mesmo nos fins de semana.",
+      "author": "LucasR",
+      "isHealthProfessional": false,
+      "createdAt": "2023-11-29T08:45:00.000Z"
+    },
+    {
+      "id": "5",
+      "forumId": "2",
+      "content": "Como neurologista especializado em medicina do sono, recomendo fortemente manter o quarto escuro, silencioso e em temperatura agradável (entre 18-20°C). O ambiente tem grande impacto na qualidade do sono.",
+      "author": "Dr. Roberto Menezes",
+      "isHealthProfessional": true,
+      "createdAt": "2023-12-01T11:05:00.000Z"
+    },
+    {
+      "id": "6",
+      "forumId": "3",
+      "content": "O mais importante é ouvir sem julgar. Muitas vezes, só precisamos de alguém que nos escute de verdade. Ofereça sua presença, mas respeite quando a pessoa precisar de espaço.",
+      "author": "Dra. Juliana Costa",
+      "isHealthProfessional": true,
+      "createdAt": "2023-11-26T16:40:00.000Z"
+    },
+    {
+      "id": "1749558073098",
+      "forumId": "3",
+      "author": "asdas",
+      "content": "asdasd",
+      "isHealthProfessional": true,
+      "createdAt": "2025-06-10T12:21:13.098Z"
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "name": "Usuario Teste",
+      "email": "usuario@teste.com",
+      "isHealthProfessional": false
     }
   ]
 }
