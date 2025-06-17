@@ -101,8 +101,14 @@ body {
   color: var(--cor-clara);
 }
 
+#listaDiarios {
+  max-height: 42rem; /* Define a altura máxima da coluna */
+  overflow-y: auto; /* Adiciona barra de rolagem vertical se o conteúdo ultrapassar a altura */
+}
+
 #menuCriarDiario{
   margin-top: 10rem;
+  height: 10px;
 }
 
 #btnStatus1, #btnStatus2, #btnStatus3, #btnStatus4, #btnStatus5{
