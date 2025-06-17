@@ -1,9 +1,10 @@
-const apiUrl = '/cad_artigos';
+const apiUrl = 'http://localhost:3000/cad_artigos';
 
 
-function displayMessage(mensagem) {
+function displayMessage(mensagem, tipo = "warning") {
     const msg = document.getElementById('msg');
-    msg.innerHTML = '<div class="alert alert-warning">' + mensagem + '</div>';
+    msg.innerHTML = `
+    <div class="alert alert-${tipo}">${mensagem}</div>`;
 }
 
 function readArtigo(processaDados) {
@@ -12,58 +13,62 @@ function readArtigo(processaDados) {
         .then(data => processaDados(data))
         .catch(error => {
             console.error('Erro ao ler artigos:', error);
-            displayMessage("Erro ao ler artigos");
+            displayMessage("Erro ao ler artigos", "danger");
         });
 }
 
 function createArtigo(artigo, refreshFunction) {
     fetch(apiUrl, {
         method: 'POST',
-        headers: {'Content-Type': 'application/json'},
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(artigo),
     })
-    .then(response => {
-        if(!response.ok) throw new Error("Erro ao inserir artigo");
-        return response.json();
-    })
-    .then(() => {
-        displayMessage("Artigo inserido com sucesso", "sucess");
-        if (refreshFunction) refreshFunction();
-    })
-    .catch(error => {
-        console.error(error);
-        displayMessage(error.message, "danger");
-    });
+        .then(response => {
+            if (!response.ok) throw new Error("Erro ao inserir artigo");
+            return response.json();
+        })
+        .then(() => {
+            displayMessage("Artigo inserido com sucesso", "success");
+            if (refreshFunction) refreshFunction();
+        })
+        .catch(error => {
+            console.error(error);
+            displayMessage(error.message, "danger");
+        });
 }
 
 function updateArtigo(id, artigo, refreshFunction) {
     fetch(`${apiUrl}/${id}`, {
         method: 'PUT',
-        headers: {'Content-Type': 'application/json'},
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(artigo),
     })
-    .then(response => response.json())
-    .then(() => {
-        displayMessage("Artigo alterado com sucesso");
-        if (refreshFunction) refreshFunction();
-    })
-    .catch(error => {
-        console.error('Erro ao atualizar artigo:', error);
-        displayMessage("Erro ao atualizar artigo");
-    });
+        .then(response => response.json())
+        .then(() => {
+            displayMessage("Artigo alterado com sucesso", "success");
+            if (refreshFunction) refreshFunction();
+        })
+        .catch(error => {
+            console.error('Erro ao atualizar artigo:', error);
+            displayMessage("Erro ao atualizar artigo", "danger");
+        });
 }
 
 function deleteArtigo(id, refreshFunction) {
     fetch(`${apiUrl}/${id}`, { method: 'DELETE' })
-    .then(response => response.json())
-    .then(() => {
-        displayMessage("Artigo removido com sucesso");
-        if (refreshFunction) refreshFunction();
-    })
-    .catch(error => {
-        console.error('Erro ao remover artigo:', error);
-        displayMessage("Erro ao remover artigo");
-    });
+        .then(response => {
+            if (response.status === 404) throw new Error("Artigo não encontrado.");
+            return response.json();
+        })
+
+        .then(() => {
+            displayMessage("Artigo removido com sucesso", "success");
+            if (refreshFunction) refreshFunction();
+        })
+        .catch(error => {
+            console.error('Erro ao remover artigo:', error);
+            displayMessage(error.message, "danger");
+        });
 }
 
 function exibeArtigos() {
@@ -71,17 +76,17 @@ function exibeArtigos() {
     tableArtigos.innerHTML = "";
 
     readArtigo(dados => {
-        for (let i = 0; i < dados.length; i++) {
-            const artigo = dados[i];    
-            tableArtigos.innerHTML += `<tr>
-                <td scope="row">${artigo.id}</td>
+        dados.forEach(artigo => {
+            tableArtigos.innerHTML += `
+            <tr>
+                <td>${artigo.id}</td>
                 <td>${artigo.titulo}</td>
                 <td>${artigo.data}</td>
                 <td>${artigo.autor}</td>
                 <td>${artigo.categoria}</td>
                 <td>${artigo.link}</td>
             </tr>`;
-        }
+        });
     });
 }
 
@@ -91,8 +96,8 @@ function init() {
     const btnUpdate = document.getElementById("btnUpdate");
     const btnDelete = document.getElementById("btnDelete");
     const btnClear = document.getElementById("btnClear");
-    const msg = document.getElementById("msg");
     const gridArtigos = document.getElementById("grid-artigos");
+    const msg = document.getElementById("msg");
 
     btnInsert.addEventListener('click', function () {
         if (!formArtigo.checkValidity()) {
@@ -105,17 +110,19 @@ function init() {
             data: document.getElementById('inputData').value,
             autor: document.getElementById('inputAutor').value,
             categoria: document.getElementById('inputCategoria').value,
-            link: document.getElementById('inputLink').value,
+            link: document.getElementById('inputLink').value
         };
 
-        createArtigo(artigo, exibeArtigos);
-        formArtigo.reset();
+        createArtigo(artigo, () => {
+            exibeArtigos();
+            formArtigo.reset();
+        });
     });
 
     btnUpdate.addEventListener('click', function () {
         const campoId = document.getElementById("inputId").value;
-        if (campoId === "") {
-            displayMessage("Selecione antes um artigo para ser alterado.");
+        if (!campoId) {
+            displayMessage("Selecione um artigo para alterar.");
             return;
         }
 
@@ -127,37 +134,42 @@ function init() {
             link: document.getElementById('inputLink').value
         };
 
-        updateArtigo(parseInt(campoId), artigo, exibeArtigos);
-        formArtigo.reset();
+        updateArtigo(campoId, artigo, () => {
+            exibeArtigos();
+            formArtigo.reset();
+        });
     });
 
     btnDelete.addEventListener('click', function () {
         const campoId = document.getElementById('inputId').value;
-        if (campoId === "") {
-            displayMessage("Selecione um artigo a ser excluído.");
+        if (!campoId) {
+            displayMessage("Selecione um artigo para excluir.");
             return;
         }
 
-        deleteArtigo(campoId, exibeArtigos);
+        deleteArtigo(campoId , () => {
+            exibeArtigos();
+            formArtigo.reset();
+        });
+    });
+
+    btnClear.addEventListener('click', () => {
         formArtigo.reset();
     });
 
-    btnClear.addEventListener('click', function () {
-        formArtigo.reset();
+    const observer = new MutationObserver(() => {
+        const alert = msg.getElementsByClassName("alert");
+        if (alert.length) {
+            setTimeout(() => alert[0].remove(), 5000);
+        }
     });
+    observer.observe(msg, { childList: true });
 
-    msg.addEventListener("DOMSubtreeModified", function (e) {
-        if (e.target.innerHTML === "") return;
-        setTimeout(() => {
-            const alert = msg.getElementsByClassName("alert");
-            if (alert.length) alert[0].remove();
-        }, 5000);
-    });
 
     gridArtigos.addEventListener('click', function (e) {
         if (e.target.tagName === "TD") {
-            const linhaArtigo = e.target.parentNode;
-            const colunas = linhaArtigo.querySelectorAll("td");
+            const linha = e.target.parentNode;
+            const colunas = linha.querySelectorAll("td");
 
             document.getElementById('inputId').value = colunas[0].innerText;
             document.getElementById('inputTitulo').value = colunas[1].innerText;
@@ -165,7 +177,6 @@ function init() {
             document.getElementById('inputAutor').value = colunas[3].innerText;
             document.getElementById('inputCategoria').value = colunas[4].innerText;
             document.getElementById('inputLink').value = colunas[5].innerText;
-           
         }
     });
 
