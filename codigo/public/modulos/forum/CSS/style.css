@@ -29,8 +29,39 @@ body {
 }
 
 /* ========== HEADER ========== */
+
+a.nav-link{
+  padding: 0;
+  font-size: 1rem;
+}
+
+header .nav-link{
+  padding: 5;
+  
+}
+header{
+  padding: 5px;
+  height: 88.09px;
+  font-size: 1rem;
+}
+
+.theme-toggle {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: var(--text-primary);
+}
+
+.theme-toggle:hover {
+  background: var(--primary-green);
+  color: white;
+} 
+
 #header {
-  height: 86px;
+  height: 88.09px;
   box-shadow: 0 2px 10px rgba(0,0,0,0.1);
   position: fixed;
   top: 0;
