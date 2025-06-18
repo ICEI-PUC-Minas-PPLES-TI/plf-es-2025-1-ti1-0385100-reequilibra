@@ -6,19 +6,42 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
+async function buscarEnderecoPorCEP(cep) {
+    if (!cep) return null;
+    
+    try {
+        const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+        if (!response.ok) throw new Error('CEP não encontrado');
+        
+        const data = await response.json();
+        if (data.erro) throw new Error('CEP não encontrado');
+        
+        return `${data.logradouro || ''}, ${data.bairro || ''}, ${data.localidade || ''} - ${data.uf || ''}`.replace(/, , /g, ', ').replace(/, $/, '');
+    } catch (error) {
+        console.error('Erro ao buscar CEP:', error);
+        return null;
+    }
+}
+
 function carregarLtsPsig() {
     let todosPsicologos = [];
     const inputBusca = document.getElementById('input-busca');
     const btnBusca = document.getElementById('btn-busca');
     const container = document.querySelector('.container-psicologos');
 
-    fetch('http://localhost:3000/psicologos')
+    fetch('/psicologos')
         .then(response => {
+            if (!response.ok) throw new Error('Erro ao carregar psicólogos');
             return response.json();
         })
         .then(data => {
             todosPsicologos = data;
-            exibirPsig(data);
+            return Promise.all(data.map(psicologo => 
+                processarImagem(psicologo)
+            ));
+        })
+        .then(psicologosProcessados => {
+            exibirPsig(psicologosProcessados);
             configCardsPsig();
         })
         .catch(error => {
@@ -41,11 +64,36 @@ function carregarLtsPsig() {
         configCardsPsig();
     }
 
+    function processarImagem(psicologo) {
+        return new Promise((resolve) => {
+            if (psicologo.img && (psicologo.img.startsWith('http') || psicologo.img.startsWith('data:'))) {
+                resolve(psicologo);
+                return;
+            }
+
+            if (psicologo.img && psicologo.img.startsWith('data:')) {
+                const img = new Image();
+                img.onload = function() {
+                    psicologo.img = this.src;
+                    resolve(psicologo);
+                };
+                img.onerror = function() {
+                    psicologo.img = 'https://via.placeholder.com/150?text=Sem+Imagem';
+                    resolve(psicologo);
+                };
+                img.src = psicologo.img;
+            } else {
+                psicologo.img = psicologo.img || 'https://via.placeholder.com/150?text=Sem+Imagem';
+                resolve(psicologo);
+            }
+        });
+    }
+
     function exibirPsig(psicologos) {
         container.innerHTML = psicologos.map(p => `
         <div class="card-psicologo" data-id="${p.id}">
             <div class="detalhe-card"></div>
-            <img src="${p.img}" alt="${p.nome}" class="foto-psicologo">
+            <img src="${p.img}" alt="${p.nome}" class="foto-psicologo" onerror="this.src='https://via.placeholder.com/150?text=Sem+Imagem'">
             <div class="card-psicologo-content">
                 <h2 class="nome-psicologo">${p.nome}</h2>
                 <p class="especialidade-psicologo">${p.area_atua}</p>
@@ -55,7 +103,7 @@ function carregarLtsPsig() {
                 </div>
             </div>
         </div>
-    `).join('');
+        `).join('');
     }
 
     function configCardsPsig() {
@@ -71,82 +119,142 @@ function carregarLtsPsig() {
 function carregarDtlPsig() {
     const urlParams = new URLSearchParams(window.location.search);
     const psicologoId = urlParams.get('id');
+    const container = document.querySelector('.detalhes-container');
 
     if (!psicologoId) {
-        document.querySelector('.detalhes-container').innerHTML = '<p>Psicólogo não especificado</p>';
+        container.innerHTML = '<p>Psicólogo não especificado</p>';
         return;
     }
 
-    fetch('http://localhost:3000/psicologos')
+    fetch('/psicologos')
         .then(response => {
+            if (!response.ok) throw new Error('Erro ao carregar psicólogo');
             return response.json();
         })
         .then(data => {
             const psicologo = data.find(p => p.id == psicologoId);
-            if (psicologo) {
-                exibirDtlPsig(psicologo);
-            }
+            if (!psicologo) throw new Error('Psicólogo não encontrado');
+            
+            return processarImagem(psicologo);
+        })
+        .then(psicologo => {
+            return buscarEnderecoCompleto(psicologo);
+        })
+        .then(psicologoComEndereco => {
+            exibirDtlPsig(psicologoComEndereco);
         })
         .catch(error => {
             console.error('Erro:', error);
-            document.querySelector('.detalhes-container').innerHTML = `
+            container.innerHTML = `
                 <div class="erro">
-                    <p>Não foi possível carregar os dados do psicólogo</p>
+                    <p>Não foi possível carregar os dados do psicólogo: ${error.message}</p>
                 </div>
             `;
         });
+
+    function processarImagem(psicologo) {
+        return new Promise((resolve) => {
+            if (psicologo.img && (psicologo.img.startsWith('http') || psicologo.img.startsWith('data:'))) {
+                resolve(psicologo);
+                return;
+            }
+            
+            if (psicologo.img && psicologo.img.startsWith('data:')) {
+                const img = new Image();
+                img.onload = function() {
+                    psicologo.img = this.src;
+                    resolve(psicologo);
+                };
+                img.onerror = function() {
+                    psicologo.img = 'https://via.placeholder.com/300?text=Sem+Imagem';
+                    resolve(psicologo);
+                };
+                img.src = psicologo.img;
+            } else {
+                psicologo.img = psicologo.img || 'https://via.placeholder.com/300?text=Sem+Imagem';
+                resolve(psicologo);
+            }
+        });
+    }
+
+    async function buscarEnderecoCompleto(psicologo) {
+        try {
+            let enderecoCompleto = psicologo.endereco || '';
+            
+            if (psicologo.local_atend.includes('Presencial') && psicologo.cep) {
+                const enderecoViaCEP = await buscarEnderecoPorCEP(psicologo.cep);
+                if (enderecoViaCEP) {
+                    enderecoCompleto = enderecoViaCEP;
+                } else {
+                    enderecoCompleto = enderecoCompleto || 'Endereço não disponível (CEP não encontrado)';
+                }
+            } else if (psicologo.local_atend.includes('Online')) {
+                enderecoCompleto = 'Atendimento Online';
+            }
+            
+            return {
+                ...psicologo,
+                enderecoCompleto: enderecoCompleto || 'Endereço não disponível'
+            };
+        } catch (error) {
+            console.error('Erro ao processar endereço:', error);
+            return {
+                ...psicologo,
+                enderecoCompleto: psicologo.endereco || 'Endereço não disponível'
+            };
+        }
+    }
 }
 
 function exibirDtlPsig(psicologo) {
     const container = document.querySelector('.detalhes-container');
 
     container.innerHTML = `
-            <div class="destaques-psic"></div>
-            <div class="perfil-header">
-                <img src="${psicologo.img}" alt="${psicologo.nome}" class="perfil-img">
-                <div class="perfil-info">
-                    <h1>${psicologo.nome}</h1>
-                    <div class="especialidade-badge">${psicologo.area_atua}</div>
-                    <div class="avaliacao-header">
-                        <i class="fas fa-star"></i>
-                        <span>${psicologo.nota}</span>
-                    </div>
+        <div class="destaques-psic"></div>
+        <div class="perfil-header">
+            <img src="${psicologo.img}" alt="${psicologo.nome}" class="perfil-img" onerror="this.src='https://via.placeholder.com/300?text=Sem+Imagem'">
+            <div class="perfil-info">
+                <h1>${psicologo.nome}</h1>
+                <div class="especialidade-badge">${psicologo.area_atua}</div>
+                <div class="avaliacao-header">
+                    <i class="fas fa-star"></i>
+                    <span>${psicologo.nota}</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="descricao">${psicologo.descricao}</div>
+
+        <div class="info-section">
+            <h2>Agendar Consulta</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <i class="fas fa-id-card info-icon"></i>
+                    <span>CRP: ${psicologo.crp}</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-envelope info-icon"></i>
+                    <span>${psicologo.email}</span>
+                </div>
+                <div class="info-item">
+                    <i class="fab fa-whatsapp info-icon"></i>
+                    <span>${psicologo.whatsapp}</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt info-icon"></i>
+                    <span>${psicologo.enderecoCompleto} (${psicologo.local_atend})</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-calendar-alt info-icon"></i>
+                    <span>${psicologo.horarios}</span>
                 </div>
             </div>
 
-            <div class="descricao">${psicologo.descricao}</div>
-
-            <div class="info-section">
-                <h2>Agendar Consulta</h2>
-                <div class="info-grid">
-                    <div class="info-item">
-                        <i class="fas fa-id-card info-icon"></i>
-                        <span>CRP: ${psicologo.crp}</span>
-                    </div>
-                    <div class="info-item">
-                        <i class="fas fa-envelope info-icon"></i>
-                        <span>${psicologo.email}</span>
-                    </div>
-                    <div class="info-item">
-                        <i class="fab fa-whatsapp info-icon"></i>
-                        <span>${psicologo.whatsapp}</span>
-                    </div>
-                    <div class="info-item">
-                        <i class="fas fa-map-marker-alt info-icon"></i>
-                        <span>${psicologo.endereco} (${psicologo.local_atend})</span>
-                    </div>
-                    <div class="info-item">
-                        <i class="fas fa-calendar-alt info-icon"></i>
-                        <span>${psicologo.horarios}</span>
-                    </div>
-                </div>
-
-                <button class="btn-agendar">Agendar Consulta</button>
-            </div>
+            <button class="btn-agendar">Agendar Consulta</button>
         </div>
     `;
 
-    document.querySelector('.btn-agendar').addEventListener('click', function () {
+    document.querySelector('.btn-agendar')?.addEventListener('click', function () {
         const numero = psicologo.whatsapp.replace(/\D/g, '');
         window.open(`https://wa.me/${numero}`);
     });
