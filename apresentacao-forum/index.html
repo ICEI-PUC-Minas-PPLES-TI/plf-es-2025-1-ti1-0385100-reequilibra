@@ -57,7 +57,7 @@
 
 
             <!-- Slide 3 - Recursos -->            
-            <section class="slide" id="slide2">
+            <section class="slide" id="slide3">
                 <div class="slide-content">
                     <h2>Recursos Principais</h2>
                     <div class="features-grid">
@@ -103,25 +103,72 @@
 
 
             <!-- Slide 4 - Demonstração -->
-            <section class="slide" id="slide3">
+                <section class="slide" id="slide4">
+            <div class="slide-content">
+                <h2>Demonstração Interativa</h2>
+                <div class="demo-container">
+                <div class="forum-mock">
+                    <h3>Tópicos Recentes</h3>
+
+                    <!-- Controles do Fórum -->
+                    <div class="forum-controls">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="searchInput" placeholder="Pesquisar tópicos(Ansiedade,Depressão,Estresse)...">
+                    </div>
+
+                    <div class="sort-box">
+                        <label for="sortSelect">Ordenar por:</label>
+                        <select id="sortSelect">
+                        <option value="">Padrão</option>
+                        <option value="date_desc">Mais recentes</option>
+                        <option value="date_asc">Mais antigos</option>
+                        <option value="likes_desc">Mais curtidos</option>
+                        <option value="comments_desc">Mais comentados</option>
+                        <option value="title_asc">Título (A-Z)</option>
+                        </select>
+                    </div>
+                    </div>
+
+                    <!-- Lista de tópicos -->
+                    <div id="topicList" class="topic-list">
+                    <!-- Tópicos serão carregados aqui -->
+                    </div>
+
+                    <!-- Tópico de demonstração -->
+                    <div class="topic" id="demoTopic">
+                    <!-- Tópico de demonstração será carregado aqui -->
+                    </div>
+                </div>
+
+                <button id="loadDemoBtn" class="demo-btn">
+                    <i class="fas fa-sync-alt"></i> Carregar Tópico de Exemplo
+                </button>
+                
+                <a href="forum.html" class="demo-btn acesso-forum" style="margin-top: 20px;">
+                    <i class="fas fa-door-open"></i> Acessar o Fórum Completo
+                </a>
+
+                </div>
+            </div>
+            </section>            
+
+
+            <!-- Slide 5 - Arquitetura dos Dados -->
+            <section class="slide" id="slide5">
                 <div class="slide-content">
-                    <h2>Demonstração Interativa</h2>
-                    <div class="demo-container">
-                        <div class="forum-mock">
-                            <h3>Tópicos Recentes</h3>
-                            <div class="topic" id="demoTopic">
-                                <!-- Carregado via JavaScript -->
-                            </div>
-                        </div>
-                        <button id="loadDemoBtn" class="demo-btn">
-                            <i class="fas fa-sync-alt"></i> Carregar Tópico de Exemplo
-                        </button>
+                    <h2>Arquitetura dos Dados</h2>
+                    <p>Relacionamento entre usuários, diário emocional e comunidades.</p>
+                    <div class="mockup1">
+                        <img src="assets/mockups/data-diagram.png" alt="Diagrama de dados">
                     </div>
                 </div>
             </section>
+            </main>
 
-            <!-- Slide 5 - Conclusão -->
-            <section class="slide" id="slide4">
+
+            <!-- Slide 6 - Conclusão -->
+            <section class="slide" id="slide6">
                 <div class="slide-content">
                     <h2>Conclusão</h2>
                     <div class="conclusion-box">
@@ -140,18 +187,6 @@
                     </div>
                 </div>
             </section>
-
-            <!-- Slide 6 - Arquitetura dos Dados -->
-            <section class="slide" id="slide5">
-                <div class="slide-content">
-                    <h2>Arquitetura dos Dados</h2>
-                    <p>Relacionamento entre usuários, diário emocional e comunidades.</p>
-                    <div class="mockup1">
-                        <img src="assets/mockups/data-diagram.png" alt="Diagrama de dados">
-                    </div>
-                </div>
-            </section>
-            </main>
 
             <footer class="slide-controls">
                 <button id="prevBtn" class="control-btn">

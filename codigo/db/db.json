@@ -59,16 +59,44 @@
       "status": 2,
       "conteudo": "Hoje foi um dia de descanso total. Fiquei em casa, li um livro e aproveitei para recarregar as energias.",
       "favorito": false
+    }
+  ],
+  "tiposDeAtividade": [
+    {
+      "id": "exercicio",
+      "nome": "Exercício Físico",
+      "xp": 50,
+      "icone": "fas fa-dumbbell"
     },
     {
-      "id": "060b",
-      "userid": "1",
-      "data": "2025-04-24",
-      "titulo": "sei que laDia difícil na faculdade",
-      "publico": false,
-      "status": 1,
-      "conteudo": "Teste",
-      "favorito": false
+      "id": "meditacao",
+      "nome": "Meditação",
+      "xp": 30,
+      "icone": "fas fa-om"
+    },
+    {
+      "id": "gratidao",
+      "nome": "Gratidão",
+      "xp": 20,
+      "icone": "fas fa-heart"
+    },
+    {
+      "id": "terapia",
+      "nome": "Sessão de Terapia",
+      "xp": 40,
+      "icone": "fas fa-brain"
+    },
+    {
+      "id": "leitura",
+      "nome": "Leitura",
+      "xp": 25,
+      "icone": "fas fa-book"
+    },
+    {
+      "id": "agua",
+      "nome": "Beber Água",
+      "xp": 10,
+      "icone": "fas fa-tint"
     }
   ],
   "artigos": [
@@ -387,9 +415,33 @@
       "id": "2",
       "nome": "Anônimo",
       "anonimo": true
+    },
+    {
+      "id": "1749684901409",
+      "nome": "aaaa",
+      "email": "aaaa@gmail.com",
+      "senha": "aa",
+      "tipo": "usuario"
     }
   ],
-  "cad_artigos": [
+  "mensagens": [
+    {
+      "id": "1",
+      "mensagem": "Sou grato pela minha família",
+      "data": "22/05/2025"
+    },
+    {
+      "id": "2",
+      "mensagem": "Agradeço pelos meus amigos",
+      "data": "15/05/2025"
+    },
+    {
+      "id": "1",
+      "mensagem": "Hoje fiz algo que me deixou feliz",
+      "data": "20/05/2025"
+    }
+  ],
+   "cad_artigos": [
     {
       "id": "1",
       "titulo": "Como lidar com a depressão",
@@ -464,7 +516,7 @@
       "completa": false
     }
   ],
-  "medalhas": [
+    "medalhas": [
     {
       "id": "1",
       "nome": "Iniciante",
@@ -570,7 +622,7 @@
       ]
     }
   ],
-  "toDo": [
+     "toDo": [
     {
       "id": "894a",
       "titulo": "Lavar Louca",

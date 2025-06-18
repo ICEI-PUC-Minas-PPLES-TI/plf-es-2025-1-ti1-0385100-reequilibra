@@ -16,6 +16,33 @@
 </head>
 
 <body>
+    <header id="header" class="shadow d-flex bg-white fixed-top">
+        <nav class="container bg-white d-flex justify-content-between align-items-center py-2">
+            <div>
+                <button id="btnsqr" class="btn text-light fs-5 border-0" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#menuMobile" style="width: 60px; height: 60px; background-color: #01AE7D;">
+                    ☰
+                </button>
+            </div>
+            <img src="" alt="logo" style="height: 86px; width: auto;">
+            <div class="d-flex gap-2">
+                <button type="button" class="btn btn-outline-secondary">Login</button>
+                <button id="signup" type="button" class="btn text-white" style="background-color: #01AE7D;">Sign
+                    Up</button>
+            </div>
+        </nav>
+
+        <div class="collapse position-absolute w-100 bg-white shadow-sm" id="menuMobile"
+            style="z-index: 1000; top: 60px;">
+            <div class="p-3">
+                <a href="#" class="d-block text-secondary fs-5 py-2 px-3">Pesquisar</a>
+                <a href="#" class="d-block text-secondary fs-5 py-2 px-3">Sobre Saúde Mental</a>
+                <a href="#" class="d-block text-secondary fs-5 py-2 px-3">Ferramentas de Autocuidado</a>
+                <a href="#" class="d-block text-secondary fs-5 py-2 px-3">Recursos</a>
+                <a href="#" class="d-block text-secondary fs-5 py-2 px-3">Comunidade</a>
+            </div>
+        </div>
+    </header>
     <h1>Cadastro de Artigos</h1>
 
     <div class="container">
