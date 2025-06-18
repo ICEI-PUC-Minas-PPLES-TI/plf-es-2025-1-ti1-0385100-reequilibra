@@ -104,7 +104,7 @@ function loginUser (login, senha) {
 }
 
 // Apaga os dados do usuário corrente no sessionStorage
-function logoutUser () {
+function logoutUser() {
     usuarioCorrente = {};
     sessionStorage.setItem ('usuarioCorrente', JSON.stringify (usuarioCorrente));
     window.location = LOGIN_URL;
