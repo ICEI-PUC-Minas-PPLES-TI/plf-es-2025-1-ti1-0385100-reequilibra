@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
       localStorage.setItem("usuarios", JSON.stringify(usuarios));
 
       alert("Usuário salvo com sucesso!");
-      window.location.href = "login.html"; // Redireciona para login
+      window.location.href = "../modulos/login/login.html"; // Redireciona para login
     });
   }
 

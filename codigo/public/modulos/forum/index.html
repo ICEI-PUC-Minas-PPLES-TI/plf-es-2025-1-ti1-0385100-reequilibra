@@ -272,5 +272,30 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
     <script src="./scripts/app.js"></script>
+
+
+
+
+
+     <!-- FUNCAO VERIFICA LOGIN -->
+
+    <script src="../login/scripts/login.js"></script>
+
+    <script>
+      function verificaUsuarioCorrente() {
+    const usuarioCorrenteJSON = sessionStorage.getItem('usuarioCorrente');
+    if (!usuarioCorrenteJSON || JSON.parse(usuarioCorrenteJSON).login === undefined) {
+        // Redireciona para a página de login se não houver usuário corrente
+        window.location = LOGIN_URL;
+    }
+}
+
+// Refresh Verifica LOGIN
+verificaUsuarioCorrente();
+
+
+// FUNCAO VERIFICA LOGIN
+    </script>
+    
   </body>
 </html>
