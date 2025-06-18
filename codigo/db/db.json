@@ -1,7 +1,7 @@
 {
-  "diario": [
+  "diarios": [
     {
-      "id": "",
+      "id": "1",
       "userid": "1",
       "data": "2025-04-24",
       "titulo": "Dia difícil na faculdade",
@@ -11,17 +11,17 @@
       "favorito": false
     },
     {
-      "id": "",
-      "userid": "1",
-      "data": "2025-04-23",
+      "id": "2",
+      "userid": 1,
+      "data": "17/06/2025",
       "titulo": "Dia tranquilo",
-      "publico": true,
+      "publico": false,
       "status": 2,
       "conteudo": "Hoje foi um dia tranquilo. Consegui estudar bastante e ainda tive tempo para relaxar assistindo minha série favorita.",
-      "favorito": true
+      "favorito": false
     },
     {
-      "id": "",
+      "id": "3",
       "userid": "2",
       "data": "2025-04-22",
       "titulo": "Dia produtivo no trabalho",
@@ -31,7 +31,7 @@
       "favorito": true
     },
     {
-      "id": "",
+      "id": "4",
       "userid": "3",
       "data": "2025-04-21",
       "titulo": "Dia de reflexão",
@@ -41,7 +41,7 @@
       "favorito": false
     },
     {
-      "id": "",
+      "id": "5",
       "userid": "3",
       "data": "2025-04-20",
       "titulo": "Dia de diversão com amigos",
@@ -51,7 +51,7 @@
       "favorito": true
     },
     {
-      "id": "",
+      "id": "6",
       "userid": "3",
       "data": "2025-04-19",
       "titulo": "Dia de descanso",

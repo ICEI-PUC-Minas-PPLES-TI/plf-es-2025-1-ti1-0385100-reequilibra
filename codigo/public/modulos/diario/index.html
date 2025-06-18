@@ -85,21 +85,22 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
   
-  <script src="../login/scripts/login.js"></script>
-
   <script>
 
-function verificaUsuarioCorrente() {
-    const usuarioCorrenteJSON = sessionStorage.getItem('usuarioCorrente');
-    if (!usuarioCorrenteJSON || JSON.parse(usuarioCorrenteJSON).login === undefined) {
-        // Redireciona para a página de login se não houver usuário corrente
-        window.location = LOGIN_URL;
-    }
-}
-
-// Refresh Verifica LOGIN
-verificaUsuarioCorrente();
-
+      // Função para verificar se o usuário está logado
+      function verificaUsuarioCorrente() {
+        const usuarioCorrenteJSON = localStorage.getItem("usuarioLogado");
+        if (!usuarioCorrenteJSON) {
+          // Salva a URL original antes de redirecionar para o login
+          sessionStorage.setItem("urlDestino", window.location.href);
+          window.location.href = "../login/login.html"; // Redireciona para login
+        }
+      }
+    
+      // Chama a função imediatamente ao carregar a página
+      verificaUsuarioCorrente();
+     
+ 
 
 
     document.getElementById('diario1').innerHTML = '';
@@ -144,5 +145,7 @@ verificaUsuarioCorrente();
   
 
   <script src="assets/scripts/app.js"></script>
+  <script src="../login/scripts/login.js"></script>
+
 </body>
 </html>

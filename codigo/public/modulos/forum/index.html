@@ -279,23 +279,22 @@
 
      <!-- FUNCAO VERIFICA LOGIN -->
 
-    <script src="../login/scripts/login.js"></script>
-
-    <script>
+     
+     <script>
+      // Função para verificar se o usuário está logado
       function verificaUsuarioCorrente() {
-    const usuarioCorrenteJSON = sessionStorage.getItem('usuarioCorrente');
-    if (!usuarioCorrenteJSON || JSON.parse(usuarioCorrenteJSON).login === undefined) {
-        // Redireciona para a página de login se não houver usuário corrente
-        window.location = LOGIN_URL;
-    }
-}
-
-// Refresh Verifica LOGIN
-verificaUsuarioCorrente();
-
-
-// FUNCAO VERIFICA LOGIN
-    </script>
+        const usuarioCorrenteJSON = localStorage.getItem("usuarioLogado");
+        if (!usuarioCorrenteJSON) {
+          // Salva a URL original antes de redirecionar para o login
+          sessionStorage.setItem("urlDestino", window.location.href);
+          window.location.href = "../login/login.html"; // Redireciona para login
+        }
+      }
     
+      // Chama a função imediatamente ao carregar a página
+      verificaUsuarioCorrente();
+    </script>
+        <script src="../login/scripts/login.js"></script>
+
   </body>
 </html>

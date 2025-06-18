@@ -18,6 +18,7 @@
 // Página inicial de Login
 const LOGIN_URL = "../login/login.html";
 const apiUrl = '/usuarios';
+const urlDestino = sessionStorage.getItem('urlDestino') || '../index.html';
 
 // Objeto para o banco de dados de usuários baseado em JSON
 var db_usuarios = {};
@@ -90,6 +91,7 @@ function loginUser (login, senha) {
 
             // Salva os dados do usuário corrente no Session Storage, mas antes converte para string
             sessionStorage.setItem ('usuarioCorrente', JSON.stringify (usuarioCorrente));
+            window.location.href = urlDestino;
 
             // Retorna true para usuário encontrado
             return true;
