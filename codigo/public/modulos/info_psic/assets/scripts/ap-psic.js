@@ -6,21 +6,28 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-async function buscarEnderecoPorCEP(cep) {
-    if (!cep) return null;
+function buscarEnderecoPorCEP(cep) {
+    if (!cep) return Promise.resolve(null);
     
-    try {
-        const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
-        if (!response.ok) throw new Error('CEP não encontrado');
-        
-        const data = await response.json();
-        if (data.erro) throw new Error('CEP não encontrado');
-        
-        return `${data.logradouro || ''}, ${data.bairro || ''}, ${data.localidade || ''} - ${data.uf || ''}`.replace(/, , /g, ', ').replace(/, $/, '');
-    } catch (error) {
-        console.error('Erro ao buscar CEP:', error);
-        return null;
-    }
+    return fetch(`https://viacep.com.br/ws/${cep}/json/`)
+        .then(response => {
+            if (!response.ok) {
+                console.error('CEP não encontrado');
+                return null;
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.erro) {
+                console.error('CEP não encontrado');
+                return null;
+            }
+            return `${data.logradouro || ''}, ${data.bairro || ''}, ${data.localidade || ''} - ${data.uf || ''}`.replace(/, , /g, ', ').replace(/, $/, '');
+        })
+        .catch(error => {
+            console.error('Erro ao buscar CEP:', error);
+            return null;
+        });
 }
 
 function carregarLtsPsig() {
@@ -31,14 +38,16 @@ function carregarLtsPsig() {
 
     fetch('/psicologos')
         .then(response => {
-            if (!response.ok) throw new Error('Erro ao carregar psicólogos');
+            if (!response.ok) {
+                console.error('Erro ao carregar psicólogos');
+                container.innerHTML = '<div class="erro">Não foi possível carregar os psicólogos</div>';
+                return [];
+            }
             return response.json();
         })
         .then(data => {
             todosPsicologos = data;
-            return Promise.all(data.map(psicologo => 
-                processarImagem(psicologo)
-            ));
+            return Promise.all(data.map(psicologo => processarImagem(psicologo)));
         })
         .then(psicologosProcessados => {
             exibirPsig(psicologosProcessados);
@@ -128,28 +137,34 @@ function carregarDtlPsig() {
 
     fetch('/psicologos')
         .then(response => {
-            if (!response.ok) throw new Error('Erro ao carregar psicólogo');
+            if (!response.ok) {
+                console.error('Erro ao carregar psicólogo');
+                container.innerHTML = '<div class="erro">Não foi possível carregar os dados do psicólogo</div>';
+                return [];
+            }
             return response.json();
         })
         .then(data => {
             const psicologo = data.find(p => p.id == psicologoId);
-            if (!psicologo) throw new Error('Psicólogo não encontrado');
-            
+            if (!psicologo) {
+                console.error('Psicólogo não encontrado');
+                container.innerHTML = '<div class="erro">Psicólogo não encontrado</div>';
+                return null;
+            }
             return processarImagem(psicologo);
         })
         .then(psicologo => {
+            if (!psicologo) return null;
             return buscarEnderecoCompleto(psicologo);
         })
         .then(psicologoComEndereco => {
-            exibirDtlPsig(psicologoComEndereco);
+            if (psicologoComEndereco) {
+                exibirDtlPsig(psicologoComEndereco);
+            }
         })
         .catch(error => {
             console.error('Erro:', error);
-            container.innerHTML = `
-                <div class="erro">
-                    <p>Não foi possível carregar os dados do psicólogo: ${error.message}</p>
-                </div>
-            `;
+            container.innerHTML = '<div class="erro">Não foi possível carregar os dados do psicólogo</div>';
         });
 
     function processarImagem(psicologo) {
@@ -177,32 +192,38 @@ function carregarDtlPsig() {
         });
     }
 
-    async function buscarEnderecoCompleto(psicologo) {
-        try {
+    function buscarEnderecoCompleto(psicologo) {
+        if (!psicologo.local_atend.includes('Presencial') || !psicologo.cep) {
             let enderecoCompleto = psicologo.endereco || '';
-            
-            if (psicologo.local_atend.includes('Presencial') && psicologo.cep) {
-                const enderecoViaCEP = await buscarEnderecoPorCEP(psicologo.cep);
+            if (psicologo.local_atend.includes('Online')) {
+                enderecoCompleto = 'Atendimento Online';
+            }
+            return Promise.resolve({
+                ...psicologo,
+                enderecoCompleto: enderecoCompleto || 'Endereço não disponível'
+            });
+        }
+
+        return buscarEnderecoPorCEP(psicologo.cep)
+            .then(enderecoViaCEP => {
+                let enderecoCompleto = psicologo.endereco || '';
                 if (enderecoViaCEP) {
                     enderecoCompleto = enderecoViaCEP;
                 } else {
                     enderecoCompleto = enderecoCompleto || 'Endereço não disponível (CEP não encontrado)';
                 }
-            } else if (psicologo.local_atend.includes('Online')) {
-                enderecoCompleto = 'Atendimento Online';
-            }
-            
-            return {
-                ...psicologo,
-                enderecoCompleto: enderecoCompleto || 'Endereço não disponível'
-            };
-        } catch (error) {
-            console.error('Erro ao processar endereço:', error);
-            return {
-                ...psicologo,
-                enderecoCompleto: psicologo.endereco || 'Endereço não disponível'
-            };
-        }
+                return {
+                    ...psicologo,
+                    enderecoCompleto: enderecoCompleto
+                };
+            })
+            .catch(error => {
+                console.error('Erro ao processar endereço:', error);
+                return {
+                    ...psicologo,
+                    enderecoCompleto: psicologo.endereco || 'Endereço não disponível'
+                };
+            });
     }
 }
 
@@ -210,8 +231,8 @@ function exibirDtlPsig(psicologo) {
     const container = document.querySelector('.detalhes-container');
 
     container.innerHTML = `
-        <div class="destaques-psic"></div>
-        <div class="perfil-header">
+    <div class="destaques-psic"></div>
+    <div class="perfil-header">
             <img src="${psicologo.img}" alt="${psicologo.nome}" class="perfil-img" onerror="this.src='https://via.placeholder.com/300?text=Sem+Imagem'">
             <div class="perfil-info">
                 <h1>${psicologo.nome}</h1>
