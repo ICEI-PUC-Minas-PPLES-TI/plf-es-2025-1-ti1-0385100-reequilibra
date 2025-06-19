@@ -4,6 +4,11 @@
   box-sizing: border-box;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 :root {
 
   --primary-green: #01ae7d;
@@ -61,6 +66,12 @@ body {
   color: var(--primary-green);
 }
 
+
+header{
+  padding: 5px;
+  height: 88.09px;
+  font-size: 1rem;
+}
 
 .header {
   position: fixed;

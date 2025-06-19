@@ -3,7 +3,7 @@ let statusDiario = '';
 let selectedDiario = '';
 let diarioID = '';
 let boolSelectedDiario = false;
-const apiUrl = 'https://12d88d11-bf7c-4a60-adc6-de173aa536e8-00-2r4bfxqpkwg9l.kirk.replit.dev/diario';
+const apiUrl = '/diarios';
 
 function limpaCampos() {
     // Reseta os campos

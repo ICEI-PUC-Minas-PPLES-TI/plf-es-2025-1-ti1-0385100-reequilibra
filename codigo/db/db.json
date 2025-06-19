@@ -1,7 +1,7 @@
 {
-  "diario": [
+  "diarios": [
     {
-      "id": "",
+      "id": "1",
       "userid": "1",
       "data": "2025-04-24",
       "titulo": "Dia difícil na faculdade",
@@ -11,17 +11,17 @@
       "favorito": false
     },
     {
-      "id": "",
-      "userid": "1",
-      "data": "2025-04-23",
+      "id": "2",
+      "userid": 1,
+      "data": "17/06/2025",
       "titulo": "Dia tranquilo",
-      "publico": true,
+      "publico": false,
       "status": 2,
       "conteudo": "Hoje foi um dia tranquilo. Consegui estudar bastante e ainda tive tempo para relaxar assistindo minha série favorita.",
-      "favorito": true
+      "favorito": false
     },
     {
-      "id": "",
+      "id": "3",
       "userid": "2",
       "data": "2025-04-22",
       "titulo": "Dia produtivo no trabalho",
@@ -31,7 +31,7 @@
       "favorito": true
     },
     {
-      "id": "",
+      "id": "4",
       "userid": "3",
       "data": "2025-04-21",
       "titulo": "Dia de reflexão",
@@ -41,7 +41,7 @@
       "favorito": false
     },
     {
-      "id": "",
+      "id": "5",
       "userid": "3",
       "data": "2025-04-20",
       "titulo": "Dia de diversão com amigos",
@@ -51,7 +51,7 @@
       "favorito": true
     },
     {
-      "id": "",
+      "id": "6",
       "userid": "3",
       "data": "2025-04-19",
       "titulo": "Dia de descanso",
@@ -61,54 +61,7 @@
       "favorito": false
     }
   ],
-  "tiposDeAtividade": [
-    {
-      "id": "exercicio",
-      "nome": "Exercício Físico",
-      "xp": 50,
-      "icone": "fas fa-dumbbell"
-    },
-    {
-      "id": "meditacao",
-      "nome": "Meditação",
-      "xp": 30,
-      "icone": "fas fa-om"
-    },
-    {
-      "id": "gratidao",
-      "nome": "Gratidão",
-      "xp": 20,
-      "icone": "fas fa-heart"
-    },
-    {
-      "id": "terapia",
-      "nome": "Sessão de Terapia",
-      "xp": 40,
-      "icone": "fas fa-brain"
-    },
-    {
-      "id": "leitura",
-      "nome": "Leitura",
-      "xp": 25,
-      "icone": "fas fa-book"
-    },
-    {
-      "id": "agua",
-      "nome": "Beber Água",
-      "xp": 10,
-      "icone": "fas fa-tint"
-    }
-  ],
   "artigos": [
-    {
-      "id": "1",
-      "titulo": "Considerações gerais sobre transtornos de ansiedade",
-      "data": "08/2023",
-      "autor": "John W. Barnhill",
-      "categoria_id": "1",
-      "texto": "A ansiedade é uma reação normal a uma ameaça ou a um estresse psicológico. A ansiedade normal tem sua raiz no medo e desempenha um importante papel na sobrevivência. Quando uma pessoa se vê perante uma situação perigosa, a ansiedade desencadeia uma resposta de luta ou fuga. Com essa resposta, entra em curso uma variedade de alterações físicas, como uma maior irrigação sanguínea para o coração e para os músculos para proporcionar ao corpo a energia e a força necessárias para enfrentar situações de risco à vida, como fugir de um animal agressivo ou enfrentar um agressor. A ansiedade pode ajudar a pessoa a se adaptar a fatores estressantes mais comuns, motivando-a a se preparar, praticar e ensaiar. Ela pode até mesmo levar uma pessoa a abordar situações possivelmente perigosas com a devida cautela.",
-      "link": "https://www.msdmanuals.com/pt/casa/dist%C3%BArbios-de-sa%C3%BAde-mental/transtornos-de-ansiedade-e-relacionados-a-fatores-estressantes/considera%C3%A7%C3%B5es-gerais-sobre-transtornos-de-ansiedade"
-    },
     {
       "id": "2",
       "titulo": "Depressão:Desafios e tratamento",
@@ -117,15 +70,6 @@
       "categoria_id": "4",
       "texto": "O transtorno depressivo maior, frequentemente conhecido como depressão, é a forma mais reconhecida entre os transtornos depressivos. Os sintomas característicos dessa condição incluem um humor persistente de tristeza, diminuição do interesse nas atividades,  distúrbios  no  sono,  agitação  ou  lentidão  psicomotora,  cansaço  extremo,  e sentimentos de inutilidade ou culpa desproporcional, entre outros.(LOCH et al.,2024).A   depressão   é   um transtorno   de   humor   que   impacta   profundamente   a capacidade de uma pessoa de desempenhar suas atividades diárias e interagir com os outros. Os sintomas da depressão estão frequentemente ligados a uma diminuição nas funções cognitivas. Essa condição pode afetar áreas cognitivas como a aprendizagem e a memória, a atenção e a concentração, as funções executivas, bem como a velocidade de processamento mental.(OLIVEIRAet al., 2024).",
       "link": "https://bjihs.emnuvens.com.br/bjihs/article/view/3107"
-    },
-    {
-      "id": "3",
-      "titulo": "Autocuidado e qualidade de vida",
-      "data": "15/04/2025",
-      "autor": "Yassana MarvilaGirondoli/Mirian Cardoso de Rezende Soares",
-      "categoria_id": "3",
-      "texto": "Autocuidado, como o próprio nome esclarece, é cuidar de si mesmo. É dedicar um tempo para si, mesmo em meio a rotinas e obrigações diárias. A atenção que cada um despende para si é muito importante para ter uma qualidade de vida satisfatória, visto que os principais aspectos do autocuidado é reconhecer as necessidades físicas, mentais e emocionais e, a partir daí, dedicar-se ao atendimento de tais necessidades.<br>Quando os indivíduos mantêm uma rotina de autocuidado, observa-se a busca por hábitos saudáveis,melhora no estilo de vida, adoção de medidas de promoção da saúde e prevenção de doenças. <br>Essa prática traz benefícios para a saúde física, mental e emocional e, consequentemente, melhora a produtividade, os relacionamentos interpessoais e a autoestima. O autocuidado está intimamente ligado à autoestima e ao autoconhecimento, visto que estes elementos fortalecem a confiança do indivíduo em si mesmo, impacta suas decisões diárias e proporciona o conhecimento dos limites do corpo e da mente. Com isso, é possível estabelecer um cuidado diário conforme suas demandas e características pessoais.",
-      "link": "https://prodi.ifes.edu.br/images/stories/Autocuidado_e_Qualidade_de_Vida.pdf"
     }
   ],
   "favoritos": [
@@ -162,13 +106,13 @@
       "titulo": "Não aguento não aguentar mais",
       "autor": "Anne Helen Petersen",
       "link": "https://g.co/kgs/yQe2o9g",
-      "id": "f20a"
+      "id": "1432"
     },
     {
       "titulo": "A voz na sua cabeça",
       "autor": "Ethan Kross",
       "link": "https://g.co/kgs/mCH2jiW",
-      "id": "39fa"
+      "id": "3d72"
     }
   ],
   "siteMeditacao": {
@@ -417,11 +361,11 @@
       "anonimo": true
     },
     {
-      "id": "1749684901409",
-      "nome": "aaaa",
-      "email": "aaaa@gmail.com",
-      "senha": "aa",
-      "tipo": "usuario"
+      "id": "a9d3",
+      "login": "fillmello",
+      "senha": "123",
+      "nome": "Filipe",
+      "email": "fliusjkgfjk@gmail.com"
     }
   ],
   "mensagens": [
@@ -439,16 +383,6 @@
       "id": "1",
       "mensagem": "Hoje fiz algo que me deixou feliz",
       "data": "20/05/2025"
-    }
-  ],
-   "cad_artigos": [
-    {
-      "id": "1",
-      "titulo": "Como lidar com a depressão",
-      "data": "22/05/2025",
-      "autor": "João da silva",
-      "categoria": "Depressão",
-      "link": "https://exemplo.com/artigo"
     }
   ],
   "lista_atividades": [
@@ -516,7 +450,7 @@
       "completa": false
     }
   ],
-    "medalhas": [
+  "medalhas": [
     {
       "id": "1",
       "nome": "Iniciante",
@@ -608,35 +542,105 @@
   ],
   "forums": [
     {
-      "id": "4827",
-      "title": "Como lidar com crises no trabalho?",
-      "content": "Dicas para controlar ansiedade no ambiente profissional.",
-      "author": "user123",
-      "comments": [
-        {
-          "id": 5912,
-          "content": "Recomendo técnicas de respiração.",
-          "timeSincePost": "5 minutos atrás",
-          "author": "user456"
-        }
-      ]
+      "id": "1",
+      "title": "Como lidar com crises de ansiedade no trabalho?",
+      "content": "Gostaria de compartilhar e ouvir experiências sobre como vocês lidam com momentos de ansiedade durante o trabalho. Ultimamente tenho sentido muita pressão e isso tem afetado minha produtividade e bem-estar. Quais técnicas vocês utilizam para manter a calma em situações estressantes?",
+      "author": "JoanaP",
+      "createdAt": "2023-12-01T08:30:00.000Z",
+      "isHealthProfessional": false,
+      "commentsCount": 2
+    },
+    {
+      "id": "2",
+      "title": "Dicas para melhorar a qualidade do sono",
+      "content": "Como psicólogo, gostaria de compartilhar algumas técnicas que podem ajudar a melhorar a qualidade do sono. Muitos dos meus pacientes relatam dificuldades para dormir e isso impacta significativamente sua saúde mental. Vamos discutir hábitos saudáveis e estratégias eficazes para uma boa noite de sono.",
+      "author": "Dr. CarlosS",
+      "createdAt": "2023-11-28T19:15:00.000Z",
+      "isHealthProfessional": true,
+      "commentsCount": 2
+    },
+    {
+      "id": "3",
+      "title": "Como ajudar um amigo com depressão???",
+      "content": "Meu amigo está passando por um momento muito difícil e gostaria de saber como posso apoiá-lo da melhor forma. Tenho notado mudanças no comportamento dele e suspeito que possa ser depressão. Como posso abordar o assunto sem ser invasivo e realmente ajudar?",
+      "author": "MariaL",
+      "createdAt": "2023-11-25T11:20:00.000Z",
+      "isHealthProfessional": false,
+      "commentsCount": 2
     }
   ],
-     "toDo": [
+  "memories": [
     {
-      "id": "894a",
-      "titulo": "Lavar Louca",
-      "status": "1"
+      "id": "2",
+      "userId": 1,
+      "imageUrl": "https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=1200&h=400&fit=crop",
+      "caption": "Lendo um bom livro ☕ A leitura sempre foi meu refúgio nos momentos difíceis.",
+      "createdAt": "2024-12-14T15:45:00.000Z"
     },
     {
-      "id": "af0b",
-      "titulo": "Estudar pra prova",
-      "status": "2"
+      "id": "3",
+      "userId": 1,
+      "imageUrl": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1200&h=400&fit=crop",
+      "caption": "Sessão de yoga matinal 🧘‍♀️ Começar o dia cuidando da mente e do corpo faz toda diferença!",
+      "createdAt": "2024-12-13T08:20:00.000Z"
+    }
+  ],
+  "comments": [
+    {
+      "id": "1",
+      "forumId": "1",
+      "content": "Quando sinto ansiedade no trabalho, pratico respiração profunda por 5 minutos. Também ajuda dar uma pequena caminhada, mesmo que seja apenas até o bebedouro.",
+      "author": "PedroM",
+      "isHealthProfessional": false,
+      "createdAt": "2023-12-02T10:15:00.000Z"
     },
     {
-      "id": "4d29",
-      "titulo": "Meditar",
-      "status": "3"
+      "id": "2",
+      "forumId": "1",
+      "content": "Como psicóloga, recomendo a técnica 5-4-3-2-1: identifique 5 coisas que você vê, 4 que pode tocar, 3 que pode ouvir, 2 que pode cheirar e 1 que pode provar. Isso ajuda a ancorar no presente e reduzir a ansiedade.",
+      "author": "Dra. Ana Silva",
+      "isHealthProfessional": true,
+      "createdAt": "2023-12-03T14:30:00.000Z"
+    },
+    {
+      "id": "3",
+      "forumId": "2",
+      "content": "Tenho seguido uma rotina rigorosa de sono e realmente ajudou. Deito e levanto sempre no mesmo horário, mesmo nos fins de semana.",
+      "author": "LucasR",
+      "isHealthProfessional": false,
+      "createdAt": "2023-11-29T08:45:00.000Z"
+    },
+    {
+      "id": "5",
+      "forumId": "2",
+      "content": "Como neurologista especializado em medicina do sono, recomendo fortemente manter o quarto escuro, silencioso e em temperatura agradável (entre 18-20°C). O ambiente tem grande impacto na qualidade do sono.",
+      "author": "Dr. Roberto Menezes",
+      "isHealthProfessional": true,
+      "createdAt": "2023-12-01T11:05:00.000Z"
+    },
+    {
+      "id": "6",
+      "forumId": "3",
+      "content": "O mais importante é ouvir sem julgar. Muitas vezes, só precisamos de alguém que nos escute de verdade. Ofereça sua presença, mas respeite quando a pessoa precisar de espaço.",
+      "author": "Dra. Juliana Costa",
+      "isHealthProfessional": true,
+      "createdAt": "2023-11-26T16:40:00.000Z"
+    },
+    {
+      "id": "1749558073098",
+      "forumId": "3",
+      "author": "asdas",
+      "content": "asdasd",
+      "isHealthProfessional": true,
+      "createdAt": "2025-06-10T12:21:13.098Z"
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "name": "Usuario Teste",
+      "email": "usuario@teste.com",
+      "isHealthProfessional": false
     }
   ]
 }

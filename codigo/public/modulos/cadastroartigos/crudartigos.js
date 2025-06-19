@@ -1,4 +1,4 @@
-const apiUrl = 'http://localhost:3000/cad_artigos';
+const apiUrl = 'http://localhost:3000/artigos';
 
 
 function displayMessage(mensagem, tipo = "warning") {
@@ -160,7 +160,7 @@ function init() {
     const observer = new MutationObserver(() => {
         const alert = msg.getElementsByClassName("alert");
         if (alert.length) {
-            setTimeout(() => alert[0].remove(), 5000);
+            setTimeout(() => alert[0].remove(), 80000);
         }
     });
     observer.observe(msg, { childList: true });
