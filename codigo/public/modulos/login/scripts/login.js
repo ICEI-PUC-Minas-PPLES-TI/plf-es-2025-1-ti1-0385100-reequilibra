@@ -16,9 +16,10 @@
 
 
 // Página inicial de Login
-const LOGIN_URL = "../login/login.html";
+let usuarioLogado = localStorage.getItem('usuarioLogado');
+const LOGIN_URL = `${window.location.origin}/modulos/login/login.html`;
+const urlDestino = sessionStorage.getItem('urlDestino') || `${window.location.origin}/index.html`;
 const apiUrl = '/usuarios';
-const urlDestino = sessionStorage.getItem('urlDestino') || '../index.html';
 
 // Objeto para o banco de dados de usuários baseado em JSON
 var db_usuarios = {};
@@ -104,10 +105,13 @@ function loginUser (login, senha) {
 }
 
 // Apaga os dados do usuário corrente no sessionStorage
+
+
 function logoutUser() {
-    usuarioCorrente = {};
-    sessionStorage.setItem ('usuarioCorrente', JSON.stringify (usuarioCorrente));
-    window.location = LOGIN_URL;
+    localStorage.removeItem('usuarioLogado');
+    usuarioCorrente = '';
+    sessionStorage.setItem('usuarioCorrente', JSON.stringify(usuarioCorrente));
+    window.location.href = LOGIN_URL; // Usa o caminho absoluto ou dinâmico
 }
 
 function addUser (nome, login, senha, email) {
