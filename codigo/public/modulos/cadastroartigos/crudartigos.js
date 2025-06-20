@@ -1,4 +1,4 @@
-const apiUrl = 'http://localhost:3000/artigos';
+const apiUrl = 'http://localhost:3000/cad_artigos';
 
 
 function displayMessage(mensagem, tipo = "warning") {

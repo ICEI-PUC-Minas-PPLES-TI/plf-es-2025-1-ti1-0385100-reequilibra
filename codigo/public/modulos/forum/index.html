@@ -27,13 +27,14 @@
   </head>
   <body>
  
+    <script src="../login/scripts/login.js"></script>
     
     <!-- HEADER -->
     <header class="header">
       <nav class="nav">
         <div class="nav-brand">
           <a href="../../index.html">
-            <img style="height: 81px;"
+            <img
               src="../../assets/images/logo.png"
               alt="Reequilibra"
               class="logo"
@@ -48,15 +49,22 @@
         </div>
         <div class="nav-actions">
           <a
+            id="loginBtn"
             href="./modulos/login/login.html"
             class="nav-link"
             >Login</a
           >
           <a
+            id="signupBtn"
             href="./modulos/login/cadastro.html"
             class="btn btn-outline"
             >Cadastro</a
           >
+          <a
+          id="logoutBtn"
+          onclick="logoutUser()" 
+          class="btn btn-danger"
+          >Logout</a>
           <button
             class="theme-toggle"
             id="themeToggle"
@@ -296,7 +304,7 @@
       // Chama a função imediatamente ao carregar a página
       verificaUsuarioCorrente();
     </script>
-        <script src="../login/scripts/login.js"></script>
+        <script src="../../assets/js/app.js"></script>
 
   </body>
 </html>

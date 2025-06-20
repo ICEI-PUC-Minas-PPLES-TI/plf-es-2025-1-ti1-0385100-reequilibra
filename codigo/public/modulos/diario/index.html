@@ -27,6 +27,7 @@
   </head>
   <body>
  
+    <script src="../login/scripts/login.js"></script>
     
     <!-- HEADER -->
     <header class="header">
@@ -41,22 +42,29 @@
           </a>
         </div>
         <div class="nav-menu" id="navMenu">
-          <a href="#home" class=" nav-link">Início</a>
+          <a href="#home" class="nav-link">Início</a>
           <a href="#about" class="nav-link">Sobre</a>
           <a href="#services" class="nav-link">Serviços</a>
           <a href="#testimonials" class="nav-link">Depoimentos</a>
         </div>
         <div class="nav-actions">
           <a
+            id="loginBtn"
             href="./modulos/login/login.html"
             class="nav-link"
             >Login</a
           >
           <a
+            id="signupBtn"
             href="./modulos/login/cadastro.html"
             class="btn btn-outline"
             >Cadastro</a
           >
+          <a
+          id="logoutBtn"
+          onclick="logoutUser()" 
+          class="btn btn-danger"
+          >Logout</a>
           <button
             class="theme-toggle"
             id="themeToggle"
@@ -76,7 +84,7 @@
 
 
 
-  <main class="container" style="margin-top: 100px;">
+  <main class="container" style=" margin-top: 100px;">
     <div id="menuCriarDiario" class="row">
       <!-- COLUNA 1 -->
       <div class="col-lg-8 bg-white p-4">
@@ -105,7 +113,7 @@
       </div>
 
       <!-- COLUNA 2 -->
-      <div class="col-lg-4 bg-light p-4">
+      <div id="coluna2" class="col-lg-4 bg-light p-4">
         <div class="d-flex justify-content-between mb-3">
           <h3>Meus Diários</h3>
           <div>
@@ -183,9 +191,8 @@
 
        
   
+  <script src="../../assets/js/app.js"></script>
 
-  <script src="assets/scripts/app.js"></script>
-  <script src="../login/scripts/login.js"></script>
 
 </body>
 </html>
