@@ -284,7 +284,8 @@
         gap: 1.5rem;
     }
 
-    .btn-agendar, .btn-voltar {
+    .btn-agendar,
+    .btn-voltar {
         width: 100%;
         text-align: center;
     }
@@ -302,7 +303,7 @@
         grid-template-columns: 1fr;
     }
 
-    .avaliacao-header{
+    .avaliacao-header {
         justify-content: center;
     }
 

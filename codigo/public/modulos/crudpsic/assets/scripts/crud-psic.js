@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function () {
             })
             .then(function (psicologos) {
                 if (!psicologos) return;
-                
+
                 tabelaBody.innerHTML = '';
 
                 psicologos.forEach(function (psicologo) {
@@ -152,7 +152,7 @@ document.addEventListener('DOMContentLoaded', function () {
             })
             .then(function (psicologo) {
                 if (!psicologo) return;
-                
+
                 psicologoEmEdicao = psicologo;
 
                 document.getElementById('psicologoId').value = psicologo.id;
