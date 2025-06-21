@@ -351,16 +351,6 @@
   ],
   "usuarios": [
     {
-      "id": "1",
-      "nome": "Fabio",
-      "anonimo": false
-    },
-    {
-      "id": "2",
-      "nome": "Anônimo",
-      "anonimo": true
-    },
-    {
       "id": "a9d3",
       "login": "fillmello",
       "senha": "123",
