@@ -22,6 +22,7 @@
 /* ========== ESTILO GLOBAL ========== */
 body {
   background-color: var(--cor-fundo);
+  font-family: "Segoe UI", system-ui, sans-serif;
   color: var(--cor-texto);
   line-height: 1.6;
 }

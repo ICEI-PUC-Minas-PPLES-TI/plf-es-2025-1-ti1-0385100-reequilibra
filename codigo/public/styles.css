@@ -28,7 +28,7 @@ a {
 }
 
 [data-theme="dark"] {
-  --background: #0f0f0f;
+  --background: #1A1A1A;
   --surface: #1a1a1a;
   --surface-elevated: #262626;
   --text-primary: #ffffff;
@@ -39,6 +39,12 @@ a {
   --shadow-elevated: rgba(0, 0, 0, 0.5);
   --gradient-hero: linear-gradient(135deg, rgba(150, 100, 169, 0.2), rgba(57, 152, 92, 0.2));
 }
+
+[data-theme="dark"] body{
+  background-color: var(--surface-elevated);
+  color: var(--text-primary);
+}
+
 
 html {
   scroll-behavior: smooth;
@@ -728,3 +734,5 @@ header{
     font-size: 0.9rem;
   }
 }
+
+
