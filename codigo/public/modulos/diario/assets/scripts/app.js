@@ -3,7 +3,7 @@ let statusDiario = '';
 let selectedDiario = '';
 let diarioID = '';
 let boolSelectedDiario = false;
-const apiUrl = '/diarios';
+const diariosUrl = '/diarios';
 
 function limpaCampos() {
     // Reseta os campos
@@ -62,7 +62,7 @@ function createDiario(diarioObject, refreshFunction) {
     const resetBtn = document.querySelectorAll('#btnStatus1, #btnStatus2, #btnStatus3, #btnStatus4, #btnStatus5');
     resetBtn.forEach(btn => btn.classList.replace('btn-custom', 'btn-light'));
 
-    fetch(apiUrl, {
+    fetch(diariosUrl, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -110,7 +110,7 @@ function selecionaDiario(i) {
     noDiarySelected();
 
     // Preenche os campos com o diário selecionado
-    fetch(`${apiUrl}?id=${i}`)
+    fetch(`${diariosUrl}?id=${i}`)
         .then(response => response.json())
         .then(data => {
             let selectedTitulo = document.getElementById('tituloDiario');
@@ -143,7 +143,7 @@ function deleteDiario(id, refreshFunction) {
         return;
     }
 
-    fetch(`${apiUrl}/${id}`, {
+    fetch(`${diariosUrl}/${id}`, {
         method: 'DELETE',
     })
         .then(response => {
@@ -164,7 +164,7 @@ function deleteDiario(id, refreshFunction) {
 }
 
 function updateDiario(id, diario, refreshFunction) {
-    fetch(`${apiUrl}/${id}`, {
+    fetch(`${diariosUrl}/${id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',

@@ -1,17 +1,48 @@
 /* ========== RESET & VARIÁVEIS ========== */
 :root {
-  --cor-primaria: #01AE7D;
-  --cor-fundo: #C5E0ED;
-  --cor-forte: #967ba4;
-  --cor-secundaria: #0d6efd;
-  --cor-texto: #2C3E50;
-  --cor-clara: #ffffff;
-  --cor-escura: #3f3d56;
-  --cor-pastel: #737378;
-  --cor-texto-claro: #f1f1f1;
-  --cor-acentuada: #999;
-  --espacamento-base: 1rem;
+
+  --primary-green: #01ae7d;
+    --primary-purple: #9664a9;
+--primary-green-soft: #52bfa6;
+  --background: #C5E0ED;
+  --surface: #f8f9fa;
+  --surface-elevated: #ffffff;
+  --text-primary: #1a1a1a;
+  --text-secondary: #6b7280;
+  --text-muted: #9ca3af;
+  --border: #e5e7eb;
+  --shadow: rgba(0, 0, 0, 0.1);
+  --shadow-elevated: rgba(0, 0, 0, 0.15);
+  --gradient-primary: linear-gradient(135deg, var(--primary-green));
+  --gradient-hero: linear-gradient(135deg, rgba(150, 100, 169, 0.1), rgba(57, 152, 92, 0.1));
 }
+
+[data-theme="dark"] {
+  --background: #1A1A1A;
+  --surface: #1a1a1a;
+  --surface-elevated: #262626;
+  --text-primary: #ffffff;
+  --text-secondary: #a1a1aa;
+  --text-muted: #71717a;
+  --border: #27272a;
+  --shadow: rgba(0, 0, 0, 0.3);
+  --shadow-elevated: rgba(0, 0, 0, 0.5);
+  --gradient-hero: linear-gradient(135deg, rgba(150, 100, 169, 0.2), rgba(57, 152, 92, 0.2));
+}
+
+[data-theme="dark"] .memory-card {
+  background-color: var(--surface-elevated);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  box-shadow: 0 5px 15px var(--shadow-elevated);
+}
+
+[data-theme="dark"] .memory-card:hover {
+  background-color: var(--surface);
+  box-shadow: 0 10px 20px var(--shadow-elevated);
+}
+
+
 
 * {
   padding: 0;
@@ -21,64 +52,10 @@
 
 /* ========== ESTILO GLOBAL ========== */
 body {
-  background-color: var(--cor-fundo);
-  font-family: "Segoe UI", system-ui, sans-serif;
+  background-color: var(--background);
   color: var(--cor-texto);
   line-height: 1.6;
   padding-top: 86px;
-}
-
-/* ========== HEADER ========== */
-
-a.nav-link{
-  padding: 0;
-  font-size: 1rem;
-}
-
-header .nav-link{
-  padding: 5;
-  
-}
-header{
-  padding: 5px;
-  height: 88.09px;
-  font-size: 1rem;
-}
-
-.theme-toggle {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 0.5rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  color: var(--text-primary);
-}
-
-.theme-toggle:hover {
-  background: var(--primary-green);
-  color: white;
-} 
-
-#header {
-  height: 88.09px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 1000;
-  background-color: white;
-}
-
-#signup {
-  background-color: var(--cor-primaria);
-  transition: all 0.3s;
-  border: none;
-  color: white;
-}
-
-#signup:hover {
-  background-color: #018f68;
 }
 
 /* ========== MEMORIES ========== */
@@ -198,3 +175,5 @@ header{
   transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
+
+
