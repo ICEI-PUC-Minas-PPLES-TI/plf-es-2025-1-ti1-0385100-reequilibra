@@ -1,63 +1,148 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Artigos sobre saúde mental</title>
-    <link rel="stylesheet" href="artigos.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-</head>
+    <link rel="stylesheet" href="artigos.css" />
+    <link rel="stylesheet" href="../../assets/css/emergencia.css" />
 
-<body>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+  </head>
+
+  <body>
     <div class="container">
-        <header>
-            <h1>Artigos sobre saúde mental</h1>
-            <div class="search-bar">
-                <input type="text" id="search-input" placeholder="Pesquisar artigos...">
-                <button id="search-btn"><i class="fas fa-search"></i></button>
-            </div>
-        </header>
-
-        <div class="main-content">
-            <aside class="sidebar">
-                <nav>
-                    <ul>
-                        <li><a href="#" id="all-articles"><i class="fas fa-search"></i> Pesquisar artigos</a></li>
-                        <li><a href="#" id="favorites"><i class="fas fa-heart"></i> Artigos favoritos</a></li>
-                        <li>
-                            <a href="#" id="categories-btn"><i class="fas fa-tags"></i> Categorias <i
-                                    class="fas fa-chevron-down"></i></a>
-                            <ul id="categories-list" class="submenu">
-
-                            </ul>
-                        </li>
-                        <li><a href="#" id="recommendations"><i class="fas fa-lightbulb"></i> Indicações de leitura</a>
-                        </li>
-                    </ul>
-                </nav>
-            </aside>
-
-            <main class="articles-container">
-                <div id="articles-list">
-
-                </div>
-            </main>
+      <header>
+        <h1>Artigos sobre saúde mental</h1>
+        <div class="search-bar">
+          <input
+            type="text"
+            id="search-input"
+            placeholder="Pesquisar artigos..."
+          />
+          <button id="search-btn"><i class="fas fa-search"></i></button>
         </div>
+      </header>
+
+      <div class="main-content">
+        <aside class="sidebar">
+          <nav>
+            <ul>
+              <li>
+                <a href="#" id="all-articles"
+                  ><i class="fas fa-search"></i> Pesquisar artigos</a
+                >
+              </li>
+              <li>
+                <a href="#" id="favorites"
+                  ><i class="fas fa-heart"></i> Artigos favoritos</a
+                >
+              </li>
+              <li>
+                <a href="#" id="categories-btn"
+                  ><i class="fas fa-tags"></i> Categorias
+                  <i class="fas fa-chevron-down"></i
+                ></a>
+                <ul id="categories-list" class="submenu"></ul>
+              </li>
+              <li>
+                <a href="#" id="recommendations"
+                  ><i class="fas fa-lightbulb"></i> Indicações de leitura</a
+                >
+              </li>
+            </ul>
+          </nav>
+        </aside>
+
+        <main class="articles-container">
+          <div id="articles-list"></div>
+        </main>
+      </div>
     </div>
 
-
     <div id="article-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2 id="modal-title"></h2>
-            <p class="modal-meta"><span id="modal-date"></span> - Autor(a): <span id="modal-author"></span></p>
-            <div id="modal-content"></div>
-            <button id="toggle-favorite" class="favorite-btn">Favoritar</button>
-        </div>
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2 id="modal-title"></h2>
+        <p class="modal-meta">
+          <span id="modal-date"></span> - Autor(a):
+          <span id="modal-author"></span>
+        </p>
+        <div id="modal-content"></div>
+        <button id="toggle-favorite" class="favorite-btn">Favoritar</button>
+      </div>
     </div>
 
     <script src="artigos.js"></script>
-</body>
 
+    <button id="emergencyBtn" class="emergency-btn">
+      <i class="fas fa-exclamation-triangle"></i>
+      <span>SOS</span>
+    </button>
+
+
+    <div id="emergencyModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2><i class="fas fa-heart-pulse"></i> EMERGÊNCIA</h2>
+          <button id="closeModal" class="close-btn">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+
+        <div class="emergency-grid">
+          <div class="emergency-card cvv" onclick="callCVV()">
+            <div class="card-icon">
+              <i class="fas fa-phone"></i>
+            </div>
+            <div class="card-content">
+              <h3>CVV 188</h3>
+              <p>24h gratuito</p>
+            </div>
+          </div>
+
+          <div class="emergency-card contacts" onclick="showContacts()">
+            <div class="card-icon">
+              <i class="fas fa-users"></i>
+            </div>
+            <div class="card-content">
+              <h3>Contatos</h3>
+              <p>Pessoas próximas</p>
+            </div>
+          </div>
+
+          <div class="emergency-card samu" onclick="callSAMU()">
+            <div class="card-icon">
+              <i class="fas fa-ambulance"></i>
+            </div>
+            <div class="card-content">
+              <h3>SAMU 192</h3>
+              <p>Emergência médica</p>
+            </div>
+          </div>
+
+          <div class="emergency-card caps" onclick="showServices()">
+            <div class="card-icon">
+              <i class="fas fa-hospital"></i>
+            </div>
+            <div class="card-content">
+              <h3>CAPS BH</h3>
+              <p>Saúde mental</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="contactsModal" class="modal">...</div>
+
+    <div id="addContactModal" class="modal">...</div>
+
+
+    <div id="servicesModal" class="modal">...</div>
+    <script src="../../assets/js/emergencia.js"></script>
+  </body>
 </html>
