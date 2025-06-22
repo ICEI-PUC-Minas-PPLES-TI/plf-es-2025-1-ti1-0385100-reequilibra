@@ -15,6 +15,11 @@ async function fetchGameData() {
     const response = await fetch("../../../db/db.json");
     const json = await response.json();
 
+    if (!json.usuarios || !json.usuarios[0]) throw new Error("Usuário não encontrado.");
+    if (!json.medalhas || !Array.isArray(json.medalhas)) throw new Error("Medalhas não disponíveis.");
+    if (!json.tiposDeAtividade || !Array.isArray(json.tiposDeAtividade)) throw new Error("Tipos de atividade não disponíveis.");
+    if (!json.missoesDiarias || !Array.isArray(json.missoesDiarias)) json.missoesDiarias = [];
+
     gameData = {
       user: {
         name: json.usuarios[0].nome,
@@ -35,16 +40,17 @@ async function fetchGameData() {
 
     activityTypes = {};
     const activitySelect = document.getElementById("activityType");
-    activitySelect.innerHTML =
-      '<option value="">Selecione uma atividade</option>';
-    json.tiposDeAtividade.forEach((item) => {
-      activityTypes[item.id] = {
-        name: item.nome,
-        xp: item.xp,
-        icon: item.icone,
-      };
-      activitySelect.innerHTML += `<option value="${item.id}">${item.nome} (${item.xp} XP)</option>`;
-    });
+    if (activitySelect) {
+      activitySelect.innerHTML = '<option value="">Selecione uma atividade</option>';
+      json.tiposDeAtividade.forEach((item) => {
+        activityTypes[item.id] = {
+          name: item.nome,
+          xp: item.xp,
+          icon: item.icone,
+        };
+        activitySelect.innerHTML += `<option value="${item.id}">${item.nome} (${item.xp} XP)</option>`;
+      });
+    }
 
     loadGameData();
     updateUI();
