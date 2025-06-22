@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Reequilibra - Sistema de Gamificação</title>
     <link rel="stylesheet" href="../../assets/css/gamificacoes.css" />
+    <link rel="stylesheet" href="../../assets/css/emergencia.css"/>
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
       rel="stylesheet"
@@ -157,14 +158,16 @@
       </div>
     </main>
 
-    <div class="modal" id="activityModal">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h3>Adicionar Atividade</h3>
-          <button class="modal-close" id="closeModal">
-            <i class="fas fa-times"></i>
-          </button>
-        </div>
+
+<div class="modal" id="activityModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>Adicionar Atividade</h3>
+      <button class="modal-close" id="closeActivityModal">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+
         <div class="modal-body">
           <form id="activityForm">
             <div class="form-group">
@@ -190,5 +193,58 @@
     </div>
 
     <script src="../../assets/js/gamificacoes.js"></script>
+     
+        <button id="emergencyBtn" class="emergency-btn">
+          <i class="fas fa-exclamation-triangle"></i>
+          <span>SOS</span>
+        </button>
+
+     
+        <div id="emergencyModal" class="modal">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h2><i class="fas fa-heart-pulse"></i> EMERGÊNCIA</h2>
+              <button id="closeModal" class="close-btn">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+
+            <div class="emergency-grid">
+              <div class="emergency-card cvv" onclick="callCVV()">
+                <div class="card-icon"><i class="fas fa-phone"></i></div>
+                <div class="card-content">
+                  <h3>CVV 188</h3>
+                  <p>24h gratuito</p>
+                </div>
+              </div>
+
+              <div class="emergency-card contacts" onclick="showContacts()">
+                <div class="card-icon"><i class="fas fa-users"></i></div>
+                <div class="card-content">
+                  <h3>Contatos</h3>
+                  <p>Pessoas próximas</p>
+                </div>
+              </div>
+
+              <div class="emergency-card samu" onclick="callSAMU()">
+                <div class="card-icon"><i class="fas fa-ambulance"></i></div>
+                <div class="card-content">
+                  <h3>SAMU 192</h3>
+                  <p>Emergência médica</p>
+                </div>
+              </div>
+
+              <div class="emergency-card caps" onclick="showServices()">
+                <div class="card-icon"><i class="fas fa-hospital"></i></div>
+                <div class="card-content">
+                  <h3>CAPS BH</h3>
+                  <p>Saúde mental</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <script src="../../assets/js/emergencia.js"></script>
   </body>
 </html>

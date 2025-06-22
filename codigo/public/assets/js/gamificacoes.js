@@ -6,7 +6,7 @@ const navLinks = document.querySelectorAll(".nav-link");
 const sections = document.querySelectorAll(".section");
 const addActivityBtn = document.getElementById("addActivityBtn");
 const activityModal = document.getElementById("activityModal");
-const closeModal = document.getElementById("closeModal");
+const closeActivityModal = document.getElementById("closeActivityModal");
 const activityForm = document.getElementById("activityForm");
 const activityTypes_elements = document.querySelectorAll(".activity-type");
 
@@ -83,7 +83,8 @@ function setupEventListeners() {
   });
 
   addActivityBtn.addEventListener("click", () => showModal());
-  closeModal.addEventListener("click", () => hideModal());
+ closeActivityModal.addEventListener("click", () => hideModal());
+
   activityModal.addEventListener("click", (e) => {
     if (e.target === activityModal) hideModal();
   });
