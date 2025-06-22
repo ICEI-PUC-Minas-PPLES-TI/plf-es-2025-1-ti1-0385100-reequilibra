@@ -4,86 +4,77 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>reequilibra - Memories & Comunidade</title>
-    
+
     <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"
-    rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"
+      rel="stylesheet"
     />
-    
+
     <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
-    rel="stylesheet"
-    />
-    <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+      rel="stylesheet"
     />
     <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-    rel="stylesheet"
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
-    
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
     <link rel="stylesheet" href="../../styles.css" />
-    <link rel="stylesheet" href="./CSS/style.css">
+    <link rel="stylesheet" href="./CSS/style.css" />
+    <link rel="stylesheet" href="../../assets/css/emergencia.css" />
+  </head>
+  <body>
+    <script src="../login/scripts/login.js"></script>
 
-</head>
-<body>
-
-  <script src="../login/scripts/login.js"></script>
-  
-  <!-- HEADER -->
-  <header class="header">
-    <nav class="nav">
-      <div class="nav-brand">
-        <a href="../../index.html">
-          <img
-            src="../../assets/images/logo.png"
-            alt="Reequilibra"
-            class="logo"
-          />
-        </a>
-      </div>
-      <div class="nav-menu" id="navMenu">
-        <a href="#home" class="nav-link">Início</a>
-        <a href="#about" class="nav-link">Sobre</a>
-        <a href="#services" class="nav-link">Serviços</a>
-        <a href="#testimonials" class="nav-link">Depoimentos</a>
-      </div>
-      <div class="nav-actions">
-        <a
-          id="loginBtn"
-          href="./modulos/login/login.html"
-          class="nav-link"
-          >Login</a
-        >
-        <a
-          id="signupBtn"
-          href="./modulos/login/cadastro.html"
-          class="btn btn-outline"
-          >Cadastro</a
-        >
-        <a
-        id="logoutBtn"
-        onclick="logoutUser()" 
-        class="btn btn-danger"
-        >Logout</a>
-        <button
-          class="theme-toggle"
-          id="themeToggle"
-          aria-label="Alternar tema"
-        >
-          <i class="fas fa-moon"></i>
-        </button>
-        <button class="mobile-toggle" id="mobileToggle">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-      </div>
-    </nav>
-  </header>
-
-
+    <!-- HEADER -->
+    <header class="header">
+      <nav class="nav">
+        <div class="nav-brand">
+          <a href="../../index.html">
+            <img
+              src="../../assets/images/logo.png"
+              alt="Reequilibra"
+              class="logo"
+            />
+          </a>
+        </div>
+        <div class="nav-menu" id="navMenu">
+          <a href="#home" class="nav-link">Início</a>
+          <a href="#about" class="nav-link">Sobre</a>
+          <a href="#services" class="nav-link">Serviços</a>
+          <a href="#testimonials" class="nav-link">Depoimentos</a>
+        </div>
+        <div class="nav-actions">
+          <a id="loginBtn" href="./modulos/login/login.html" class="nav-link"
+            >Login</a
+          >
+          <a
+            id="signupBtn"
+            href="./modulos/login/cadastro.html"
+            class="btn btn-outline"
+            >Cadastro</a
+          >
+          <a id="logoutBtn" onclick="logoutUser()" class="btn btn-danger"            >Logout</a
+          >
+          <button
+            class="theme-toggle"
+            id="themeToggle"
+            aria-label="Alternar tema"
+          >
+            <i class="fas fa-moon"></i>
+          </button>
+          <button class="mobile-toggle" id="mobileToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </nav>
+    </header>
 
     <main class="container mt-4">
       <div class="row">
@@ -150,6 +141,58 @@
         </div>
       </div>
     </main>
+
+    <!-- Botão de Emergência -->
+    <button id="emergencyBtn" class="emergency-btn">
+      <i class="fas fa-exclamation-triangle"></i>
+      <span>SOS</span>
+    </button>
+
+    <!-- Modal Emergência -->
+    <div id="emergencyModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2><i class="fas fa-heart-pulse"></i> EMERGÊNCIA</h2>
+          <button id="closeModal" class="close-btn">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+
+        <div class="emergency-grid">
+          <div class="emergency-card cvv" onclick="callCVV()">
+            <div class="card-icon"><i class="fas fa-phone"></i></div>
+            <div class="card-content">
+              <h3>CVV 188</h3>
+              <p>24h gratuito</p>
+            </div>
+          </div>
+
+          <div class="emergency-card contacts" onclick="showContacts()">
+            <div class="card-icon"><i class="fas fa-users"></i></div>
+            <div class="card-content">
+              <h3>Contatos</h3>
+              <p>Pessoas próximas</p>
+            </div>
+          </div>
+
+          <div class="emergency-card samu" onclick="callSAMU()">
+            <div class="card-icon"><i class="fas fa-ambulance"></i></div>
+            <div class="card-content">
+              <h3>SAMU 192</h3>
+              <p>Emergência médica</p>
+            </div>
+          </div>
+
+          <div class="emergency-card caps" onclick="showServices()">
+            <div class="card-icon"><i class="fas fa-hospital"></i></div>
+            <div class="card-content">
+              <h3>CAPS BH</h3>
+              <p>Saúde mental</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Modal para Novo Fórum -->
     <div
@@ -284,29 +327,20 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
     <script src="./scripts/app.js"></script>
 
+    <!-- FUNCAO VERIFICA LOGIN -->
 
-
-
-
-     <!-- FUNCAO VERIFICA LOGIN -->
-
-     
-     <script>
-      // Função para verificar se o usuário está logado
+    <script>
       function verificaUsuarioCorrente() {
         const usuarioCorrenteJSON = localStorage.getItem("usuarioLogado");
         if (!usuarioCorrenteJSON) {
-          // Salva a URL original antes de redirecionar para o login
           sessionStorage.setItem("urlDestino", window.location.href);
-          window.location.href = "../login/login.html"; // Redireciona para login
+          window.location.href = "../login/login.html";
         }
       }
-    
-      // Chama a função imediatamente ao carregar a página
       verificaUsuarioCorrente();
     </script>
-        <script src="../../assets/js/app.js"></script>
-        <script src="../../script.js"></script>
-
+    <script src="../../assets/js/app.js"></script>
+    <script src="../../script.js"></script>
+    <script src="../../assets/js/emergencia.js"></script>
   </body>
 </html>
