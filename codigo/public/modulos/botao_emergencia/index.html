@@ -3,166 +3,202 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Botão de Emergência Neon</title>
-
+    <title>Botão de Emergência</title>
     <link rel="stylesheet" href="../../assets/css/emergencia.css" />
     <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
   </head>
-
   <body>
-    <div class="emergency-container">
-      <button id="emergencyBtn" class="emergency-btn">
-        <span class="btn-glow"></span>
-        <span class="btn-text">EMERGÊNCIA</span>
-      </button>
+    <button id="emergencyBtn" class="emergency-btn">
+      <i class="fas fa-exclamation-triangle"></i>
+      <span>SOS</span>
+    </button>
 
-      <div id="emergencyPanel" class="emergency-panel">
-        <div class="panel-glow"></div>
-
-        <div class="panel-header">
-          <h2><span class="text-glow">ATENÇÃO</span>: EMERGÊNCIA</h2>
-          <p>Selecione o tipo de ajuda que precisa:</p>
-          <button id="closePanel" class="close-btn">
+    <div id="emergencyModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2><i class="fas fa-heart-pulse"></i> EMERGÊNCIA</h2>
+          <button id="closeModal" class="close-btn">
             <i class="fas fa-times"></i>
           </button>
         </div>
 
-        <div class="options-grid">
-          <div class="option" id="cvvOption">
-            <div class="option-icon">
-              <i class="fas fa-phone-alt"></i>
+        <div class="emergency-grid">
+          <div class="emergency-card cvv" onclick="callCVV()">
+            <div class="card-icon">
+              <i class="fas fa-phone"></i>
             </div>
-            <div class="option-content">
-              <h3>Ligar para CVV</h3>
-              <p>188 - 24h gratuito</p>
+            <div class="card-content">
+              <h3>CVV 188</h3>
+              <p>24h gratuito</p>
             </div>
-            <button class="action-btn">Ligar</button>
           </div>
 
-          <div class="option" id="psychologistOption">
-            <div class="option-icon">
-              <i class="fas fa-comment-medical"></i>
+          <div class="emergency-card contacts" onclick="showContacts()">
+            <div class="card-icon">
+              <i class="fas fa-users"></i>
             </div>
-            <div class="option-content">
-              <h3>Ajuda Profissional</h3>
-              <p>Psicólogo ou psiquiatra</p>
+            <div class="card-content">
+              <h3>Contatos</h3>
+              <p>Pessoas próximas</p>
             </div>
-            <button class="action-btn">Conectar</button>
           </div>
 
-          <div class="option" id="contactsOption">
-            <div class="option-icon">
-              <i class="fas fa-user-friends"></i>
+          <div class="emergency-card samu" onclick="callSAMU()">
+            <div class="card-icon">
+              <i class="fas fa-ambulance"></i>
             </div>
-            <div class="option-content">
-              <h3>Contatos de Confiança</h3>
-              <p>Alertar pessoas próximas</p>
+            <div class="card-content">
+              <h3>SAMU 192</h3>
+              <p>Emergência médica</p>
             </div>
-            <button class="action-btn">Contatar</button>
           </div>
 
-          <div class="option" id="servicesOption">
-            <div class="option-icon">
-              <i class="fas fa-map-marker-alt"></i>
+          <div class="emergency-card caps" onclick="showServices()">
+            <div class="card-icon">
+              <i class="fas fa-hospital"></i>
             </div>
-            <div class="option-content">
-              <h3>Serviços de Saúde</h3>
-              <p>CAPS e hospitais</p>
+            <div class="card-content">
+              <h3>CAPS BH</h3>
+              <p>Saúde mental</p>
             </div>
-            <button class="action-btn">Localizar</button>
           </div>
         </div>
       </div>
     </div>
 
-    <div id="confirmationModal" class="neon-modal">
+    <div id="contactsModal" class="modal">
       <div class="modal-content">
-        <div class="modal-icon">
-          <i class="fas fa-exclamation-circle"></i>
+        <div class="modal-header">
+          <h2><i class="fas fa-users"></i> CONTATOS DE CONFIANÇA</h2>
+          <button onclick="closeModal('contactsModal')" class="close-btn">
+            <i class="fas fa-times"></i>
+          </button>
         </div>
-        <h3 class="modal-title">CONFIRMAR</h3>
-        <p class="modal-message">Você deseja confirmar esta ação?</p>
-        <div class="modal-buttons">
-          <button class="modal-btn confirm-btn">Confirmar</button>
-          <button class="modal-btn cancel-btn">Cancelar</button>
-        </div>
-      </div>
-    </div>
 
-    <div id="contactsModal" class="neon-modal">
-      <div class="modal-content">
-        <div class="modal-icon">
-          <i class="fas fa-user-friends"></i>
-        </div>
-        <h3 class="modal-title">CONTATOS DE CONFIANÇA</h3>
-        <div class="contacts-list" id="contactsList"></div>
-        <div class="modal-buttons">
-          <button class="modal-btn add-contact-btn">
+        <div class="contacts-actions">
+          <button onclick="showAddContact()" class="add-contact-btn">
             <i class="fas fa-plus"></i> Adicionar Contato
           </button>
-          <button class="modal-btn cancel-btn">Fechar</button>
         </div>
-      </div>
-    </div>
 
-    <!-- Modal de Adicionar Contato -->
-    <div id="addContactModal" class="neon-modal">
-      <div class="modal-content">
-        <div class="modal-icon">
+        <div id="contactsList" class="contacts-list">
+        </div>
+
+        <div id="noContacts" class="no-contacts" style="display: none">
           <i class="fas fa-user-plus"></i>
-        </div>
-        <h3 class="modal-title">ADICIONAR CONTATO</h3>
-        <div class="input-group">
-          <label for="contactName">Nome:</label>
-          <input type="text" id="contactName" placeholder="Ex: Maria (Mãe)" />
-        </div>
-        <div class="input-group">
-          <label for="contactPhone">Telefone:</label>
-          <input type="tel" id="contactPhone" placeholder="(00) 00000-0000" />
-        </div>
-        <div class="modal-buttons">
-          <button class="modal-btn confirm-btn">Salvar</button>
-          <button class="modal-btn cancel-btn">Cancelar</button>
+          <p>Nenhum contato cadastrado</p>
+          <small>Adicione pessoas de confiança para emergências</small>
         </div>
       </div>
     </div>
 
-    <div id="servicesModal" class="neon-modal">
+    <div id="addContactModal" class="modal">
       <div class="modal-content">
-        <div class="modal-icon">
-          <i class="fas fa-map-marker-alt"></i>
+        <div class="modal-header">
+          <h2 id="addContactTitle">
+            <i class="fas fa-user-plus"></i> ADICIONAR CONTATO
+          </h2>
+          <button onclick="closeModal('addContactModal')" class="close-btn">
+            <i class="fas fa-times"></i>
+          </button>
         </div>
-        <h3 class="modal-title">SERVIÇOS DE SAÚDE PRÓXIMOS</h3>
-        <div class="services-list" id="servicesList"></div>
-        <div class="modal-buttons">
-          <button class="modal-btn cancel-btn">Fechar</button>
-        </div>
+
+        <form id="contactForm" class="contact-form">
+          <div class="form-group">
+            <label for="contactName">Nome:</label>
+            <input
+              type="text"
+              id="contactName"
+              placeholder="Ex: Maria (Mãe)"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="contactPhone">Telefone:</label>
+            <input
+              type="tel"
+              id="contactPhone"
+              placeholder="(31) 99999-9999"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="contactRelation">Relação:</label>
+            <select id="contactRelation">
+              <option value="Família">Família</option>
+              <option value="Amigo(a)">Amigo(a)</option>
+              <option value="Namorado(a)">Namorado(a)</option>
+              <option value="Cônjuge">Cônjuge</option>
+              <option value="Colega">Colega</option>
+              <option value="Outro">Outro</option>
+            </select>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="save-btn">
+              <i class="fas fa-save"></i> Salvar
+            </button>
+            <button
+              type="button"
+              onclick="closeModal('addContactModal')"
+              class="cancel-btn"
+            >
+              <i class="fas fa-times"></i> Cancelar
+            </button>
+          </div>
+        </form>
       </div>
     </div>
 
-    <div id="mapModal" class="neon-modal">
-      <div class="modal-content" style="height: 500px; position: relative">
-        <div
-          id="googleMap"
-          style="height: 100%; width: 100%; border-radius: 10px"
-        ></div>
-        <button
-          class="modal-btn cancel-btn"
-          style="position: absolute; top: 10px; right: 10px; z-index: 2"
-        >
-          Fechar
-        </button>
+
+    <div id="servicesModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2><i class="fas fa-hospital"></i> SERVIÇOS BH</h2>
+          <button onclick="closeModal('servicesModal')" class="close-btn">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div class="services-list">
+          <div class="service-item">
+            <div class="service-info">
+              <strong>CAPS Pampulha</strong>
+              <span>Centro de Atenção Psicossocial</span>
+              <small>(31) 3277-7004</small>
+            </div>
+            <button onclick="callService('31327777004')" class="call-btn">
+              <i class="fas fa-phone"></i>
+            </button>
+          </div>
+          <div class="service-item">
+            <div class="service-info">
+              <strong>Hospital João XXIII</strong>
+              <span>Emergência psiquiátrica 24h</span>
+              <small>(31) 3239-9200</small>
+            </div>
+            <button onclick="callService('31323999200')" class="call-btn">
+              <i class="fas fa-phone"></i>
+            </button>
+          </div>
+          <div class="service-item">
+            <div class="service-info">
+              <strong>CAPS Centro</strong>
+              <span>Rua Tupis, 149 - Centro</span>
+              <small>(31) 3277-5208</small>
+            </div>
+            <button onclick="callService('31327775208')" class="call-btn">
+              <i class="fas fa-phone"></i>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
 
     <script src="../../assets/js/emergencia.js"></script>
-    <script
-      async
-      defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkuRR_wgEBEERp0gc7QU4tJf2jvv4_Kjs&callback=initMap"
-    ></script>
   </body>
 </html>
