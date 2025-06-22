@@ -1,7 +1,6 @@
 body{
-  background-color: #C5E0ED;
+  background-color: #C5E0ED !important;
 }
-
 .caixa-cadastro{
   background: rgba(255, 255, 255, 0.832);
   margin: 150px  40px;
