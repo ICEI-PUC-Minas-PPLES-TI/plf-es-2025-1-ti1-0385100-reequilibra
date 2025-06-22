@@ -1,80 +1,52 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Reequilibra</title>
 
-    <link
-  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"
-  rel="stylesheet"
-/>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-    />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reequilibra</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
 
 
-    <script src="modulos/login/scripts/login.js"></script>
+  <script src="modulos/login/scripts/login.js"></script>
 
 
-    <header class="header">
-      <nav class="nav">
-        <div class="nav-brand">
-          <a href="#home">
-            <img
-              src="./assets/images/logo.png"
-              alt="Reequilibra"
-              class="logo"
-            />
-          </a>
-        </div>
-        <div class="nav-menu" id="navMenu">
-          <a href="#home" class="nav-link">Início</a>
-          <a href="#about" class="nav-link">Sobre</a>
-          <a href="#services" class="nav-link">Serviços</a>
-          <a href="#testimonials" class="nav-link">Depoimentos</a>
-        </div>
-        <div class="nav-actions">
-          <a
-            id="loginBtn"
-            href="./modulos/login/login.html"
-            class="nav-link"
-            >Login</a
-          >
-          <a
-            id="signupBtn"
-            href="./modulos/login/cadastro.html"
-            class="btn btn-outline"
-            >Cadastro</a
-          >
-          <a
-          id="logoutBtn"
-          onclick="logoutUser()" 
-          class="btn btn-danger"
-          >Logout</a>
-          <button
-            class="theme-toggle"
-            id="themeToggle"
-            aria-label="Alternar tema"
-          >
-            <i class="fas fa-moon"></i>
-          </button>
-          <button class="mobile-toggle" id="mobileToggle">
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
-        </div>
-      </nav>
-    </header>
+  <header class="header">
+    <nav class="nav">
+      <div class="nav-brand">
+        <a href="#home">
+          <img src="./assets/images/logo.png" alt="Reequilibra" class="logo" />
+        </a>
+      </div>
+      <div class="nav-menu" id="navMenu">
+        <a href="#home" class="nav-link">Início</a>
+        <a href="#about" class="nav-link">Sobre</a>
+        <a href="#services" class="nav-link">Serviços</a>
+        <a href="#testimonials" class="nav-link">Depoimentos</a>
+      </div>
+      <div class="nav-actions">
+        <a id="loginBtn" href="./modulos/login/login.html" class="nav-link">Login</a>
+        <a id="signupBtn" href="./modulos/login/cadastro.html" class="btn btn-outline">Cadastro</a>
+        <a id="logoutBtn" onclick="logoutUser()" class="btn btn-danger">Logout</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
+          <i class="fas fa-moon"></i>
+        </button>
+        <button class="mobile-toggle" id="mobileToggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
 
   <section id="home" class="hero">
     <div class="hero-content">
@@ -205,23 +177,25 @@
           </div>
         </div>
 
-        <div class="service-card">
-          <div class="service-image">
-            <i class="fas fa-comments"></i>
+        <a href="modulos/forum/index.html">
+          <div class="service-card">
+            <div class="service-image">
+              <i class="fas fa-comments"></i>
+            </div>
+            <div class="service-content">
+              <h3>Fórum</h3>
+              <p>
+                Espaço seguro para troca de experiências, apoio e aprendizado
+                coletivo.
+              </p>
+              <ul>
+                <li>Debates moderados</li>
+                <li>Comunidade acolhedora</li>
+                <li>Interação com especialistas</li>
+              </ul>
+            </div>
           </div>
-          <div class="service-content">
-            <h3>Fórum</h3>
-            <p>
-              Espaço seguro para troca de experiências, apoio e aprendizado
-              coletivo.
-            </p>
-            <ul>
-              <li>Debates moderados</li>
-              <li>Comunidade acolhedora</li>
-              <li>Interação com especialistas</li>
-            </ul>
-          </div>
-        </div>
+        </a>
 
         <a href="./modulos/info_psic/psicologos.html">
           <div class="service-card">
@@ -241,43 +215,45 @@
             </div>
           </div>
         </a>
-
-        <div class="service-card">
-          <div class="service-image">
-            <i class="fas fa-book-open"></i>
+        <a href="./modulos/artigos/artigos.html">
+          <div class="service-card">
+            <div class="service-image">
+              <i class="fas fa-book-open"></i>
+            </div>
+            <div class="service-content">
+              <h3>Artigos de Saúde Mental</h3>
+              <p>
+                Conteúdo informativo baseado em ciência e práticas atualizadas.
+              </p>
+              <ul>
+                <li>Artigos e publicações</li>
+                <li>Dicas de bem-estar</li>
+                <li>Conteúdo feito por quem entende do assunto</li>
+              </ul>
+            </div>
           </div>
-          <div class="service-content">
-            <h3>Artigos de Saúde Mental</h3>
-            <p>
-              Conteúdo informativo baseado em ciência e práticas atualizadas.
-            </p>
-            <ul>
-              <li>Artigos e publicações</li>
-              <li>Dicas de bem-estar</li>
-              <li>Conteúdo feito por quem entende do assunto</li>
-            </ul>
+        </a>
+        <a href="./modulos/diario/index.html">
+          <div class="service-card">
+            <div class="service-image">
+              <i class="fas fa-pen"></i>
+            </div>
+            <div class="service-content">
+              <h3>Diário Pessoal</h3>
+              <p>
+                Espaço seguro para registrar emoções, reflexões e conquistas
+                diárias.
+              </p>
+              <ul>
+                <li>Registros privados e confidenciais</li>
+                <li>Ferramentas de autoconhecimento</li>
+                <li>Acompanhamento de progresso</li>
+              </ul>
+            </div>
           </div>
-        </div>
-
-        <div class="service-card">
-          <div class="service-image">
-            <i class="fas fa-pen"></i>
-          </div>
-          <div class="service-content">
-            <h3>Diário Pessoal</h3>
-            <p>
-              Espaço seguro para registrar emoções, reflexões e conquistas
-              diárias.
-            </p>
-            <ul>
-              <li>Registros privados e confidenciais</li>
-              <li>Ferramentas de autoconhecimento</li>
-              <li>Acompanhamento de progresso</li>
-            </ul>
-          </div>
-        </div>
       </div>
     </div>
+    </a>
   </section>
 
   <section id="testimonials" class="testimonials">
@@ -420,7 +396,8 @@
     </div>
   </footer>
 
-    <script src="script.js"></script>
-    <script src="./assets/js/app.js"></script>
-  </body>
+  <script src="script.js"></script>
+  <script src="./assets/js/app.js"></script>
+</body>
+
 </html>

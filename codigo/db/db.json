@@ -70,6 +70,15 @@
       "categoria_id": "4",
       "texto": "O transtorno depressivo maior, frequentemente conhecido como depressão, é a forma mais reconhecida entre os transtornos depressivos. Os sintomas característicos dessa condição incluem um humor persistente de tristeza, diminuição do interesse nas atividades,  distúrbios  no  sono,  agitação  ou  lentidão  psicomotora,  cansaço  extremo,  e sentimentos de inutilidade ou culpa desproporcional, entre outros.(LOCH et al.,2024).A   depressão   é   um transtorno   de   humor   que   impacta   profundamente   a capacidade de uma pessoa de desempenhar suas atividades diárias e interagir com os outros. Os sintomas da depressão estão frequentemente ligados a uma diminuição nas funções cognitivas. Essa condição pode afetar áreas cognitivas como a aprendizagem e a memória, a atenção e a concentração, as funções executivas, bem como a velocidade de processamento mental.(OLIVEIRAet al., 2024).",
       "link": "https://bjihs.emnuvens.com.br/bjihs/article/view/3107"
+    },
+    {
+      "id": "6dc1",
+      "titulo": "Estresse e fatores psicossociais",
+      "data": "2010-12-05",
+      "autor": "Ana Lúcia Pallegrini",
+      "categoria_id": "2",
+      "link": "https://www.scielo.br/j/pcp/a/8VdqxG3rYm37knTdFCxXqtm",
+      "texto": "O interesse pelo estudo do estresse no trabalho tem sido crescente na literatura científica, particularmente nos últimos anos. Uma razão para o aumento de pesquisas sobre esse tema está nas repercussões das condições e da organização do trabalho na saúde e no bem-estar dos empregados e, em consequência, no funcionamento e na efetividade das organizações. Na economia, o impacto negativo dessa variável tem sido estimado com base na suposição e nos achados de que trabalhadores estressados diminuem seu desempenho e aumentam os custos das organizações com problemas de saúde, com o aumento do absenteísmo, da rotatividade e do número de acidentes no local de trabalho. Tendo em vista a importância do tema, o presente trabalho se propõe a analisar os modelos teóricos sobre estresse ocupacional e fatores psicossociais. Neste artigo, portanto, apresentaremos os princípios dos principais modelos que discutem a relação entre os fatores psicossociais do trabalho e o estresse ocupacional: modelo demandacontrole, modelo demanda-controle-apoio social, modelo do desequilíbrio esforço-recompensa, modelo ecológico e a proposta do National Institute for Occupational and Health (NIOSH)."
     }
   ],
   "favoritos": [
@@ -232,7 +241,7 @@
     }
   ],
   "psicologos": [
-{
+    {
       "id": "1",
       "nome": "Dra. Maria",
       "area_atua": "Terapia Comportamental",
@@ -350,16 +359,6 @@
     }
   ],
   "usuarios": [
-    {
-      "id": "1",
-      "nome": "Fabio",
-      "anonimo": false
-    },
-    {
-      "id": "2",
-      "nome": "Anônimo",
-      "anonimo": true
-    },
     {
       "id": "a9d3",
       "login": "fillmello",

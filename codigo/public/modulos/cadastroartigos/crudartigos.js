@@ -1,4 +1,21 @@
-const apiUrl = 'http://localhost:3000/cad_artigos';
+const apiUrl = 'http://localhost:3000/artigos';
+
+const categoriasUrl = 'http://localhost:3000/categorias';
+
+function carregarCategorias() {
+    fetch(categoriasUrl)
+        .then(res => res.json())
+        .then(data => {
+            const select = document.getElementById('inputCategoria');
+            data.forEach(cat => {
+                const option = document.createElement('option');
+                option.value = cat.id;
+                option.textContent = cat.nome;
+                select.appendChild(option);
+            });
+        })
+        .catch(err => console.error('Erro ao carregar categorias:', err));
+}
 
 
 function displayMessage(mensagem, tipo = "warning") {
@@ -75,18 +92,24 @@ function exibeArtigos() {
     const tableArtigos = document.getElementById("table-artigos");
     tableArtigos.innerHTML = "";
 
-    readArtigo(dados => {
-        dados.forEach(artigo => {
+    Promise.all([
+        fetch(apiUrl).then(res => res.json()),
+        fetch(categoriasUrl).then(res => res.json())
+    ]).then(([artigos, categorias]) => {
+        artigos.forEach(artigo => {
+            const categoria = categorias.find(c => c.id == artigo.categoria_id)?.nome || 'Desconhecida';
             tableArtigos.innerHTML += `
-            <tr>
-                <td>${artigo.id}</td>
-                <td>${artigo.titulo}</td>
-                <td>${artigo.data}</td>
-                <td>${artigo.autor}</td>
-                <td>${artigo.categoria}</td>
-                <td>${artigo.link}</td>
-            </tr>`;
+                <tr>
+                    <td>${artigo.id}</td>
+                    <td>${artigo.titulo}</td>
+                    <td>${artigo.data}</td>
+                    <td>${artigo.autor}</td>
+                    <td>${categoria}</td>
+                </tr>`;
         });
+    }).catch(error => {
+        console.error('Erro ao carregar dados:', error);
+        displayMessage("Erro ao carregar artigos", "danger");
     });
 }
 
@@ -98,6 +121,8 @@ function init() {
     const btnClear = document.getElementById("btnClear");
     const gridArtigos = document.getElementById("grid-artigos");
     const msg = document.getElementById("msg");
+    carregarCategorias();
+
 
     btnInsert.addEventListener('click', function () {
         if (!formArtigo.checkValidity()) {
@@ -109,8 +134,9 @@ function init() {
             titulo: document.getElementById('inputTitulo').value,
             data: document.getElementById('inputData').value,
             autor: document.getElementById('inputAutor').value,
-            categoria: document.getElementById('inputCategoria').value,
-            link: document.getElementById('inputLink').value
+            categoria_id: document.getElementById('inputCategoria').value,
+            link: document.getElementById('inputLink').value,
+            texto: document.getElementById('inputTexto').value
         };
 
         createArtigo(artigo, () => {
@@ -130,8 +156,9 @@ function init() {
             titulo: document.getElementById('inputTitulo').value,
             data: document.getElementById('inputData').value,
             autor: document.getElementById('inputAutor').value,
-            categoria: document.getElementById('inputCategoria').value,
-            link: document.getElementById('inputLink').value
+            categoria_id: document.getElementById('inputCategoria').value,
+            link: document.getElementById('inputLink').value,
+            texto: document.getElementById('inputTexto').value
         };
 
         updateArtigo(campoId, artigo, () => {
@@ -147,7 +174,7 @@ function init() {
             return;
         }
 
-        deleteArtigo(campoId , () => {
+        deleteArtigo(campoId, () => {
             exibeArtigos();
             formArtigo.reset();
         });
@@ -160,7 +187,7 @@ function init() {
     const observer = new MutationObserver(() => {
         const alert = msg.getElementsByClassName("alert");
         if (alert.length) {
-            setTimeout(() => alert[0].remove(), 80000);
+            setTimeout(() => alert[0].remove(), 100000);
         }
     });
     observer.observe(msg, { childList: true });
@@ -170,13 +197,20 @@ function init() {
         if (e.target.tagName === "TD") {
             const linha = e.target.parentNode;
             const colunas = linha.querySelectorAll("td");
+            const artigoId = colunas[0].innerText;
 
-            document.getElementById('inputId').value = colunas[0].innerText;
-            document.getElementById('inputTitulo').value = colunas[1].innerText;
-            document.getElementById('inputData').value = colunas[2].innerText;
-            document.getElementById('inputAutor').value = colunas[3].innerText;
-            document.getElementById('inputCategoria').value = colunas[4].innerText;
-            document.getElementById('inputLink').value = colunas[5].innerText;
+            readArtigo((dados) => {
+                const artigo = dados.find(a => a.id == artigoId);
+                if (artigo) {
+                    document.getElementById('inputId').value = artigo.id;
+                    document.getElementById('inputTitulo').value = artigo.titulo;
+                    document.getElementById('inputData').value = artigo.data;
+                    document.getElementById('inputAutor').value = artigo.autor;
+                    document.getElementById('inputCategoria').value = artigo.categoria_id;
+                    document.getElementById('inputLink').value = artigo.link || '';
+                    document.getElementById('inputTexto').value = artigo.texto || '';
+                }
+            });
         }
     });
 

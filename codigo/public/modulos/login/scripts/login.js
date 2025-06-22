@@ -18,6 +18,7 @@
 // Página inicial de Login
 let usuarioLogado = localStorage.getItem('usuarioLogado');
 const LOGIN_URL = `${window.location.origin}/modulos/login/login.html`;
+sessionStorage.setItem('urlDestino', window.location.href);
 const urlDestino = sessionStorage.getItem('urlDestino') || `${window.location.origin}/index.html`;
 const apiUrl = '/usuarios';
 
