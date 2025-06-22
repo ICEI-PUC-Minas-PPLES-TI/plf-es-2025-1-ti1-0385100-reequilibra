@@ -182,6 +182,19 @@
             </div>
         </div>
     </div>
+    <script>
+      // Função para verificar se o usuário está logado
+      function verificaUsuarioCorrente() {
+        const usuarioCorrenteJSON = localStorage.getItem("usuarioLogado");
+        if (!usuarioCorrenteJSON) {
+          // Salva a URL original antes de redirecionar para o login
+          window.location.href = "../login/login.html"; // Redireciona para login
+        }
+      }
+
+      // Chama a função imediatamente ao carregar a página
+      verificaUsuarioCorrente();
+    </script>
 
     <script src="crudartigos.js"></script>
     <script src="../../assets/js/emergencia.js"></script>
