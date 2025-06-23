@@ -79,6 +79,15 @@
       "categoria_id": "2",
       "link": "https://www.scielo.br/j/pcp/a/8VdqxG3rYm37knTdFCxXqtm",
       "texto": "O interesse pelo estudo do estresse no trabalho tem sido crescente na literatura científica, particularmente nos últimos anos. Uma razão para o aumento de pesquisas sobre esse tema está nas repercussões das condições e da organização do trabalho na saúde e no bem-estar dos empregados e, em consequência, no funcionamento e na efetividade das organizações. Na economia, o impacto negativo dessa variável tem sido estimado com base na suposição e nos achados de que trabalhadores estressados diminuem seu desempenho e aumentam os custos das organizações com problemas de saúde, com o aumento do absenteísmo, da rotatividade e do número de acidentes no local de trabalho. Tendo em vista a importância do tema, o presente trabalho se propõe a analisar os modelos teóricos sobre estresse ocupacional e fatores psicossociais. Neste artigo, portanto, apresentaremos os princípios dos principais modelos que discutem a relação entre os fatores psicossociais do trabalho e o estresse ocupacional: modelo demandacontrole, modelo demanda-controle-apoio social, modelo do desequilíbrio esforço-recompensa, modelo ecológico e a proposta do National Institute for Occupational and Health (NIOSH)."
+    },
+    {
+      "titulo": "A percepção do corpo e o autocuidado.",
+      "data": "2025-06-13",
+      "autor": "1 José Roque Junges",
+      "categoria_id": "3",
+      "link": "https://www.scielosp.org/pdf/physis/2020.v30n3/e300318/pt",
+      "texto": "Resumo: Este trabalho apresenta uma pesquisa de\nnatureza qualitativa, que teve como objetivo analisar\na percepção do corpo e o autocuidado em sujeitos\nacometidos por diabetes mellitus 2. Foram entrevistados\ndez participantes, atendidos por uma Estratégia de Saúde\nda Família localizada na região metropolitana de Porto\nAlegre-RS. Como recurso metodológico, utilizou-se a\nentrevista semiestruturada; os dados foram analisados\natravés da análise de conteúdo do tipo temática, proposta\npor Bardin. Como matriz teórica, utilizou-se a perspectiva\nfenomenológica de Merleau-Ponty. A análise das narrativas\npossibilitou a criação de duas categorias: 1) corpo\nalterado: enfrentando o inesperado; 2) corpo assumido:\naprendendo a conviver com a doença. A interpretação dos\ndados revelou que os sujeitos apresentaram atitudes de\nsurpresa, sentimento de tristeza, não aceitação frente às\nalterações do corpo, mas também conformação em relação\nao diagnóstico. Os sujeitos passaram por dificuldades\nalimentares e gerenciamento de medicamentos até\nassumirem o corpo alterado pela incorporação de novos\nhábitos. Como conclusão, destaca-se que somente com\no alinhamento do corpo habitual ao corpo atual, pela\nincorporação dos procedimentos de tratamento, é que a\natitude de autocuidado começa a fazer parte do cotidiano.",
+      "id": "0825"
     }
   ],
   "favoritos": [
@@ -91,6 +100,11 @@
       "id": "19ac",
       "usuario_id": 1,
       "noticia_id": "6"
+    },
+    {
+      "id": "f2c0",
+      "usuario_id": 1,
+      "noticia_id": "825"
     }
   ],
   "categorias": [
@@ -370,6 +384,14 @@
       "senha": "123",
       "nome": "Filipe",
       "email": "fliusjkgfjk@gmail.com"
+    },
+    {
+      "id": "1750705277288",
+      "nome": "Barbara Amorim",
+      "login": "Barbara",
+      "email": "barbara@gmail.com",
+      "senha": "1212",
+      "tipo": "usuario"
     }
   ],
   "mensagens": [
@@ -647,153 +669,36 @@
       "isHealthProfessional": false
     }
   ],
-  "recompensas": [
+  "tiposDeAtividade": [
     {
-      "id": "1",
-      "titulo": "Sessão de Terapia",
-      "descricao": "Complete sua sessão de terapia semanal",
-      "icone": "fas fa-comments",
-      "pontos": 100,
-      "tipo": "terapia",
-      "completa": false
+      "id": "terapia",
+      "nome": "Terapia",
+      "xp": 50,
+      "icone": "fas fa-comments"
     },
     {
-      "id": "2",
-      "titulo": "Diário de Humor",
-      "descricao": "Registre seu humor e pensamentos no diário",
-      "icone": "fas fa-book",
-      "pontos": 50,
-      "tipo": "diario",
-      "completa": false
+      "id": "exercicio",
+      "nome": "Exercício",
+      "xp": 40,
+      "icone": "fas fa-dumbbell"
     },
     {
-      "id": "3",
-      "titulo": "Meditação Guiada",
-      "descricao": "Complete uma sessão de meditação de 10 minutos",
-      "icone": "fas fa-spa",
-      "pontos": 70,
-      "tipo": "meditacao",
-      "completa": false
+      "id": "meditacao",
+      "nome": "Meditação",
+      "xp": 30,
+      "icone": "fas fa-spa"
     },
     {
-      "id": "4",
-      "titulo": "Exercício Físico",
-      "descricao": "Pratique pelo menos 30 minutos de exercício",
-      "icone": "fas fa-running",
-      "pontos": 80,
-      "tipo": "exercicio",
-      "completa": false
+      "id": "diario",
+      "nome": "Diário",
+      "xp": 20,
+      "icone": "fas fa-book"
     },
     {
-      "id": "5",
-      "titulo": "Gratidão",
-      "descricao": "Anote 3 coisas pelas quais você é grato hoje",
-      "icone": "fas fa-heart",
-      "pontos": 40,
-      "tipo": "diario",
-      "completa": false
-    }
-  ],
-"tiposDeAtividade": [
-  {
-    "id": "terapia",
-    "nome": "Terapia",
-    "xp": 50,
-    "icone": "fas fa-comments"
-  },
-  {
-    "id": "exercicio",
-    "nome": "Exercício",
-    "xp": 40,
-    "icone": "fas fa-dumbbell"
-  },
-  {
-    "id": "meditacao",
-    "nome": "Meditação",
-    "xp": 30,
-    "icone": "fas fa-spa"
-  },
-  {
-    "id": "diario",
-    "nome": "Diário",
-    "xp": 20,
-    "icone": "fas fa-book"
-  },
-  {
-    "id": "gratidao",
-    "nome": "Gratidão",
-    "xp": 15,
-    "icone": "fas fa-heart"
-  }
-],
-  "medalhas": [
-    {
-      "id": "1",
-      "nome": "Iniciante",
-      "icone": "fas fa-seedling",
-      "descricao": "Complete sua primeira atividade",
-      "conquistada": true
-    },
-    {
-      "id": "2",
-      "nome": "Terapeuta",
-      "icone": "fas fa-comments",
-      "descricao": "Complete 5 sessões de terapia",
-      "objetivo": 5,
-      "progresso": 0,
-      "conquistada": false
-    },
-    {
-      "id": "3",
-      "nome": "Meditador",
-      "icone": "fas fa-spa",
-      "descricao": "Complete 10 meditações",
-      "objetivo": 10,
-      "progresso": 0,
-      "conquistada": false
-    },
-    {
-      "id": "4",
-      "nome": "Escritor",
-      "icone": "fas fa-book",
-      "descricao": "Complete 7 entradas no diário",
-      "objetivo": 7,
-      "progresso": 0,
-      "conquistada": false
-    },
-    {
-      "id": "5",
-      "nome": "Atleta",
-      "icone": "fas fa-running",
-      "descricao": "Complete 15 sessões de exercício",
-      "objetivo": 15,
-      "progresso": 0,
-      "conquistada": false
-    },
-    {
-      "id": "6",
-      "nome": "Grato",
-      "icone": "fas fa-heart",
-      "descricao": "Complete 30 dias de gratidão",
-      "objetivo": 30,
-      "progresso": 0,
-      "conquistada": false
-    },
-    {
-      "id": "7",
-      "nome": "Mestre",
-      "icone": "fas fa-crown",
-      "descricao": "Alcance o nível 10",
-      "objetivo": 10,
-      "progresso": 1,
-      "conquistada": false
-    },
-    {
-      "id": "8",
-      "nome": "Série de 7 dias",
-      "icone": "fas fa-calendar-check",
-      "descricao": "Complete atividades por 7 dias consecutivos",
-      "conquistada": true
+      "id": "gratidao",
+      "nome": "Gratidão",
+      "xp": 15,
+      "icone": "fas fa-heart"
     }
   ]
 }

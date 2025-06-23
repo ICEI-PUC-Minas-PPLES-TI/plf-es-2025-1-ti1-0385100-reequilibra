@@ -1,6 +1,6 @@
-const apiUrl = 'http://localhost:3000/artigos';
+const apiUrl = '/artigos';
 
-const categoriasUrl = 'http://localhost:3000/categorias';
+const categoriasUrl = '/categorias';
 
 function carregarCategorias() {
     fetch(categoriasUrl)
@@ -187,7 +187,7 @@ function init() {
     const observer = new MutationObserver(() => {
         const alert = msg.getElementsByClassName("alert");
         if (alert.length) {
-            setTimeout(() => alert[0].remove(), 100000);
+            setTimeout(() => alert[0].remove(), 5000);
         }
     });
     observer.observe(msg, { childList: true });
