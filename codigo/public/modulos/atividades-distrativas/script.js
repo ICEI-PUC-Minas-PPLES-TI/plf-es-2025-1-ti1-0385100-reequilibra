@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const selectTempo = document.getElementById('tempo');
   const selectUsuario = document.getElementById('usuario');
 
-  // Criar o temporizador visual
+  // Criar o temporizador visual com barra de progresso
   const temporizador = document.createElement('div');
   temporizador.id = 'temporizador';
   temporizador.style.cssText = `
@@ -21,8 +21,15 @@ document.addEventListener('DOMContentLoaded', () => {
     z-index: 1000;
     color: #01AE7D;
     box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    width: 300px;
+    text-align: center;
   `;
-  temporizador.textContent = '⏳ 00:00';
+  temporizador.innerHTML = `
+    <div id="contador-tempo">⏳ 00:00</div>
+    <div style="margin-top: 15px; width: 100%; background: #ddd; border-radius: 10px; overflow: hidden;">
+      <div id="barra-progresso" style="height: 20px; width: 0%; background: #01AE7D;"></div>
+    </div>
+  `;
   document.body.appendChild(temporizador);
 
   const listaAtividadesConcluidas = document.createElement('div');
@@ -30,11 +37,17 @@ document.addEventListener('DOMContentLoaded', () => {
   listaAtividadesConcluidas.style.marginTop = '20px';
   document.querySelector('.container').appendChild(listaAtividadesConcluidas);
 
+  // Elemento de som
+  const somFim = document.createElement('audio');
+  somFim.id = 'som-fim';
+  somFim.src = "https://assets.mixkit.co/sfx/preview/mixkit-bell-notification-933.mp3";
+  somFim.preload = 'auto';
+  document.body.appendChild(somFim);
+
   let missoes = [];
   let atividades = [];
   let usuarios = {};
 
-  // Carrega dados da API
   Promise.all([
     fetch('http://localhost:3000/missoes').then(res => res.json()),
     fetch('http://localhost:3000/atividades').then(res => res.json()),
@@ -125,17 +138,18 @@ document.addEventListener('DOMContentLoaded', () => {
     let tempoRestante = tempoSegundos;
 
     temporizador.style.display = 'block';
-    atualizarDisplay(tempoRestante);
+    atualizarDisplay(tempoRestante, tempoSegundos);
 
     document.querySelectorAll('.card button').forEach(btn => btn.disabled = true);
 
     const intervalo = setInterval(() => {
       tempoRestante--;
-      atualizarDisplay(tempoRestante);
+      atualizarDisplay(tempoRestante, tempoSegundos);
 
       if (tempoRestante <= 0) {
         clearInterval(intervalo);
         temporizador.style.display = 'none';
+        somFim.play();
 
         registrarAtividadeConcluida(usuarioId, id, tempoMin)
           .then(() => listarAtividadesConcluidas(usuarioId));
@@ -146,10 +160,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 1000);
   }
 
-  function atualizarDisplay(segundos) {
-    const min = String(Math.floor(segundos / 60)).padStart(2, '0');
-    const sec = String(segundos % 60).padStart(2, '0');
-    temporizador.textContent = `⏳ ${min}:${sec}`;
+  function atualizarDisplay(segundosRestantes, totalSegundos) {
+    const min = String(Math.floor(segundosRestantes / 60)).padStart(2, '0');
+    const sec = String(segundosRestantes % 60).padStart(2, '0');
+    document.getElementById('contador-tempo').textContent = `⏳ ${min}:${sec}`;
+
+    const porcentagem = ((totalSegundos - segundosRestantes) / totalSegundos) * 100;
+    document.getElementById('barra-progresso').style.width = `${porcentagem}%`;
   }
 
   function registrarAtividadeConcluida(usuarioId, atividadeId, tempo) {
@@ -164,11 +181,10 @@ document.addEventListener('DOMContentLoaded', () => {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(registro)
-    })
-      .then(res => {
-        if (!res.ok) throw new Error('Erro ao registrar');
-        return res.json();
-      });
+    }).then(res => {
+      if (!res.ok) throw new Error('Erro ao registrar');
+      return res.json();
+    });
   }
 
   function listarAtividadesConcluidas(usuarioId) {
