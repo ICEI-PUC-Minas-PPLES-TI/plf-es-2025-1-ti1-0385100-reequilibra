@@ -43,6 +43,10 @@ body {
   background-color: #018f68;
 }
 
+a.nav-link{
+  padding: 0;
+}
+
 /* ========== FORMULÁRIO ========== */
 
 
@@ -101,6 +105,15 @@ body {
   color: var(--cor-clara);
 }
 
+#listaDiarios {
+  max-height: 42rem;
+  overflow-y: auto; 
+}
+
+#coluna2{
+  height: 42rem;
+  overflow: auto;
+}
 #menuCriarDiario{
   margin-top: 10rem;
 }

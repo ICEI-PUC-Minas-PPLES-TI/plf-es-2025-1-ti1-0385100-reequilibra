@@ -4,45 +4,94 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detalhes do Psicólogo - Reequilibra</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="./styles.css">
+    <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    />
+    
+    <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+    rel="stylesheet"
+    />
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="../../styles.css">
+
     <link rel="stylesheet" href="./assets/css/dtlpsicologos.css">
+
 </head>
 <body>
+<script src="../login/scripts/login.js"></script>
+    
+    <!-- HEADER -->
     <header class="header">
-        <nav class="nav">
-            <div class="nav-brand">
-                <a href="index.html">
-                    <img src="./assets/img/logo.png" alt="Reequilibra" class="logo" />
-                </a>
-            </div>
-            <div class="nav-menu" id="navMenu">
-                <a href="../index.html" class="nav-link">Início</a>
-                <a href="../index.html#about" class="nav-link">Sobre</a>
-                <a href="../index.html#services" class="nav-link">Serviços</a>
-                <a href="../index.html#testimonials" class="nav-link">Depoimentos</a>
-            </div>
-            <div class="nav-actions">
-                <a href="../modulos/login/index.html" class="nav-link">Login</a>
-                <a href="../modulos/cadastro/index.html" class="btn btn-outline">Cadastro</a>
-                <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
-                    <i class="fas fa-moon"></i>
-                </button>
-                <button class="mobile-toggle" id="mobileToggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </div>
-        </nav>
+      <nav class="nav">
+        <div class="nav-brand">
+          <a href="../../index.html">
+            <img
+              src="../../assets/images/logo.png"
+              alt="Reequilibra"
+              class="logo"
+            />
+          </a>
+        </div>
+        <div class="nav-menu" id="navMenu">
+          <a href="#home" class="nav-link">Início</a>
+          <a href="#about" class="nav-link">Sobre</a>
+          <a href="#services" class="nav-link">Serviços</a>
+          <a href="#testimonials" class="nav-link">Depoimentos</a>
+        </div>
+        <div class="nav-actions">
+          <a
+            id="loginBtn"
+            href="./modulos/login/login.html"
+            class="nav-link"
+            >Login</a
+          >
+          <a
+            id="signupBtn"
+            href="./modulos/login/cadastro.html"
+            class="btn btn-outline"
+            >Cadastro</a
+          >
+          <a
+          id="logoutBtn"
+          onclick="logoutUser()" 
+          class="btn btn-danger"
+          >Logout</a>
+          <button
+            class="theme-toggle"
+            id="themeToggle"
+            aria-label="Alternar tema"
+          >
+            <i class="fas fa-moon"></i>
+          </button>
+          <button class="mobile-toggle" id="mobileToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </nav>
     </header>
 
     <main class="conteudo-principal">
         <div class="container">
-            <div class="detalhes-container">
+            <a href="./psicologos.html" class="btn-voltar">
+                <i class="fas fa-arrow-left"></i> Voltar
+            </a>
 
+            <div class="detalhes-container">
+                <div class="carregando">
+                    <p>Carregando informações do psicólogo...</p>
+                </div>
             </div>
         </div>
     </main>
@@ -122,9 +171,24 @@
         </div>
     </footer>
 
+    <script>
+        // Função para verificar se o usuário está logado
+        function verificaUsuarioCorrente() {
+          const usuarioCorrenteJSON = localStorage.getItem("usuarioLogado");
+          if (!usuarioCorrenteJSON) {
+            // Salva a URL original antes de redirecionar para o login
+            window.location.href = "../login/login.html"; // Redireciona para login
+          }
+        }
+      
+        // Chama a função imediatamente ao carregar a página
+        verificaUsuarioCorrente();
+    </script>
+    
+    <script src="../../assets/js/app.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="./assets/scripts/app.js"></script>
-    <script src="./assets/scripts/theme.js"></script>
-    <script src="./script.js"></script>
+    <script src="../../script.js"></script>
+    <script src="./assets/scripts/ap-psic.js"></script>
 </body>
 </html>

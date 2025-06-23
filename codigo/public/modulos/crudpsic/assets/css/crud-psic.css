@@ -13,6 +13,10 @@
     --shadow-elevated: rgba(0, 0, 0, 0.15);
     --gradient-primary: linear-gradient(135deg, var(--primary-green), var(--primary-purple));
     --gradient-hero: linear-gradient(135deg, rgba(150, 100, 169, 0.1), rgba(57, 152, 92, 0.1));
+    --white: #fff;
+    --other-purple: #855597;
+    --red: #e74c3c;
+    --dark-red: #c0392b;
 }
 
 [data-theme="dark"] {
@@ -36,10 +40,39 @@
     margin-top: 100px;
 }
 
+.btn-voltar {
+    background: var(--surface);
+    color: var(--primary-purple);
+    padding: 0.8rem 1.5rem;
+    border-radius: 12px;
+    font-weight: 600;
+    border: 1px solid var(--primary-purple);
+    cursor: pointer;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+    text-decoration: none;
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+}
+
+.btn-voltar:hover {
+    background: var(--primary-purple);
+    color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(150, 100, 169, 0.3);
+}
+
 .form-section {
+    position: relative;
     background-color: var(--surface-elevated);
     border-radius: 12px;
     padding: 2rem;
+    padding-top: 5rem;
     box-shadow: 0 4px 6px var(--shadow);
     margin-bottom: 3rem;
 }
@@ -62,6 +95,7 @@
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+    position: relative;
 }
 
 .form-row {
@@ -127,7 +161,8 @@
 
 .btn-primary {
     background: var(--gradient-primary);
-    color: white;
+    color: var(--white);
+    border: none;
 }
 
 .btn-primary:hover {
@@ -139,10 +174,6 @@
     background: transparent;
     border-color: var(--primary-purple);
     color: var(--primary-purple);
-}
-
-.btn-outline:hover {
-    background-color: rgba(150, 100, 169, 0.1);
 }
 
 /* Tabela de Psicólogos */
@@ -179,7 +210,7 @@
 
 .psicologos-table th {
     background-color: var(--primary-green-soft);
-    color: white;
+    color: var(--white);
     font-weight: 600;
 }
 
@@ -206,20 +237,20 @@
 
 .btn-edit {
     background-color: var(--primary-purple);
-    color: white;
+    color: var(--white);
 }
 
 .btn-edit:hover {
-    background-color: #855597;
+    background-color: var(--other-purple);
 }
 
 .btn-delete {
-    background-color: #e74c3c;
-    color: white;
+    background-color: var(--red);
+    color: var(--white);
 }
 
 .btn-delete:hover {
-    background-color: #c0392b;
+    background-color: var(--dark-red);
 }
 
 /* Modal */
@@ -257,15 +288,14 @@
 }
 
 .btn-danger {
-    background-color: #e74c3c;
-    color: white;
+    background-color: var(--red);
+    color: var(--white);
 }
 
 .btn-danger:hover {
-    background-color: #c0392b;
+    background-color: var(--dark-red);
 }
 
-/* Foto Preview */
 .foto-preview {
     margin-top: 0.5rem;
 }
@@ -280,11 +310,22 @@
 
 /* Responsividade */
 @media (max-width: 768px) {
+
+    .btn-voltar {
+        position: static;
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+
+    .form-section {
+        padding-top: 2rem;
+    }
+
     .form-row {
         flex-direction: column;
         gap: 1.5rem;
     }
-    
+
     .form-actions {
         justify-content: center;
     }

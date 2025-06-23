@@ -52,16 +52,16 @@ document.addEventListener('DOMContentLoaded', function () {
                 crp: formData.get('crp').trim(),
                 email: formData.get('email').trim(),
                 whatsapp: formData.get('whatsapp').trim(),
-                area_atuacao: formData.get('area_atuacao').trim(),
+                area_atua: formData.get('area_atuacao').trim(),
                 descricao: formData.get('descricao').trim(),
-                local_atendimento: formData.get('local_atendimento'),
+                local_atend: formData.get('local_atendimento'),
                 cep: formData.get('cep').trim(),
                 horarios: formData.get('horarios').trim(),
-                img: 'https://randomuser.me/api/portraits/lego/1.jpg'
+                nota: 0
             };
 
             if (!dados.nome || !dados.crp || !dados.email || !dados.whatsapp ||
-                !dados.area_atuacao || !dados.descricao || !dados.local_atendimento || !dados.horarios) {
+                !dados.area_atua || !dados.descricao || !dados.local_atend || !dados.horarios) {
                 alert('Por favor, preencha todos os campos obrigatórios.');
                 return resolve(null);
             }
@@ -74,7 +74,11 @@ document.addEventListener('DOMContentLoaded', function () {
                     resolve(dados);
                 };
                 reader.readAsDataURL(fileInput);
+            } else if (psicologoEmEdicao) {
+                dados.img = psicologoEmEdicao.img;
+                resolve(dados);
             } else {
+                dados.img = '';
                 resolve(dados);
             }
         });
@@ -102,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function () {
             })
             .then(function (psicologos) {
                 if (!psicologos) return;
-                
+
                 tabelaBody.innerHTML = '';
 
                 psicologos.forEach(function (psicologo) {
@@ -112,8 +116,8 @@ document.addEventListener('DOMContentLoaded', function () {
                         <td><img src="${psicologo.img}" alt="${psicologo.nome}" class="psicologo-avatar"></td>
                         <td>${psicologo.nome}</td>
                         <td>${psicologo.crp}</td>
-                        <td>${psicologo.area_atuacao}</td>
-                        <td>${psicologo.local_atendimento}</td>
+                        <td>${psicologo.area_atua}</td>
+                        <td>${psicologo.local_atend}</td>
                         <td class="action-buttons">
                             <button data-id="${psicologo.id}" class="btn btn-edit btn-sm">Editar</button>
                             <button data-id="${psicologo.id}" class="btn btn-delete btn-sm">Excluir</button>
@@ -148,7 +152,7 @@ document.addEventListener('DOMContentLoaded', function () {
             })
             .then(function (psicologo) {
                 if (!psicologo) return;
-                
+
                 psicologoEmEdicao = psicologo;
 
                 document.getElementById('psicologoId').value = psicologo.id;
@@ -156,13 +160,17 @@ document.addEventListener('DOMContentLoaded', function () {
                 document.getElementById('crp').value = psicologo.crp;
                 document.getElementById('email').value = psicologo.email;
                 document.getElementById('whatsapp').value = psicologo.whatsapp;
-                document.getElementById('area_atuacao').value = psicologo.area_atuacao;
+                document.getElementById('area_atuacao').value = psicologo.area_atua;
                 document.getElementById('descricao').value = psicologo.descricao;
-                document.getElementById('local_atendimento').value = psicologo.local_atendimento;
+                document.getElementById('local_atendimento').value = psicologo.local_atend;
                 document.getElementById('cep').value = psicologo.cep || '';
                 document.getElementById('horarios').value = psicologo.horarios;
 
-                fotoPreview.innerHTML = `<img src="${psicologo.img}" alt="Foto atual">`;
+                if (psicologo.img) {
+                    fotoPreview.innerHTML = `<img src="${psicologo.img}" alt="Foto atual">`;
+                } else {
+                    fotoPreview.innerHTML = '';
+                }
 
                 submitBtn.textContent = 'Atualizar';
 

@@ -14,6 +14,8 @@
     --shadow-elevated: rgba(0, 0, 0, 0.15);
     --gradient-primary: linear-gradient(135deg, var(--primary-green));
     --gradient-hero: linear-gradient(135deg, rgba(150, 100, 169, 0.1), rgba(57, 152, 92, 0.1));
+    --gold: #fbbf24;
+    --white: #fff;
 }
 
 [data-theme="dark"] {
@@ -30,8 +32,32 @@
 }
 
 /* Conteúdo Principal/Main */
+.btn-voltar {
+    background: var(--surface);
+    color: var(--primary-purple);
+    padding: 0.8rem 1.5rem;
+    border-radius: 12px;
+    font-weight: 600;
+    border: 1px solid var(--primary-purple);
+    cursor: pointer;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+    text-decoration: none;
+}
+
+.btn-voltar:hover {
+    background: var(--primary-purple);
+    color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(150, 100, 169, 0.3);
+}
+
 .conteudo-principal {
-    padding: 2rem 0;
+    padding-top: 6rem;
     background: var(--background);
 }
 
@@ -44,6 +70,18 @@
     box-shadow: 0 5px 20px var(--shadow);
     position: relative;
     overflow: hidden;
+}
+
+.carregando {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 1.2rem;
+    min-height: 200px;
 }
 
 .destaques-psic {
@@ -73,6 +111,11 @@
     box-shadow: 0 5px 15px var(--shadow);
 }
 
+.perfil-info {
+    flex: 1;
+    min-width: 0;
+}
+
 .perfil-info h1 {
     color: var(--text-primary);
     margin-bottom: 0.5rem;
@@ -81,7 +124,7 @@
 
 .especialidade-badge {
     background: var(--primary-purple);
-    color: white;
+    color: var(--white);
     padding: 0.3rem 1rem;
     border-radius: 20px;
     font-size: 0.9rem;
@@ -97,7 +140,7 @@
 }
 
 .avaliacao-header .fas.fa-star {
-    color: #fbbf24;
+    color: var(--gold);
 }
 
 .descricao {
@@ -134,6 +177,10 @@
     font-size: 1rem;
 }
 
+.info-item span {
+    word-break: break-word;
+}
+
 .info-icon {
     color: var(--primary-purple);
     font-size: 1.2rem;
@@ -142,7 +189,7 @@
 
 .btn-agendar {
     background: var(--primary-green);
-    color: white;
+    color: var(--white);
     padding: 0.8rem 2rem;
     border-radius: 12px;
     font-weight: 600;
@@ -206,7 +253,7 @@
 }
 
 .stars {
-    color: #fbbf24;
+    color: var(--gold);
     font-size: 1.1rem;
     letter-spacing: 2px;
 }
@@ -237,6 +284,12 @@
         gap: 1.5rem;
     }
 
+    .btn-agendar,
+    .btn-voltar {
+        width: 100%;
+        text-align: center;
+    }
+
     .perfil-img {
         width: 120px;
         height: 120px;
@@ -248,6 +301,10 @@
 
     .info-grid {
         grid-template-columns: 1fr;
+    }
+
+    .avaliacao-header {
+        justify-content: center;
     }
 
     .avaliacao-item p {

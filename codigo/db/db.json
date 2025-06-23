@@ -1,7 +1,7 @@
 {
-  "diario": [
+  "diarios": [
     {
-      "id": "",
+      "id": "1",
       "userid": "1",
       "data": "2025-04-24",
       "titulo": "Dia difícil na faculdade",
@@ -11,17 +11,17 @@
       "favorito": false
     },
     {
-      "id": "",
-      "userid": "1",
-      "data": "2025-04-23",
+      "id": "2",
+      "userid": 1,
+      "data": "17/06/2025",
       "titulo": "Dia tranquilo",
-      "publico": true,
+      "publico": false,
       "status": 2,
       "conteudo": "Hoje foi um dia tranquilo. Consegui estudar bastante e ainda tive tempo para relaxar assistindo minha série favorita.",
-      "favorito": true
+      "favorito": false
     },
     {
-      "id": "",
+      "id": "3",
       "userid": "2",
       "data": "2025-04-22",
       "titulo": "Dia produtivo no trabalho",
@@ -31,7 +31,7 @@
       "favorito": true
     },
     {
-      "id": "",
+      "id": "4",
       "userid": "3",
       "data": "2025-04-21",
       "titulo": "Dia de reflexão",
@@ -41,7 +41,7 @@
       "favorito": false
     },
     {
-      "id": "",
+      "id": "5",
       "userid": "3",
       "data": "2025-04-20",
       "titulo": "Dia de diversão com amigos",
@@ -51,7 +51,7 @@
       "favorito": true
     },
     {
-      "id": "",
+      "id": "6",
       "userid": "3",
       "data": "2025-04-19",
       "titulo": "Dia de descanso",
@@ -59,28 +59,9 @@
       "status": 2,
       "conteudo": "Hoje foi um dia de descanso total. Fiquei em casa, li um livro e aproveitei para recarregar as energias.",
       "favorito": false
-    },
-    {
-      "id": "060b",
-      "userid": "1",
-      "data": "2025-04-24",
-      "titulo": "sei que laDia difícil na faculdade",
-      "publico": false,
-      "status": 1,
-      "conteudo": "Teste",
-      "favorito": false
     }
   ],
   "artigos": [
-    {
-      "id": "1",
-      "titulo": "Considerações gerais sobre transtornos de ansiedade",
-      "data": "08/2023",
-      "autor": "John W. Barnhill",
-      "categoria_id": "1",
-      "texto": "A ansiedade é uma reação normal a uma ameaça ou a um estresse psicológico. A ansiedade normal tem sua raiz no medo e desempenha um importante papel na sobrevivência. Quando uma pessoa se vê perante uma situação perigosa, a ansiedade desencadeia uma resposta de luta ou fuga. Com essa resposta, entra em curso uma variedade de alterações físicas, como uma maior irrigação sanguínea para o coração e para os músculos para proporcionar ao corpo a energia e a força necessárias para enfrentar situações de risco à vida, como fugir de um animal agressivo ou enfrentar um agressor. A ansiedade pode ajudar a pessoa a se adaptar a fatores estressantes mais comuns, motivando-a a se preparar, praticar e ensaiar. Ela pode até mesmo levar uma pessoa a abordar situações possivelmente perigosas com a devida cautela.",
-      "link": "https://www.msdmanuals.com/pt/casa/dist%C3%BArbios-de-sa%C3%BAde-mental/transtornos-de-ansiedade-e-relacionados-a-fatores-estressantes/considera%C3%A7%C3%B5es-gerais-sobre-transtornos-de-ansiedade"
-    },
     {
       "id": "2",
       "titulo": "Depressão:Desafios e tratamento",
@@ -91,13 +72,13 @@
       "link": "https://bjihs.emnuvens.com.br/bjihs/article/view/3107"
     },
     {
-      "id": "3",
-      "titulo": "Autocuidado e qualidade de vida",
-      "data": "15/04/2025",
-      "autor": "Yassana MarvilaGirondoli/Mirian Cardoso de Rezende Soares",
-      "categoria_id": "3",
-      "texto": "Autocuidado, como o próprio nome esclarece, é cuidar de si mesmo. É dedicar um tempo para si, mesmo em meio a rotinas e obrigações diárias. A atenção que cada um despende para si é muito importante para ter uma qualidade de vida satisfatória, visto que os principais aspectos do autocuidado é reconhecer as necessidades físicas, mentais e emocionais e, a partir daí, dedicar-se ao atendimento de tais necessidades.<br>Quando os indivíduos mantêm uma rotina de autocuidado, observa-se a busca por hábitos saudáveis,melhora no estilo de vida, adoção de medidas de promoção da saúde e prevenção de doenças. <br>Essa prática traz benefícios para a saúde física, mental e emocional e, consequentemente, melhora a produtividade, os relacionamentos interpessoais e a autoestima. O autocuidado está intimamente ligado à autoestima e ao autoconhecimento, visto que estes elementos fortalecem a confiança do indivíduo em si mesmo, impacta suas decisões diárias e proporciona o conhecimento dos limites do corpo e da mente. Com isso, é possível estabelecer um cuidado diário conforme suas demandas e características pessoais.",
-      "link": "https://prodi.ifes.edu.br/images/stories/Autocuidado_e_Qualidade_de_Vida.pdf"
+      "id": "6dc1",
+      "titulo": "Estresse e fatores psicossociais",
+      "data": "2010-12-05",
+      "autor": "Ana Lúcia Pallegrini",
+      "categoria_id": "2",
+      "link": "https://www.scielo.br/j/pcp/a/8VdqxG3rYm37knTdFCxXqtm",
+      "texto": "O interesse pelo estudo do estresse no trabalho tem sido crescente na literatura científica, particularmente nos últimos anos. Uma razão para o aumento de pesquisas sobre esse tema está nas repercussões das condições e da organização do trabalho na saúde e no bem-estar dos empregados e, em consequência, no funcionamento e na efetividade das organizações. Na economia, o impacto negativo dessa variável tem sido estimado com base na suposição e nos achados de que trabalhadores estressados diminuem seu desempenho e aumentam os custos das organizações com problemas de saúde, com o aumento do absenteísmo, da rotatividade e do número de acidentes no local de trabalho. Tendo em vista a importância do tema, o presente trabalho se propõe a analisar os modelos teóricos sobre estresse ocupacional e fatores psicossociais. Neste artigo, portanto, apresentaremos os princípios dos principais modelos que discutem a relação entre os fatores psicossociais do trabalho e o estresse ocupacional: modelo demandacontrole, modelo demanda-controle-apoio social, modelo do desequilíbrio esforço-recompensa, modelo ecológico e a proposta do National Institute for Occupational and Health (NIOSH)."
     }
   ],
   "favoritos": [
@@ -105,6 +86,11 @@
       "id": "1",
       "usuario_id": 1,
       "noticia_id": 1
+    },
+    {
+      "id": "19ac",
+      "usuario_id": 1,
+      "noticia_id": "6"
     }
   ],
   "categorias": [
@@ -134,13 +120,13 @@
       "titulo": "Não aguento não aguentar mais",
       "autor": "Anne Helen Petersen",
       "link": "https://g.co/kgs/yQe2o9g",
-      "id": "f20a"
+      "id": "1432"
     },
     {
       "titulo": "A voz na sua cabeça",
       "autor": "Ethan Kross",
       "link": "https://g.co/kgs/mCH2jiW",
-      "id": "39fa"
+      "id": "3d72"
     }
   ],
   "siteMeditacao": {
@@ -264,11 +250,11 @@
       "id": "1",
       "nome": "Dra. Maria",
       "area_atua": "Terapia Comportamental",
-      "descricao": "Especialista em ajudar pessoas a superar desafios emocionais.",
+      "descricao": "Psicóloga especialista em Terapia Comportamental, com ampla experiência no tratamento de transtornos de ansiedade, fobias, baixa autoestima e dificuldades de relacionamento. Atua de forma empática e focada em estratégias práticas para promover mudanças positivas na vida dos pacientes.",
       "crp": "123456/SP",
       "email": "maria@psicologia.com",
       "local_atend": "Online / Presencial",
-      "cep": "21223200",
+      "cep": "33933360",
       "horarios": "A Combinar (Whatsapp)",
       "nota": 4.9,
       "whatsapp": "(11) 91234-5678",
@@ -278,11 +264,11 @@
       "id": "2",
       "nome": "Dr. Pedro Henrique",
       "area_atua": "Psicanálise",
-      "descricao": "Foco em conflitos inconscientes e questões emocionais profundas.",
+      "descricao": "Psicanalista com foco em escuta profunda e acolhimento. Atua no tratamento de angústias existenciais, conflitos inconscientes e dificuldades emocionais persistentes. Seu trabalho é baseado em uma abordagem reflexiva que visa ampliar o autoconhecimento e promover transformações duradouras.",
       "crp": "654321/SP",
       "email": "pedro@psicologia.com",
       "local_atend": "Presencial",
-      "cep": "04567890",
+      "cep": "38067540",
       "horarios": "9h às 18h",
       "nota": 4.7,
       "whatsapp": "(11) 98765-4321",
@@ -292,11 +278,11 @@
       "id": "3",
       "nome": "Dra. Ana Paula",
       "area_atua": "Terapia Cognitivo-Comportamental",
-      "descricao": "Ajuda na mudança de pensamentos e comportamentos disfuncionais.",
+      "descricao": "Atua com foco em reestruturação cognitiva e mudança de padrões de comportamento que geram sofrimento. Possui experiência no atendimento de casos de depressão, ansiedade, TOC e desenvolvimento de habilidades sociais. Oferece um espaço seguro e colaborativo para que o paciente alcance equilíbrio emocional.",
       "crp": "789012/SP",
       "email": "ana@psicologia.com",
       "local_atend": "Online",
-      "cep": "13050000",
+      "cep": "",
       "horarios": "13h às 20h",
       "nota": 4.8,
       "whatsapp": "(19) 92345-6789",
@@ -379,24 +365,28 @@
   ],
   "usuarios": [
     {
+      "id": "a9d3",
+      "login": "fillmello",
+      "senha": "123",
+      "nome": "Filipe",
+      "email": "fliusjkgfjk@gmail.com"
+    }
+  ],
+  "mensagens": [
+    {
       "id": "1",
-      "nome": "Fabio",
-      "anonimo": false
+      "mensagem": "Sou grato pela minha família",
+      "data": "22/05/2025"
     },
     {
       "id": "2",
-      "nome": "Anônimo",
-      "anonimo": true
-    }
-  ],
-  "cad_artigos": [
+      "mensagem": "Agradeço pelos meus amigos",
+      "data": "15/05/2025"
+    },
     {
       "id": "1",
-      "titulo": "Como lidar com a depressão",
-      "data": "22/05/2025",
-      "autor": "João da silva",
-      "categoria": "Depressão",
-      "link": "https://exemplo.com/artigo"
+      "mensagem": "Hoje fiz algo que me deixou feliz",
+      "data": "20/05/2025"
     }
   ],
   "lista_atividades": [
@@ -556,35 +546,254 @@
   ],
   "forums": [
     {
-      "id": "4827",
-      "title": "Como lidar com crises no trabalho?",
-      "content": "Dicas para controlar ansiedade no ambiente profissional.",
-      "author": "user123",
-      "comments": [
-        {
-          "id": 5912,
-          "content": "Recomendo técnicas de respiração.",
-          "timeSincePost": "5 minutos atrás",
-          "author": "user456"
-        }
-      ]
+      "id": "1",
+      "title": "Como lidar com crises de ansiedade no trabalho?",
+      "content": "Gostaria de compartilhar e ouvir experiências sobre como vocês lidam com momentos de ansiedade durante o trabalho. Ultimamente tenho sentido muita pressão e isso tem afetado minha produtividade e bem-estar. Quais técnicas vocês utilizam para manter a calma em situações estressantes?",
+      "author": "JoanaP",
+      "createdAt": "2023-12-01T08:30:00.000Z",
+      "isHealthProfessional": false,
+      "commentsCount": 2
+    },
+    {
+      "id": "2",
+      "title": "Dicas para melhorar a qualidade do sono",
+      "content": "Como psicólogo, gostaria de compartilhar algumas técnicas que podem ajudar a melhorar a qualidade do sono. Muitos dos meus pacientes relatam dificuldades para dormir e isso impacta significativamente sua saúde mental. Vamos discutir hábitos saudáveis e estratégias eficazes para uma boa noite de sono.",
+      "author": "Dr. CarlosS",
+      "createdAt": "2023-11-28T19:15:00.000Z",
+      "isHealthProfessional": true,
+      "commentsCount": 2
+    },
+    {
+      "id": "3",
+      "title": "Como ajudar um amigo com depressão???",
+      "content": "Meu amigo está passando por um momento muito difícil e gostaria de saber como posso apoiá-lo da melhor forma. Tenho notado mudanças no comportamento dele e suspeito que possa ser depressão. Como posso abordar o assunto sem ser invasivo e realmente ajudar?",
+      "author": "MariaL",
+      "createdAt": "2023-11-25T11:20:00.000Z",
+      "isHealthProfessional": false,
+      "commentsCount": 2
     }
   ],
-  "toDo": [
+  "memories": [
     {
-      "id": "894a",
-      "titulo": "Lavar Louca",
-      "status": "1"
+      "id": "2",
+      "userId": 1,
+      "imageUrl": "https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=1200&h=400&fit=crop",
+      "caption": "Lendo um bom livro ☕ A leitura sempre foi meu refúgio nos momentos difíceis.",
+      "createdAt": "2024-12-14T15:45:00.000Z"
     },
     {
-      "id": "af0b",
-      "titulo": "Estudar pra prova",
-      "status": "2"
+      "id": "3",
+      "userId": 1,
+      "imageUrl": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1200&h=400&fit=crop",
+      "caption": "Sessão de yoga matinal 🧘‍♀️ Começar o dia cuidando da mente e do corpo faz toda diferença!",
+      "createdAt": "2024-12-13T08:20:00.000Z"
+    }
+  ],
+  "comments": [
+    {
+      "id": "1",
+      "forumId": "1",
+      "content": "Quando sinto ansiedade no trabalho, pratico respiração profunda por 5 minutos. Também ajuda dar uma pequena caminhada, mesmo que seja apenas até o bebedouro.",
+      "author": "PedroM",
+      "isHealthProfessional": false,
+      "createdAt": "2023-12-02T10:15:00.000Z"
     },
     {
-      "id": "4d29",
-      "titulo": "Meditar",
-      "status": "3"
+      "id": "2",
+      "forumId": "1",
+      "content": "Como psicóloga, recomendo a técnica 5-4-3-2-1: identifique 5 coisas que você vê, 4 que pode tocar, 3 que pode ouvir, 2 que pode cheirar e 1 que pode provar. Isso ajuda a ancorar no presente e reduzir a ansiedade.",
+      "author": "Dra. Ana Silva",
+      "isHealthProfessional": true,
+      "createdAt": "2023-12-03T14:30:00.000Z"
+    },
+    {
+      "id": "3",
+      "forumId": "2",
+      "content": "Tenho seguido uma rotina rigorosa de sono e realmente ajudou. Deito e levanto sempre no mesmo horário, mesmo nos fins de semana.",
+      "author": "LucasR",
+      "isHealthProfessional": false,
+      "createdAt": "2023-11-29T08:45:00.000Z"
+    },
+    {
+      "id": "5",
+      "forumId": "2",
+      "content": "Como neurologista especializado em medicina do sono, recomendo fortemente manter o quarto escuro, silencioso e em temperatura agradável (entre 18-20°C). O ambiente tem grande impacto na qualidade do sono.",
+      "author": "Dr. Roberto Menezes",
+      "isHealthProfessional": true,
+      "createdAt": "2023-12-01T11:05:00.000Z"
+    },
+    {
+      "id": "6",
+      "forumId": "3",
+      "content": "O mais importante é ouvir sem julgar. Muitas vezes, só precisamos de alguém que nos escute de verdade. Ofereça sua presença, mas respeite quando a pessoa precisar de espaço.",
+      "author": "Dra. Juliana Costa",
+      "isHealthProfessional": true,
+      "createdAt": "2023-11-26T16:40:00.000Z"
+    },
+    {
+      "id": "1749558073098",
+      "forumId": "3",
+      "author": "asdas",
+      "content": "asdasd",
+      "isHealthProfessional": true,
+      "createdAt": "2025-06-10T12:21:13.098Z"
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "name": "Usuario Teste",
+      "email": "usuario@teste.com",
+      "isHealthProfessional": false
+    }
+  ],
+  "recompensas": [
+    {
+      "id": "1",
+      "titulo": "Sessão de Terapia",
+      "descricao": "Complete sua sessão de terapia semanal",
+      "icone": "fas fa-comments",
+      "pontos": 100,
+      "tipo": "terapia",
+      "completa": false
+    },
+    {
+      "id": "2",
+      "titulo": "Diário de Humor",
+      "descricao": "Registre seu humor e pensamentos no diário",
+      "icone": "fas fa-book",
+      "pontos": 50,
+      "tipo": "diario",
+      "completa": false
+    },
+    {
+      "id": "3",
+      "titulo": "Meditação Guiada",
+      "descricao": "Complete uma sessão de meditação de 10 minutos",
+      "icone": "fas fa-spa",
+      "pontos": 70,
+      "tipo": "meditacao",
+      "completa": false
+    },
+    {
+      "id": "4",
+      "titulo": "Exercício Físico",
+      "descricao": "Pratique pelo menos 30 minutos de exercício",
+      "icone": "fas fa-running",
+      "pontos": 80,
+      "tipo": "exercicio",
+      "completa": false
+    },
+    {
+      "id": "5",
+      "titulo": "Gratidão",
+      "descricao": "Anote 3 coisas pelas quais você é grato hoje",
+      "icone": "fas fa-heart",
+      "pontos": 40,
+      "tipo": "diario",
+      "completa": false
+    }
+  ],
+"tiposDeAtividade": [
+  {
+    "id": "terapia",
+    "nome": "Terapia",
+    "xp": 50,
+    "icone": "fas fa-comments"
+  },
+  {
+    "id": "exercicio",
+    "nome": "Exercício",
+    "xp": 40,
+    "icone": "fas fa-dumbbell"
+  },
+  {
+    "id": "meditacao",
+    "nome": "Meditação",
+    "xp": 30,
+    "icone": "fas fa-spa"
+  },
+  {
+    "id": "diario",
+    "nome": "Diário",
+    "xp": 20,
+    "icone": "fas fa-book"
+  },
+  {
+    "id": "gratidao",
+    "nome": "Gratidão",
+    "xp": 15,
+    "icone": "fas fa-heart"
+  }
+],
+  "medalhas": [
+    {
+      "id": "1",
+      "nome": "Iniciante",
+      "icone": "fas fa-seedling",
+      "descricao": "Complete sua primeira atividade",
+      "conquistada": true
+    },
+    {
+      "id": "2",
+      "nome": "Terapeuta",
+      "icone": "fas fa-comments",
+      "descricao": "Complete 5 sessões de terapia",
+      "objetivo": 5,
+      "progresso": 0,
+      "conquistada": false
+    },
+    {
+      "id": "3",
+      "nome": "Meditador",
+      "icone": "fas fa-spa",
+      "descricao": "Complete 10 meditações",
+      "objetivo": 10,
+      "progresso": 0,
+      "conquistada": false
+    },
+    {
+      "id": "4",
+      "nome": "Escritor",
+      "icone": "fas fa-book",
+      "descricao": "Complete 7 entradas no diário",
+      "objetivo": 7,
+      "progresso": 0,
+      "conquistada": false
+    },
+    {
+      "id": "5",
+      "nome": "Atleta",
+      "icone": "fas fa-running",
+      "descricao": "Complete 15 sessões de exercício",
+      "objetivo": 15,
+      "progresso": 0,
+      "conquistada": false
+    },
+    {
+      "id": "6",
+      "nome": "Grato",
+      "icone": "fas fa-heart",
+      "descricao": "Complete 30 dias de gratidão",
+      "objetivo": 30,
+      "progresso": 0,
+      "conquistada": false
+    },
+    {
+      "id": "7",
+      "nome": "Mestre",
+      "icone": "fas fa-crown",
+      "descricao": "Alcance o nível 10",
+      "objetivo": 10,
+      "progresso": 1,
+      "conquistada": false
+    },
+    {
+      "id": "8",
+      "nome": "Série de 7 dias",
+      "icone": "fas fa-calendar-check",
+      "descricao": "Complete atividades por 7 dias consecutivos",
+      "conquistada": true
     }
   ]
 }

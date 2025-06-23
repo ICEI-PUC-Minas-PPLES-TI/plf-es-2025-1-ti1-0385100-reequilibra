@@ -1,40 +1,44 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const articlesList = document.getElementById('articles-list');
     const searchInput = document.getElementById('search-input');
     const searchBtn = document.getElementById('search-btn');
-    const allArticlesBtn = document.getElementById('all-articles');
     const favoritesBtn = document.getElementById('favorites');
-    const categoriesBtn = document.getElementById('categories-btn');
-    const categoriesList = document.getElementById('categories-list');
-    const recommendationsBtn = document.getElementById('recommendations');
-    const modal = document.getElementById('article-modal');
+    const categoriesList = document.getElementById('categories-collapse');
+    const modalElement = document.getElementById('article-modal');
+
+    const modalTitle = document.getElementById('modal-title');
+    const modalDate = document.getElementById('modal-date');
+    const modalAuthor = document.getElementById('modal-author');
+    const modalContent = document.getElementById('modal-content');
+    const toggleFavoriteBtn = document.getElementById('toggle-favorite');
 
     let articlesData = [];
     let categoriesData = [];
     let favoritesData = [];
-    let recommendationsData = [];
+    const currentUserId = 1;
     let currentFilter = 'all';
     let currentSearch = '';
     let currentCategory = '';
-    const currentUserId = 1;
 
-    fetch('../../../db/db.json')
-        .then(response => response.json())
-        .then(data => {
-            articlesData = data.artigos;
-            categoriesData = data.categorias;
-            favoritesData = data.favoritos;
-            recommendationsData = data.indicacoes;
+    Promise.all([
+        fetch('http://localhost:3000/artigos').then(res => res.json()),
+        fetch('http://localhost:3000/categorias').then(res => res.json()),
+        fetch('http://localhost:3000/favoritos').then(res => res.json())
+    ])
+        .then(([artigos, categorias, favoritos]) => {
+            articlesData = artigos;
+            categoriesData = categorias;
+            favoritesData = favoritos;
 
             renderArticles(articlesData);
             renderCategories(categoriesData);
-            setupRecommendations();
         })
-        .catch(error => console.error('Erro ao carregar artigos:', error));
+        .catch(err => console.error('Erro ao carregar dados:', err));
 
     function isFavorite(articleId) {
         return favoritesData.some(fav =>
-            fav.noticia_id === articleId && fav.usuario_id === currentUserId
+            fav.noticia_id.toString() === articleId.toString() &&
+            Number(fav.usuario_id) === currentUserId
         );
     }
 
@@ -42,27 +46,30 @@ document.addEventListener('DOMContentLoaded', function() {
         articlesList.innerHTML = '';
 
         if (articles.length === 0) {
-            articlesList.innerHTML = '<p>Nenhum artigo encontrado.</p>';
+            articlesList.innerHTML = '<p class="text-center py-4" style="color:#52bfa6">Nenhum artigo encontrado.</p>';
             return;
         }
 
         articles.forEach(article => {
-            const category = categoriesData.find(cat => cat.id == article.categoria_id);
+            if (!article.id) return;
             const isFav = isFavorite(article.id);
 
-            const articleItem = document.createElement('div');
-            articleItem.className = 'article-item';
-            articleItem.dataset.id = article.id;
-
-            articleItem.innerHTML = `
-                <h2>${article.titulo}</h2>
-                <p class="article-meta">${article.data} - Autor(a): ${article.autor} | Categoria: ${category ? category.nome : 'Sem categoria'}</p>
-                <p>${article.texto.substring(0, 150)}...</p>
-                <!-- Link removido daqui para aparecer só no modal -->
-                <i class="favorite-icon ${isFav ? 'fas fa-heart active' : 'far fa-heart'}" data-id="${article.id}"></i>
-            `;
-
-            articlesList.appendChild(articleItem);
+            const div = document.createElement('div');
+            div.className = 'col-12 mb-3';
+            div.innerHTML = `
+            <div class="card h-100 article-item" data-id="${article.id}">
+                <div class="card-body">
+                    <h5 class="card-title">${article.titulo}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">${article.data} - Autor(a): ${article.autor}</h6>
+                    <p class="card-text">${article.texto.substring(0, 150)}...</p>
+                    <div class="text-end">
+                        <i class="favorite-icon ${isFav ? 'fas' : 'far'} fa-heart ${isFav ? 'text-danger' : ''}" 
+                           data-id="${article.id}" style="cursor:pointer;"></i>
+                    </div>
+                </div>
+            </div>
+        `;
+            articlesList.appendChild(div);
         });
 
         setupArticleEvents();
@@ -70,233 +77,165 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function setupArticleEvents() {
         document.querySelectorAll('.article-item').forEach(item => {
-            item.addEventListener('click', function(e) {
-                if (!e.target.classList.contains('favorite-icon') && !e.target.closest('a')) {
-                    const articleId = parseInt(this.dataset.id);
-                    openArticleModal(articleId);
+
+            item.addEventListener('click', function (e) {
+                if (!e.target.closest('.favorite-icon')) {
+                    const id = this.dataset.id;
+                    openArticleModal(id);
                 }
             });
-        });
 
-        document.querySelectorAll('.favorite-icon').forEach(icon => {
-            icon.addEventListener('click', function(e) {
-                e.stopPropagation();
-                const articleId = parseInt(this.dataset.id);
-                toggleFavorite(articleId);
-            });
+
+            const favoriteIcon = item.querySelector('.favorite-icon');
+            if (favoriteIcon) {
+                favoriteIcon.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    const id = this.dataset.id;
+                    toggleFavorite(id, () => {
+                        const isFav = isFavorite(id);
+                        this.className = `favorite-icon ${isFav ? 'fas' : 'far'} fa-heart ${isFav ? 'text-danger' : ''}`;
+                        if (currentFilter === 'favorites') {
+                            renderArticles(getFilteredArticles());
+                        }
+                    });
+                });
+            }
         });
     }
 
     function renderCategories(categories) {
         categoriesList.innerHTML = '';
-
-        categories.forEach(category => {
+        categories.forEach(cat => {
             const li = document.createElement('li');
             const a = document.createElement('a');
             a.href = '#';
-            a.textContent = category.nome;
-            a.dataset.categoryId = category.id;
-
-            a.addEventListener('click', function(e) {
+            a.textContent = cat.nome;
+            a.classList.add('d-block', 'text-decoration-none', 'mb-1');
+            a.addEventListener('click', function (e) {
                 e.preventDefault();
-                filterByCategory(category.id);
+                currentFilter = 'category';
+                currentCategory = cat.id;
+                renderArticles(getFilteredArticles());
             });
-
             li.appendChild(a);
             categoriesList.appendChild(li);
         });
     }
 
-    function setupRecommendations() {
-        recommendationsBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            showRecommendations();
-        });
-    }
+    function getFilteredArticles() {
+        if (currentFilter === 'favorites') {
+            const favIds = favoritesData
+                .filter(f => f.usuario_id.toString() === currentUserId.toString())
+                .map(f => f.noticia_id.toString());
 
-    function showRecommendations() {
-        articlesList.innerHTML = '<h2>Indicações de Leitura</h2>';
+            return articlesData.filter(article => favIds.includes(article.id.toString()));
 
-        recommendationsData.forEach(recommendation => {
-            const recItem = document.createElement('div');
-            recItem.className = 'recommendation-item';
-
-            recItem.innerHTML = `
-                <h3>${recommendation.titulo}</h3>
-                <p>Autor: ${recommendation.autor}</p>
-                ${recommendation.link ? `<a href="${recommendation.link}" target="_blank">Ler artigo</a>` : ''}
-            `;
-
-            articlesList.appendChild(recItem);
-        });
+        } else if (currentFilter === 'category') {
+            return articlesData.filter(article => article.categoria_id == currentCategory);
+        } else if (currentFilter === 'search') {
+            return articlesData.filter(article =>
+                article.titulo.toLowerCase().includes(currentSearch) ||
+                article.texto.toLowerCase().includes(currentSearch) ||
+                article.autor.toLowerCase().includes(currentSearch)
+            );
+        }
+        return articlesData;
     }
 
     function openArticleModal(articleId) {
-        const article = articlesData.find(a => a.id === articleId);
-        if (!article) return;
+        const article = articlesData.find(a => a.id.toString() === articleId.toString());
 
-        const category = categoriesData.find(cat => cat.id == article.categoria_id);
+        if (!article) {
+            console.warn("Artigo com id não encontrado:", articleId);
+            return;
+        }
+
         const isFav = isFavorite(articleId);
 
-        modal.innerHTML = `
-            <div class="modal-content">
-                <div class="modal-header">
-                    <div>
-                        <h2 id="modal-title">${article.titulo}</h2>
-                        <p class="modal-meta">
-                            ${article.data} - Autor(a): ${article.autor} | 
-                            Categoria: ${category ? category.nome : 'Sem categoria'}
-                        </p>
-                    </div>
-                    <button class="close-modal">&times;</button>
-                </div>
-                <div id="modal-content">
-                    <p>${article.texto}</p>
-                    ${article.link ? `<p><a href="${article.link}" target="_blank" style="color: white; text-decoration: underline;">Leia o artigo completo</a></p>` : ''}
-                </div>
-                <button id="toggle-favorite" class="favorite-btn ${isFav ? 'active' : ''}" data-id="${articleId}">
-                    <i class="${isFav ? 'fas' : 'far'} fa-heart"></i> 
-                    ${isFav ? 'Remover dos favoritos' : 'Favoritar'}
-                </button>
-            </div>
-        `;
+        modalTitle.textContent = article.titulo;
+        modalDate.textContent = article.data;
+        modalAuthor.textContent = article.autor;
+        modalContent.innerHTML = `
+    <p>${article.texto}</p>
+    ${article.link ? `<p><a href="${article.link}" target="_blank" style="color:#52bfa6">Leia o artigo completo</a></p>` : ''}
+  `;
 
-        modal.style.display = 'block';
-        document.body.style.overflow = 'hidden';
+        toggleFavoriteBtn.dataset.id = articleId;
+        toggleFavoriteBtn.innerHTML = `
+    <i class="${isFav ? 'fas' : 'far'} fa-heart"></i> ${isFav ? 'Remover dos favoritos' : 'Favoritar'}
+  `;
+        toggleFavoriteBtn.classList.toggle('active', isFav);
 
-        document.querySelector('.close-modal').addEventListener('click', closeArticleModal);
-        document.getElementById('toggle-favorite').addEventListener('click', function() {
-            const articleId = parseInt(this.dataset.id);
-            toggleFavorite(articleId);
-            updateFavoriteButton(this, articleId);
+
+        const bootstrapModal = bootstrap.Modal.getOrCreateInstance(modalElement);
+        bootstrapModal.show();
+    }
+
+
+    toggleFavoriteBtn.addEventListener('click', function () {
+        const articleId = parseInt(this.dataset.id);
+        toggleFavorite(articleId, () => {
+            const isFav = isFavorite(articleId);
+            this.innerHTML = `
+        <i class="${isFav ? 'fas' : 'far'} fa-heart"></i> ${isFav ? 'Remover dos favoritos' : 'Favoritar'}
+      `;
+            this.classList.toggle('active', isFav);
+            renderArticles(getFilteredArticles());
         });
-    }
+    });
 
-    function updateFavoriteButton(button, articleId) {
-        const isFav = isFavorite(articleId);
-        button.innerHTML = isFav ?
-            '<i class="fas fa-heart"></i> Remover dos favoritos' :
-            '<i class="far fa-heart"></i> Favoritar';
-        button.className = isFav ? 'favorite-btn active' : 'favorite-btn';
-    }
-
-    function closeArticleModal() {
-        modal.style.display = 'none';
-        document.body.style.overflow = 'auto';
-    }
-
-    function toggleFavorite(articleId) {
-        const existingIndex = favoritesData.findIndex(fav =>
-            fav.noticia_id === articleId && fav.usuario_id === currentUserId
+    function toggleFavorite(articleId, callback) {
+        const existing = favoritesData.find(f =>
+            f.noticia_id.toString() === articleId.toString() &&
+            Number(f.usuario_id) === currentUserId
         );
 
-        if (existingIndex === -1) {
-            const newId = favoritesData.length > 0 ?
-                Math.max(...favoritesData.map(f => f.id)) + 1 : 1;
-
-            favoritesData.push({
-                id: newId,
+        if (!existing) {
+            const newFavorite = {
                 usuario_id: currentUserId,
-                noticia_id: articleId
-            });
+                noticia_id: articleId.toString()
+            };
+
+            fetch('http://localhost:3000/favoritos', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(newFavorite)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    favoritesData.push(data);
+                    if (callback) callback();
+                });
         } else {
-            favoritesData.splice(existingIndex, 1);
-        }
-
-        console.log('Favoritos atualizados:', favoritesData);
-
-        document.querySelectorAll(`.favorite-icon[data-id="${articleId}"]`).forEach(icon => {
-            icon.classList.toggle('active');
-            icon.classList.toggle('far');
-            icon.classList.toggle('fas');
-        });
-
-        if (currentFilter === 'favorites') {
-            filterFavorites();
+            fetch(`http://localhost:3000/favoritos/${existing.id}`, {
+                method: 'DELETE'
+            })
+                .then(() => {
+                    favoritesData = favoritesData.filter(f => f.id !== existing.id);
+                    if (callback) callback();
+                });
         }
     }
 
-    function filterAll() {
-        currentFilter = 'all';
-        currentCategory = '';
-        renderArticles(articlesData);
-    }
-
-    function filterFavorites() {
+    favoritesBtn.addEventListener('click', function (e) {
+        e.preventDefault();
         currentFilter = 'favorites';
         currentCategory = '';
-        const favArticleIds = favoritesData
-            .filter(fav => fav.usuario_id === currentUserId)
-            .map(fav => fav.noticia_id);
-
-        const favArticles = articlesData.filter(article =>
-            favArticleIds.includes(article.id)
-        );
-        renderArticles(favArticles);
-    }
-
-    function filterByCategory(categoryId) {
-        currentFilter = 'category';
-        currentCategory = categoryId;
-        const filteredArticles = articlesData.filter(article =>
-            article.categoria_id == categoryId
-        );
-        renderArticles(filteredArticles);
-    }
-
-    function filterBySearch(query) {
-        currentFilter = 'search';
-        currentSearch = query.toLowerCase();
-
-        const filteredArticles = articlesData.filter(article =>
-            article.titulo.toLowerCase().includes(currentSearch) ||
-            article.texto.toLowerCase().includes(currentSearch) ||
-            article.autor.toLowerCase().includes(currentSearch)
-        );
-
-        renderArticles(filteredArticles);
-    }
-
-    allArticlesBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        filterAll();
+        renderArticles(getFilteredArticles());
     });
 
-    favoritesBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        filterFavorites();
-    });
-
-    categoriesBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        categoriesList.classList.toggle('show');
-    });
-
-    searchBtn.addEventListener('click', function() {
-        const query = searchInput.value.trim();
+    searchBtn.addEventListener('click', () => {
+        const query = searchInput.value.trim().toLowerCase();
         if (query) {
-            filterBySearch(query);
+            currentFilter = 'search';
+            currentSearch = query;
+            renderArticles(getFilteredArticles());
         }
     });
 
-    searchInput.addEventListener('keypress', function(e) {
+    searchInput.addEventListener('keypress', function (e) {
         if (e.key === 'Enter') {
-            const query = searchInput.value.trim();
-            if (query) {
-                filterBySearch(query);
-            }
-        }
-    });
-
-    document.addEventListener('click', function(e) {
-        if (!categoriesBtn.contains(e.target) && !categoriesList.contains(e.target)) {
-            categoriesList.classList.remove('show');
-        }
-    });
-
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && modal.style.display === 'block') {
-            closeArticleModal();
+            searchBtn.click();
         }
     });
 });
