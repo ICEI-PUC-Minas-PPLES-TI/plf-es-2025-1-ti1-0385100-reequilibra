@@ -84,6 +84,13 @@
       "atividadeId": "musica",
       "tempo": 5,
       "data": "2025-06-23T15:26:15.655Z"
+    },
+    {
+      "id": "d4d2",
+      "usuarioId": "admin",
+      "atividadeId": "respirar",
+      "tempo": 1,
+      "data": "2025-06-23T15:39:44.356Z"
     }
   ]
 }

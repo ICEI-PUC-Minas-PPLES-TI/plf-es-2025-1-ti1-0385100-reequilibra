@@ -3,6 +3,28 @@ document.addEventListener('DOMContentLoaded', () => {
   const containerAtividades = document.querySelector('.atividades');
   const selectTempo = document.getElementById('tempo');
   const selectUsuario = document.getElementById('usuario');
+
+  // Criar o temporizador visual
+  const temporizador = document.createElement('div');
+  temporizador.id = 'temporizador';
+  temporizador.style.cssText = `
+    display: none;
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+    background: white;
+    border: 3px solid #01AE7D;
+    padding: 20px 40px;
+    border-radius: 10px;
+    z-index: 1000;
+    color: #01AE7D;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+  `;
+  temporizador.textContent = '⏳ 00:00';
+  document.body.appendChild(temporizador);
+
   const listaAtividadesConcluidas = document.createElement('div');
   listaAtividadesConcluidas.id = 'atividades-concluidas';
   listaAtividadesConcluidas.style.marginTop = '20px';
@@ -12,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let atividades = [];
   let usuarios = {};
 
-  // Função para carregar os dados iniciais da API
+  // Carrega dados da API
   Promise.all([
     fetch('http://localhost:3000/missoes').then(res => res.json()),
     fetch('http://localhost:3000/atividades').then(res => res.json()),
@@ -29,7 +51,6 @@ document.addEventListener('DOMContentLoaded', () => {
     listarAtividadesConcluidas(selectUsuario.value);
   });
 
-  // Preenche a lista de missões
   function preencherMissoes() {
     listaMissoes.innerHTML = '';
     missoes.forEach(ms => {
@@ -39,7 +60,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Cria cards dinamicamente das atividades (se quiser manter fixo no HTML, pode pular)
   function criarCardsAtividades() {
     containerAtividades.innerHTML = '';
     atividades.forEach(atividade => {
@@ -63,9 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Configura eventos para botões e selects
   function configurarEventos() {
-    // Botões Iniciar
     containerAtividades.querySelectorAll('button').forEach(btn => {
       btn.addEventListener('click', function () {
         const card = this.parentElement;
@@ -83,14 +101,12 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    // Mudança de usuário atualiza atividades e lista concluídas
     selectUsuario.addEventListener('change', () => {
       atualizarVisibilidadeAtividades();
       listarAtividadesConcluidas(selectUsuario.value);
     });
   }
 
-  // Atualiza visibilidade dos cards baseado no usuário selecionado
   function atualizarVisibilidadeAtividades() {
     const usuarioId = selectUsuario.value;
     containerAtividades.querySelectorAll('.card').forEach(card => {
@@ -100,21 +116,42 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Inicia uma atividade e registra no servidor
-  function iniciarAtividade(id, tempo, usuarioId) {
+  function iniciarAtividade(id, tempoMin, usuarioId) {
     const atividade = atividades.find(a => a.id === id);
     const usuario = usuarios[usuarioId];
+    if (!atividade) return;
 
-    if (atividade) {
-      alert(`🏁 Iniciando para ${usuario.nome}: ${atividade.nome}\n⏱ Duração: ${tempo} minutos`);
-      console.log(`${usuario.nome} iniciou: ${atividade.nome} (${tempo} minutos)`);
+    const tempoSegundos = parseInt(tempoMin) * 60;
+    let tempoRestante = tempoSegundos;
 
-      registrarAtividadeConcluida(usuarioId, id, tempo)
-        .then(() => listarAtividadesConcluidas(usuarioId));
-    }
+    temporizador.style.display = 'block';
+    atualizarDisplay(tempoRestante);
+
+    document.querySelectorAll('.card button').forEach(btn => btn.disabled = true);
+
+    const intervalo = setInterval(() => {
+      tempoRestante--;
+      atualizarDisplay(tempoRestante);
+
+      if (tempoRestante <= 0) {
+        clearInterval(intervalo);
+        temporizador.style.display = 'none';
+
+        registrarAtividadeConcluida(usuarioId, id, tempoMin)
+          .then(() => listarAtividadesConcluidas(usuarioId));
+
+        alert(`✅ ${usuario.nome} concluiu a atividade: ${atividade.nome}`);
+        document.querySelectorAll('.card button').forEach(btn => btn.disabled = false);
+      }
+    }, 1000);
   }
 
-  // Registra atividade concluída via POST
+  function atualizarDisplay(segundos) {
+    const min = String(Math.floor(segundos / 60)).padStart(2, '0');
+    const sec = String(segundos % 60).padStart(2, '0');
+    temporizador.textContent = `⏳ ${min}:${sec}`;
+  }
+
   function registrarAtividadeConcluida(usuarioId, atividadeId, tempo) {
     const registro = {
       usuarioId,
@@ -128,21 +165,12 @@ document.addEventListener('DOMContentLoaded', () => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(registro)
     })
-      .then(response => {
-        if (!response.ok) throw new Error('Erro ao registrar atividade');
-        return response.json();
-      })
-      .then(data => {
-        alert(`✅ Atividade "${atividadeId}" registrada com sucesso para ${usuarioId}!`);
-        console.log('Registro salvo:', data);
-      })
-      .catch(error => {
-        alert('❌ Falha ao registrar atividade.');
-        console.error(error);
+      .then(res => {
+        if (!res.ok) throw new Error('Erro ao registrar');
+        return res.json();
       });
   }
 
-  // Lista atividades concluídas do usuário na página
   function listarAtividadesConcluidas(usuarioId) {
     fetch(`http://localhost:3000/atividadesConcluidas?usuarioId=${usuarioId}`)
       .then(res => res.json())
@@ -157,15 +185,10 @@ document.addEventListener('DOMContentLoaded', () => {
         registros.forEach(r => {
           const atividade = atividades.find(a => a.id === r.atividadeId);
           const li = document.createElement('li');
-          li.textContent = `${atividade ? atividade.nome : r.atividadeId} — ${r.tempo} min — em ${new Date(r.data).toLocaleString()}`;
+          li.textContent = `${atividade ? atividade.nome : r.atividadeId} — ${r.tempo} min — ${new Date(r.data).toLocaleString()}`;
           ul.appendChild(li);
         });
-
         listaAtividadesConcluidas.appendChild(ul);
-      })
-      .catch(err => {
-        listaAtividadesConcluidas.innerHTML = '<p>Erro ao carregar atividades concluídas.</p>';
-        console.error(err);
       });
   }
 });
