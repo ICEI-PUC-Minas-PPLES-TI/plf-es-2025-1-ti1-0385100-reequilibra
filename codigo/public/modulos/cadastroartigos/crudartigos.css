@@ -26,7 +26,7 @@ small {
   color: #999;
 }
 
-.caixa-cadastro input[type="button"] {
+.container input[type="button"] {
   background-color: #967ba4;
   color: white;
   margin-left: 20px;
@@ -35,7 +35,7 @@ small {
   font-weight: 600;
 }
 
-.caixa-cadastro input[type="button"]:hover {
+.container input[type="button"]:hover {
   background-color: #b69ec3;
   cursor: pointer;
   color: #967ba4;

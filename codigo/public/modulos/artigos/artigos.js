@@ -21,9 +21,9 @@ document.addEventListener('DOMContentLoaded', function () {
     let currentCategory = '';
 
     Promise.all([
-        fetch('http://localhost:3000/artigos').then(res => res.json()),
-        fetch('http://localhost:3000/categorias').then(res => res.json()),
-        fetch('http://localhost:3000/favoritos').then(res => res.json())
+        fetch('/artigos').then(res => res.json()),
+        fetch('/categorias').then(res => res.json()),
+        fetch('/favoritos').then(res => res.json())
     ])
         .then(([artigos, categorias, favoritos]) => {
             articlesData = artigos;
@@ -196,7 +196,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 noticia_id: articleId.toString()
             };
 
-            fetch('http://localhost:3000/favoritos', {
+            fetch('/favoritos', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(newFavorite)
@@ -207,7 +207,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     if (callback) callback();
                 });
         } else {
-            fetch(`http://localhost:3000/favoritos/${existing.id}`, {
+            fetch(`/favoritos/${existing.id}`, {
                 method: 'DELETE'
             })
                 .then(() => {
