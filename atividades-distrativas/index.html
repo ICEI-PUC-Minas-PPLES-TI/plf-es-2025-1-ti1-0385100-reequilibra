@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MindBreak - Atividades Distrativas</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Atividades distrativas</h1>
+      <p>Pausas saudáveis para sua mente</p>
+      
+      <div class="selecao-usuario">
+        <label>👤 Usuário: 
+          <select id="usuario">
+            <option value="admin">Administrador</option>
+            <option value="user">Usuário Comum</option>
+            <option value="rommel">Rommel</option>
+          </select>
+        </label>
+      </div>
+    </header>
+
+    <div class="controle-tempo">
+      <label>⏱ Tempo: 
+        <select id="tempo">
+          <option value="1">1 minuto</option>
+          <option value="3">3 minutos</option>
+          <option value="5" selected>5 minutos</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="atividades">
+      <div class="card" data-atividade="respirar">
+        <h3>🌬 Respiração Guiada</h3>
+        <p>Exercício 4-7-8 para acalmar</p>
+        <button>Iniciar</button>
+      </div>
+
+      <div class="card" data-atividade="desenhar">
+        <h3>🎨 Desenho Livre</h3>
+        <p>Expressão sem julgamentos</p>
+        <button>Iniciar</button>
+      </div>
+
+      <div class="card" data-atividade="musica">
+        <h3>🎧 Música Relaxante</h3>
+        <p>Sons da natureza</p>
+        <button>Iniciar</button>
+      </div>
+    </div>
+
+    <div class="missoes">
+      <h2>📅 Missões Diárias</h2>
+      <ul id="lista-missoes"></ul>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
