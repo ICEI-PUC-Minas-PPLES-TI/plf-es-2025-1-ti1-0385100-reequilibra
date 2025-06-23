@@ -63,34 +63,5 @@
       "descricao": "Ouça música por 5 minutos"
     }
   ],
-  "atividadesConcluidas": [
-    {
-      "id": "ce0e",
-      "usuarioId": "admin",
-      "atividadeId": "respirar",
-      "tempo": 5,
-      "data": "2025-06-23T15:25:51.407Z"
-    },
-    {
-      "id": "90fd",
-      "usuarioId": "admin",
-      "atividadeId": "desenhar",
-      "tempo": 5,
-      "data": "2025-06-23T15:26:04.422Z"
-    },
-    {
-      "id": "a832",
-      "usuarioId": "admin",
-      "atividadeId": "musica",
-      "tempo": 5,
-      "data": "2025-06-23T15:26:15.655Z"
-    },
-    {
-      "id": "d4d2",
-      "usuarioId": "admin",
-      "atividadeId": "respirar",
-      "tempo": 1,
-      "data": "2025-06-23T15:39:44.356Z"
-    }
-  ]
+  "atividadesConcluidas": []
 }
