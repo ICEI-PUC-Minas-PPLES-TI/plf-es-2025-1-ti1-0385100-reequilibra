@@ -22,26 +22,68 @@
       "nome": "Respiração Guiada",
       "descricao": "4s inspirar, 7s segurar, 8s expirar",
       "tempo": 3,
-      "disponivelPara": ["admin", "user", "rommel"]
+      "disponivelPara": [
+        "admin",
+        "user",
+        "rommel"
+      ]
     },
     {
       "id": "desenhar",
       "nome": "Desenho Livre",
       "descricao": "Use cores para expressar sentimentos",
       "tempo": 5,
-      "disponivelPara": ["admin", "user"]
+      "disponivelPara": [
+        "admin",
+        "user"
+      ]
     },
     {
       "id": "musica",
       "nome": "Música Relaxante",
       "descricao": "Ondas do mar e pássaros",
       "tempo": 5,
-      "disponivelPara": ["admin", "rommel"]
+      "disponivelPara": [
+        "admin",
+        "rommel"
+      ]
     }
   ],
   "missoes": [
-    { "id": 1, "descricao": "Complete 1 respiração guiada" },
-    { "id": 2, "descricao": "Desenhe por 2 minutos" },
-    { "id": 3, "descricao": "Ouça música por 5 minutos" }
+    {
+      "id": "1",
+      "descricao": "Complete 1 respiração guiada"
+    },
+    {
+      "id": "2",
+      "descricao": "Desenhe por 2 minutos"
+    },
+    {
+      "id": "3",
+      "descricao": "Ouça música por 5 minutos"
+    }
+  ],
+  "atividadesConcluidas": [
+    {
+      "id": "ce0e",
+      "usuarioId": "admin",
+      "atividadeId": "respirar",
+      "tempo": 5,
+      "data": "2025-06-23T15:25:51.407Z"
+    },
+    {
+      "id": "90fd",
+      "usuarioId": "admin",
+      "atividadeId": "desenhar",
+      "tempo": 5,
+      "data": "2025-06-23T15:26:04.422Z"
+    },
+    {
+      "id": "a832",
+      "usuarioId": "admin",
+      "atividadeId": "musica",
+      "tempo": 5,
+      "data": "2025-06-23T15:26:15.655Z"
+    }
   ]
 }
