@@ -1,175 +1,72 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>reequilibra - To-Do List</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="./CSS/style.css" />
-  </head>
-  <body>
-    <div
-      class="modal fade"
-      id="modalEdicao"
-      tabindex="-1"
-      aria-labelledby="modalEdicaoLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reequilibra - To-Do List</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="modal" class="modal">
         <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="modalEdicaoLabel">Editar Tarefa</h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Fechar"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <input type="hidden" id="editIdTarefa" />
-            <div class="mb-3">
-              <label for="editTituloTarefa" class="form-label">Título</label>
-              <input type="text" class="form-control" id="editTituloTarefa" />
+            <div class="modal-header">
+                <h3>Editar Tarefa</h3>
+                <span class="close">&times;</span>
             </div>
-            <div class="mb-3">
-              <label for="editStatusTarefa" class="form-label">Status</label>
-              <select class="form-select" id="editStatusTarefa">
-                <option value="1">Pendente</option>
-                <option value="2">Em Progresso</option>
-                <option value="3">Concluída</option>
-              </select>
+            <div class="modal-body">
+                <input type="hidden" id="editId">
+                <input type="text" id="editTitulo" placeholder="Título da tarefa">
+                <select id="editStatus">
+                    <option value="1">Pendente</option>
+                    <option value="2">Em Progresso</option>
+                    <option value="3">Concluída</option>
+                </select>
             </div>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Cancelar
-            </button>
-            <button
-              type="button"
-              class="btn btn-success"
-              onclick="editarTarefa()"
-            >
-              Salvar
-            </button>
-          </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="fecharModal()">Cancelar</button>
+                <button class="btn-primary" onclick="salvarEdicao()">Salvar</button>
+            </div>
         </div>
-      </div>
     </div>
-    <header id="header" class="shadow d-flex bg-white fixed-top">
-      <nav
-        class="container bg-white d-flex justify-content-between align-items-center py-2"
-      >
-        <div>
-          <button
-            id="btnsqr"
-            class="btn text-light fs-5 border-0"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#menuMobile"
-            style="width: 60px; height: 60px; background-color: #01ae7d"
-          >
-            ☰
-          </button>
-        </div>
-        <img
-          src="../../../assets/images/logo.jpeg"
-          alt="logo"
-          style="height: 86px; width: auto"
-        />
-        <div class="d-flex gap-2">
-          <button type="button" class="btn btn-outline-secondary">Login</button>
-          <button
-            id="signup"
-            type="button"
-            class="btn text-white"
-            style="background-color: #01ae7d"
-          >
-            Sign Up
-          </button>
-        </div>
-      </nav>
 
-      <div
-        class="collapse position-absolute w-100 bg-white shadow-sm"
-        id="menuMobile"
-        style="z-index: 1000; top: 60px"
-      >
-        <div class="p-3">
-          <a href="#" class="d-block text-secondary fs-5 py-2 px-3"
-            >Minhas Tarefas</a
-          >
-          <a href="#" class="d-block text-secondary fs-5 py-2 px-3"
-            >Sobre Produtividade</a
-          >
-          <a href="#" class="d-block text-secondary fs-5 py-2 px-3"
-            >Ferramentas</a
-          >
-          <a href="#" class="d-block text-secondary fs-5 py-2 px-3">Recursos</a>
-          <a href="#" class="d-block text-secondary fs-5 py-2 px-3"
-            >Comunidade</a
-          >
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="../../assets/images/logo.png" alt="Reequilibra">
+            </div>
+            <div class="nav-menu" id="navMenu">
+                <a href="../../index.html" class="nav-link active">Início</a>
+                <a href="../missoes/index.html" class="nav-link">Serviços</a>
+            </div>
+            <nav class="nav">
+                <button class="btn-outline">Login</button>
+                <button class="btn-primary">Sign Up</button>
+            </nav>
         </div>
-      </div>
     </header>
 
-    <main class="container" style="margin-top: 100px">
-      <div class="row">
-        <div class="col-lg-8 bg-white p-4">
-          <h3 class="mb-4">Nova Tarefa</h3>
-
-          <div class="mb-4">
-            <input
-              id="tituloTarefa"
-              type="text"
-              class="form-control fs-3"
-              placeholder="Título da tarefa"
-            />
-          </div>
-
-          <button
-            type="submit"
-            id="btnSalvarTarefa"
-            class="btn w-100 text-white"
-            style="background-color: #01ae7d"
-            onclick="criaTarefa()"
-          >
-            Adicionar Tarefa
-          </button>
-        </div>
-        <div class="col-lg-4 bg-light p-4">
-          <div class="d-flex justify-content-between mb-3">
-            <h3>Minhas Tarefas</h3>
-            <div>
-              <button onclick="limpaCampos();" class="btn btn-custom">
-                <i class="bi bi-plus"></i>
-              </button>
-              <button
-                onclick="deleteTarefa(tarefaSelecionada, listaTarefas)"
-                class="btn btn-danger"
-              >
-                <i class="bi bi-trash"></i>
-              </button>
+    <main class="container main-content">
+        <div class="content-grid">
+            <div class="form-section">
+                <h2>Nova Tarefa</h2>
+                <div class="form-group">
+                    <input type="text" id="tituloTarefa" placeholder="Digite o título da tarefa" class="input-large">
+                    <button onclick="adicionarTarefa()" class="btn-primary btn-full">Adicionar Tarefa</button>
+                </div>
             </div>
-          </div>
 
-          <div id="listaTarefas"></div>
+            <div class="tasks-section">
+                <div class="tasks-header">
+                    <h2>Minhas Tarefas</h2>
+                    <div class="task-actions">
+                        <button onclick="limparCampo()" class="btn-icon" title="Nova tarefa">+</button>
+                    </div>
+                </div>
+                <div id="listaTarefas" class="tasks-list"></div>
+            </div>
         </div>
-      </div>
     </main>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
     <script src="./scripts/app.js"></script>
-  </body>
+</body>
 </html>

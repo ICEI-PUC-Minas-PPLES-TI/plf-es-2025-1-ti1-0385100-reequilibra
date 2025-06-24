@@ -24,42 +24,30 @@
             <i class="fas fa-times"></i>
           </button>
         </div>
-
         <div class="emergency-grid">
           <div class="emergency-card cvv" onclick="callCVV()">
-            <div class="card-icon">
-              <i class="fas fa-phone"></i>
-            </div>
+            <div class="card-icon"><i class="fas fa-phone"></i></div>
             <div class="card-content">
               <h3>CVV 188</h3>
               <p>24h gratuito</p>
             </div>
           </div>
-
           <div class="emergency-card contacts" onclick="showContacts()">
-            <div class="card-icon">
-              <i class="fas fa-users"></i>
-            </div>
+            <div class="card-icon"><i class="fas fa-users"></i></div>
             <div class="card-content">
               <h3>Contatos</h3>
               <p>Pessoas próximas</p>
             </div>
           </div>
-
           <div class="emergency-card samu" onclick="callSAMU()">
-            <div class="card-icon">
-              <i class="fas fa-ambulance"></i>
-            </div>
+            <div class="card-icon"><i class="fas fa-ambulance"></i></div>
             <div class="card-content">
               <h3>SAMU 192</h3>
               <p>Emergência médica</p>
             </div>
           </div>
-
           <div class="emergency-card caps" onclick="showServices()">
-            <div class="card-icon">
-              <i class="fas fa-hospital"></i>
-            </div>
+            <div class="card-icon"><i class="fas fa-hospital"></i></div>
             <div class="card-content">
               <h3>CAPS BH</h3>
               <p>Saúde mental</p>
@@ -77,16 +65,12 @@
             <i class="fas fa-times"></i>
           </button>
         </div>
-
         <div class="contacts-actions">
           <button onclick="showAddContact()" class="add-contact-btn">
             <i class="fas fa-plus"></i> Adicionar Contato
           </button>
         </div>
-
-        <div id="contactsList" class="contacts-list">
-        </div>
-
+        <div id="contactsList" class="contacts-list"></div>
         <div id="noContacts" class="no-contacts" style="display: none">
           <i class="fas fa-user-plus"></i>
           <p>Nenhum contato cadastrado</p>
@@ -105,31 +89,28 @@
             <i class="fas fa-times"></i>
           </button>
         </div>
-
         <form id="contactForm" class="contact-form">
           <div class="form-group">
-            <label for="contactName">Nome:</label>
-            <input
+            <label for="contactName">Nome:</label
+            ><input
               type="text"
               id="contactName"
               placeholder="Ex: Maria (Mãe)"
               required
             />
           </div>
-
           <div class="form-group">
-            <label for="contactPhone">Telefone:</label>
-            <input
+            <label for="contactPhone">Telefone:</label
+            ><input
               type="tel"
               id="contactPhone"
               placeholder="(31) 99999-9999"
               required
             />
           </div>
-
           <div class="form-group">
-            <label for="contactRelation">Relação:</label>
-            <select id="contactRelation">
+            <label for="contactRelation">Relação:</label
+            ><select id="contactRelation">
               <option value="Família">Família</option>
               <option value="Amigo(a)">Amigo(a)</option>
               <option value="Namorado(a)">Namorado(a)</option>
@@ -138,12 +119,10 @@
               <option value="Outro">Outro</option>
             </select>
           </div>
-
           <div class="form-actions">
             <button type="submit" class="save-btn">
-              <i class="fas fa-save"></i> Salvar
-            </button>
-            <button
+              <i class="fas fa-save"></i> Salvar</button
+            ><button
               type="button"
               onclick="closeModal('addContactModal')"
               class="cancel-btn"
@@ -154,7 +133,6 @@
         </form>
       </div>
     </div>
-
 
     <div id="servicesModal" class="modal">
       <div class="modal-content">
@@ -167,9 +145,9 @@
         <div class="services-list">
           <div class="service-item">
             <div class="service-info">
-              <strong>CAPS Pampulha</strong>
-              <span>Centro de Atenção Psicossocial</span>
-              <small>(31) 3277-7004</small>
+              <strong>CAPS Pampulha</strong
+              ><span>Centro de Atenção Psicossocial</span
+              ><small>(31) 3277-7004</small>
             </div>
             <button onclick="callService('31327777004')" class="call-btn">
               <i class="fas fa-phone"></i>
@@ -177,9 +155,9 @@
           </div>
           <div class="service-item">
             <div class="service-info">
-              <strong>Hospital João XXIII</strong>
-              <span>Emergência psiquiátrica 24h</span>
-              <small>(31) 3239-9200</small>
+              <strong>Hospital João XXIII</strong
+              ><span>Emergência psiquiátrica 24h</span
+              ><small>(31) 3239-9200</small>
             </div>
             <button onclick="callService('31323999200')" class="call-btn">
               <i class="fas fa-phone"></i>
@@ -187,9 +165,8 @@
           </div>
           <div class="service-item">
             <div class="service-info">
-              <strong>CAPS Centro</strong>
-              <span>Rua Tupis, 149 - Centro</span>
-              <small>(31) 3277-5208</small>
+              <strong>CAPS Centro</strong><span>Rua Tupis, 149 - Centro</span
+              ><small>(31) 3277-5208</small>
             </div>
             <button onclick="callService('31327775208')" class="call-btn">
               <i class="fas fa-phone"></i>

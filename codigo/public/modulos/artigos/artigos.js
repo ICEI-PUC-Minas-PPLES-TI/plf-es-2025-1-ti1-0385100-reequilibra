@@ -239,3 +239,27 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
+ document.addEventListener("DOMContentLoaded", function () {
+    const toggle = document.getElementById("themeToggle");
+    const body = document.body;
+    const icon = toggle.querySelector("i");
+
+   
+    if (localStorage.getItem("theme") === "dark") {
+        body.classList.add("dark-mode");
+        icon.classList.replace("fa-moon", "fa-sun"); 
+    }
+
+    toggle.addEventListener("click", () => {
+        body.classList.toggle("dark-mode");
+        const isDark = body.classList.contains("dark-mode");
+        localStorage.setItem("theme", isDark ? "dark" : "light");
+
+        
+        if (isDark) {
+            icon.classList.replace("fa-moon", "fa-sun");
+        } else {
+            icon.classList.replace("fa-sun", "fa-moon");
+        }
+    });
+});

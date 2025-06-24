@@ -21,11 +21,14 @@
         <button class="logo-button"><h1>Reequilibra</h1></button>
       </div>
       <nav>
+
+
+
+
         <ul>
-          <li><a href="#">Início</a></li>
-          <li><a href="#" class="active">Meditações</a></li>
-          <li><a href="#">Profissionais</a></li>
-          <li><a href="#">Blog</a></li>
+          <li><a href="../../index.html">Início</a></li>
+          <li><a href="../missoes/index.html" class="active">Serviços</a></li>
+        
         </ul>
       </nav>
       <div class="user-actions">
@@ -61,9 +64,7 @@
 
       <section class="meditations">
         <h3>Meditações Populares</h3>
-        <div class="meditation-grid">
-          <!-- ta no Java -->
-        </div>
+        <div class="meditation-grid"></div>
       </section>
 
       <div class="audio-player hidden">
@@ -72,25 +73,7 @@
             <h4 id="track-title">Título da Meditação</h4>
             <p id="track-desc">Descrição breve</p>
           </div>
-          <audio id="meditation-audio" controls>
-            <source src="assets/songs/Fairy-Fountain.mp3" type="audio/mpeg" />
-            <source
-              src="assets/songs/healing-sleep-atmosphere-332304.mp3"
-              type="audio/mpeg"
-            />
-            <source
-              src="assets/songs/rainy-lofi-city-lofi-music-332746.mp3"
-              type="audio/mpeg"
-            />
-            <source
-              src="assets/songs/spring-lofi-vibes-lofi-music-340019.mp3"
-              type="audio/mpeg"
-            />
-            <source
-              src="assets/songs/sleep-music-vol16-195422.mp3"
-              type="audio/mpeg"
-            />
-          </audio>
+          <audio id="meditation-audio" controls></audio>
           <div class="player-controls">
             <button id="play-btn"><i class="fas fa-play"></i></button>
             <button id="pause-btn"><i class="fas fa-pause"></i></button>
@@ -110,43 +93,24 @@
         <div class="footer-section">
           <h4>Sobre Nós</h4>
           <p>
-            MindCare oferece recursos gratuitos para saúde mental desde Maio de
-            2025.
+            Reequilibra oferece recursos gratuitos para saúde mental desde Maio
+            de 2025.
           </p>
         </div>
         <div class="footer-section">
           <h4>Links Rápidos</h4>
           <ul>
-            <li>
-              <a
-                href="https://locusiuris.com.br/wp-content/uploads/2020/11/termos-uso.png"
-                >Termos de Uso</a
-              >
-            </li>
-            <li>
-              <a
-                href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTxgqocOmx58jIEpq5W7Ba0D6z2ycVf6PxxQ&s"
-                >Política de Privacidade</a
-              >
-            </li>
-            <li>
-              <a href="https://www.youtube.com/watch?v=tqSr19HNPlM">Contato</a>
-            </li>
+            <li><a href="#">Termos de Uso</a></li>
+            <li><a href="#">Política de Privacidade</a></li>
+            <li><a href="#">Contato</a></li>
           </ul>
         </div>
         <div class="footer-section">
           <h4>Redes Sociais</h4>
           <div class="social-icons">
-            <a href="https://www.instagram.com/thales.pl/?hl=pt"
-              ><i class="fab fa-instagram"></i
-            ></a>
-            <a href="https://www.youtube.com/watch?v=DZ47H84Bc_Q"
-              ><i class="fab fa-youtube"></i
-            ></a>
-            <a
-              href="https://open.spotify.com/intl-pt/artist/0rZp7G3gIH6WkyeXbrZnGi?si=wS92y7FySp2kZBzz1jPrOA"
-              ><i class="fab fa-spotify"></i
-            ></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-spotify"></i></a>
           </div>
         </div>
       </div>
@@ -154,8 +118,6 @@
         <p>&copy; 2025 Reequilibra. Todos os direitos reservados.</p>
       </div>
     </footer>
-
-    <script src="script.js"></script>
 
     <button id="emergencyBtn" class="emergency-btn">
       <i class="fas fa-exclamation-triangle"></i>
@@ -170,42 +132,30 @@
             <i class="fas fa-times"></i>
           </button>
         </div>
-
         <div class="emergency-grid">
           <div class="emergency-card cvv" onclick="callCVV()">
-            <div class="card-icon">
-              <i class="fas fa-phone"></i>
-            </div>
+            <div class="card-icon"><i class="fas fa-phone"></i></div>
             <div class="card-content">
               <h3>CVV 188</h3>
               <p>24h gratuito</p>
             </div>
           </div>
-
           <div class="emergency-card contacts" onclick="showContacts()">
-            <div class="card-icon">
-              <i class="fas fa-users"></i>
-            </div>
+            <div class="card-icon"><i class="fas fa-users"></i></div>
             <div class="card-content">
               <h3>Contatos</h3>
               <p>Pessoas próximas</p>
             </div>
           </div>
-
           <div class="emergency-card samu" onclick="callSAMU()">
-            <div class="card-icon">
-              <i class="fas fa-ambulance"></i>
-            </div>
+            <div class="card-icon"><i class="fas fa-ambulance"></i></div>
             <div class="card-content">
               <h3>SAMU 192</h3>
               <p>Emergência médica</p>
             </div>
           </div>
-
           <div class="emergency-card caps" onclick="showServices()">
-            <div class="card-icon">
-              <i class="fas fa-hospital"></i>
-            </div>
+            <div class="card-icon"><i class="fas fa-hospital"></i></div>
             <div class="card-content">
               <h3>CAPS BH</h3>
               <p>Saúde mental</p>
@@ -215,11 +165,128 @@
       </div>
     </div>
 
-    <div id="contactsModal" class="modal">...</div>
+    <div id="contactsModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2><i class="fas fa-users"></i> CONTATOS DE CONFIANÇA</h2>
+          <button onclick="closeModal('contactsModal')" class="close-btn">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div class="contacts-actions">
+          <button onclick="showAddContact()" class="add-contact-btn">
+            <i class="fas fa-plus"></i> Adicionar Contato
+          </button>
+        </div>
+        <div id="contactsList" class="contacts-list"></div>
+        <div id="noContacts" class="no-contacts" style="display: none">
+          <i class="fas fa-user-plus"></i>
+          <p>Nenhum contato cadastrado</p>
+          <small>Adicione pessoas de confiança para emergências</small>
+        </div>
+      </div>
+    </div>
 
-    <div id="addContactModal" class="modal">...</div>
+    <div id="addContactModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 id="addContactTitle">
+            <i class="fas fa-user-plus"></i> ADICIONAR CONTATO
+          </h2>
+          <button onclick="closeModal('addContactModal')" class="close-btn">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <form id="contactForm" class="contact-form">
+          <div class="form-group">
+            <label for="contactName">Nome:</label>
+            <input
+              type="text"
+              id="contactName"
+              placeholder="Ex: Maria (Mãe)"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="contactPhone">Telefone:</label>
+            <input
+              type="tel"
+              id="contactPhone"
+              placeholder="(31) 99999-9999"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="contactRelation">Relação:</label>
+            <select id="contactRelation">
+              <option value="Família">Família</option>
+              <option value="Amigo(a)">Amigo(a)</option>
+              <option value="Namorado(a)">Namorado(a)</option>
+              <option value="Cônjuge">Cônjuge</option>
+              <option value="Colega">Colega</option>
+              <option value="Outro">Outro</option>
+            </select>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="save-btn">
+              <i class="fas fa-save"></i> Salvar
+            </button>
+            <button
+              type="button"
+              onclick="closeModal('addContactModal')"
+              class="cancel-btn"
+            >
+              <i class="fas fa-times"></i> Cancelar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
 
-    <div id="servicesModal" class="modal">...</div>
+    <div id="servicesModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2><i class="fas fa-hospital"></i> SERVIÇOS BH</h2>
+          <button onclick="closeModal('servicesModal')" class="close-btn">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div class="services-list">
+          <div class="service-item">
+            <div class="service-info">
+              <strong>CAPS Pampulha</strong>
+              <span>Centro de Atenção Psicossocial</span>
+              <small>(31) 3277-7004</small>
+            </div>
+            <button onclick="callService('31327777004')" class="call-btn">
+              <i class="fas fa-phone"></i>
+            </button>
+          </div>
+          <div class="service-item">
+            <div class="service-info">
+              <strong>Hospital João XXIII</strong>
+              <span>Emergência psiquiátrica 24h</span>
+              <small>(31) 3239-9200</small>
+            </div>
+            <button onclick="callService('31323999200')" class="call-btn">
+              <i class="fas fa-phone"></i>
+            </button>
+          </div>
+          <div class="service-item">
+            <div class="service-info">
+              <strong>CAPS Centro</strong>
+              <span>Rua Tupis, 149 - Centro</span>
+              <small>(31) 3277-5208</small>
+            </div>
+            <button onclick="callService('31327775208')" class="call-btn">
+              <i class="fas fa-phone"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
     <script src="../../assets/js/emergencia.js"></script>
   </body>
 </html>
