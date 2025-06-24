@@ -1,72 +1,260 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Reequilibra - To-Do List</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="../../assets/css/emergencia.css" />
+  </head>
+  <body>
     <div id="modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>Editar Tarefa</h3>
-                <span class="close">&times;</span>
-            </div>
-            <div class="modal-body">
-                <input type="hidden" id="editId">
-                <input type="text" id="editTitulo" placeholder="Título da tarefa">
-                <select id="editStatus">
-                    <option value="1">Pendente</option>
-                    <option value="2">Em Progresso</option>
-                    <option value="3">Concluída</option>
-                </select>
-            </div>
-            <div class="modal-footer">
-                <button class="btn-secondary" onclick="fecharModal()">Cancelar</button>
-                <button class="btn-primary" onclick="salvarEdicao()">Salvar</button>
-            </div>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Editar Tarefa</h3>
+          <span class="close">&times;</span>
         </div>
+        <div class="modal-body">
+          <input type="hidden" id="editId" />
+          <input type="text" id="editTitulo" placeholder="Título da tarefa" />
+          <select id="editStatus">
+            <option value="1">Pendente</option>
+            <option value="2">Em Progresso</option>
+            <option value="3">Concluída</option>
+          </select>
+        </div>
+        <div class="modal-footer">
+          <button class="btn-secondary" onclick="fecharModal()">
+            Cancelar
+          </button>
+          <button class="btn-primary" onclick="salvarEdicao()">Salvar</button>
+        </div>
+      </div>
     </div>
 
     <header class="header">
-        <div class="container">
-            <div class="logo">
-                <img src="../../assets/images/logo.png" alt="Reequilibra">
-            </div>
-            <div class="nav-menu" id="navMenu">
-                <a href="../../index.html" class="nav-link active">Início</a>
-                <a href="../missoes/index.html" class="nav-link">Serviços</a>
-            </div>
-            <nav class="nav">
-                <button class="btn-outline">Login</button>
-                <button class="btn-primary">Sign Up</button>
-            </nav>
+      <div class="container">
+        <div class="logo">
+          <img src="../../assets/images/logo.png" alt="Reequilibra" />
         </div>
+        <div class="nav-menu" id="navMenu">
+          <a href="../../index.html" class="nav-link active">Início</a>
+          <a href="../missoes/index.html" class="nav-link">Serviços</a>
+        </div>
+        <nav class="nav">
+          <button class="btn-outline">Login</button>
+          <button class="btn-primary">Sign Up</button>
+        </nav>
+      </div>
     </header>
 
     <main class="container main-content">
-        <div class="content-grid">
-            <div class="form-section">
-                <h2>Nova Tarefa</h2>
-                <div class="form-group">
-                    <input type="text" id="tituloTarefa" placeholder="Digite o título da tarefa" class="input-large">
-                    <button onclick="adicionarTarefa()" class="btn-primary btn-full">Adicionar Tarefa</button>
-                </div>
-            </div>
-
-            <div class="tasks-section">
-                <div class="tasks-header">
-                    <h2>Minhas Tarefas</h2>
-                    <div class="task-actions">
-                        <button onclick="limparCampo()" class="btn-icon" title="Nova tarefa">+</button>
-                    </div>
-                </div>
-                <div id="listaTarefas" class="tasks-list"></div>
-            </div>
+      <div class="content-grid">
+        <div class="form-section">
+          <h2>Nova Tarefa</h2>
+          <div class="form-group">
+            <input
+              type="text"
+              id="tituloTarefa"
+              placeholder="Digite o título da tarefa"
+              class="input-large"
+            />
+            <button onclick="adicionarTarefa()" class="btn-primary btn-full">
+              Adicionar Tarefa
+            </button>
+          </div>
         </div>
+
+        <div class="tasks-section">
+          <div class="tasks-header">
+            <h2>Minhas Tarefas</h2>
+            <div class="task-actions">
+              <button
+                onclick="limparCampo()"
+                class="btn-icon"
+                title="Nova tarefa"
+              >
+                +
+              </button>
+            </div>
+          </div>
+          <div id="listaTarefas" class="tasks-list"></div>
+        </div>
+      </div>
     </main>
 
+    <button id="emergencyBtn" class="emergency-btn">
+      <i class="fas fa-exclamation-triangle"></i>
+      <span>SOS</span>
+    </button>
+
+    <div id="emergencyModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2><i class="fas fa-heart-pulse"></i> EMERGÊNCIA</h2>
+          <button id="closeModal" class="close-btn">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+
+        <div class="emergency-grid">
+          <div class="emergency-card cvv" onclick="callCVV()">
+            <div class="card-icon"><i class="fas fa-phone"></i></div>
+            <div class="card-content">
+              <h3>CVV 188</h3>
+              <p>24h gratuito</p>
+            </div>
+          </div>
+
+          <div class="emergency-card contacts" onclick="showContacts()">
+            <div class="card-icon"><i class="fas fa-users"></i></div>
+            <div class="card-content">
+              <h3>Contatos</h3>
+              <p>Pessoas próximas</p>
+            </div>
+          </div>
+
+          <div class="emergency-card samu" onclick="callSAMU()">
+            <div class="card-icon"><i class="fas fa-ambulance"></i></div>
+            <div class="card-content">
+              <h3>SAMU 192</h3>
+              <p>Emergência médica</p>
+            </div>
+          </div>
+
+          <div class="emergency-card caps" onclick="showServices()">
+            <div class="card-icon"><i class="fas fa-hospital"></i></div>
+            <div class="card-content">
+              <h3>CAPS BH</h3>
+              <p>Saúde mental</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <div id="contactsModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2><i class="fas fa-users"></i> CONTATOS DE CONFIANÇA</h2>
+          <button onclick="closeModal('contactsModal')" class="close-btn">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div class="contacts-actions">
+          <button onclick="showAddContact()" class="add-contact-btn">
+            <i class="fas fa-plus"></i> Adicionar Contato
+          </button>
+        </div>
+        <div id="contactsList" class="contacts-list"></div>
+        <div id="noContacts" class="no-contacts" style="display: none">
+          <i class="fas fa-user-plus"></i>
+          <p>Nenhum contato cadastrado</p>
+          <small>Adicione pessoas de confiança para emergências</small>
+        </div>
+      </div>
+    </div>
+
+    <div id="addContactModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 id="addContactTitle">
+            <i class="fas fa-user-plus"></i> ADICIONAR CONTATO
+          </h2>
+          <button onclick="closeModal('addContactModal')" class="close-btn">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <form id="contactForm" class="contact-form">
+          <div class="form-group">
+            <label for="contactName">Nome:</label>
+            <input
+              type="text"
+              id="contactName"
+              placeholder="Ex: Maria (Mãe)"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="contactPhone">Telefone:</label>
+            <input
+              type="tel"
+              id="contactPhone"
+              placeholder="(31) 99999-9999"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="contactRelation">Relação:</label>
+            <select id="contactRelation">
+              <option value="Família">Família</option>
+              <option value="Amigo(a)">Amigo(a)</option>
+              <option value="Namorado(a)">Namorado(a)</option>
+              <option value="Cônjuge">Cônjuge</option>
+              <option value="Colega">Colega</option>
+              <option value="Outro">Outro</option>
+            </select>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="save-btn">
+              <i class="fas fa-save"></i> Salvar
+            </button>
+            <button
+              type="button"
+              onclick="closeModal('addContactModal')"
+              class="cancel-btn"
+            >
+              <i class="fas fa-times"></i> Cancelar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="servicesModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2><i class="fas fa-hospital"></i> SERVIÇOS BH</h2>
+          <button onclick="closeModal('servicesModal')" class="close-btn">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div class="services-list">
+          <div class="service-item">
+            <div class="service-info">
+              <strong>CAPS Pampulha</strong>
+              <span>Centro de Atenção Psicossocial</span>
+              <small>(31) 3277-7004</small>
+            </div>
+            <button onclick="callService('31327777004')" class="call-btn">
+              <i class="fas fa-phone"></i>
+            </button>
+          </div>
+          <div class="service-item">
+            <div class="service-info">
+              <strong>Hospital João XXIII</strong>
+              <span>Emergência psiquiátrica 24h</span>
+              <small>(31) 3239-9200</small>
+            </div>
+            <button onclick="callService('31323999200')" class="call-btn">
+              <i class="fas fa-phone"></i>
+            </button>
+          </div>
+          <div class="service-item">
+            <div class="service-info">
+              <strong>CAPS Centro</strong>
+              <span>Rua Tupis, 149 - Centro</span>
+              <small>(31) 3277-5208</small>
+            </div>
+            <button onclick="callService('31327775208')" class="call-btn">
+              <i class="fas fa-phone"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
     <script src="./scripts/app.js"></script>
-</body>
+    <script src="../../assets/js/emergencia.js"></script>
+  </body>
 </html>
