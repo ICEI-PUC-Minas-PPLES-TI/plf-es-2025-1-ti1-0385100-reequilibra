@@ -49,9 +49,9 @@ document.addEventListener('DOMContentLoaded', () => {
   let usuarios = {};
 
   Promise.all([
-    fetch('http://localhost:3000/missoes').then(res => res.json()),
-    fetch('http://localhost:3000/atividades').then(res => res.json()),
-    fetch('http://localhost:3000/usuarios').then(res => res.json())
+    fetch('http://localhost:3001/missoes').then(res => res.json()),
+    fetch('http://localhost:3001/atividades').then(res => res.json()),
+    fetch('http://localhost:3001/usuarios').then(res => res.json())
   ]).then(([dadosMissoes, dadosAtividades, dadosUsuarios]) => {
     missoes = dadosMissoes.map(m => m.descricao);
     atividades = dadosAtividades;
@@ -177,7 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
       data: new Date().toISOString()
     };
 
-    return fetch('http://localhost:3000/atividadesConcluidas', {
+    return fetch('http://localhost:3001/atividadesConcluidas', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(registro)
@@ -188,7 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function listarAtividadesConcluidas(usuarioId) {
-    fetch(`http://localhost:3000/atividadesConcluidas?usuarioId=${usuarioId}`)
+    fetch(`http://localhost:3001/atividadesConcluidas?usuarioId=${usuarioId}`)
       .then(res => res.json())
       .then(registros => {
         listaAtividadesConcluidas.innerHTML = `<h2>✅ Atividades concluídas de ${usuarios[usuarioId].nome}:</h2>`;
