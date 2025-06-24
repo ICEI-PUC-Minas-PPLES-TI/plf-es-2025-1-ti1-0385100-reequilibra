@@ -92,8 +92,6 @@
 
     </div>
 
-
-
     <div class="modal fade" id="article-modal" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
       <div class="modal-dialog modal-lg modal-dialog-scrollable">
         <div class="modal-content">
@@ -124,21 +122,41 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
           </div>
           <div class="modal-body">
-            <p><strong>Apenas usuários com login podem cadastrar novos artigos</strong></p>
-            <p> Esta plataforma é dedicada a compartilhar informações confiáveis sobre saúde mental.</p> Para garantir a
-            segurança e a organização do conteúdo, apenas usuários logados têm acesso ao painel de criação de artigos.
-            <p> Se você já possui uma conta, faça login para continuar.
-              Caso ainda não tenha, cadastre-se e comece a compartilhar seus conhecimentos e experiências.</p>
+            <p><strong>Apenas usuários autorizados podem cadastrar novos artigos</strong></p>
+            <p> Esta plataforma é dedicada a compartilhar informações confiáveis sobre saúde mental.</p>Para garantir a
+            segurança e a organização do conteúdo, Por isso o acesso ao painel de criação de artigos é restrito a quem
+            possui a senha de contribuição.
+            <p> Se você deseja colaborar com conteúdos relevantes, insira a senha no próximo passo para continuar.</p>
             Agradecemos seu interesse em ajudar a promover conteúdo de qualidade sobre
             bem-estar emocional! 💙
-
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Entendi</button>
-            <a href="../cadastroartigos/crudartigos.html" class="btn btn-primary" style="background-color: #967ba4;">
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" data-bs-toggle="modal"
+              data-bs-target="#modalSenha">
               <i class="fas fa-sign-in-alt me-2"></i>cadastrar
-            </a>
+            </button>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modalSenha" tabindex="-1" aria-labelledby="senhaLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content border border-primary">
+        <div class="modal-header text-white" style="background-color: #01ae7d;">
+          <h5 class="modal-title" id="senhaLabel"><i class="fas fa-lock me-2"></i>Autenticação Necessária</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        </div>
+        <div class="modal-body">
+          <p class="mb-3">Por favor, insira a senha para acessar o painel de cadastro de artigos.</p>
+          <input type="password" id="inputSenha" class="form-control" placeholder="Digite a senha" />
+          <div id="mensagemErro" class="text-danger mt-2 d-none">Senha incorreta. Tente novamente.</div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary" id="confirmarSenha">Confirmar</button>
         </div>
       </div>
     </div>

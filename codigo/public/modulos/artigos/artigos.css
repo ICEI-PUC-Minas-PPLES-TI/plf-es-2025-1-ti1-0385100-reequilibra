@@ -20,6 +20,9 @@ body {
     color: #000000;
     transition: background-color 0.3s, color 0.3s;
 }
+#confirmarSenha{
+    background-color:#01ae7d !important;
+}
 
 .card,
 .modal-content {
