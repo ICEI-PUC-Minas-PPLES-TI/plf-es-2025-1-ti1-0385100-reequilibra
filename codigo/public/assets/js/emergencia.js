@@ -181,7 +181,6 @@ function saveContact(e) {
   showContacts();
 }
 
-
 function loadContacts() {
   const contacts = getContacts();
 
@@ -219,7 +218,6 @@ function loadContacts() {
     )
     .join("");
 }
-
 
 document.addEventListener("DOMContentLoaded", () => {
   console.log("Sistema de Emergência carregado - BH");

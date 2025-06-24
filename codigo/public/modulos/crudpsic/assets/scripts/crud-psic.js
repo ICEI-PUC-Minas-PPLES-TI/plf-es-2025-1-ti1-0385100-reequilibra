@@ -3,7 +3,7 @@ const API_URL = '/psicologos';
 document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('psicologoForm');
     const tabelaBody = document.getElementById('psicologosTableBody');
-    const modal = document.getElementById('confirmModal');
+    const crud = document.getElementById('confirmcrud');
     const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
     const cancelDeleteBtn = document.getElementById('cancelDeleteBtn');
     const submitBtn = document.getElementById('submitBtn');
@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let psicologoEmEdicao = null;
 
     form.addEventListener('submit', handleSubmit);
-    cancelDeleteBtn.addEventListener('click', closeModal);
+    cancelDeleteBtn.addEventListener('click', closecrud);
     cancelBtn.addEventListener('click', resetForm);
     fotoInput.addEventListener('change', handleFotoChange);
 
@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 local_atend: formData.get('local_atendimento'),
                 cep: formData.get('cep').trim(),
                 horarios: formData.get('horarios').trim(),
-                nota: 0
+                nota: 5.0
             };
 
             if (!dados.nome || !dados.crp || !dados.email || !dados.whatsapp ||
@@ -186,13 +186,13 @@ document.addEventListener('DOMContentLoaded', function () {
         const nome = document.querySelector(`tr button[data-id="${id}"]`).parentElement.parentElement.querySelector('td:nth-child(2)').textContent;
         const crp = document.querySelector(`tr button[data-id="${id}"]`).parentElement.parentElement.querySelector('td:nth-child(3)').textContent;
 
-        document.getElementById('confirmModalTitle').textContent = `Excluir ${nome}`;
-        document.getElementById('confirmModalMessage').textContent = `Tem certeza que deseja excluir o psicólogo(a) ${nome} (CRP: ${crp})?`;
+        document.getElementById('confirmcrudTitle').textContent = `Excluir ${nome}`;
+        document.getElementById('confirmcrudMessage').textContent = `Tem certeza que deseja excluir o psicólogo(a) ${nome} (CRP: ${crp})?`;
 
         confirmDeleteBtn.onclick = function () {
             deletarPsicologo(id)
                 .then(function () {
-                    closeModal();
+                    closecrud();
                     carregarPsicologos();
                 })
                 .catch(function (error) {
@@ -201,7 +201,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
         };
 
-        openModal();
+        opencrud();
     }
 
     function criarPsicologo(dados) {
@@ -250,12 +250,12 @@ document.addEventListener('DOMContentLoaded', function () {
             });
     }
 
-    function openModal() {
-        modal.style.display = 'flex';
+    function opencrud() {
+        crud.style.display = 'flex';
     }
 
-    function closeModal() {
-        modal.style.display = 'none';
+    function closecrud() {
+        crud.style.display = 'none';
     }
 
     function resetForm() {

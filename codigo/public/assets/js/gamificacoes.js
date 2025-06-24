@@ -12,37 +12,51 @@ const activityTypes_elements = document.querySelectorAll(".activity-type");
 
 async function fetchGameData() {
   try {
-    const response = await fetch("../../../db/db.json");
-    const json = await response.json();
+    const baseURL = "http://localhost:3000";
 
-    if (!json.usuarios || !json.usuarios[0]) throw new Error("Usuário não encontrado.");
-    if (!json.medalhas || !Array.isArray(json.medalhas)) throw new Error("Medalhas não disponíveis.");
-    if (!json.tiposDeAtividade || !Array.isArray(json.tiposDeAtividade)) throw new Error("Tipos de atividade não disponíveis.");
-    if (!json.missoesDiarias || !Array.isArray(json.missoesDiarias)) json.missoesDiarias = [];
+    const [
+      usuarios,
+      medalhas,
+      tiposDeAtividade,
+      missoesDiarias,
+      lista_atividades,
+      recompensas,
+    ] = await Promise.all([
+      fetch(`${baseURL}/usuarios`).then((res) => res.json()),
+      fetch(`${baseURL}/medalhas`).then((res) => res.json()),
+      fetch(`${baseURL}/tiposDeAtividade`).then((res) => res.json()),
+      fetch(`${baseURL}/missoesDiarias`).then((res) => res.json()),
+      fetch(`${baseURL}/lista_atividades`).then((res) => res.json()),
+      fetch(`${baseURL}/recompensas`).then((res) => res.json()),
+    ]);
+
+    if (!usuarios[0]) throw new Error("Usuário não encontrado.");
 
     gameData = {
       user: {
-        name: json.usuarios[0].nome,
+        name: usuarios[0].nome,
         level: 1,
         xp: 0,
         currentLevelXP: 0,
         nextLevelXP: 500,
       },
-      activities: json.lista_atividades || [],
-      achievements: json.medalhas.map((m) => ({
+      activities: lista_atividades || [],
+      achievements: medalhas.map((m) => ({
         ...m,
         progresso: m.progresso || 0,
         conquistada: m.conquistada || false,
       })),
-      rewards: json.recompensas || [],
-      consecutiveDays: json.missoesDiarias.filter((m) => m.concluida).length,
+      rewards: recompensas || [],
+      consecutiveDays: missoesDiarias.filter((m) => m.concluida).length,
     };
 
+    // Preencher tipos de atividade
     activityTypes = {};
     const activitySelect = document.getElementById("activityType");
     if (activitySelect) {
-      activitySelect.innerHTML = '<option value="">Selecione uma atividade</option>';
-      json.tiposDeAtividade.forEach((item) => {
+      activitySelect.innerHTML =
+        '<option value="">Selecione uma atividade</option>';
+      tiposDeAtividade.forEach((item) => {
         activityTypes[item.id] = {
           name: item.nome,
           xp: item.xp,
@@ -57,7 +71,7 @@ async function fetchGameData() {
     setupEventListeners();
     setupCalendar();
   } catch (error) {
-    console.error("Erro ao carregar db.json", error);
+    console.error("Erro ao carregar dados da API JSON Server:", error);
   }
 }
 
@@ -83,7 +97,7 @@ function setupEventListeners() {
   });
 
   addActivityBtn.addEventListener("click", () => showModal());
- closeActivityModal.addEventListener("click", () => hideModal());
+  closeActivityModal.addEventListener("click", () => hideModal());
 
   activityModal.addEventListener("click", (e) => {
     if (e.target === activityModal) hideModal();
@@ -214,7 +228,9 @@ function checkLevelUp() {
     gameData.user.level++;
     gameData.user.nextLevelXP = gameData.user.level * 100;
 
-    showNotification(`Parabéns! Você subiu para o nível ${gameData.user.level}!`);
+    showNotification(
+      `Parabéns! Você subiu para o nível ${gameData.user.level}!`
+    );
   }
 }
 
@@ -231,8 +247,10 @@ function checkAchievements() {
       grato: "gratidao",
     };
 
-const nameKey = achievement.nome.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-
+    const nameKey = achievement.nome
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "");
 
     for (const key in typeMap) {
       if (nameKey.includes(key)) {
@@ -260,10 +278,9 @@ const nameKey = achievement.nome.toLowerCase().normalize("NFD").replace(/[\u0300
   });
 }
 
-
 function countDiarioEntries() {
   const diario = gameData.diario || [];
-  return diario.filter(entry => entry.userid === "1").length;
+  return diario.filter((entry) => entry.userid === "1").length;
 }
 
 function unlockAchievement(id) {
@@ -274,11 +291,12 @@ function unlockAchievement(id) {
   }
 }
 
-
 function checkRewardsProgress(activity) {
   gameData.rewards.forEach((r) => {
     if (r.completa) return;
-    const match = r.tipo === activity.type || (r.tipo === "diario" && activity.type === "gratidao");
+    const match =
+      r.tipo === activity.type ||
+      (r.tipo === "diario" && activity.type === "gratidao");
     if (match) {
       r.completa = true;
       showNotification(`Recompensa completa: ${r.titulo}!`);
@@ -287,7 +305,9 @@ function checkRewardsProgress(activity) {
 }
 
 function calculateConsecutiveDays() {
-  const dates = [...new Set(gameData.activities.map((a) => a.date))].sort((a, b) => new Date(b) - new Date(a));
+  const dates = [...new Set(gameData.activities.map((a) => a.date))].sort(
+    (a, b) => new Date(b) - new Date(a)
+  );
   let count = 0;
   const today = new Date().toISOString().split("T")[0];
 
@@ -311,15 +331,20 @@ function getYesterday() {
 }
 
 function updateUI() {
-  document.getElementById("consecutiveDays").textContent = gameData.consecutiveDays;
-  document.getElementById("totalXP").textContent = gameData.user.xp.toLocaleString();
-  document.getElementById("achievements").textContent = gameData.achievements.filter(a => a.conquistada).length;
+  document.getElementById("consecutiveDays").textContent =
+    gameData.consecutiveDays;
+  document.getElementById("totalXP").textContent =
+    gameData.user.xp.toLocaleString();
+  document.getElementById("achievements").textContent =
+    gameData.achievements.filter((a) => a.conquistada).length;
   document.getElementById("currentLevel").textContent = gameData.user.level;
-  document.getElementById("progressFill").style.width = `${(gameData.user.currentLevelXP / gameData.user.nextLevelXP) * 100}%`;
-  document.getElementById("currentXP").textContent = gameData.user.currentLevelXP;
-  document.getElementById("nextLevelXP").textContent = gameData.user.nextLevelXP;
-  document.querySelector(".user-name").textContent = gameData.user.name;
-  document.querySelector(".user-level").textContent = `Nível ${gameData.user.level}`;
+  document.getElementById("progressFill").style.width = `${
+    (gameData.user.currentLevelXP / gameData.user.nextLevelXP) * 100
+  }%`;
+  document.getElementById("currentXP").textContent =
+    gameData.user.currentLevelXP;
+  document.getElementById("nextLevelXP").textContent =
+    gameData.user.nextLevelXP;
   updateTodayActivities();
   updateAchievements();
   updateRewardsUI();
@@ -332,7 +357,8 @@ function updateTodayActivities() {
   const container = document.getElementById("todayActivities");
 
   if (!activities.length) {
-    container.innerHTML = '<p style="text-align:center;">Nenhuma atividade registrada hoje.</p>';
+    container.innerHTML =
+      '<p style="text-align:center;">Nenhuma atividade registrada hoje.</p>';
     return;
   }
 
@@ -387,20 +413,21 @@ function updateAchievements() {
     .join("");
 }
 
-
 function updateRewardsUI() {
   const container = document.getElementById("rewardsList");
   if (!container) return;
 
   container.innerHTML = gameData.rewards
-    .map((r) => `<div class="reward-card ${r.completa ? "completed" : ""}">
+    .map(
+      (r) => `<div class="reward-card ${r.completa ? "completed" : ""}">
       <div class="reward-icon"><i class="${r.icone}"></i></div>
       <div class="reward-info">
         <h4>${r.titulo}</h4>
         <p>${r.descricao}</p>
         <span class="reward-points">${r.pontos} XP</span>
       </div>
-    </div>`)
+    </div>`
+    )
     .join("");
 }
 
@@ -419,21 +446,45 @@ function setupCalendar() {
 let currentDate = new Date();
 
 function updateCalendar() {
-  const monthNames = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho",
-    "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+  const monthNames = [
+    "Janeiro",
+    "Fevereiro",
+    "Março",
+    "Abril",
+    "Maio",
+    "Junho",
+    "Julho",
+    "Agosto",
+    "Setembro",
+    "Outubro",
+    "Novembro",
+    "Dezembro",
+  ];
   const dayNames = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"];
 
-  const firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
-  const lastDay = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
+  const firstDay = new Date(
+    currentDate.getFullYear(),
+    currentDate.getMonth(),
+    1
+  );
+  const lastDay = new Date(
+    currentDate.getFullYear(),
+    currentDate.getMonth() + 1,
+    0
+  );
   const daysInMonth = lastDay.getDate();
   const startDay = firstDay.getDay();
 
-  document.getElementById("currentMonth").textContent =
-    `${monthNames[currentDate.getMonth()]} ${currentDate.getFullYear()}`;
+  document.getElementById("currentMonth").textContent = `${
+    monthNames[currentDate.getMonth()]
+  } ${currentDate.getFullYear()}`;
 
   const monthActivities = gameData.activities.filter((a) => {
     const d = new Date(a.date);
-    return d.getMonth() === currentDate.getMonth() && d.getFullYear() === currentDate.getFullYear();
+    return (
+      d.getMonth() === currentDate.getMonth() &&
+      d.getFullYear() === currentDate.getFullYear()
+    );
   });
 
   let html = "";
@@ -446,9 +497,13 @@ function updateCalendar() {
   }
 
   for (let day = 1; day <= daysInMonth; day++) {
-    const date = `${currentDate.getFullYear()}-${String(currentDate.getMonth() + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+    const date = `${currentDate.getFullYear()}-${String(
+      currentDate.getMonth() + 1
+    ).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
     const hasActivity = monthActivities.some((a) => a.date === date);
-    html += `<div class="calendar-day ${hasActivity ? "has-activity" : ""}" data-date="${date}">
+    html += `<div class="calendar-day ${
+      hasActivity ? "has-activity" : ""
+    }" data-date="${date}">
       ${day}${hasActivity ? '<div class="dot"></div>' : ""}
     </div>`;
   }
@@ -485,7 +540,7 @@ function showNotification(msg) {
   n.textContent = msg;
   document.body.appendChild(n);
 
-  setTimeout(() => n.style.transform = "translateX(0)", 100);
+  setTimeout(() => (n.style.transform = "translateX(0)"), 100);
   setTimeout(() => {
     n.style.transform = "translateX(100%)";
     setTimeout(() => document.body.removeChild(n), 300);

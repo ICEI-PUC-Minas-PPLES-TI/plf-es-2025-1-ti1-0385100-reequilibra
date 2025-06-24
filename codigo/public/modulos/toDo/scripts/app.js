@@ -1,151 +1,162 @@
-document.getElementById("listaTarefas").innerHTML = "";
+const API_URL = "http://localhost:3000/toDo"
+const USER_ID = "1"
 
-let tarefaSelecionada = null;
 
-function listaTarefas() {
-  const userid = "1";
-  const url = `http://localhost:3000/toDo?userid=${userid}`;
-  const listaContainer = document.getElementById("listaTarefas");
+let tarefas = []
 
-  fetch(url)
-    .then((res) => res.json())
-    .then((data) => {
-      listaContainer.innerHTML = "";
+document.addEventListener("DOMContentLoaded", () => {
+  carregarTarefas()
+  configurarModal()
+})
 
-      if (data.length === 0) {
-        listaContainer.innerHTML =
-          "<p class='text-muted'>Nenhuma tarefa encontrada.</p>";
-        return;
-      }
+function configurarModal() {
+  const modal = document.getElementById("modal")
+  const closeBtn = document.querySelector(".close")
 
-      data.forEach((tarefa) => {
-        const card = document.createElement("div");
-        card.classList.add("card", "mb-2", "shadow-sm", "p-2");
-        card.style.cursor = "pointer";
+  closeBtn.onclick = fecharModal
+  window.onclick = (event) => {
+    if (event.target === modal) fecharModal()
+  }
+}
 
-        let statusColor = "#f8f9fa";
-        if (tarefa.status === "1") statusColor = "#fff3cd";
-        if (tarefa.status === "2") statusColor = "#ADD8E6";
-        if (tarefa.status === "3") statusColor = "#d4edda";
+async function carregarTarefas() {
+  try {
+    const response = await fetch(`${API_URL}?userid=${USER_ID}`)
+    tarefas = await response.json()
+    renderizarTarefas()
+  } catch (error) {
+    console.error("Erro ao carregar tarefas:", error)
+    mostrarErro("Erro ao carregar tarefas")
+  }
+}
 
-        card.style.backgroundColor = statusColor;
+function renderizarTarefas() {
+  const container = document.getElementById("listaTarefas")
 
-        card.innerHTML = `
-        <div class="d-flex justify-content-between align-items-center">
-          <div>
-            <h5 class="mb-1">${tarefa.titulo}</h5>
-            <small class="text-muted">Status: ${
-              tarefa.status === "1"
-                ? "Pendente"
-                : tarefa.status === "2"
-                ? "Em Progresso"
-                : "Concluído"
-            }</small>
-          </div>
-          <div class="d-flex gap-1">
-            <button class="btn btn-sm btn-outline-secondary" onclick="abrirModalEdicao('${
-              tarefa.id
-            }', '${tarefa.titulo}', ${tarefa.status})">
-              <i class="bi bi-pencil"></i>
-            </button>
-            <button class="btn btn-sm btn-outline-danger" onclick="deletaTarefa('${
-              tarefa.id
-            }')">
-              <i class="bi bi-trash"></i>
-            </button>
-          </div>
+  if (tarefas.length === 0) {
+    container.innerHTML = '<div class="empty-state">Nenhuma tarefa encontrada</div>'
+    return
+  }
+
+  container.innerHTML = tarefas
+    .map(
+      (tarefa) => `
+        <div class="task-card ${getStatusClass(tarefa.status)}">
+            <div class="task-header">
+                <div>
+                    <div class="task-title">${tarefa.titulo}</div>
+                    <div class="task-status">${getStatusText(tarefa.status)}</div>
+                </div>
+                <div class="task-actions">
+                    <button class="task-btn" onclick="editarTarefa('${tarefa.id}', '${tarefa.titulo}', ${tarefa.status})">✏️</button>
+                    <button class="task-btn delete" onclick="deletarTarefa('${tarefa.id}')">🗑️</button>
+                </div>
+            </div>
         </div>
-      `;
-
-        listaContainer.appendChild(card);
-      });
-    })
-    .catch((error) => {
-      console.error("Erro ao buscar tarefas:", error);
-      listaContainer.innerHTML =
-        "<p class='text-danger'>Erro ao carregar tarefas.</p>";
-    });
+    `,
+    )
+    .join("")
 }
 
-function criaTarefa() {
-  const userid = "1";
-  const titulo = document.getElementById("tituloTarefa").value;
-  const url = `http://localhost:3000/toDo`;
-  if (titulo == "" || !titulo) {
-    alert("Titulo está vazio!");
-    return;
+async function adicionarTarefa() {
+  const titulo = document.getElementById("tituloTarefa").value.trim()
+
+  if (!titulo) {
+    alert("Por favor, digite um título para a tarefa")
+    return
   }
-  const novaTarefa = {
-    titulo,
-    status: "1",
-    userid,
-  };
-  fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(novaTarefa),
-  })
-    .then((res) => res.json)
-    .then((data) => {
-      document.getElementById("tituloTarefa").value = "";
-      listaTarefas();
+
+  try {
+    await fetch(API_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        titulo,
+        status: "1",
+        userid: USER_ID,
+      }),
     })
-    .catch((erro) => {
-      console.error(erro);
-      alert("Erro ao adicionar tarefa!");
-    });
-}
-function limpaCampos() {
-  document.getElementById("tituloTarefa").value = "";
-}
-function deletaTarefa(id) {
-  const url = `http://localhost:3000/toDo/${id}`;
-  const confirmar = confirm("Voce quer deletar esta tarefa?");
-  if (!confirmar) {
-    return;
+
+    document.getElementById("tituloTarefa").value = ""
+    carregarTarefas()
+  } catch (error) {
+    console.error("Erro ao adicionar tarefa:", error)
+    alert("Erro ao adicionar tarefa")
   }
-  fetch(url, {
-    method: "DELETE",
-  })
-    .then(() => listaTarefas())
-    .catch((erro) => {
-      alert("Erro ao excluir a tarefa!");
-      console.log(erro);
-    });
-}
-function abrirModalEdicao(id, titulo, status) {
-  document.getElementById("editIdTarefa").value = id;
-  document.getElementById("editTituloTarefa").value = titulo;
-  document.getElementById("editStatusTarefa").value = status;
-
-  const modal = new bootstrap.Modal(document.getElementById("modalEdicao"));
-  modal.show();
-}
-function editarTarefa() {
-  const id = document.getElementById("editIdTarefa").value;
-  const url = `http://localhost:3000/toDo/${id}`;
-  const novaTarefa = {
-    id,
-    titulo: document.getElementById("editTituloTarefa").value,
-    status: document.getElementById("editStatusTarefa").value,
-  };
-  fetch(url, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(novaTarefa),
-  })
-    .then(() => listaTarefas())
-    .then(() => document.querySelector('[data-bs-dismiss="modal"]').click())
-    .catch((erro) => {
-      alert("Erro ao editar tarefa!");
-      console.error(erro);
-    });
 }
 
-window.addEventListener("DOMContentLoaded", () => {
-  listaTarefas();
-});
+async function deletarTarefa(id) {
+  if (!confirm("Deseja realmente deletar esta tarefa?")) return
+
+  try {
+    await fetch(`${API_URL}/${id}`, { method: "DELETE" })
+    carregarTarefas()
+  } catch (error) {
+    console.error("Erro ao deletar tarefa:", error)
+    alert("Erro ao deletar tarefa")
+  }
+}
+
+function editarTarefa(id, titulo, status) {
+  document.getElementById("editId").value = id
+  document.getElementById("editTitulo").value = titulo
+  document.getElementById("editStatus").value = status
+  document.getElementById("modal").style.display = "block"
+}
+
+
+async function salvarEdicao() {
+  const id = document.getElementById("editId").value
+  const titulo = document.getElementById("editTitulo").value.trim()
+  const status = document.getElementById("editStatus").value
+
+  if (!titulo) {
+    alert("Por favor, digite um título para a tarefa")
+    return
+  }
+
+  try {
+    await fetch(`${API_URL}/${id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id, titulo, status }),
+    })
+
+    fecharModal()
+    carregarTarefas()
+  } catch (error) {
+    console.error("Erro ao editar tarefa:", error)
+    alert("Erro ao editar tarefa")
+  }
+}
+
+
+function fecharModal() {
+  document.getElementById("modal").style.display = "none"
+}
+
+
+function limparCampo() {
+  document.getElementById("tituloTarefa").value = ""
+  document.getElementById("tituloTarefa").focus()
+}
+
+
+function getStatusClass(status) {
+  const classes = { 1: "pendente", 2: "progresso", 3: "concluida" }
+  return classes[status] || "pendente"
+}
+
+function getStatusText(status) {
+  const texts = { 1: "Pendente", 2: "Em Progresso", 3: "Concluída" }
+  return texts[status] || "Pendente"
+}
+
+function mostrarErro(mensagem) {
+  document.getElementById("listaTarefas").innerHTML =
+    `<div class="empty-state" style="color: #dc3545">${mensagem}</div>`
+}
+
+document.getElementById("tituloTarefa").addEventListener("keypress", (e) => {
+  if (e.key === "Enter") adicionarTarefa()
+})

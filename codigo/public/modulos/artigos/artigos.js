@@ -239,3 +239,52 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
+document.addEventListener("DOMContentLoaded", function () {
+    const toggle = document.getElementById("themeToggle");
+    const body = document.body;
+    const icon = toggle.querySelector("i");
+
+
+    if (localStorage.getItem("theme") === "dark") {
+        body.classList.add("dark-mode");
+        icon.classList.replace("fa-moon", "fa-sun");
+    }
+
+    toggle.addEventListener("click", () => {
+        body.classList.toggle("dark-mode");
+        const isDark = body.classList.contains("dark-mode");
+        localStorage.setItem("theme", isDark ? "dark" : "light");
+
+
+        if (isDark) {
+            icon.classList.replace("fa-moon", "fa-sun");
+        } else {
+            icon.classList.replace("fa-sun", "fa-moon");
+        }
+    });
+});
+
+//Senha para cadastar artigos
+document.addEventListener("DOMContentLoaded", function () {
+    const senhaCorreta = "reequilibra2025";
+    const inputSenha = document.getElementById("inputSenha");
+    const btnConfirmar = document.getElementById("confirmarSenha");
+    const mensagemErro = document.getElementById("mensagemErro");
+
+    btnConfirmar.addEventListener("click", function () {
+        const senhaDigitada = inputSenha.value.trim();
+
+        if (senhaDigitada === senhaCorreta) {
+            window.location.href = "../cadastroartigos/crudartigos.html";
+        } else {
+            mensagemErro.classList.remove("d-none");
+            inputSenha.classList.add("is-invalid");
+        }
+    });
+
+    document.getElementById("modalSenha").addEventListener("show.bs.modal", () => {
+        inputSenha.value = "";
+        inputSenha.classList.remove("is-invalid");
+        mensagemErro.classList.add("d-none");
+    });
+});
