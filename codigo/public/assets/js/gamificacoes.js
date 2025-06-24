@@ -345,10 +345,6 @@ function updateUI() {
     gameData.user.currentLevelXP;
   document.getElementById("nextLevelXP").textContent =
     gameData.user.nextLevelXP;
-  document.querySelector(".user-name").textContent = gameData.user.name;
-  document.querySelector(
-    ".user-level"
-  ).textContent = `Nível ${gameData.user.level}`;
   updateTodayActivities();
   updateAchievements();
   updateRewardsUI();
