@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 local_atend: formData.get('local_atendimento'),
                 cep: formData.get('cep').trim(),
                 horarios: formData.get('horarios').trim(),
-                nota: 0
+                nota: 5.0
             };
 
             if (!dados.nome || !dados.crp || !dados.email || !dados.whatsapp ||
