@@ -49,13 +49,13 @@ header {
 
 .logo i {
     font-size: 1.8rem;
-    color: var(--primary-color);
+    color: #01ae7d;
 }
 
 .logo h1 {
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--primary-color);
+    color: #01ae7d;
 }
 .logo-button{
     border: none;
@@ -76,7 +76,7 @@ nav a {
 }
 
 nav a.active, nav a:hover {
-    color: var(--primary-color);
+    color: #01ae7d;
 }
 
 .user-actions {
@@ -92,7 +92,7 @@ nav a.active, nav a:hover {
 }
 
 .user-actions i:hover {
-    color: var(--primary-color);
+    color: #01ae7d;
 }
 
 
@@ -128,7 +128,7 @@ nav a.active, nav a:hover {
 }
 
 .cta-button {
-    background-color: var(--accent-color);
+    background-color: #01ae7d;
     color: white;
     border: none;
     padding: 0.8rem 1.5rem;
@@ -140,7 +140,7 @@ nav a.active, nav a:hover {
 }
 
 .cta-button:hover {
-    background-color: var(--primary-color);
+    background-color: #01ae7d;
 }
 
 
@@ -192,9 +192,9 @@ nav a.active, nav a:hover {
 }
 
 .filter-btn.active, .filter-btn:hover {
-    background-color: var(--primary-color);
+    background-color:#01ae7d;
     color: white;
-    border-color: var(--primary-color);
+    border-color: #01ae7d;
 }
 
 
@@ -239,7 +239,7 @@ nav a.active, nav a:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--primary-color);
+    color: #01ae7d;
     font-size: 3rem;
 }
 
@@ -267,7 +267,7 @@ nav a.active, nav a:hover {
 }
 
 .play-button {
-    background-color: var(--accent-color);
+    background-color: #01ae7d;
     color: white;
     border: none;
     width: 40px;
@@ -281,7 +281,7 @@ nav a.active, nav a:hover {
 }
 
 .play-button:hover {
-    background-color: var(--primary-color);
+    background-color: #01ae7d;
 }
 
 
@@ -350,7 +350,7 @@ audio {
 }
 
 .player-controls button:hover {
-    color: var(--primary-color);
+    color: #01ae7d;
 }
 
 .progress-container {
@@ -372,7 +372,7 @@ progress::-webkit-progress-bar {
 }
 
 progress::-webkit-progress-value {
-    background-color: var(--primary-color);
+    background-color: #01ae7d;
     border-radius: 3px;
 }
 
