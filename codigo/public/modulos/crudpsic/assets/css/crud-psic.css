@@ -103,24 +103,24 @@
     gap: 1.5rem;
 }
 
-.form-row .form-group {
+.form-row .areas-form {
     flex: 1;
 }
 
-.form-group {
+.areas-form {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
 }
 
-.form-group label {
+.areas-form label {
     color: var(--text-primary);
     font-weight: 500;
 }
 
-.form-group input,
-.form-group select,
-.form-group textarea {
+.areas-form input,
+.areas-form select,
+.areas-form textarea {
     padding: 0.75rem 1rem;
     border: 1px solid var(--border);
     border-radius: 8px;
@@ -130,15 +130,15 @@
     transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
+.areas-form input:focus,
+.areas-form select:focus,
+.areas-form textarea:focus {
     outline: none;
     border-color: var(--primary-green);
     box-shadow: 0 0 0 3px rgba(1, 174, 125, 0.2);
 }
 
-.form-group textarea {
+.areas-form textarea {
     resize: vertical;
     min-height: 100px;
 }
@@ -253,8 +253,7 @@
     background-color: var(--dark-red);
 }
 
-/* Modal */
-.modal {
+.crud {
     display: none;
     position: fixed;
     top: 0;
@@ -267,7 +266,7 @@
     align-items: center;
 }
 
-.modal-content {
+.crud-content {
     background-color: var(--surface-elevated);
     padding: 2rem;
     border-radius: 12px;
@@ -276,11 +275,11 @@
     width: 90%;
 }
 
-.small-modal {
+.small-crud {
     max-width: 400px;
 }
 
-.modal-actions {
+.crud-actions {
     display: flex;
     justify-content: flex-end;
     gap: 1rem;

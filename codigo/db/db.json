@@ -261,18 +261,18 @@
   ],
   "psicologos": [
     {
-      "id": "1",
-      "nome": "Dra. Maria",
-      "area_atua": "Terapia Comportamental",
-      "descricao": "Psicóloga especialista em Terapia Comportamental, com ampla experiência no tratamento de transtornos de ansiedade, fobias, baixa autoestima e dificuldades de relacionamento. Atua de forma empática e focada em estratégias práticas para promover mudanças positivas na vida dos pacientes.",
+      "nome": "Dra. Maria Silva",
       "crp": "123456/SP",
       "email": "maria@psicologia.com",
-      "local_atend": "Online / Presencial",
+      "whatsapp": "(11) 91234-5678",
+      "area_atua": "Terapia Comportamental",
+      "descricao": "Psicóloga especialista em Terapia Comportamental, com ampla experiência no tratamento de transtornos de ansiedade, fobias, baixa autoestima e dificuldades de relacionamento. Atua de forma empática e focada em estratégias práticas para promover mudanças positivas na vida dos pacientes.",
+      "local_atend": "Online e Presencial",
       "cep": "33933360",
       "horarios": "A Combinar (Whatsapp)",
-      "nota": 4.9,
-      "whatsapp": "(11) 91234-5678",
-      "img": "https://randomuser.me/api/portraits/women/1.jpg"
+      "nota": 0,
+      "img": "https://randomuser.me/api/portraits/women/1.jpg",
+      "id": "1"
     },
     {
       "id": "2",
@@ -391,6 +391,14 @@
       "login": "Barbara",
       "email": "barbara@gmail.com",
       "senha": "1212",
+      "tipo": "usuario"
+    },
+    {
+      "id": "1750782661739",
+      "nome": "henriq",
+      "login": "henriq",
+      "email": "henriq@gmail.com",
+      "senha": "123",
       "tipo": "usuario"
     }
   ],
