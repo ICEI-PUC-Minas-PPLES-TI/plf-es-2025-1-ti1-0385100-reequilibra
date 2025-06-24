@@ -6,8 +6,9 @@ document.addEventListener("DOMContentLoaded", () => {
   initHeaderScroll()
   initHeroStatsCounter()
 })
+
 function initThemeToggle() {
-  const themeToggle = document.getElementById("themeToggle")
+  const themeToggle = document.getElementById("darkModeToggle")
   const themeIcon = themeToggle.querySelector("i")
   const body = document.body
   const currentTheme = localStorage.getItem("theme") || "light"
@@ -32,15 +33,50 @@ function updateThemeIcon(icon, theme) {
     logo.src = theme === "dark" ? "./assets/images/logo-white.png" : "./assets/images/logo.png"
   }
 }
+
 function initMobileMenu() {
   const mobileToggle = document.getElementById("mobileToggle")
-  const navMenu = document.getElementById("navMenu")
+  const mobileMenu = document.getElementById("mobileMenu")
 
-  mobileToggle.addEventListener("click", () => {
-    navMenu.classList.toggle("active")
-    mobileToggle.classList.toggle("active")
-  })
+  if (mobileToggle && mobileMenu) {
+    mobileToggle.addEventListener("click", (e) => {
+      e.stopPropagation()
+      mobileMenu.classList.toggle("active")
+      mobileToggle.classList.toggle("active")
+    })
+
+    // Close menu when clicking on mobile nav links
+    const mobileNavLinks = mobileMenu.querySelectorAll(".mobile-nav-link")
+    mobileNavLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        mobileMenu.classList.remove("active")
+        mobileToggle.classList.remove("active")
+      })
+    })
+
+    // Close menu when clicking outside
+    document.addEventListener("click", (e) => {
+      if (!mobileToggle.contains(e.target) && !mobileMenu.contains(e.target)) {
+        mobileMenu.classList.remove("active")
+        mobileToggle.classList.remove("active")
+      }
+    })
+
+    // Prevent menu from closing when clicking inside it
+    mobileMenu.addEventListener("click", (e) => {
+      e.stopPropagation()
+    })
+
+    // Auto-close mobile menu when screen becomes large (desktop)
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 768) {
+        mobileMenu.classList.remove("active")
+        mobileToggle.classList.remove("active")
+      }
+    })
+  }
 }
+
 function initSmoothScroll() {
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
@@ -48,19 +84,28 @@ function initSmoothScroll() {
       const target = document.querySelector(this.getAttribute("href"))
       if (target) {
         target.scrollIntoView({ behavior: "smooth", block: "start" })
-        document.getElementById("navMenu").classList.remove("active")
-        document.getElementById("mobileToggle").classList.remove("active")
+        // Close mobile menu if open
+        const mobileMenu = document.getElementById("mobileMenu")
+        const mobileToggle = document.getElementById("mobileToggle")
+        if (mobileMenu && mobileToggle) {
+          mobileMenu.classList.remove("active")
+          mobileToggle.classList.remove("active")
+        }
       }
     })
   })
 }
+
 function initSaibaMais() {
   const saibaMaisBtn = document.getElementById("saibaMais")
   const aboutSection = document.getElementById("about")
-  saibaMaisBtn.addEventListener("click", () => {
-    aboutSection.scrollIntoView({ behavior: "smooth", block: "start" })
-  })
+  if (saibaMaisBtn && aboutSection) {
+    saibaMaisBtn.addEventListener("click", () => {
+      aboutSection.scrollIntoView({ behavior: "smooth", block: "start" })
+    })
+  }
 }
+
 function initHeaderScroll() {
   const header = document.querySelector(".header")
   const body = document.body
@@ -78,6 +123,7 @@ function initHeaderScroll() {
     header.style.background = bg
   })
 }
+
 function initHeroStatsCounter() {
   const heroStats = document.querySelector(".hero-stats")
   if (!heroStats) return

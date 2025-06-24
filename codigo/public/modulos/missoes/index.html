@@ -14,7 +14,7 @@
     />
   </head>
   <body>
-    <div class="sidebar" id="sidebar">
+    <div class="sidebar collapsed" id="sidebar">
       <div class="sidebar-header">
         <div class="sidebar-logo">
           <img id="sidebarLogo" src="../../assets/images/logo.png" alt="Logo" />
@@ -75,7 +75,7 @@
     <button
       id="expandSidebarBtn"
       class="expand-sidebar-btn"
-      style="display: none"
+      style="display: block"
     >
       <i class="fas fa-chevron-right"></i>
     </button>
@@ -95,10 +95,6 @@
                 <span class="user-level">Nível 1</span>
               </div>
             </div>
-
-            <button id="emergencyBtn" class="emergency-btn">
-              <i class="fas fa-exclamation-triangle"></i>
-            </button>
 
             <button class="dark-mode-toggle" id="darkModeToggle">
               <i class="fas fa-moon"></i>
@@ -218,6 +214,11 @@
         </div>
       </main>
     </div>
+
+    <!-- Emergency Button - Fixed Position -->
+    <button id="emergencyBtn" class="emergency-btn">
+      <i class="fas fa-exclamation-triangle"></i>
+    </button>
 
     <!-- Modal para adicionar atividade -->
     <div class="modal" id="activityModal">
