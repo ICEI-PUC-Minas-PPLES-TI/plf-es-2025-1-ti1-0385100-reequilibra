@@ -412,4 +412,27 @@
     <script src="../../assets/js/emergencia.js"></script>
     <script src="../../assets/js/sidebar.js"></script>
   </body>
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const toggleBtn = document.getElementById("darkModeToggle");
+
+    const savedTheme = localStorage.getItem("theme") || "light";
+    document.documentElement.setAttribute("data-theme", savedTheme);
+    updateIcon(savedTheme);
+
+    toggleBtn.addEventListener("click", () => {
+      const currentTheme = document.documentElement.getAttribute("data-theme");
+      const newTheme = currentTheme === "dark" ? "light" : "dark";
+      document.documentElement.setAttribute("data-theme", newTheme);
+      localStorage.setItem("theme", newTheme);
+      updateIcon(newTheme);
+    });
+
+    function updateIcon(theme) {
+      const icon = toggleBtn.querySelector("i");
+      icon.className = theme === "dark" ? "fas fa-sun" : "fas fa-moon";
+    }
+  });
+</script>
+
 </html>
