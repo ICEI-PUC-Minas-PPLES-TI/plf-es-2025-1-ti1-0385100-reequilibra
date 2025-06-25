@@ -1,5 +1,5 @@
-const API_URL = "http://localhost:3000/toDo"
-const USER_ID = "1"
+const API_URL = "/toDo"
+
 
 
 let tarefas = []
