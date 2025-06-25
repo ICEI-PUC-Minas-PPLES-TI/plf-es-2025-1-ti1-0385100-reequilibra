@@ -737,6 +737,16 @@
       "nextLevelXP": 500,
       "consecutiveDays": 0,
       "lastActivityDate": null
+    },
+    {
+      "id": "7e78",
+      "userId": "1750705277288",
+      "level": 1,
+      "xp": 0,
+      "currentLevelXP": 0,
+      "nextLevelXP": 500,
+      "consecutiveDays": 0,
+      "lastActivityDate": null
     }
   ],
   "atividades_usuarios": [
