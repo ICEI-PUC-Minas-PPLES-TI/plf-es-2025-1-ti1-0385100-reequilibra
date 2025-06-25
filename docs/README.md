@@ -24,11 +24,15 @@ A documentação do projeto é estruturada da seguinte forma:
 6. Solução
 7. Referências Bibliográficas
 
-✅ [Documentação de Todas as Etapas até Abril (MIRO)](files/MiroAbril.pdf)
+✅ [Documentação de Todas as Etapas (MIRO)](files/MiroAbril.pdf)
 
 # Contexto
 
-Detalhes sobre o espaço de problema, os objetivos do projeto, sua justificativa e público-alvo.
+A saúde mental dos jovens brasileiros enfrenta uma crise crescente, marcada pelo aumento de ansiedade, depressão e suicídio, enquanto os serviços tradicionais falham em oferecer soluções acessíveis e adaptadas a essa geração. A falta de atendimento especializado, custos elevados e longas esperas no SUS deixam milhões sem apoio, agravando um cenário onde 70% dos casos não recebem tratamento.
+
+A Reequilibra surge para preencher essa lacuna, oferecendo um espaço digital seguro com ferramentas baseadas em evidências científicas, como diário emocional, meditação guiada, artigos especializados e suporte emergencial. Seu objetivo é democratizar o acesso à saúde mental, promovendo autocuidado, prevenção de crises e acolhimento comunitário, tudo em linguagem acessível e formato engajador.
+
+O público-alvo são jovens de 15 a 24 anos, especialmente estudantes, LGBTQIA+ e iniciantes na carreira – grupos mais vulneráveis a transtornos emocionais. A plataforma combina tecnologia e psicologia para criar uma solução eficaz, imediata e alinhada com os hábitos digitais dessa geração, transformando a maneira como o Brasil cuida da saúde mental juvenil.
 
 ## Problema
 
