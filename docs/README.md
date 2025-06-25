@@ -34,6 +34,11 @@ Detalhes sobre o espaço de problema, os objetivos do projeto, sua justificativa
 
 A saúde mental de adolescentes e jovens no Brasil está em estado de alerta. Dados do Ministério da Saúde revelam que 32% dos adolescentes brasileiros apresentam sintomas de ansiedade, e o suicídio é a quarta principal causa de morte entre jovens de 15 a 29 anos. Além disso, apenas 20% das pessoas com transtornos mentais recebem o tratamento adequado. Em uma fase da vida marcada por mudanças intensas e pressão social, muitos jovens enfrentam dificuldades para compreender e expressar suas emoções, além de resistência ou falta de acesso a ajuda profissional.
 
+Diversos fatores contribuem para esse cenário alarmante: pressão escolar, cobranças familiares, redes sociais, baixa autoestima e bullying. Muitos jovens não sabem identificar ou expressar suas emoções e, quando o fazem, encontram barreiras como estigmas sociais ou falta de apoio profissional.
+
+FONTE:NEXO políticas públicas:https://pp.nexojornal.com.br/perguntas-que-a-ciencia-ja-respondeu/2024/09/13/saude-mental-de-criancas-e-adolescentes-fatores-sociais-desafios-e-politicas-publicas-em-4-pontos
+
+
 
 
 ## Objetivos
@@ -50,11 +55,23 @@ Reduzir o estigma em torno da saúde mental por meio de educação e conscientiz
 
 **A saúde mental dos jovens é fundamental para seu desenvolvimento emocional e social. Trabalhar esse tema ajuda a prevenir transtornos, fortalecer a autoestima e formar adultos mais equilibrados e preparados para os desafios da vida.
 
-O grupo trabalhar com a saúde mental dos jovens porque essa é uma fase cheia de pressões e mudanças, que muitas vezes afetam o bem-estar emocional. Muitos jovens não sabem como lidar com sentimentos, têm dificuldade em pedir ajuda e enfrentam o estigma em torno do tema. Por isso, é essencial criar espaços de apoio, escuta e conscientização para promover o equilíbrio emocional e prevenir problemas mais graves.**
+Segundo a Organização Mundial da Saúde (OMS), 50% dos transtornos mentais começam antes dos 14 anos, mas muitos não são detectados ou tratados.
+Além disso, um estudo da UNICEF mostrou que um em cada cinco jovens brasileiros já pensou em suicídio. Esses dados reforçam a urgência em oferecer suporte acessível, acolhedor e educativo.
+
+A criação da plataforma Reequilibra surge como resposta a uma crise global de saúde mental entre jovens, respaldada por dados alarmantes da Organização Mundial da Saúde (OMS) e outras instituições de referência. Segundo a OMS (2023), 1 em cada 5 jovens sofre de ansiedade ou depressão, sendo estas as principais causas de incapacidade nessa faixa etária. No Brasil, esse cenário é ainda mais crítico: 23% dos adolescentes relatam sintomas depressivos, e o suicídio figura como a segunda maior causa de morte entre jovens de 15 a 29 anos.
+
+Fontes:OMS. Mental health of adolescents-https://www.who.int/news-room/fact-sheets/detail/adolescent-mental-health
+
+
 
 ## Público-Alvo
 
-**Os jovens são o foco por estarem em uma fase de muitas mudanças e pressões, o que os torna mais vulneráveis emocionalmente. Ainda em formação, muitos têm dificuldade em lidar com sentimentos e buscar ajuda. Por isso, é essencial direcionar ações de cuidado e prevenção para esse grupo.**
+Os jovens são o foco por estarem em uma fase de muitas mudanças e pressões, o que os torna mais vulneráveis emocionalmente. Ainda em formação, muitos têm dificuldade em lidar com sentimentos e buscar ajuda. Por isso, é essencial direcionar ações de cuidado e prevenção para esse grupo.
+
+O público-alvo do projeto são jovens de 14 a 25 anos,que enfrentam desafios emocionais típicos da adolescência e juventude e demonstram interesse ou necessidade de apoio na área da saúde mental. Esse grupo se encontra em uma fase de vida marcada por mudanças hormonais, decisões importantes sobre futuro profissional, questões identitárias e relações interpessoais intensas.O que o torna particularmente vulnerável a transtornos como ansiedade, depressão, crises de autoestima e burnout.Normalmente estudantes (ensino médio e universitário) com alto nível de estresse devido a provas, vestibular, Enem ou pressão por desempenho;
+jovens trabalhadores que lidam com acúmulo de funções e insegurança financeira; adolescentes em contextos de vulnerabilidade social, onde o acesso à saúde mental é escasso ou inexistente.
+
+
 
 
 
@@ -164,7 +181,14 @@ Estes são os protótipos de telas do sistema.
 # Metodologia
 
 **Detalhes sobre a organização do grupo e o ferramental empregado.
-Editor de código principal: Visual Studio Code.**
+
+A equipe utilizou a metodologia ágil SCRUM, com organização semanal de sprints, divisão de tarefas e acompanhamento via quadro Kanban.
+
+Editor de código principal: Visual Studio Code: https://code.visualstudio.com/download
+
+Miro: https://miro.com/app/board/uXjVIO1vkVM=/?share_link_id=46311419202
+
+Trello: https://trello.com/b/Xza3jP8g
 
 ## Ferramentas
 
@@ -191,11 +215,16 @@ Os integrantes do grupo participaram ativamente, cada um com base em suas funç�
 
 # Solução Implementada
 
-Atendimento com psicólogos, fórum para suprir um dos principais agravadores de problemas mentais(a falta de liberdade ou orgulho para se comunicar), campanhas de conscientização, atividades diárias para regular os principais hormônios da felicidade (serotonina, dopamina, ocitocina e adrenalina)
+Atendimento com psicólogos:canal direto para agendamento e acompanhamento com profissionais da saúde mental.
+Fórum para suprir um dos principais agravadores de problemas mentais(a falta de liberdade ou orgulho para se comunicar), campanhas de conscientização, atividades diárias para regular os principais hormônios da felicidade (serotonina, dopamina, ocitocina e adrenalina), 
+Página de artigos sobre saúde mental: oferece acesso à conteúdos informativos
+Botão de emergência: permite acionar ajuda rápida em situações críticas ex.: crises de ansiedade, pensamentos suicidas.Pode direcionar o usuário para contatos de emergência, serviços de saúde ou redes de apoio.
+Diário:ferramenta para registrar pensamentos, sentimentos e experiências do dia a dia.
+Missões: desafios ou tarefas diárias/semanais para promover hábitos saudáveis (ex.: meditação, gratidão, exercícios).
 
 ## Vídeo do Projeto
 
-O vídeo a seguir traz uma apresentação do problema que a equipe está tratando e a proposta de solução. ⚠️ EXEMPLO ⚠️
+O vídeo a seguir apresenta o Reequilibra, uma plataforma digital voltada ao cuidado com a saúde mental de jovens. Nele, a equipe mostra o problema abordado, os objetivos do projeto e as principais funcionalidades da solução proposta
 
 [![Introdução do Projeto](images/video.png)](https://youtu.be/k_xMXx6a1Q8)
 
@@ -213,5 +242,26 @@ Deve ser adicionada uma aba para agendamento de consultas comprofissionais da á
 
 ##### Funcionalidade 3 - Fórum
 Os clientes terão a possibilidade de abrir tópicos sobre questões nas quais sentem dificuldaes e interagir com os psicólogos cadastrados e verificados pela plataforma.
+
+##### Funcionalidade 4 - Diário
+Ferramenta digital para registro diário de pensamentos, emoções e experiências. Permite acompanhamento emocional, identificação de padrões comportamentais e reflexão guiada, funcionando como complemento terapêutico e recurso de autoconhecimento.
+
+##### Funcionalidade 5 - Exercícios de Meditação
+Módulo com práticas de meditação e respiração guiada, baseadas em evidências científicas. Oferece sessões personalizadas por tempo e objetivo (ansiedade, foco, sono), com monitoramento de progresso para redução de estresse e regulação emocional.
+
+##### Funcionalidade 6 - Artigos sobre saúde mental
+Oferece acesso a conteúdos informativos sobre saúde mental.Aborda desde conceitos básicos até estratégias avançadas de autocuidado, organizados por temas (ansiedade, depressão, relacionmentos, estresse).Permite o cadastro de artigos para usuários autorizados
+
+##### Funcionalidade 7 - Botão de emergência
+Acesso imediato a redes de apoio em crises, incluindo contatos do CVV, orientações passo a passo para ataques de pânico e encaminhamento para serviços de saúde. Integrado à geolocalização para indicar recursos 
+
+##### Funcionalidade 8 - Sistemas de recompensas por atividades
+Mecanismo de gamificação que converte atividades terapêuticas (diário, meditação) em pontos resgatáveis. Estimula a adesão a hábitos saudáveis através de metas progressivas, emblemas de conquista e benefícios como conteúdos exclusivos.
+
+
+
+
+
+
 
 
