@@ -12,9 +12,31 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
       rel="stylesheet"
     />
+    <style>
+.logout-link {
+  color: #dc3545 !important;
+  margin-top: 2rem;
+  border-top: 1px solid var(--border-color);
+  padding-top: 1rem !important;
+}
+
+.logout-link:hover {
+  background: rgba(220, 53, 69, 0.1) !important;
+  color: #dc3545 !important;
+}
+
+[data-theme="dark"] .logout-link {
+  color: #ff6b6b !important;
+}
+
+[data-theme="dark"] .logout-link:hover {
+  background: rgba(255, 107, 107, 0.1) !important;
+  color: #ff6b6b !important;
+}
+</style>
   </head>
   <body>
-    <div class="sidebar collapsed" id="sidebar">
+    <div class="sidebar" id="sidebar">
       <div class="sidebar-header">
         <div class="sidebar-logo">
           <img id="sidebarLogo" src="../../assets/images/logo.png" alt="Logo" />
@@ -27,7 +49,7 @@
       <nav class="sidebar-nav">
         <ul class="sidebar-menu">
           <li class="sidebar-item">
-            <a href="../../index.html" class="sidebar-link">
+            <a href="./index.html" class="sidebar-link">
               <i class="fas fa-home"></i>
               <span class="sidebar-text">Home</span>
             </a>
@@ -68,6 +90,18 @@
               <span class="sidebar-text">Psicólogos</span>
             </a>
           </li>
+          <li class="sidebar-item">
+            <a href="index.html" class="sidebar-link active">
+              <i class="fas fa-trophy"></i>
+              <span class="sidebar-text">Gamificação</span>
+            </a>
+          </li>
+          <li class="sidebar-item">
+            <a href="#" class="sidebar-link logout-link" id="sidebarLogout">
+              <i class="fas fa-sign-out-alt"></i>
+              <span class="sidebar-text">Logout</span>
+            </a>
+          </li>
         </ul>
       </nav>
     </div>
@@ -75,7 +109,7 @@
     <button
       id="expandSidebarBtn"
       class="expand-sidebar-btn"
-      style="display: block"
+      style="display: none"
     >
       <i class="fas fa-chevron-right"></i>
     </button>
@@ -92,7 +126,8 @@
           <div class="header-actions">
             <div class="user-profile">
               <div class="user-info">
-                <span class="user-level">Nível 1</span>
+                <span class="user-name" id="userName">Carregando...</span>
+                <span class="user-level" id="userLevel">Nível 1</span>
               </div>
             </div>
 
@@ -149,7 +184,9 @@
               </div>
               <div class="today-activities">
                 <h3>Atividades de Hoje</h3>
-                <div class="activity-list" id="todayActivities"></div>
+                <div class="activity-list" id="todayActivities">
+                  <div class="loading">Carregando atividades...</div>
+                </div>
                 <button class="btn-primary" id="addActivityBtn">
                   <i class="fas fa-plus"></i> Adicionar Atividade
                 </button>
@@ -159,43 +196,18 @@
 
           <section id="atividades" class="section">
             <h2>Gerenciar Atividades</h2>
-            <div class="activities-grid">
-              <div class="activity-type" data-type="exercicio">
-                <i class="fas fa-dumbbell"></i>
-                <h4>Exercício Físico</h4>
-                <p>50 XP</p>
-              </div>
-              <div class="activity-type" data-type="meditacao">
-                <i class="fas fa-om"></i>
-                <h4>Meditação</h4>
-                <p>30 XP</p>
-              </div>
-              <div class="activity-type" data-type="gratidao">
-                <i class="fas fa-heart"></i>
-                <h4>Gratidão</h4>
-                <p>20 XP</p>
-              </div>
-              <div class="activity-type" data-type="terapia">
-                <i class="fas fa-brain"></i>
-                <h4>Terapia</h4>
-                <p>40 XP</p>
-              </div>
-              <div class="activity-type" data-type="leitura">
-                <i class="fas fa-book"></i>
-                <h4>Leitura</h4>
-                <p>25 XP</p>
-              </div>
-              <div class="activity-type" data-type="agua">
-                <i class="fas fa-tint"></i>
-                <h4>Beber Água</h4>
-                <p>10 XP</p>
-              </div>
+            <div class="activities-grid" id="activitiesGrid">
+              <div class="loading">Carregando tipos de atividades...</div>
             </div>
           </section>
+
           <section id="conquistas" class="section">
             <h2>Conquistas</h2>
-            <div class="achievements-grid" id="achievementsList"></div>
+            <div class="achievements-grid" id="achievementsList">
+              <div class="loading">Carregando conquistas...</div>
+            </div>
           </section>
+
           <section id="calendario" class="section">
             <h2>Calendário de Atividades</h2>
             <div class="calendar-container">
@@ -423,9 +435,27 @@
       </div>
     </div>
 
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay" style="display: none;">
+      <div class="loading-spinner">
+        <i class="fas fa-spinner fa-spin"></i>
+        <p>Carregando...</p>
+      </div>
+    </div>
+
     <script src="../../assets/js/theme-manager.js"></script>
     <script src="../../assets/js/gamificacoes.js"></script>
     <script src="../../assets/js/emergencia.js"></script>
     <script src="../../assets/js/sidebar.js"></script>
+    <script>
+document.getElementById('sidebarLogout').addEventListener('click', function(e) {
+  e.preventDefault();
+  if (confirm('Tem certeza que deseja sair?')) {
+    localStorage.removeItem('usuarioLogado');
+    sessionStorage.removeItem('usuarioCorrente');
+    window.location.href = '../login/login.html';
+  }
+});
+</script>
   </body>
 </html>

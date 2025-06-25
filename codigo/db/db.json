@@ -400,6 +400,14 @@
       "email": "henriq@gmail.com",
       "senha": "123",
       "tipo": "usuario"
+    },
+    {
+      "id": "1750810424144",
+      "nome": "Rommel Carneiro",
+      "login": "rommel",
+      "email": "rommelpuc@gmail.com",
+      "senha": "123",
+      "tipo": "usuario"
     }
   ],
   "mensagens": [
@@ -707,6 +715,103 @@
       "nome": "Gratidão",
       "xp": 15,
       "icone": "fas fa-heart"
+    }
+  ],
+  "gamificacao_usuarios": [
+    {
+      "id": "1",
+      "userId": "a9d3",
+      "level": 1,
+      "xp": 50,
+      "currentLevelXP": 50,
+      "nextLevelXP": 500,
+      "consecutiveDays": 1,
+      "lastActivityDate": "2025-06-25"
+    },
+    {
+      "id": "e3b8",
+      "userId": "1750810424144",
+      "level": 1,
+      "xp": 0,
+      "currentLevelXP": 0,
+      "nextLevelXP": 500,
+      "consecutiveDays": 0,
+      "lastActivityDate": null
+    }
+  ],
+  "atividades_usuarios": [
+    {
+      "id": "1",
+      "userId": "a9d3",
+      "type": "exercicio",
+      "date": "2025-01-15",
+      "notes": "Caminhada de 30 minutos",
+      "xp": 50,
+      "createdAt": "2025-01-15T10:00:00.000Z"
+    },
+    {
+      "id": "fc1a",
+      "type": "terapia",
+      "date": "2025-06-25",
+      "notes": "TOP",
+      "xp": 50,
+      "userId": "a9d3",
+      "createdAt": "2025-06-25T01:02:36.985Z"
+    }
+  ],
+  "conquistas_usuarios": [
+    {
+      "id": "1",
+      "userId": "a9d3",
+      "conquistaId": "1",
+      "conquistada": true,
+      "dataConquista": "2025-01-15T10:00:00.000Z",
+      "progresso": 1
+    },
+    {
+      "id": "805c",
+      "userId": "a9d3",
+      "conquistaId": "2",
+      "progresso": 1
+    },
+    {
+      "id": "0aa1",
+      "userId": "a9d3",
+      "conquistaId": "3",
+      "progresso": 0
+    },
+    {
+      "id": "6e7a",
+      "userId": "a9d3",
+      "conquistaId": "4",
+      "progresso": 0
+    },
+    {
+      "id": "6ee2",
+      "userId": "a9d3",
+      "conquistaId": "5",
+      "progresso": 1
+    },
+    {
+      "id": "db70",
+      "userId": "a9d3",
+      "conquistaId": "6",
+      "progresso": 0
+    },
+    {
+      "id": "4dd3",
+      "userId": "a9d3",
+      "conquistaId": "7",
+      "progresso": 1
+    }
+  ],
+  "recompensas_usuarios": [
+    {
+      "id": "1",
+      "userId": "a9d3",
+      "recompensaId": "1",
+      "completa": true,
+      "dataCompleta": "2025-06-25T01:02:37.026Z"
     }
   ]
 }

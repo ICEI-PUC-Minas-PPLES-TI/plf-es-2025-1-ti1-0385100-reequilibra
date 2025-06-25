@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
               "usuarioLogado",
               JSON.stringify(usuarioEncontrado)
             );
-            window.location.href = DESTINO_URL;
+            window.location.href = "../../modulos/missoes/index.html";
           } else {
             alert(
               "Usuário não encontrado. Verifique login e senha ou crie uma conta."

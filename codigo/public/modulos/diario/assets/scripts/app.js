@@ -189,3 +189,4 @@ function updateDiario(id, diario, refreshFunction) {
             displayMessage("Erro ao atualizar diário");
         });
 }
+
