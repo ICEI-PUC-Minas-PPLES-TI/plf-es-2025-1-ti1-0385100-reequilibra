@@ -10,29 +10,27 @@ authors:
     given-names: Bárbara
   - family-names: Silveira Luz Rocha
     given-names: Henrique
-  - family-names: Gabriel Ferreira da Silva 
+  - family-names: Gabriel Ferreira da Silva
     given-names: Lucas
   - family-names: Pereira Leite
-    given-names:Thales
+    given-names: Thales
   - family-names: Tianyang Ji
     given-names: Vitor
-  - name-suffix: Professor
-    affiliation: PUC Minas
-    family-names: Vieira Carneiro
+  - family-names: Vieira Carneiro
     given-names: Rommel
-  - name-suffix: Professor
+    name-suffix: Professor
     affiliation: PUC Minas
-    family-names: Silva Tavares
+  - family-names: Silva Tavares
     given-names: Cleiton
+    name-suffix: Professor
+    affiliation: PUC Minas
 keywords:
   - Mental Health
-  - Psychologist 
-  - Diary 
+  - Psychologist
+  - Diary
   - Social engagement
-  - Health care 
+  - Health care
   - Gamification
-
-repository-code: 
 license: CC-BY-4.0
 version: 1.0.0
 date-released: 2022-07-14
